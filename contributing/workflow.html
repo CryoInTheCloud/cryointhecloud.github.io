@@ -1,0 +1,1182 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Workflow for contributing to our JupyterBook (or any GitHub project) &#8212; CryoCloud</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Glossaries" href="../reference/glossary.html" />
+    <link rel="prev" title="Contributing" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LZVEY6377Z"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-LZVEY6377Z');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CryoCloud</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to CryoCloud!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Details
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/about.html">
+   About
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/mission.html">
+   Mission
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/Getting_Started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/Code_of_Conduct.html">
+   CryoCloud Code of Conduct
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cloud Training
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../recorded/index.html">
+   Cloud Training
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Background Info
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../preliminary/index.html">
+   Preliminary Work
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../preliminary/github.html">
+     GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../preliminary/jupyterhub.html">
+     JupyterHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../preliminary/git.html">
+     Git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../preliminary/earthdata.html">
+     Earthdata Login
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../preliminary/earthengine.html">
+     Google Earth Engine Sign-Up
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../preliminary/swc.html">
+     Software Carpentry Training
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../preliminary/python.html">
+       Python Installation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../preliminary/conda.html">
+       Python Installation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  How Tos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../how_tos/index.html">
+   How Tos
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tutorials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorials/index.html">
+   Tutorials
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Contributing
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Workflow for contributing to our JupyterBook (or any GitHub project)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/glossary.html">
+   Glossaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/IS2-resources.html">
+   ICESat-2 Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/open_science.html">
+   Open Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/open_source_software.html">
+   Open-source Software
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/questions.html">
+   How to Get Help
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/issues/new?title=Issue%20on%20page%20%2Fcontributing/workflow.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/edit/main/book/contributing/workflow.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/contributing/workflow.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quickstart-reference">
+   Quickstart reference
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#develop-content">
+     Develop content
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#commit-changes">
+     Commit changes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#push-changes">
+     Push changes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delete-your-local-changes">
+     Delete your local changes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#update-local-branch-with-remote-main-branch">
+     Update local branch with remote main branch
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#checkouts-and-merge-main">
+       checkouts and merge main
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#or-fetch-and-merge-origin-main">
+       or fetch and merge origin/main
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pull-request">
+     Pull Request
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delete-branch">
+     Delete Branch
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyterbook-workflow">
+   JupyterBook Workflow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyterbook-preview">
+     JupyterBook preview
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#develop-jupyterbook-content-develop-jupyterbook-content">
+     Develop JupyterBook Content {#develop-jupyterbook-content}
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-book-structure">
+   Jupyter Book Structure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyterhub-workflow">
+   JupyterHub Workflow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#log-into-the-jupyterhub">
+     Log into the JupyterHub
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-a-2i2c-jupyterhub-session">
+     Start a 2i2c JupyterHub session
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-different-jupyter-kernel-to-run-notebooks">
+     Create a different Jupyter kernel to run notebooks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dockerfile">
+     Dockerfile
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Workflow for contributing to our JupyterBook (or any GitHub project)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quickstart-reference">
+   Quickstart reference
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#develop-content">
+     Develop content
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#commit-changes">
+     Commit changes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#push-changes">
+     Push changes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delete-your-local-changes">
+     Delete your local changes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#update-local-branch-with-remote-main-branch">
+     Update local branch with remote main branch
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#checkouts-and-merge-main">
+       checkouts and merge main
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#or-fetch-and-merge-origin-main">
+       or fetch and merge origin/main
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pull-request">
+     Pull Request
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delete-branch">
+     Delete Branch
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyterbook-workflow">
+   JupyterBook Workflow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyterbook-preview">
+     JupyterBook preview
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#develop-jupyterbook-content-develop-jupyterbook-content">
+     Develop JupyterBook Content {#develop-jupyterbook-content}
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-book-structure">
+   Jupyter Book Structure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyterhub-workflow">
+   JupyterHub Workflow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#log-into-the-jupyterhub">
+     Log into the JupyterHub
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-a-2i2c-jupyterhub-session">
+     Start a 2i2c JupyterHub session
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-different-jupyter-kernel-to-run-notebooks">
+     Create a different Jupyter kernel to run notebooks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dockerfile">
+     Dockerfile
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="workflow-for-contributing-to-our-jupyterbook-or-any-github-project">
+<h1>Workflow for contributing to our JupyterBook (or any GitHub project)<a class="headerlink" href="#workflow-for-contributing-to-our-jupyterbook-or-any-github-project" title="Permalink to this headline">#</a></h1>
+<p><em>Modeled after <a class="reference external" href="https://nasa-openscapes.github.io/earthdata-cloud-cookbook/">NASA OpenScapes Cookbook</a>.</em></p>
+<p>Your workflow can be from whatever software you are most comfortable
+with: you can develop chapters working in an integrated development
+environment (IDE) like RStudio or Spyder, notebook interface like
+JupyterLab, or a text editor. You’ll develop content like you normally
+would, executing all code like you normally would as you develop your
+<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> , <code class="docutils literal notranslate"><span class="pre">.Rmd</span></code>, and <code class="docutils literal notranslate"><span class="pre">.md</span></code> files. By default, when we build
+the JupyterBook it will not execute code in Jupyter notebooks, you
+need to have already excuted when you save for the outputs to show in the book.</p>
+<p>Then, when you’re ready to update your contribution in the JupyterBook,
+JupyterBook will combine all the files to make the JupyterBook (or other books
+like it!). Below is a full workflow but depending on how you’re
+contributing, you may have more focus on different parts of it.</p>
+<section id="quickstart-reference">
+<h2>Quickstart reference<a class="headerlink" href="#quickstart-reference" title="Permalink to this headline">#</a></h2>
+<div class="admonition-summary-of-github-commands-detailed-here admonition">
+<p class="admonition-title">Summary of GitHub commands detailed here</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">## check which branches exist, where you are, and pull recent from main branch</span>
+git branch
+git checkout main
+git pull
+
+<span class="c1">## create and switch to new branch</span>
+git checkout -b newbranchname
+
+<span class="c1">## develop content: write prose in markdown, code in R and Python</span>
+<span class="c1">## render your content to check for problems after you have loaded the cryocloud environment</span>
+jupyter-book build yourbookname/
+
+<span class="c1">## commit changes</span>
+git add filename <span class="o">(</span>or --all<span class="o">)</span>
+git status
+git commit -m <span class="s2">&quot;my commit message here&quot;</span>
+
+<span class="c1">## push changes</span>
+git push -u origin newbranchname  <span class="c1"># connect your branch to github.com and push</span>
+
+<span class="c1">## create a pull request</span>
+<span class="c1">## from GitHub.com, create a pull request, and add a `preview` label to the pull request. Once it passes </span>
+all tests, a reviewer signs off on it, and it is merged, delete your branch.
+
+<span class="c1">## delete branch</span>
+git checkout main           <span class="c1"># switch to the main branch</span>
+git pull                    <span class="c1"># pull merged updates from github.com</span>
+git branch -d newbranchname <span class="c1"># delete old local  branch</span>
+
+<span class="c1">## other useful github commands</span>
+git mv filename newfilename <span class="c1"># rename while keeping git history for file</span>
+git rm filename             <span class="c1"># delete file</span>
+git rm -r directoryname     <span class="c1"># delete directory</span>
+git log                     <span class="c1"># show commit logs</span>
+git status                  <span class="c1"># the state of the working directory and the staging area - which changes have been staged, which haven’t, and which files aren’t being tracked by Git. Status output does not show you any information regarding the committed project history. For this, you need to use git log.</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+## GitHub Workflow {#github-workflow}
+
+First let&#39;s talk about the GitHub part of the workflow.
+
+We will work in branches so as to not overwrite each other&#39;s work, and
+let GitHub do what it does best.
+
+The `main` branch will be the current approved version of the book. The
+main branch is what displays at &lt;https://cryocloud.github.io&gt;.
+
+A nice clean workflow with branches is to consider them temporary. You
+pull the most recent from `main`, you create a branch locally, you make
+your edits, you commit regularly, you push regularly to github.com, and
+then you create a pull request for it to be merged into `main`, and when
+it&#39;s approved the branch is deleted on github.com and you also delete it
+locally. That&#39;s the workflow we&#39;ll walk through here. A great resource
+on GitHub setup and collaboration is the ICESat-2 Hackweek [Git and GitHub 
+tutorial notebooks and video records]
+(https://github.com/ICESAT-2HackWeek/2020_ICESat-2_Hackweek_Tutorials#03-git-and-github)
+by Fernando Perez, Fernando Paolo, Shane Grigsby, and Daniel Shapiro, which 
+includes fantastic background philosophy as well as bash commands for setup, 
+workflows, and collaboration.
+
+**The following assumes you&#39;ve completed the initial setup (*under production*) from the previous chapter.
+
+### Branch setup
+
+First off, check what branch you&#39;re on and pull the most recent edits
+from the main branch. If you need to switch branches, use
+`git checkout`. \*Note: a new alternative to `git checkout` is
+`git switch` (see [this
+blog](https://www.banterly.net/2021/07/31/new-in-git-switch-and-restore/));
+when you updated git consider using it here instead too.
+
+``` bash
+git branch          # returns all local branches
+git checkout main   # switch branch to main
+git pull            # pull most recent from the main branch
+</pre></div>
+</div>
+<p>If you are already on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, git will tell you, and that’s
+fine.</p>
+<p>(If you have any residual branches from before, you’ll likely want to
+start off by deleting them — assuming they were temporary and have
+been merged into <a class="reference external" href="http://github.com">github.com</a>. You can delete a branch with
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">newbranchname</span></code>).</p>
+<p>From the main branch or when you first open git, you will want to set a few variables. Git will require
+your user name and email to push content. You can set these for all of your branches
+and repositories. You can remove the –global while in a branch to set only for that
+repository. If you want to override this with a different name or email address for specific
+projects, you can run the command without the –global option when you’re in that project.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global user.name <span class="s2">&quot;YourGithubUserName&quot;</span>
+git config --global user.email you@example.com
+git config --global pull.rebase <span class="nb">true</span>  <span class="c1"># this sets all pulls to do a rebase</span>
+</pre></div>
+</div>
+<p>You can control the color scheme of your window so that files with different status
+are visualized in different colors.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global color.ui <span class="s2">&quot;auto&quot;</span>
+</pre></div>
+</div>
+<p>You can also check your global configurations.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global -l
+</pre></div>
+</div>
+<p>Next, create a new branch, then switch to that branch to work in. Below
+is a one-step approach for the two-step process of
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">newbranchname</span></code> then <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">newbranchname</span></code> (read
+<a class="reference external" href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">more</a>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b newbranchname  <span class="c1"># create and switch to new branch</span>
+</pre></div>
+</div>
+<section id="develop-content">
+<h3>Develop content<a class="headerlink" href="#develop-content" title="Permalink to this headline">#</a></h3>
+<p>Time to edit and develop content, and run your JupyterBook Workflow – see
+<a class="reference external" href="#develop-cookbook-content">specific instructions below</a>. While you’re
+developing, you’ll want to frequently commit and push your changes.</p>
+</section>
+<section id="commit-changes">
+<h3>Commit changes<a class="headerlink" href="#commit-changes" title="Permalink to this headline">#</a></h3>
+<p>You’ll commit your work regularly as you go, likely using the following,
+which commits one or more files you’ve affected within the JupyterBook project:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add filename
+git commit -m <span class="s2">&quot;my commit message here&quot;</span>
+</pre></div>
+</div>
+<p>Or to commit all files you’ve affected:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add --all
+git commit -m <span class="s2">&quot;my commit message here&quot;</span>
+</pre></div>
+</div>
+<p>You can check your commits using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>.</p>
+<p>From <a class="reference external" href="https://r-pkgs.org/git.html#git-commit">R Packages</a> by Hadley
+Wickham:</p>
+<blockquote>
+<div><p>A commit takes a snapshot of your code at a specified point in time.
+Using a Git commit is like using anchors and other protection when
+climbing. If you’re crossing a dangerous rock face you want to make
+sure you’ve used protection to catch you if you fall. Commits play a
+similar role: if you make a mistake, you can’t fall past the previous
+commit.</p>
+</div></blockquote>
+<p>Here are more of Hadley’s suggested <a class="reference external" href="https://r-pkgs.org/git.html#commit-best-practices">best
+practices</a>.</p>
+</section>
+<section id="push-changes">
+<h3>Push changes<a class="headerlink" href="#push-changes" title="Permalink to this headline">#</a></h3>
+<p>When you’re ready to push changes you’ve made in your branch, you’ll
+first need to connect it to <a class="reference external" href="http://github.com">github.com</a> by pushing it “upstream” to the
+“origin repository” (<code class="docutils literal notranslate"><span class="pre">-u</span></code> below is short for <code class="docutils literal notranslate"><span class="pre">--set-upstream</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push -u origin newbranchname  <span class="c1"># connect your branch to github.com and push</span>
+</pre></div>
+</div>
+<p>The above is a one-time command to connect your local branch back to
+<a class="reference external" href="http://github.com">github.com</a>. After you’ve pushed successfully the first time, then as you
+continue to commit, you’ll be able to push as normal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push
+</pre></div>
+</div>
+</section>
+<section id="delete-your-local-changes">
+<h3>Delete your local changes<a class="headerlink" href="#delete-your-local-changes" title="Permalink to this headline">#</a></h3>
+<p>There are several ways to delete your local changes if you were playing
+around and want to reset. Here are a few:</p>
+<p><strong>Burn it all down</strong> - delete the whole repo that you have locally, and
+then reclone.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="m">2021</span>-Cloud-Hackathon
+rm -rf <span class="m">2021</span>-Cloud-Hackathon 
+</pre></div>
+</div>
+<p><strong>Undo changes you’ve maybe saved or committed, but not pushed</strong>. This
+is less time and internet intensive (no new clone/download).</p>
+<p>If you’ve got changes saved, but not yet staged, committed, or pushed,
+you’ll delete unstaged changes in the working directory with clean:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="m">2021</span>-Cloud-Hackathon
+git clean -df
+git checkout -- .
+</pre></div>
+</div>
+<p>Here is a whole blog on how to do this, with conceptual diagrams,
+command line code, and screenshots from RStudio.
+<a class="reference external" href="https://ohi-science.org/news/github-going-back-in-time">https://ohi-science.org/news/github-going-back-in-time</a></p>
+</section>
+<section id="update-local-branch-with-remote-main-branch">
+<h3>Update local branch with remote main branch<a class="headerlink" href="#update-local-branch-with-remote-main-branch" title="Permalink to this headline">#</a></h3>
+<p>If while you’re working you would like to update your local
+<code class="docutils literal notranslate"><span class="pre">newbranchname</span></code> with the most recent updates on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch on
+<a class="reference external" href="http://GitHub.com">GitHub.com</a>, there are several ways to do this.</p>
+<section id="checkouts-and-merge-main">
+<h4>checkouts and merge main<a class="headerlink" href="#checkouts-and-merge-main" title="Permalink to this headline">#</a></h4>
+<p><a class="reference external" href="https://stackoverflow.com/questions/34656523/git-update-local-branch-with-remote-master">Git Update Local Branch with remote
+Master</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout main
+git pull
+git checkout newbranchname
+git merge main
+</pre></div>
+</div>
+</section>
+<section id="or-fetch-and-merge-origin-main">
+<h4>or fetch and merge origin/main<a class="headerlink" href="#or-fetch-and-merge-origin-main" title="Permalink to this headline">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout newbranchname
+git fetch
+git merge origin/main
+</pre></div>
+</div>
+</section>
+</section>
+<section id="pull-request">
+<h3>Pull Request<a class="headerlink" href="#pull-request" title="Permalink to this headline">#</a></h3>
+<p>Now you’ve synced your work to <a class="reference external" href="http://github.com">github.com</a>. It is currently online, in a
+separate branch from the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch. Go to
+<a class="reference external" href="https://github.com/cryointhecloud/CryoCloudWebsite">https://github.com/cryointhecloud/CryoCloudWebsite</a>, find your
+branch, and do a pull request. Write a suitable subject heading and submit
+the pull request.</p>
+<p>Now that you have a pull request open, it will go start automatic checks based
+on what files folders you have made changes to. Additionally, if you are
+contributing to the JupyterBook, you need to go to the right side within the
+pull request, click the gear button next to <code class="docutils literal notranslate"><span class="pre">Labels</span></code>, and type preview. This
+will add a Netlify and Test check to your pull request.</p>
+<p>You will need another reviewer with write priveledges to review your request.
+Once they have reviewed your PR, you and they will be able to <code class="docutils literal notranslate"><span class="pre">squash</span> <span class="pre">and</span> <span class="pre">merge</span></code>.
+You will want to make sure to update the branch first if any other pull requests
+have been approved since you pushed.</p>
+<p>When the pull request is merged, delete the branch on <a class="reference external" href="http://github.com">github.com</a>. GitHub
+will prompt you with a button at the end of the merge.</p>
+</section>
+<section id="delete-branch">
+<h3>Delete Branch<a class="headerlink" href="#delete-branch" title="Permalink to this headline">#</a></h3>
+<p>Once your pull request is merged and you’ve deleted the branch from
+<a class="reference external" href="http://github.com">github.com</a>, then come back to your local setup and delete the branch
+locally:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout main           <span class="c1"># switch to the main branch</span>
+git pull                    <span class="c1"># pull merged updates from github.com</span>
+git branch -d newbranchname <span class="c1"># delete old local  branch</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="jupyterbook-workflow">
+<h2>JupyterBook Workflow<a class="headerlink" href="#jupyterbook-workflow" title="Permalink to this headline">#</a></h2>
+<p>Now the fun part! Our overall workflow will be to serve the book at the
+beginning, develop/edit chapters as simple text files
+(<code class="docutils literal notranslate"><span class="pre">.md</span></code>) or executable notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) that will all
+render into the book.</p>
+<p>JupyterBook lets us easily convert between file types, so depending on how
+you prefer to work and how you’d like to interact with different
+audiences, we can go between formats as we wish. For example, we can
+convert an existing <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> to <code class="docutils literal notranslate"><span class="pre">.md</span></code> to collaborate during
+development, and then convert back to <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> files for our workshops.
+See <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html">Jupyter text formats</a> for details.</p>
+<p>As you work, you’ll follow our GitHub workflow above, committing
+regularly. Remember to execute code in your Jupyter notebook (
+<code class="docutils literal notranslate"><span class="pre">.ipynb</span> <span class="pre">file)</span></code>as you’re working so that your changes will be be included
+in the JupyterBook before pushing to <a class="reference external" href="http://github.com">github.com</a>.</p>
+<section id="jupyterbook-preview">
+<h3>JupyterBook preview<a class="headerlink" href="#jupyterbook-preview" title="Permalink to this headline">#</a></h3>
+<p>The thing to do first is to “preview” the JupyterBook so that we can see
+what it looks like as we develop the chapters.</p>
+<p>Run the following from your branch in your <code class="docutils literal notranslate"><span class="pre">CryoCloudWebsite/book/</span></code>
+directory from the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-book build mybookname/
+</pre></div>
+</div>
+<p>After it is served, paste the url into your browser to see the
+development version of the JupyterBook.</p>
+</section>
+<section id="develop-jupyterbook-content-develop-jupyterbook-content">
+<h3>Develop JupyterBook Content {#develop-jupyterbook-content}<a class="headerlink" href="#develop-jupyterbook-content-develop-jupyterbook-content" title="Permalink to this headline">#</a></h3>
+<p>You can develop JupyterBook chapters in the text editor, IDE, or notebook
+editor of your choice.</p>
+</section>
+</section>
+<section id="jupyter-book-structure">
+<h2>Jupyter Book Structure<a class="headerlink" href="#jupyter-book-structure" title="Permalink to this headline">#</a></h2>
+<p>Each chapter in our JupyterBook is a separate file (<code class="docutils literal notranslate"><span class="pre">.md</span></code>/
+<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>/<code class="docutils literal notranslate"><span class="pre">.Rmd</span></code>). These are stored in our <code class="docutils literal notranslate"><span class="pre">files</span></code> directory,
+organized by sub-directory.</p>
+<p>The JupyterBook structure (i.e. the order of sections and chapters) is
+determined in the <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code> file in the root directory. We can
+shuffle chapter order by editing the <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code> file, and add new
+chapters by adding to the <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code> and creating a new file in the
+appropriate sub-directory that is indicated in <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>.</p>
+<p>Please experiment, add new chapters and sections; we can shuffle chapter
+order and subsections as we continue to develop the JupyterBook, nothing is
+set in stone.</p>
+</section>
+<section id="jupyterhub-workflow">
+<h2>JupyterHub Workflow<a class="headerlink" href="#jupyterhub-workflow" title="Permalink to this headline">#</a></h2>
+<p>We use the CryoCloud <a class="reference external" href="https://2i2c.org/">2i2c</a> JupyterHub to run notebooks.</p>
+<section id="log-into-the-jupyterhub">
+<h3>Log into the JupyterHub<a class="headerlink" href="#log-into-the-jupyterhub" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Go to the <a class="reference external" href="https://hub.cryointhecloud.com">CryoCloud Hub</a>. <em>You should see the CryoCloud logo.</em></p></li>
+<li><p>Click on the orange “Log in to continue” button.</p></li>
+<li><p>Click the “Sign in with Github” button and log in. <em>If you aren’t
+already logged into Github, you should see the login prompt.
+Otherwise, you will be logged in automatically.</em></p></li>
+</ol>
+</section>
+<section id="start-a-2i2c-jupyterhub-session">
+<h3>Start a 2i2c JupyterHub session<a class="headerlink" href="#start-a-2i2c-jupyterhub-session" title="Permalink to this headline">#</a></h3>
+<p>At this point, what you see depends on whether or not you have an active
+session. If your session is active, JupyterLab will load and you can
+start your work. If not, you’ll need to start a new session:</p>
+<ol class="simple">
+<li><p>Select a server based on the size of your job. Most of the time during
+code development, you will only need the smallest instance. Each larger
+instance costs more money per minute used. <em>You should see a
+progress window showing you what 2i2c is doing to get your session
+started. It may take several minutes, but you’ll eventually see a
+JupyterLab instance.</em></p></li>
+</ol>
+</section>
+<section id="create-a-different-jupyter-kernel-to-run-notebooks">
+<h3>Create a different Jupyter kernel to run notebooks<a class="headerlink" href="#create-a-different-jupyter-kernel-to-run-notebooks" title="Permalink to this headline">#</a></h3>
+<p>The default jupyter kernel may not have all the libraries you need to
+run a notebook. Fortunately, you can make a new kernel on the fly to use
+with the notebook.</p>
+<ol class="simple">
+<li><p>Open a terminal in JupyterLab.</p>
+<ol class="simple">
+<li><p>Click on the large blue “+” button on the upper left. <em>You
+should get a new Laucher tab.</em></p></li>
+<li><p>In the Launcher tab, click on “Terminal” under “Other.” <em>You
+should get a tab with a command line prompt.</em></p></li>
+</ol>
+</li>
+<li><p>Create a conda environment using your <a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">favorite
+method</a>.</p></li>
+<li><p>Activate the new environment with
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">YOUR_ENVIRONMENT_HERE</span></code>. <em>You should see the name of
+the new environment in your command line prompt.</em></p></li>
+<li><p>Create a new kernel by calling
+<code class="docutils literal notranslate"><span class="pre">ipython</span> <span class="pre">kernel</span> <span class="pre">install</span> <span class="pre">--name</span> <span class="pre">YOUR_ENVIRONMENT_HERE</span> <span class="pre">--user</span></code>. <em>You
+should get a response saying saying the kernel has been installed.</em></p></li>
+</ol>
+<p>To use this new kernel,</p>
+<ol class="simple">
+<li><p>Open the notebook you want to run. <em>You should see the notebook in a
+tab.</em></p></li>
+<li><p>Click on the current kernel on the upper right. The default kernel
+is called <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3</span></code>. <em>You should see a kernel selection widget.</em></p></li>
+<li><p>Select the new kernel you created and click the “Select” button.
+<em>The kernel on the upper right should now give the name of your
+custom kernel.</em></p></li>
+</ol>
+</section>
+<section id="dockerfile">
+<h3>Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this headline">#</a></h3>
+<p>To update the Dockerfile, see <a class="reference external" href="https://docs.2i2c.org/en/latest/admin/howto/configurator.html">2i2c’s Configurator</a>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./contributing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Contributing</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../reference/glossary.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Glossaries</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Mines Glaciology Laboratory, Colorado School of Mines<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
