@@ -173,8 +173,8 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../preliminary/index.html">
-   Preliminary Work
+  <a class="reference internal" href="../how_tos/index.html">
+   How Tos
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -183,11 +183,58 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../how_tos/index.html">
-     How Tos
+    <a class="reference internal" href="../how_tos/background/index.html">
+     Background Work
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
     <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/github.html">
+       GitHub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/jupyterhub.html">
+       JupyterHub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/git.html">
+       Git
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/earthdata.html">
+       Earthdata Login
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/earthengine.html">
+       Google Earth Engine Sign-Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/swc.html">
+       Software Carpentry Training
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/python.html">
+       Python Installation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../how_tos/data_access/index.html">
+     Data access
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -232,8 +279,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../tutorials/index.html">
    Tutorials
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -261,8 +308,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contributing/index.html">
    Contributing
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -509,7 +556,32 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="getting-started">
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">#</a></h1>
-<p>Before gaining access to the JupyterHub, you need to join the <a class="reference external" href="https://github.com/orgs/CryoInTheCloud/teams">CryoCloudUser Github team</a>. This can be achieved by sending a message to cryocloud (at) mines (dot) edu. Someone will approve your request, send you an onboarding survey to get needed information to get you access, and invite you to join the Github team. Then you’re ready to explore!</p>
+<p>The majority of our users will join the CryoCloud through specific events, but we understand
+extenuating circumstances will prevent some members of the ICESat-2 community from being present. If you
+are part of the ICESat-2 community and want to join the CryoCloud, please follow these instructions which
+will guide you through taking the two onboarding surveys and gaining access to the CryoCloud.</p>
+<ol class="simple">
+<li><p>Fill out this short (Getting Started Survey)[<a class="reference external" href="https://forms.gle/d8oP1gp9YikS2ixM8">https://forms.gle/d8oP1gp9YikS2ixM8</a>] to give us the
+required credentials and information to get you on the hub.</p></li>
+<li><p>Once we have your survey, email us at (<a class="reference external" href="mailto:cryocloud&#37;&#52;&#48;mines&#46;edu">cryocloud<span>&#64;</span>mines<span>&#46;</span>edu</a>)[cryocloud&#64;mines.edu] and we will invite
+you to the CryoCloud GitHub organization and CryoCloudUsers team (you will receive an email from GitHub
+when we do this). Please accept this invitation within 7 days or it will disappear and we will have to
+resend it. Your membership on that GitHub team provides you with access to the CryoCloud.</p></li>
+<li><p>Open up the (CryoCloud JupyterHub)[<a class="reference external" href="https://hub.cryointhecloud.com">https://hub.cryointhecloud.com</a>] to make sure it works for you.
+You will need your Github username and password to sign on.</p></li>
+<li><p>Watch the (CryoCloud training recording)[<a class="reference external" href="https://book.cryointhecloud.com/recorded/index.html">https://book.cryointhecloud.com/recorded/index.html</a>].</p></li>
+<li><p>Fill out the (CryoCloud Onboarding Survey)[<a class="reference external" href="https://forms.gle/8Mr9Ykc8M7jY9fCd7">https://forms.gle/8Mr9Ykc8M7jY9fCd7</a>]. This
+Onboarding Survey will be one of the most important outcomes of the CryoCloud program to show its viability
+for NASA communities (i.e., does it make sense to continue having a CryoCloud beyond 3 years?) and to help
+us ensure we are building infrastructure and community
+practices that best meet your needs. We will gather a subset of the survey information at 3- to 6-month intervals to
+gauge the change that CryoCloud has produced. This survey will take ~10-15 min. Thank you for your time in
+filling out this survey!</p></li>
+<li><p>Add yourself to our (Slack channel)[<a class="reference external" href="https://join.slack.com/t/cryospherecloud/shared_invite/zt-1isgbeuhh-q~cYYKtn_6i3PR1alGca_g">https://join.slack.com/t/cryospherecloud/shared_invite/zt-1isgbeuhh-q~cYYKtn_6i3PR1alGca_g</a>]
+to join the community, get updates, and ask any questions.</p></li>
+<li><p>We welcome feedback on the onboarding training in a (short anonymous feedback form)[<a class="reference external" href="https://forms.gle/2C7mHpwnwzWa8USk9">https://forms.gle/2C7mHpwnwzWa8USk9</a>],
+which will help us to improve the training system for the next group of CryoCloud users.</p></li>
+</ol>
 </section>
 
     <script type="text/x-thebe-config">
