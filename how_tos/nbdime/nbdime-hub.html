@@ -1,0 +1,848 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>nbdime - version control for Jupyter notebooks &#8212; CryoCloud</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data access" href="../data_access/index.html" />
+    <link rel="prev" title="Python Installation" href="../background/python.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LZVEY6377Z"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-LZVEY6377Z');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CryoCloud</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to CryoCloud!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Details
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/about.html">
+   About
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/mission.html">
+   Mission
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/Getting_Started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/Code_of_Conduct.html">
+   CryoCloud Code of Conduct
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/citing_cryocloud.html">
+   Citing CryoCloud
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cloud Training
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recorded/index.html">
+   Cloud Training
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  How Tos
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   How Tos
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../background/index.html">
+     Background Work
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../background/github.html">
+       GitHub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../background/jupyterhub.html">
+       JupyterHub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../background/git.html">
+       Git
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../background/earthdata.html">
+       Earthdata Login
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../background/earthengine.html">
+       Google Earth Engine Sign-Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../background/swc.html">
+       Software Carpentry Training
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../background/python.html">
+       Python Installation
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       nbdime - version control for Jupyter notebooks
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../data_access/index.html">
+     Data access
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../data_access/Instructions_for_configuring_AWS_S3_bucket.html">
+       Instructions for setting up an AWS S3 bucket for your project
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Earthdata_Cloud__Single_File__HTTPS_Access_COG_Example.html">
+       COG HTTPS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Earthdata_Cloud__Single_File_Direct_S3_Access_COG_Example.html">
+       COG Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Multi-File_Direct_S3_Access_COG_Example.html">
+       Multi-COG Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Earthdata_Cloud__Single_File__Direct_S3_Access_NetCDF4_Example.html">
+       NetCDF/HDF5 Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Multi-File_Direct_S3_Access_NetCDF_Example.html">
+       Multi-NetCDF/HDF5 Direct S3
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tutorials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../tutorials/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/IS2_cloud_Landsat_integration.html">
+     ICESat-2 and Landsat cloud access and data integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/IS2_cloud_Sentinel2_integration.html">
+     ICESat-2 and Sentinel 2 cloud access
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/IS2_ATL15_surface_height_anomalies/IS2_ATL15_surface_height_anomalies.html">
+     Using ICESat-2 ATL15 (Gridded Arctic Land Ice Height) to investigate ice-surface height anomalies
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../contributing/index.html">
+   Contributing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/workflow.html">
+     Workflow for contributing to our JupyterBook (or any GitHub project)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/glossary.html">
+   Glossaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/IS2-resources.html">
+   ICESat-2 Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/open_science.html">
+   Open Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/open_source_software.html">
+   Open-source Software
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/questions.html">
+   How to Get Help
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/CryoInTheCloud/CryoCloudWebsite/main?urlpath=lab/tree/book/how_tos/nbdime/nbdime-hub.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/issues/new?title=Issue%20on%20page%20%2Fhow_tos/nbdime/nbdime-hub.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/edit/main/book/how_tos/nbdime/nbdime-hub.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/how_tos/nbdime/nbdime-hub.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   nbdime - version control for Jupyter notebooks
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#accessing-nbdime-on-the-hub">
+   Accessing nbdime on the hub
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-to-semi-automate-the-above">
+     Code to semi-automate the above
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>nbdime - version control for Jupyter notebooks</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   nbdime - version control for Jupyter notebooks
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#accessing-nbdime-on-the-hub">
+   Accessing nbdime on the hub
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-to-semi-automate-the-above">
+     Code to semi-automate the above
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="nbdime-version-control-for-jupyter-notebooks">
+<h1>nbdime - version control for Jupyter notebooks<a class="headerlink" href="#nbdime-version-control-for-jupyter-notebooks" title="Permalink to this headline">#</a></h1>
+<p>Documentation: <a class="reference external" href="https://nbdime.readthedocs.io">https://nbdime.readthedocs.io</a></p>
+<p>With nbdime installed, in JupyterLab you’ll see a little “git” button on the toolbar for any notebook that’s under version control. Clicking on that button will show you a diff of the notebook’s state vs the version in git (the equivalent of doing at the command-line <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">&lt;this-notebook&gt;</span></code>), in a new JupyterLab tab.</p>
+<p>To use nbdime on a hosted hub, first we define the URL of our hub:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hub_url</span> <span class="o">=</span> <span class="s2">&quot;hub.cryointhecloud.com&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="accessing-nbdime-on-the-hub">
+<h1>Accessing nbdime on the hub<a class="headerlink" href="#accessing-nbdime-on-the-hub" title="Permalink to this headline">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbdiff-web</span></code> command should be executed with these parameters. You can pick the port number at will, but you need to pick a number so you can set the same value both in the <code class="docutils literal notranslate"><span class="pre">-p</span></code> and <code class="docutils literal notranslate"><span class="pre">--base-url</span></code> flags; using port 9999 for illustration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>nbdiff-web --ip 0.0.0.0 -p 9999 --base-url ${JUPYTERHUB_SERVICE_PREFIX}proxy/absolute/9999
+</pre></div>
+</div>
+<p>in the folder where the notebooks under git version control that you want to diff reside.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The above command has <strong>no</strong> <code class="docutils literal notranslate"><span class="pre">/</span></code> between the <code class="docutils literal notranslate"><span class="pre">${JUPYTERHUB_SERVICE_PREFIX}</span></code> environment variable and <code class="docutils literal notranslate"><span class="pre">proxy</span></code>! That variable already ends in <code class="docutils literal notranslate"><span class="pre">/</span></code>, and if there’s a double <code class="docutils literal notranslate"><span class="pre">/</span></code> in the command, the proxying will fail.</p>
+</div>
+<p>And then the following URL should be accessed:</p>
+<p><a href="#id1"><span class="problematic" id="id2">:eval:`f&quot;https://{hub_url}/user-redirect/proxy/absolute/9999/difftool&quot;`</span></a></p>
+<p>If you are working regularly in a folder, you can leave this command running and reload the page to see any new changes you’ve made.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbdiff-web</span></code> command returns immediately without printing any output if there’s no diff to show.</p>
+</div>
+<p>When instead accessing a manual diff of two files, that on a local machine would be done with <code class="docutils literal notranslate"><span class="pre">nbdiff-web</span> <span class="pre">nb1.ipynb</span> <span class="pre">nb2.ipynb</span></code>, you should similarly execute</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>nbdiff-web --ip 0.0.0.0 -p 9999 --base-url ${JUPYTERHUB_SERVICE_PREFIX}proxy/absolute/9999 nb1.ipynb nb2.ipynb
+</pre></div>
+</div>
+<p>but then you need to access the URL:</p>
+<p><a href="#id3"><span class="problematic" id="id4">:eval:`f&quot;https://{hub_url}/user-redirect/proxy/absolute/9999/diff?base=nb1.ipynb&amp;remote=nb2.ipynb&quot;`</span></a></p>
+<section id="code-to-semi-automate-the-above">
+<h2>Code to semi-automate the above<a class="headerlink" href="#code-to-semi-automate-the-above" title="Permalink to this headline">#</a></h2>
+<p>Let’s first define some little utilities that we’ll use to display cleaner code later:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span>
+
+<span class="k">def</span> <span class="nf">mdpre</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">`&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">mdcode</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="n">tpl</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">```</span><span class="si">{</span><span class="n">lang</span><span class="si">}</span><span class="s2"></span>
+<span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">```&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Markdown</span><span class="p">(</span><span class="n">tpl</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">mdsh</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mdcode</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="s1">&#39;bash&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, define the command to run:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">port</span> <span class="o">=</span> <span class="mi">9999</span>
+<span class="n">nbdiff_web</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;nbdiff-web --ip 0.0.0.0 -p </span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2"> --base-url $</span><span class="se">{{</span><span class="s2">JUPYTERHUB_SERVICE_PREFIX</span><span class="se">}}</span><span class="s2">proxy/absolute/</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">nbdiff_web</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;nbdiff-web --ip 0.0.0.0 -p 9999 --base-url ${JUPYTERHUB_SERVICE_PREFIX}proxy/absolute/9999&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>And our base url:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Production hub</span>
+<span class="n">baseurl</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://</span><span class="si">{</span><span class="n">hub_url</span><span class="si">}</span><span class="s2">/user-redirect/proxy/absolute/</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">baseurl</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://hub.cryointhecloud.com/user-redirect/proxy/absolute/9999&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, define the location of the file/directory we want to diff:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">folder</span> <span class="o">=</span> <span class="s2">&quot;$HOME/dev/CryoCloudWebsite/book/how_tos/nbdime&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, go to the folder with your project with:</p>
+<p><a href="#id5"><span class="problematic" id="id6">:eval:`mdsh(f&quot;cd {folder}&quot;)`</span></a></p>
+<p>and, once there, run the command:</p>
+<p><a href="#id7"><span class="problematic" id="id8">:eval:`mdsh(nbdiff_web)`</span></a></p>
+<p>and then visit <a href="#id9"><span class="problematic" id="id10">:eval:`Markdown(f&quot;[this URL]({baseurl}/difftool)&quot;)`</span></a> (<a href="#id11"><span class="problematic" id="id12">:eval:`mdpre(f&quot;{baseurl}/difftool&quot;)`</span></a>).</p>
+<p>If using nbdime to diff two local files (instead of the git state), there’s a small change:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file1</span> <span class="o">=</span> <span class="s2">&quot;nb1.ipynb&quot;</span>
+<span class="n">file2</span> <span class="o">=</span> <span class="s2">&quot;nb2.ipynb&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case, with two explicit files to compare, we can again go to the folder with this content:</p>
+<p><a href="#id13"><span class="problematic" id="id14">:eval:`mdsh(f&quot;cd {folder}&quot;)`</span></a></p>
+<p>and, once there, run the command:</p>
+<p><a href="#id15"><span class="problematic" id="id16">:eval:`mdsh(f&quot;{nbdiff_web} {file1} {file2}&quot;)`</span></a></p>
+<p>and and then visit <a href="#id17"><span class="problematic" id="id18">:eval:`Markdown(f&quot;[this URL]({baseurl}/diff?base={file1}&amp;remote={file2})&quot;)`</span></a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./how_tos/nbdime"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../background/python.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Python Installation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../data_access/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data access</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Mines Glaciology Laboratory, Colorado School of Mines<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
