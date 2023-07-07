@@ -545,12 +545,45 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background-work">
+   <span class="xref myst">
+    Background Work
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-access">
+   <span class="xref myst">
+    Data Access
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -562,6 +595,28 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background-work">
+   <span class="xref myst">
+    Background Work
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-access">
+   <span class="xref myst">
+    Data Access
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -573,9 +628,29 @@ title="Print to PDF"
 <h1>How To…<a class="headerlink" href="#how-to" title="Permalink to this headline">#</a></h1>
 <p>We welcome all types of learners to our cloud computing platform, from professional software
 developers to people just getting started. Here we provide guidance on how to join CryoCloud, background work that
-will be useful for working on a JupyterHub, and examples for accessing data from within the cloud.</p>
+will be useful for working on a JupyterHub, and examples for accessing data from within the cloud. This is a list of our “How To” guides which can also be accessed via the contents list to the left:</p>
+<section id="background-work">
+<h2><a class="reference internal" href="background/index.html"><span class="doc std std-doc">Background Work</span></a><a class="headerlink" href="#background-work" title="Permalink to this headline">#</a></h2>
+<p><a class="reference internal" href="background/github.html"><span class="doc std std-doc">GitHub</span></a> <br />
+<a class="reference internal" href="background/jupyterhub.html"><span class="doc std std-doc">JupyterHub</span></a> <br />
+<a class="reference internal" href="background/git.html"><span class="doc std std-doc">Git</span></a> <br />
+<a class="reference internal" href="background/earthdata.html"><span class="doc std std-doc">Earthdata Login</span></a> <br />
+<a class="reference internal" href="background/earthengine.html"><span class="doc std std-doc">Google Earth Engine Sign-Up</span></a> <br />
+<a class="reference internal" href="background/swc.html"><span class="doc std std-doc">Software Carpentry Training</span></a> <br />
+<a class="reference internal" href="background/python.html"><span class="doc std std-doc">Python Installation and Environments</span></a> <br />
+<a class="reference internal" href="nbdime/nbdime-hub.html"><span class="doc std std-doc">Nbdime - Version Control</span></a> \</p>
+</section>
+<section id="data-access">
+<h2><a class="reference internal" href="data_access/index.html"><span class="doc std std-doc">Data Access</span></a><a class="headerlink" href="#data-access" title="Permalink to this headline">#</a></h2>
+<p><a class="reference internal" href="data_access/Instructions_for_configuring_AWS_S3_bucket.html"><span class="doc std std-doc">Setting up an AWS S3 bucket</span></a> <br />
+<a class="reference internal" href="../external/Earthdata_Cloud__Single_File__HTTPS_Access_COG_Example.html"><span class="doc std std-doc">Cloud-optimized Geotiff via HTTPS</span></a> <br />
+<a class="reference internal" href="../external/Earthdata_Cloud__Single_File_Direct_S3_Access_COG_Example.html"><span class="doc std std-doc">Cloud-optimized Geotiff via S3 Direct Access</span></a> <br />
+<a class="reference internal" href="../external/Multi-File_Direct_S3_Access_COG_Example.html"><span class="doc std std-doc">Multi-file Cloud-optimized Geotiff via S3 Direct Access</span></a> <br />
+<a class="reference internal" href="../external/Earthdata_Cloud__Single_File__Direct_S3_Access_NetCDF4_Example.html"><span class="doc std std-doc">NetCDF4/HDF5 via S3 Direct Access</span></a> <br />
+<a class="reference internal" href="../external/Multi-File_Direct_S3_Access_NetCDF_Example.html"><span class="doc std std-doc">Multi-file NetCDF/HDF5 via S3 Direct Access</span></a></p>
 <p>These pages are a work in progress and we welcome ideas for improvements or pages that would be helpful to
 have included here.</p>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
