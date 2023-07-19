@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Python Installation &#8212; CryoCloud</title>
+    <title>Python Installation and Environments &#8212; CryoCloud</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -224,7 +224,7 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
-       Python Installation
+       Python Installation and Environments
       </a>
      </li>
      <li class="toctree-l3">
@@ -608,11 +608,21 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#installing-a-specific-python-version">
-     Installing a specific python version
+    <a class="reference internal nav-link" href="#installing-mamba-optional">
+     Installing Mamba (Optional)
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-in-an-environment">
+   Working in an Environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-the-environment-accessible-to-the-ipython-kernel">
+   Making the Environment Accessible to the iPython Kernel
+  </a>
  </li>
 </ul>
 
@@ -623,7 +633,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Python Installation</h1>
+                <h1>Python Installation and Environments</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -669,11 +679,21 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#installing-a-specific-python-version">
-     Installing a specific python version
+    <a class="reference internal nav-link" href="#installing-mamba-optional">
+     Installing Mamba (Optional)
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-in-an-environment">
+   Working in an Environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-the-environment-accessible-to-the-ipython-kernel">
+   Making the Environment Accessible to the iPython Kernel
+  </a>
  </li>
 </ul>
 
@@ -685,8 +705,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="python-installation">
-<h1>Python Installation<a class="headerlink" href="#python-installation" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="python-installation-and-environments">
+<h1>Python Installation and Environments<a class="headerlink" href="#python-installation-and-environments" title="Permalink to this headline">#</a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
 <p>While we will be using a cloud-hosted computing environment during the hackweek
@@ -703,7 +723,8 @@ and have a fully functioning environment after.</p>
 <p>Python software is distributed as a series of <em>libraries</em> that are called within your code to perform certain tasks. There are many different collections, or <em>distributions</em> of Python software. Generally you install a specific distribution of Python and then add additional libraries as you need them. There are also several different <em>versions</em> of Python. Support for Python 2 ended in 2020, so you should use Python&gt;=3!</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you open a terminal on your computer, chances are if you type ‘python’ you will find it is already installed! But it is best-practice to create separate environments or ‘virtual environments’ to not interfere with existing installations. You can use <a class="reference internal" href="../../reference/glossary.html#term-Conda"><span class="xref std std-term">conda</span></a> for this.</p>
+<p>If you open a terminal on your computer, chances are if you type <code class="docutils literal notranslate"><span class="pre">python</span></code> you will find it is already installed! But it is best-practice to create separate environments or <em>virtual environments</em> to not interfere with existing installations. This also allows you to have different projects in
+different workspaces, each one of them with different Python versions and different packages installed. You can use <a class="reference internal" href="../../reference/glossary.html#term-Conda"><span class="xref std std-term">conda</span></a> for this (see next sections).</p>
 </div>
 </section>
 <section id="what-is-conda">
@@ -731,6 +752,7 @@ wget <span class="nv">$url</span> -O miniconda.sh
 bash miniconda.sh -b -p <span class="nv">$HOME</span>/miniconda
 </pre></div>
 </div>
+<p>Notice that this last command is using <code class="docutils literal notranslate"><span class="pre">bash</span></code>. If bash is not already your default shell, you need to set it to be so (use the <code class="docutils literal notranslate"><span class="pre">chsh</span> <span class="pre">-s</span> <span class="pre">/bin/bash</span></code> command to change your default shell to bash).</p>
 </section>
 <section id="installing-anaconda-optional">
 <h3>Installing Anaconda (Optional)<a class="headerlink" href="#installing-anaconda-optional" title="Permalink to this headline">#</a></h3>
@@ -746,22 +768,96 @@ Python <span class="m">3</span>.7.3<span class="p">|</span>Anaconda custom <span
 </pre></div>
 </div>
 </section>
-<section id="installing-a-specific-python-version">
-<h3>Installing a specific python version<a class="headerlink" href="#installing-a-specific-python-version" title="Permalink to this headline">#</a></h3>
-<p>We will be using Python 3 during the week. Since Anaconda (on Linux) expects you to work in the <code class="docutils literal notranslate"><span class="pre">bash</span></code> shell, if this is not already your default shell, you need to set it to be so (use the <code class="docutils literal notranslate"><span class="pre">chsh</span> <span class="pre">-s</span> <span class="pre">/bin/bash</span></code> command to change your default shell to bash), then you can create an isolated Python environment with the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name py39 <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9
+<section id="installing-mamba-optional">
+<h3>Installing Mamba (Optional)<a class="headerlink" href="#installing-mamba-optional" title="Permalink to this headline">#</a></h3>
+<p>Setting up an environment with package dependencies using <code class="docutils literal notranslate"><span class="pre">conda</span></code> may be quite slow…
+A better option is to use <code class="docutils literal notranslate"><span class="pre">mamba</span></code> instead to solve version dependencies, which is much faster and archives the same result than <code class="docutils literal notranslate"><span class="pre">conda</span></code>.
+In order to use mamba, first install <code class="docutils literal notranslate"><span class="pre">mamba</span></code> in your base environment using <code class="docutils literal notranslate"><span class="pre">conda</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install mamba
 </pre></div>
 </div>
-<p>To use Python 3.9:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate py39
+<p>Now, every <code class="docutils literal notranslate"><span class="pre">conda</span></code> command can be replaced by <code class="docutils literal notranslate"><span class="pre">mamba</span></code>.
+For example, you can use <code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code> instead of <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code> (except the <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span></code>! That is the only command for which you need to use <code class="docutils literal notranslate"><span class="pre">conda</span></code>).</p>
+</section>
+</section>
+<section id="working-in-an-environment">
+<h2>Working in an Environment<a class="headerlink" href="#working-in-an-environment" title="Permalink to this headline">#</a></h2>
+<p>Once miniconda/conda/mamba has been installed, we can use it to create new virtual environments with different Python versions and packages. A good practice is to have different environments for different projects when these have different dependencies.</p>
+<div class="admonition-persistent-environments admonition">
+<p class="admonition-title">Persistent Environments</p>
+<p>By default, conda environments are not persistent in the CryoCloud Hub.
+This means that every time you open a new CryoCloud session, all the installations you made in previous sessions will be gone.
+In order to be able to work in the same computational environment across sessions without re-installing the same packages, we encourage users to create a folder in their home directory to store all their customized environments.
+By doing this, your environments will stay in your account when you comeback to work in the future.
+In order to do this, create a folder called <code class="docutils literal notranslate"><span class="pre">envs</span></code> in your home directory (that is, <code class="docutils literal notranslate"><span class="pre">/home/jovyan</span></code>).
+You can do this directly from the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir envs
 </pre></div>
 </div>
-<p>To check if you have the correct version activated</p>
+<p>Then, also in your home directory, create a new textfile called <code class="docutils literal notranslate"><span class="pre">.condarc</span></code> (the name is important! don’t forget the initial dot <code class="docutils literal notranslate"><span class="pre">.</span></code>) with the following content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># .condarc</span>
+
+<span class="n">envs_dirs</span><span class="p">:</span>
+ <span class="o">-</span> <span class="o">~/</span><span class="n">envs</span>
+</pre></div>
+</div>
+<p>This will indicates to conda that all the new environments have to live inside <code class="docutils literal notranslate"><span class="pre">~envs</span></code> (<code class="docutils literal notranslate"><span class="pre">~</span></code> is the unix character for your home directory).</p>
+</div>
+<p>You can now create a new environment with <code class="docutils literal notranslate"><span class="pre">conda</span></code>.
+If you are just starting to work in a new project or want to test something, you can create an environment from scratch with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create --name &lt;ENVIRONMENT NAME&gt; <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9
+</pre></div>
+</div>
+<p>where you have to replace <code class="docutils literal notranslate"><span class="pre">&lt;ENVIRONMENT</span> <span class="pre">NAME&gt;</span></code> with the name you want to put to your new environment.
+Alternatively, you can create an environment directly from a <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+</pre></div>
+</div>
+<p>This second option is particularly practical for reproducibility and collaboration in a team.</p>
+<p>You can check that the creation and installation of the new environment is working by first activating the environment</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate &lt;ENVIRONMENT NAME&gt;
+</pre></div>
+</div>
+<p>and then check if you have the correct Python version installed</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which python
 python --version
 </pre></div>
 </div>
+<p>The best practice for reproducibility and collaboration is to have an updated <code class="docutils literal notranslate"><span class="pre">environmnent.yml</span></code> file in your working space (eg, in the GitHub repository of your project).
+This allows members of the team to keep the environment updated and shared among users.
+You can create a <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file associated to the environment with the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env <span class="nb">export</span> --from-history &gt; environment.yml<span class="sb">`</span> 
+</pre></div>
+</div>
+<p>This will write the required dependencies to reproduce the environment in the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file.
+Conversely, if you have new packages listed in your <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file (because you edited it or changes were made to it by a colleague and you got these changes over git, for example), you can apply these updates with this command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env update --file environment.yml --prune
+</pre></div>
+</div>
+<p>By doing this, you will keep the conda environment and the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file synchronized.
+Sharing the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file ensures that other users will have the set of instructions to reproduce your virtual environment.
+Notice that the environment and the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> are not the same thing! The latest is just a text file that allows the creation
+of a conda environment by using the instructions in this section.</p>
 </section>
+<section id="making-the-environment-accessible-to-the-ipython-kernel">
+<h2>Making the Environment Accessible to the iPython Kernel<a class="headerlink" href="#making-the-environment-accessible-to-the-ipython-kernel" title="Permalink to this headline">#</a></h2>
+<p>In order to access the kernel associated to our new environment from a Jupyter Notebook, we need to install <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code>. We first activate the
+new environment,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate &lt;ENVIRONMENT NAME&gt;
+</pre></div>
+</div>
+<p>and then install <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install ipykernel
+</pre></div>
+</div>
+<p>This steps are not needed if you created the environment directly from a <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file that includes <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> as a dependency.</p>
+<p>Then we create the kernel with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m ipykernel install --user --name &lt;ENVIRONMENT NAME&gt; --display-name <span class="s2">&quot;IPython - &lt;NAME&gt;&quot;</span>
+</pre></div>
+</div>
+<p>to create the associated kernel.
+Replace <code class="docutils literal notranslate"><span class="pre">&lt;NAME&gt;</span></code> with the name you want to call the iPython kernel and <code class="docutils literal notranslate"><span class="pre">&lt;ENVIRONMENT</span> <span class="pre">NAME&gt;</span></code> with the name of the respective environment.</p>
+<p>You are done! Next time you start your JupyterHub session, you will see the new kernel available from your launcher or from the upper right corner of any Jupyter Notebook.</p>
 </section>
 </section>
 
