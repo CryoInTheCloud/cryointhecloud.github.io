@@ -1,0 +1,1659 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>ICESat-2 ATL10-h5coro large-scale time series &#8212; CryoCloud</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing" href="../contributing/index.html" />
+    <link rel="prev" title="Using ICESat-2 ATL15 (Gridded Arctic Land Ice Height) to investigate ice-surface height anomalies" href="../tutorials/IS2_ATL15_surface_height_anomalies/IS2_ATL15_surface_height_anomalies.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LZVEY6377Z"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-LZVEY6377Z');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CryoCloud</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to CryoCloud!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Details
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/about.html">
+   About
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/mission.html">
+   Mission
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/Getting_Started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/Code_of_Conduct.html">
+   CryoCloud Code of Conduct
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../content/citing_cryocloud.html">
+   Citing CryoCloud
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cloud Training
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../recorded/index.html">
+   Cloud Training
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  How Tos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../how_tos/index.html">
+   How To…
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../how_tos/background/index.html">
+     Background Work
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/github.html">
+       GitHub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/jupyterhub.html">
+       JupyterHub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/git.html">
+       Git
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/earthdata.html">
+       Earthdata Login
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/earthengine.html">
+       Google Earth Engine Sign-Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/swc.html">
+       Software Carpentry Training
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/background/python.html">
+       Python Installation and Environments
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/nbdime/nbdime-hub.html">
+       nbdime - version control for Jupyter notebooks
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../how_tos/data_access/index.html">
+     Data access
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/data_access/Cloud_Sentinel2_access.html">
+       Sentinel 2 cloud access
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/data_access/Instructions_for_configuring_AWS_S3_bucket.html">
+       Instructions for setting up an AWS S3 bucket for your project
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../how_tos/data_access/CryoCloudScratchBucket.html">
+       Using CryoCloud S3 Scratch Bucket
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="Earthdata_Cloud__Single_File__HTTPS_Access_COG_Example.html">
+       COG HTTPS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="Earthdata_Cloud__Single_File_Direct_S3_Access_COG_Example.html">
+       COG Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="Multi-File_Direct_S3_Access_COG_Example.html">
+       Multi-COG Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="Earthdata_Cloud__Single_File__Direct_S3_Access_NetCDF4_Example.html">
+       NetCDF/HDF5 Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="Multi-File_Direct_S3_Access_NetCDF_Example.html">
+       Multi-NetCDF/HDF5 Direct S3
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tutorials
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../tutorials/index.html">
+   Tutorials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorials/IS2_cloud_Landsat_integration.html">
+     ICESat-2 and Landsat cloud access and data integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorials/IS2_ATL15_surface_height_anomalies/IS2_ATL15_surface_height_anomalies.html">
+     Using ICESat-2 ATL15 (Gridded Arctic Land Ice Height) to investigate ice-surface height anomalies
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     ICESat-2 ATL10-h5coro large-scale time series
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contributing/index.html">
+   Contributing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributing/workflow.html">
+     Workflow for contributing to our JupyterBook (or any GitHub project)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/glossary.html">
+   Glossaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/hub_best_practices.html">
+   CryoCloud Best Practices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/IS2-resources.html">
+   ICESat-2 Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/open_science.html">
+   Open Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/open_source_software.html">
+   Open-source Software
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/questions.html">
+   How to Get Help
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/CryoInTheCloud/CryoCloudWebsite/main?urlpath=lab/tree/book/external/ICESAT2_ATL10-h5coro_large_scale_time_series.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/issues/new?title=Issue%20on%20page%20%2Fexternal/ICESAT2_ATL10-h5coro_large_scale_time_series.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/edit/main/book/external/ICESAT2_ATL10-h5coro_large_scale_time_series.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/external/ICESAT2_ATL10-h5coro_large_scale_time_series.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   ICESat-2 ATL10-h5coro large-scale time series
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#processing-large-scale-time-series-of-icesat-2-sea-ice-height-in-the-cloud">
+   <strong>
+    Processing Large-scale Time Series of ICESat-2 Sea Ice Height in the Cloud
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tutorial-overview">
+     <strong>
+      1. Tutorial Overview
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#credits">
+       <strong>
+        Credits
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#learning-objectives">
+       <strong>
+        Learning Objectives
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prerequisites">
+       <strong>
+        Prerequisites
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-of-end-product">
+       <strong>
+        Example of end product
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-requirement">
+       <strong>
+        Time requirement
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tutorial-steps">
+     <strong>
+      2. Tutorial steps
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#installing-the-latest-version-of-earthaccess">
+       Installing the latest version of earthaccess
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#import-packages">
+       <strong>
+        Import Packages
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#authenticate">
+       Authenticate
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#search-for-icesat-2-atl10-data">
+       <strong>
+        Search for ICESat-2 ATL10 data
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#access-the-granules">
+       Access the Granules
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#read-data-into-geopandas-dataframe">
+         Read data into
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           geopandas.DataFrame
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid-the-track-data">
+     Grid the track data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#resample-freeboard-segments-to-a-grid">
+       Resample Freeboard Segments to a Grid
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calculate-grid-cell-mean-statistics">
+       Calculate grid cell mean statistics
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#grid-cell-mean-segment-length-bar-l">
+         Grid Cell Mean Segment Length
+         <span class="math notranslate nohighlight">
+          \(\bar{L}\)
+         </span>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#grid-cell-mean-freeboard-bar-h">
+         Grid Cell Mean Freeboard
+         <span class="math notranslate nohighlight">
+          \(\bar{h}\)
+         </span>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#grid-cell-standard-deviation-of-freeboard-sigma-2-x-y-d">
+         Grid Cell Standard Deviation of Freeboard
+         <span class="math notranslate nohighlight">
+          \(\sigma^2 (x, y, D)\)
+         </span>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#testing-the-functions">
+         Testing the functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#assign-aggregated-data-to-grid-cells">
+       Assign aggregated data to grid cells
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-data-on-a-map">
+     Plot data on a map
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#appendix">
+     Appendix
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#get-grid-parameters-for-ross-sea-region">
+       Get grid parameters for Ross Sea region
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>ICESat-2 ATL10-h5coro large-scale time series</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   ICESat-2 ATL10-h5coro large-scale time series
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#processing-large-scale-time-series-of-icesat-2-sea-ice-height-in-the-cloud">
+   <strong>
+    Processing Large-scale Time Series of ICESat-2 Sea Ice Height in the Cloud
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tutorial-overview">
+     <strong>
+      1. Tutorial Overview
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#credits">
+       <strong>
+        Credits
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#learning-objectives">
+       <strong>
+        Learning Objectives
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prerequisites">
+       <strong>
+        Prerequisites
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-of-end-product">
+       <strong>
+        Example of end product
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-requirement">
+       <strong>
+        Time requirement
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tutorial-steps">
+     <strong>
+      2. Tutorial steps
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#installing-the-latest-version-of-earthaccess">
+       Installing the latest version of earthaccess
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#import-packages">
+       <strong>
+        Import Packages
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#authenticate">
+       Authenticate
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#search-for-icesat-2-atl10-data">
+       <strong>
+        Search for ICESat-2 ATL10 data
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#access-the-granules">
+       Access the Granules
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#read-data-into-geopandas-dataframe">
+         Read data into
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           geopandas.DataFrame
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid-the-track-data">
+     Grid the track data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#resample-freeboard-segments-to-a-grid">
+       Resample Freeboard Segments to a Grid
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calculate-grid-cell-mean-statistics">
+       Calculate grid cell mean statistics
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#grid-cell-mean-segment-length-bar-l">
+         Grid Cell Mean Segment Length
+         <span class="math notranslate nohighlight">
+          \(\bar{L}\)
+         </span>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#grid-cell-mean-freeboard-bar-h">
+         Grid Cell Mean Freeboard
+         <span class="math notranslate nohighlight">
+          \(\bar{h}\)
+         </span>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#grid-cell-standard-deviation-of-freeboard-sigma-2-x-y-d">
+         Grid Cell Standard Deviation of Freeboard
+         <span class="math notranslate nohighlight">
+          \(\sigma^2 (x, y, D)\)
+         </span>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#testing-the-functions">
+         Testing the functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#assign-aggregated-data-to-grid-cells">
+       Assign aggregated data to grid cells
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-data-on-a-map">
+     Plot data on a map
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#appendix">
+     Appendix
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#get-grid-parameters-for-ross-sea-region">
+       Get grid parameters for Ross Sea region
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="icesat-2-atl10-h5coro-large-scale-time-series">
+<h1>ICESat-2 ATL10-h5coro large-scale time series<a class="headerlink" href="#icesat-2-atl10-h5coro-large-scale-time-series" title="Permalink to this headline">#</a></h1>
+<p>imported on: <strong>2023-10-03</strong></p>
+<p>This notebook is from NSIDC's Processing Large-scale Time Series of ICESat-2 Sea Ice Height in the Cloud tutorial</p>
+<blockquote>
+<div><p>The original source for this document is <a class="reference external" href="https://github.com/nsidc/NSIDC-Data-Tutorials">https://github.com/nsidc/NSIDC-Data-Tutorials</a></p>
+</div></blockquote>
+<center>
+<img src='./img/nsidc_logo.png'/>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="processing-large-scale-time-series-of-icesat-2-sea-ice-height-in-the-cloud">
+<h1><strong>Processing Large-scale Time Series of ICESat-2 Sea Ice Height in the Cloud</strong><a class="headerlink" href="#processing-large-scale-time-series-of-icesat-2-sea-ice-height-in-the-cloud" title="Permalink to this headline">#</a></h1>
+</center>
+<hr class="docutils" />
+<section id="tutorial-overview">
+<h2><strong>1. Tutorial Overview</strong><a class="headerlink" href="#tutorial-overview" title="Permalink to this headline">#</a></h2>
+<p>This tutorial is designed for the “DAAC data access in the cloud hands-on experience” session at the 2023 NSIDC DAAC <a class="reference external" href="https://nsidc.org/data/data-programs/nsidc-daac/about-daac#anchor-2">User Working Group (UWG)</a> Meeting.</p>
+<p>The NSIDC DAAC archives and distributes Daily and Monthly Gridded <a class="reference external" href="https://nsidc.org/data/atl20">Sea Ice Freeboard (ATL20)</a> and <a class="reference external" href="https://nsidc.org/data/atl21">Polar Sea Surface Height Anomaly (ATL21)</a> data sets from the ICESat-2 Mission, derived from the lower level <a class="reference external" href="https://nsidc.org/data/atl10">ATL10</a> data set. However, we may want these lower level point data to be gridded and averaged at a weekly cadence, or using a different projection or other gridding parameters.</p>
+<p>This tutorial session is in two parts:</p>
+<ul class="simple">
+<li><p>We will first guide you through this Jupyter Notebook running in the AWS <code class="docutils literal notranslate"><span class="pre">us-west-2</span></code> region, where data are hosted in the NASA Earthdata Cloud. The notebook utilizes several libraries to performantly search, access, read, and grid the data including <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code>, <code class="docutils literal notranslate"><span class="pre">h5coro</span></code>, and <code class="docutils literal notranslate"><span class="pre">geopandas</span></code>.</p></li>
+<li><p>This notebook will focus on the Ross Sea, Antarctica. But let’s say we want to scale this analysis to the entire continent. In the second portion, we will present how to scale and run this same workflow from a script (see <span class="xref myst">workflow.py</span> in the <code class="docutils literal notranslate"><span class="pre">h5cloud</span></code> folder within this notebook’s directory) that can be run from your laptop, using <a class="reference external" href="https://www.coiled.io/">Coiled</a>.</p></li>
+</ul>
+<section id="credits">
+<h3><strong>Credits</strong><a class="headerlink" href="#credits" title="Permalink to this headline">#</a></h3>
+<p>The notebook was created by Andy Barrett and Luis Lopez of NSIDC.</p>
+<p>For questions regarding the notebook, or to report problems, please create a new issue in the <a class="reference external" href="https://github.com/nsidc/NSIDC-Data-Tutorials/issues">NSIDC-Data-Tutorials repo</a>.</p>
+</section>
+<section id="learning-objectives">
+<h3><strong>Learning Objectives</strong><a class="headerlink" href="#learning-objectives" title="Permalink to this headline">#</a></h3>
+<p>By the end of this demonstration you will be able to:</p>
+<ol class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code> to authenticate with Earthdata Login, search for ICESat-2 data using spatial and temporal filters, and directly access files in the cloud.</p></li>
+<li><p>Open data granules using <code class="docutils literal notranslate"><span class="pre">h5coro</span></code> to efficiently read HDF5 data from the NSIDC DAAC S3 bucket.</p></li>
+<li><p>Load data into a geopandas.DataFrame containing geodetic coordinates, ancillary variables, and date/time converted from ATLAS Epoch.</p></li>
+<li><p>Grid track data to EASE-Grid v2 6.25 km projected grid using drop-in-the-bucket resampling.</p></li>
+<li><p>Calculate mean statistics and assign aggregated data to grid cells.</p></li>
+<li><p>Visualize aggregated sea ice height data on a map.</p></li>
+</ol>
+</section>
+<section id="prerequisites">
+<h3><strong>Prerequisites</strong><a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>We are running this notebook in the <a class="reference external" href="https://book.cryointhecloud.com/intro.html">CryoCloud</a> JupyterHub. For more information, see the CryoCloud <a class="reference external" href="https://book.cryointhecloud.com/content/Getting_Started.html">Getting Started</a> documentation.
+<strong>It is advised that you use at least a 16GB instance for this notebook.</strong></p></li>
+<li><p>An Earthdata Login is required for data access. If you don’t have one, you can register for one <a class="reference external" href="https://urs.earthdata.nasa.gov/">here</a>.</p></li>
+<li><p>It is recommended that you create a .netrc file that contains your Earthdata Login credentials, stored in your home directory. If you do not have a .netrc file, <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code> will prompt you to enter your Earthdata Login username and password.</p></li>
+</ol>
+</section>
+<section id="example-of-end-product">
+<h3><strong>Example of end product</strong><a class="headerlink" href="#example-of-end-product" title="Permalink to this headline">#</a></h3>
+<p>At the end of this tutorial, the following figure will be generated, demonstrating a year’s worth of ATL10 Sea Ice Freeboard height data gridded over the Ross Sea, Antarctica:</p>
+<center>
+<img src='./img/icesat2.atl10.gridded.count_segments.ross_sea.png'/>
+</center>
+</section>
+<section id="time-requirement">
+<h3><strong>Time requirement</strong><a class="headerlink" href="#time-requirement" title="Permalink to this headline">#</a></h3>
+<p>Allow approximately 40 minutes to complete this tutorial.</p>
+</section>
+</section>
+<section id="tutorial-steps">
+<h2><strong>2. Tutorial steps</strong><a class="headerlink" href="#tutorial-steps" title="Permalink to this headline">#</a></h2>
+<section id="installing-the-latest-version-of-earthaccess">
+<h3>Installing the latest version of earthaccess<a class="headerlink" href="#installing-the-latest-version-of-earthaccess" title="Permalink to this headline">#</a></h3>
+<p>The CryoCloud environment currently does not have the latest <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code> version installed, along with new features in <code class="docutils literal notranslate"><span class="pre">h5coro</span></code> that are not yet released, so we will first manually install those below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%capture
+# suppress install outputs
+
+!pip uninstall -y earthaccess h5coro
+!pip install earthaccess==0.6.1
+
+# h5coro has new features that we need that are not released
+!pip install git+https://github.com/ICESat2-SlideRule/h5coro.git@main
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>NOTE</strong>: Restart the kernel and clean output after running the cell above.</p>
+</section>
+<section id="import-packages">
+<h3><strong>Import Packages</strong><a class="headerlink" href="#import-packages" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To force use of shapely</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;USE_PYGEOS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+
+<span class="c1"># For searching NASA data</span>
+<span class="kn">import</span> <span class="nn">earthaccess</span>
+
+<span class="c1"># For reading data, analysis and plotting</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
+
+<span class="c1"># For resampling</span>
+<span class="kn">from</span> <span class="nn">affine</span> <span class="kn">import</span> <span class="n">Affine</span>
+
+<span class="c1"># For plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+
+<span class="kn">from</span> <span class="nn">h5cloud.read_atl10</span> <span class="kn">import</span> <span class="n">read_atl10</span><span class="p">,</span> <span class="n">get_data_links</span><span class="p">,</span> <span class="n">get_credentials</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;earthaccess: </span><span class="si">{</span><span class="n">earthaccess</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="authenticate">
+<h3>Authenticate<a class="headerlink" href="#authenticate" title="Permalink to this headline">#</a></h3>
+<p>We need to authenticate and get AWS token</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">auth</span> <span class="o">=</span> <span class="n">earthaccess</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="search-for-icesat-2-atl10-data">
+<h3><strong>Search for ICESat-2 ATL10 data</strong><a class="headerlink" href="#search-for-icesat-2-atl10-data" title="Permalink to this headline">#</a></h3>
+<p>We use <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code> to search CMR for granules in the region of interest for the time period of interest.</p>
+<p>The region is set by name below.  Currently, we have two options: the Ross Sea, and the Southern Ocean and adjoining seas.</p>
+<p>The range of dates is set by assigning a start year and end year to <code class="docutils literal notranslate"><span class="pre">year_begin</span></code> and <code class="docutils literal notranslate"><span class="pre">year_end</span></code>.  Setting <code class="docutils literal notranslate"><span class="pre">year_begin</span></code> and <code class="docutils literal notranslate"><span class="pre">year_end</span></code> to the same year retreives data for one year.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To avoid copying and pasting region tuples</span>
+<span class="n">region</span> <span class="o">=</span> <span class="s2">&quot;Ross Sea&quot;</span>  <span class="c1">#&quot;Ross Sea&quot;  # Set region to &quot;Ross Sea&quot; for just Ross Sea or &quot;Antarctica&quot; for southern ocean </span>
+<span class="n">ross_sea</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">78</span><span class="p">,</span> <span class="o">-</span><span class="mi">160</span><span class="p">,</span> <span class="o">-</span><span class="mi">74</span><span class="p">)</span>
+<span class="n">antarctic</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">this_region</span> <span class="o">=</span> <span class="n">antarctic</span> <span class="k">if</span> <span class="n">region</span> <span class="o">==</span> <span class="s2">&quot;Antarctica&quot;</span> <span class="k">else</span> <span class="n">ross_sea</span>
+
+<span class="n">year_begin</span> <span class="o">=</span> <span class="mi">2019</span>
+<span class="n">year_end</span> <span class="o">=</span> <span class="mi">2019</span>
+<span class="n">month</span> <span class="o">=</span> <span class="mi">9</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atl10</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">total_results</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">approx_size</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">year_begin</span><span class="p">,</span> <span class="n">year_end</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    
+    <span class="n">date_beg</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">date_end</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Searching period </span><span class="si">{</span><span class="n">date_beg</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">date_end</span><span class="si">}</span><span class="s2"> ...&quot;</span><span class="p">)</span>
+    <span class="n">granules</span> <span class="o">=</span> <span class="n">earthaccess</span><span class="o">.</span><span class="n">search_data</span><span class="p">(</span>
+        <span class="n">short_name</span> <span class="o">=</span> <span class="s1">&#39;ATL10&#39;</span><span class="p">,</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;006&#39;</span><span class="p">,</span>
+        <span class="n">cloud_hosted</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">bounding_box</span> <span class="o">=</span> <span class="n">this_region</span><span class="p">,</span>
+        <span class="n">temporal</span> <span class="o">=</span> <span class="p">(</span><span class="n">date_beg</span><span class="p">,</span> <span class="n">date_end</span><span class="p">)</span>  <span class="c1">#(f&#39;{year}-09-01&#39;,f&#39;{year}-09-30&#39;),</span>
+    <span class="p">)</span>
+    <span class="n">total_results</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">granules</span><span class="p">)</span>
+    <span class="n">approx_size</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">g</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">])</span>
+    <span class="n">atl10</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span> <span class="o">=</span> <span class="n">granules</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total retrieved: </span><span class="si">{</span><span class="n">total_results</span><span class="si">}</span><span class="s2">, approx size: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">approx_size</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> MB&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="access-the-granules">
+<h3>Access the Granules<a class="headerlink" href="#access-the-granules" title="Permalink to this headline">#</a></h3>
+<p>Because the CryoCloud is hub is running on servers in AWS region <code class="docutils literal notranslate"><span class="pre">us-west-2</span></code>, which is the same region as the NASA Earthdata Cloud, granules can be accessed directly without having to download the files first.  This is analogous to how you would work with files on your local filesystem.  However, <em>under the hood</em> there are differences.</p>
+<p>Initially, we load data for each year into a <code class="docutils literal notranslate"><span class="pre">geopandas.DataFrame</span></code>.  <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> is an extension of the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> package.  <code class="docutils literal notranslate"><span class="pre">pandas</span></code> is designed to work with <code class="docutils literal notranslate"><span class="pre">tabular</span></code> data - <em>think data you might put into a spreadsheet</em>.  <code class="docutils literal notranslate"><span class="pre">geopandas</span></code>, extends <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to work with geospatial data by adding geometries (points, lines and polygons) and a coordinate reference system (CRS), so that data in each row is associated with a geospatial feature located on Earth.  ICESat-2 track data is well suited to the DataFrame data model because data are related to points or segments.  Once data is in a <code class="docutils literal notranslate"><span class="pre">geopandas.DataFrame</span></code>, the data can be reprojected and queried using methods you may be used to using in a GIS.</p>
+<section id="read-data-into-geopandas-dataframe">
+<h4>Read data into <code class="docutils literal notranslate"><span class="pre">geopandas.DataFrame</span></code><a class="headerlink" href="#read-data-into-geopandas-dataframe" title="Permalink to this headline">#</a></h4>
+<p>The first step is to read the data and put it into a Dataframe.  We use <code class="docutils literal notranslate"><span class="pre">h5coro</span></code>, which is a package developed by the SlideRule project to efficiently read HDF5 files in the cloud.  Recall from the Cloud Optimized Format presentation, the HDF5 format and the HDF5 library for reading and writing those files are not well suited to accessing data in the cloud.  <code class="docutils literal notranslate"><span class="pre">h5coro</span></code> was developed to solve some of the problems related to HDF5 format and tools.  Using <code class="docutils literal notranslate"><span class="pre">h5coro</span></code> with <code class="docutils literal notranslate"><span class="pre">dask</span></code>, a python package for parallel processing on multicore local machines and distributed cluster in the cloud, reading data from ATL10 files is 5x faster than using the <code class="docutils literal notranslate"><span class="pre">h5py</span></code> package, an HDF5 reader that uses the HDF5 library.</p>
+<p>The code to read the data is long, so we have created the <code class="docutils literal notranslate"><span class="pre">read_atl10</span></code> function and put it in a module.  The function is imported into this notebook.  If your are interested, take a look at <code class="docutils literal notranslate"><span class="pre">read_atl10</span></code> in <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">read_atl10.py</span></code></span>.  The main features of the function are briefly described here.</p>
+<p>We follow the processing steps for ATL20 to generate our freeboard grids.  For each grid cell that contain one or more freeboard segments, a grid cell mean freeboard is calculated as a mean of <code class="docutils literal notranslate"><span class="pre">gtx/freeboard_segment/beam_fb_height</span></code> from ATL10, weighted by segment length <code class="docutils literal notranslate"><span class="pre">gtx/freeboard_segment/heights/height_segment_length_seg</span></code>.  To resample segments to grid cells, we also need the geodetic coordinates for each segment in <code class="docutils literal notranslate"><span class="pre">gtx/freeboard_segment/latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">gtx/freeboard_segment/longitude</span></code>. As an additional locator, we also read <code class="docutils literal notranslate"><span class="pre">gtx/freeboard_segment/delta_time</span></code>.  <code class="docutils literal notranslate"><span class="pre">gtx</span></code> is the beam number.</p>
+<p>In addition to the segment data, we also need some ancillary data from each file.  In ATL20 gridded freeboards are calculated using only the <em>strong beams</em> of each beam pair.  Which of the six beams are strong and which are weak depends on the orientation of the ICESat-2 satellite.  Satellite orientation is given in the <code class="docutils literal notranslate"><span class="pre">orbit_info/sc_orient</span></code> dataset.  We also need to read the Atlas Standard Data Product Epoch that is stored in <code class="docutils literal notranslate"><span class="pre">ancillary_data/atlas_sdp_gps_epoch</span></code> to convert <code class="docutils literal notranslate"><span class="pre">delta_time</span></code> from seconds since launch to date and time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are three beam pairs numbered 1, 2 and 3.  Each of these beam pairs has a left and right beam.  Beams are numbered <code class="docutils literal notranslate"><span class="pre">gt1l</span></code> and <code class="docutils literal notranslate"><span class="pre">gt1r</span></code>, <code class="docutils literal notranslate"><span class="pre">gt2l</span></code> and <code class="docutils literal notranslate"><span class="pre">gt2r</span></code>, and <code class="docutils literal notranslate"><span class="pre">gt3l</span></code> and <code class="docutils literal notranslate"><span class="pre">gt3r</span></code>.  Depending on the orientation of the ICESat-2 satellite, left beams or right beams are the <em>strong beams</em>.    The orientation can be <em>forward</em> or <em>backward</em>, or <em>transition</em>.  We only use data in forward or backward orientations.</p>
+</div>
+<p>The datasets containing segment data are stored in the <code class="docutils literal notranslate"><span class="pre">DATASETS</span></code> constant, which is a python <code class="docutils literal notranslate"><span class="pre">list</span></code>, in <code class="docutils literal notranslate"><span class="pre">reader.py</span></code>.  If you want additional or different datasets, you can modify this list. See <a class="reference external" href="https://nsidc.org/sites/default/files/documents/user-guide/atl10-v006-userguide.pdf">NSIDC DAAC’s ATL10 User Guide</a> and <a class="reference external" href="https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl10_data_dict_v006.pdf">ATL10 Data Dictionary</a> for detailed descriptions.</p>
+<p>A ATL10 file is read using the function <code class="docutils literal notranslate"><span class="pre">read_atl10</span></code>. This function encapsulates opening an HDF5 file and reading the datasets using <code class="docutils literal notranslate"><span class="pre">h5coro</span></code>, and then creating a <code class="docutils literal notranslate"><span class="pre">geopandas.DataFrame</span></code> containing the data.  We parallelize the reading of all files in a year using <code class="docutils literal notranslate"><span class="pre">pqdm</span></code>, so files are read using different processors.  File for a given year are then concatenated into a single dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">files</span> <span class="o">=</span> <span class="n">get_data_links</span><span class="p">(</span><span class="n">atl10</span><span class="p">[</span><span class="s2">&quot;2019&quot;</span><span class="p">],</span> <span class="n">environment</span><span class="o">=</span><span class="s2">&quot;cloud&quot;</span><span class="p">)</span>
+<span class="n">cred</span> <span class="o">=</span> <span class="n">get_credentials</span><span class="p">(</span><span class="n">environment</span><span class="o">=</span><span class="s2">&quot;cloud&quot;</span><span class="p">)</span>
+<span class="n">tracks</span> <span class="o">=</span> <span class="n">read_atl10</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">executors</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">environment</span><span class="o">=</span><span class="s2">&quot;cloud&quot;</span><span class="p">,</span> <span class="n">credentials</span><span class="o">=</span><span class="n">cred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracks</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="grid-the-track-data">
+<h2>Grid the track data<a class="headerlink" href="#grid-the-track-data" title="Permalink to this headline">#</a></h2>
+<p>The resampling and calculation of statistics follows the processing steps described in the ATL20 - Gridded Sea Ice Freeboard - ATBD but gridding to a EASE-Grid v2 6.25 km grid.  Any projected coordinate system or grid could be chosen.  The procedure could be modified with extra QC steps or modifications.  <strong>The world is your oyster - or <a class="reference external" href="https://antarcticsun.usap.gov/science/4447/">Aplacophoran</a></strong>.</p>
+<p>The processing steps are:</p>
+<ul class="simple">
+<li><p>remove non-ice and low quality segments</p></li>
+<li><p>resample freeboard segments to a grid</p></li>
+<li><p>calculate aggregate statistics</p>
+<ul>
+<li><p>mean segment length</p></li>
+<li><p>segment count</p></li>
+<li><p>length weighted mean freeboard</p></li>
+<li><p>length weighted standard deviation of freeboard</p></li>
+</ul>
+</li>
+</ul>
+<section id="resample-freeboard-segments-to-a-grid">
+<h3>Resample Freeboard Segments to a Grid<a class="headerlink" href="#resample-freeboard-segments-to-a-grid" title="Permalink to this headline">#</a></h3>
+<p>Following the ATL20 ATBD, we will use a <em>drop-in-the-bucket</em> resampling scheme.  This is simple and relatively easy to implement.  More complex resampling schemes could be substituted.</p>
+<p>To demonstrate resampling we will resample freeboard segments to WGS84 / NSIDC EASE-Grid v2.0 South with a grid resolution of 6.25 km.  The EPSG code for the WGS84 / NSIDC EASE-Grid South coordinate reference system is <a class="reference external" href="https://epsg.org/crs_6932/WGS-84-NSIDC-EASE-Grid-2-0-South.html">6932</a>.</p>
+<p>We will use the standard 6.25 km grid.  To define the grid, we need the grid dimensions (nrows and ncols), the x and y projected coordinates of the upper-left corner of the upper-left grid cell, and the height and width of the grid cells in the same units as the projected coordinates.  In this case, the units are meters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">easegrid2_epsg</span> <span class="o">=</span> <span class="mi">6932</span>
+
+<span class="c1"># Parameters for standard NSIDC EASE Grid v2.0 South 6.25 km grid</span>
+<span class="c1"># nrow = 2880</span>
+<span class="c1"># ncol = 2880</span>
+<span class="c1"># upper_left_x = -9000000.0</span>
+<span class="c1"># upper_left_y = 9000000.0</span>
+<span class="c1"># width = 6250.0</span>
+<span class="c1"># height = -6250.0</span>
+
+<span class="c1"># Parameters for a 10 km grid over Ross Sea Region</span>
+<span class="n">nrow</span> <span class="o">=</span> <span class="mi">151</span>
+<span class="n">ncol</span> <span class="o">=</span> <span class="mi">147</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">10000.0</span>
+<span class="n">height</span> <span class="o">=</span> <span class="o">-</span><span class="mf">10000.0</span>
+<span class="n">upper_left_x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1040000.0</span>
+<span class="n">upper_left_y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">560000.0</span>
+
+<span class="n">map_extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">upper_left_x</span><span class="p">,</span> <span class="p">(</span><span class="n">upper_left_x</span> <span class="o">+</span> <span class="p">(</span><span class="n">ncol</span><span class="o">*</span><span class="n">width</span><span class="p">)),</span> <span class="p">(</span><span class="n">upper_left_y</span> <span class="o">+</span> <span class="p">(</span><span class="n">nrow</span><span class="o">*</span><span class="n">height</span><span class="p">)),</span> <span class="n">upper_left_y</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first step is to reproject the points from geodetic coordinates (latitude and longitude) to projected coordinates (x, y).  Because the data are in a <code class="docutils literal notranslate"><span class="pre">geopandas.DataFrame</span></code> we can use the <code class="docutils literal notranslate"><span class="pre">to_crs</span></code> method.  This takes an EPSG code either as a numeric value (<code class="docutils literal notranslate"><span class="pre">6932</span></code>) or as a string (<code class="docutils literal notranslate"><span class="pre">&quot;EPSG:6932&quot;</span></code>).</p>
+<p>You can see that the <code class="docutils literal notranslate"><span class="pre">POINT</span></code> objects in the <code class="docutils literal notranslate"><span class="pre">geometry</span></code> have changed from having latitudes and longitudes as coordinates to x and y in meters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">tracks</span> <span class="o">=</span> <span class="n">tracks</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">easegrid2_epsg</span><span class="p">)</span>
+<span class="n">tracks</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A <em>Drop-in-the-Bucket</em> resampling scheme collects points into the grid cells that they intersect with, and then calculates aggregate statistics for each grid cell using attributes associated with those points.</p>
+<p>We’ll find the grid cell that contains each segment by calculating the row and column coordinates for each segment from the projected coordinates.  This is done by creating an <em>Affine</em> transformation matrix for the grid.  The Affine matrix is just a matrix representation of the algebraic expressions to convert row and column indices of the grid to projected coordinates.  The equations below give the forward transformation from <code class="docutils literal notranslate"><span class="pre">(row,</span> <span class="pre">col)</span></code> to <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x = width * col + upper\_left\_x \\
+y = height * row + upper\_left\_y
+\end{split}\]</div>
+<p>These are expressed in matrix form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+x \\
+y \\
+0
+\end{bmatrix} = 
+\begin{bmatrix}
+a &amp; 0 &amp; c \\
+0 &amp; d &amp; e \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+col \\
+row \\
+1
+\end{bmatrix}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a\)</span> is <span class="math notranslate nohighlight">\(\mathsf{width}\)</span>, <span class="math notranslate nohighlight">\(c\)</span> is <span class="math notranslate nohighlight">\(\mathsf{upper\_left\_x}\)</span>, <span class="math notranslate nohighlight">\(d\)</span> is <span class="math notranslate nohighlight">\(height\)</span>, and <span class="math notranslate nohighlight">\(e\)</span> is <span class="math notranslate nohighlight">\(upper\_left\_y\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The projected coordinate system we are using is a cartesian plane with the origin at the South Pole.  The <code class="docutils literal notranslate"><span class="pre">x</span></code> coordinates increase to the right, and <code class="docutils literal notranslate"><span class="pre">y</span></code> coordinates increase up.  For raster data, which includes grids and images, have the origin at the upper-left corner of the grid.  Column indices increase from right to left, and row indices increase from top to bottom.</p>
+</div>
+<p>We use the <code class="docutils literal notranslate"><span class="pre">affine</span></code> package to create a forward transformation matrix (<code class="docutils literal notranslate"><span class="pre">fwd</span></code>) using the grid parameters above.  To transform <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code> projected coordinates to <code class="docutils literal notranslate"><span class="pre">(row,</span> <span class="pre">col)</span></code>, we can calculate the reverse transformation matrix using <code class="docutils literal notranslate"><span class="pre">~fwd</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fwd</span> <span class="o">=</span> <span class="n">Affine</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">upper_left_x</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">upper_left_y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">(row,</span> <span class="pre">col)</span></code> coordinates are still rational numbers.  We want an integer row and column indices for grid cells.  We can use the <code class="docutils literal notranslate"><span class="pre">floor</span></code> function to get integers.  <code class="docutils literal notranslate"><span class="pre">row</span></code> and <code class="docutils literal notranslate"><span class="pre">column</span></code> indices are zero based.</p>
+<p>We want to be able to leverage the <code class="docutils literal notranslate"><span class="pre">geopandas.Dataframe.groupby</span></code> functionality to collect points into grid cells, so we need a unique identifier to group the data.  We can calculate a unique cell index from <code class="docutils literal notranslate"><span class="pre">row</span></code> and <code class="docutils literal notranslate"><span class="pre">column</span></code> indices as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+cell\_index = row * ncol + col
+\]</div>
+<p>This is encapsulated in the function <code class="docutils literal notranslate"><span class="pre">get_grid_index</span></code>.  This function is then applied to the <code class="docutils literal notranslate"><span class="pre">geometry</span></code> of tracks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ingrid</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nrow</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns True if raster coordinates fall within grid&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">ncol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">nrow</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_grid_index</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">transform</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns array index for a map coordinate pair</span>
+<span class="sd">    </span>
+<span class="sd">    xy : tuple with x and y map coordinates</span>
+<span class="sd">    shape : list-like containing raster shape (nrow, ncol), where </span>
+<span class="sd">            nrow is number of rows in grid and ncol is number of </span>
+<span class="sd">            columns in grid</span>
+<span class="sd">    transform : Affine transformation matrix to transform </span>
+<span class="sd">                raster coordinates to map coordinates</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="n">shape</span>
+    
+    <span class="n">j</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">transform</span> <span class="o">*</span> <span class="n">xy</span>
+    <span class="n">j</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ingrid</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nrow</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">ncol</span><span class="p">)</span> <span class="o">+</span> <span class="n">j</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">tracks</span><span class="p">[</span><span class="s2">&quot;grid_index&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_grid_index</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span><span class="p">),</span> <span class="o">~</span><span class="n">fwd</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tracks</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">tracks</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span><span class="p">)]</span>
+<span class="n">tracks</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">get_grid_index</span></code> returns <code class="docutils literal notranslate"><span class="pre">-1</span></code> if a point is outside the grid extent, so we need to filter out points that have a <code class="docutils literal notranslate"><span class="pre">grid_index</span></code> of <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tracks</span> <span class="o">=</span> <span class="n">tracks</span><span class="p">[</span><span class="n">tracks</span><span class="o">.</span><span class="n">grid_index</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-grid-cell-mean-statistics">
+<h3>Calculate grid cell mean statistics<a class="headerlink" href="#calculate-grid-cell-mean-statistics" title="Permalink to this headline">#</a></h3>
+<p>We calculate four statistics for grid cells that contain segments.</p>
+<section id="grid-cell-mean-segment-length-bar-l">
+<h4>Grid Cell Mean Segment Length <span class="math notranslate nohighlight">\(\bar{L}\)</span><a class="headerlink" href="#grid-cell-mean-segment-length-bar-l" title="Permalink to this headline">#</a></h4>
+<div class="math notranslate nohighlight">
+\[
+\bar{L}(x, y, D) = \frac{\sum L_i}{N}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(L_i\)</span> is <code class="docutils literal notranslate"><span class="pre">/gtx/freeboard_beam_segment/height_segments/height_segment_length_seg</span></code>, <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are projected coordinates for grid centers, and <span class="math notranslate nohighlight">\(D\)</span> is day.</p>
+</section>
+<section id="grid-cell-mean-freeboard-bar-h">
+<h4>Grid Cell Mean Freeboard <span class="math notranslate nohighlight">\(\bar{h}\)</span><a class="headerlink" href="#grid-cell-mean-freeboard-bar-h" title="Permalink to this headline">#</a></h4>
+<div class="math notranslate nohighlight">
+\[
+\bar{h}(x, y, D) = \frac{\sum L_i h_i}{\sum L_i}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(h_i\)</span> is <code class="docutils literal notranslate"><span class="pre">gtx/freeboard_beam_segment/beam_freeboard/beam_fb_height</span></code>.</p>
+</section>
+<section id="grid-cell-standard-deviation-of-freeboard-sigma-2-x-y-d">
+<h4>Grid Cell Standard Deviation of Freeboard <span class="math notranslate nohighlight">\(\sigma^2 (x, y, D)\)</span><a class="headerlink" href="#grid-cell-standard-deviation-of-freeboard-sigma-2-x-y-d" title="Permalink to this headline">#</a></h4>
+<div class="math notranslate nohighlight">
+\[
+\sigma^2 (x, y, D) = \frac{\sum L_i (h_i)^2}{\sum L_i} - \bar{h}^2 (x, y, D)
+\]</div>
+<p>The functions to calculate these statistics are given below.  These functions are applied to the grouped data.  The <code class="docutils literal notranslate"><span class="pre">geopandas.apply</span></code> method only accepts a single method when operating on multiple columns in a dataframe.  We could just have multiple calls for each aggregating function.  However, we can collect the individual aggregating functions into a single function and pass that to the <code class="docutils literal notranslate"><span class="pre">apply</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mean_segment_length</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns mean segment length&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;height_segment_length_seg&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">mean_freeboard</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns length weighted mean freeboard&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">beam_fb_height</span> <span class="o">*</span> <span class="n">df</span><span class="o">.</span><span class="n">height_segment_length_seg</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">height_segment_length_seg</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">stdev_freeboard</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns weighted standard deviation of freeboard&quot;&quot;&quot;</span>
+    <span class="n">hmean</span> <span class="o">=</span> <span class="n">mean_freeboard</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">stdev</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">beam_fb_height</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">df</span><span class="o">.</span><span class="n">height_segment_length_seg</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">height_segment_length_seg</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">stdev</span> <span class="o">-</span> <span class="n">hmean</span><span class="o">**</span><span class="mi">2</span>
+
+
+<span class="k">def</span> <span class="nf">count_segments</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Number of segments in grid cell&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">beam_fb_height</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">all_funcs</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wrapper that allows all the aggregation functions to be applied at once&quot;&quot;&quot;</span>
+    <span class="n">funcs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">mean_segment_length</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span> <span class="n">mean_segment_length</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>  <span class="c1">#__name__ gets the name of a function</span>
+        <span class="n">mean_freeboard</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span> <span class="n">mean_freeboard</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+        <span class="n">stdev_freeboard</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span> <span class="n">stdev_freeboard</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+        <span class="n">count_segments</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span> <span class="n">count_segments</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="c1"># `apply` is expected to return a series or a scaler so we collect the results</span>
+    <span class="c1"># into a series indexed by aggregating function name</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">funcs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="testing-the-functions">
+<h4>Testing the functions<a class="headerlink" href="#testing-the-functions" title="Permalink to this headline">#</a></h4>
+<p>It is always a good idea to test your code.  Below are some test data and expected results.  The functions are tested on <code class="docutils literal notranslate"><span class="pre">test_df</span></code>.  We then use <code class="docutils literal notranslate"><span class="pre">pandas.testing.assert_frame_equal</span></code> to check that the result and expected dataframes are the same.  In this case we are only interested getting the same values, so we do not check the names or datatypes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;grid_index&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="s2">&quot;height_segment_length_seg&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">.9</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="s2">&quot;beam_fb_height&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">.9</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span>        
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">expected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;mean_segment_length&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.425</span><span class="p">],</span>
+        <span class="s2">&quot;mean_freeboard&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.19000000000000003</span><span class="p">,</span> <span class="mf">1.375438596491228</span><span class="p">],</span>
+        <span class="s2">&quot;stdev_freeboard&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.03689999999999998</span><span class="p">,</span> <span class="mf">0.17167743921206569</span><span class="p">],</span>
+        <span class="s2">&quot;count_segments&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">},</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;grid_index&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">all_funcs</span><span class="p">)</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">check_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_dtype</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have functions that work we can apply them to the real data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">aggregated_data</span> <span class="o">=</span> <span class="n">tracks</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;grid_index&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">all_funcs</span><span class="p">)</span>
+<span class="n">aggregated_data</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="assign-aggregated-data-to-grid-cells">
+<h3>Assign aggregated data to grid cells<a class="headerlink" href="#assign-aggregated-data-to-grid-cells" title="Permalink to this headline">#</a></h3>
+<p>We now have a dataframe that contains grid cell statistics indexed by a unique array index.  We can now create a grid for each of these statistics.</p>
+<p>The procedure is relatively straight forward.</p>
+<ul class="simple">
+<li><p>Create an 1D array with the same number of elements as cells in our grid.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">grid_index</span></code> of the dataframe as an array index to assign values to grid cells, where we have data.</p></li>
+<li><p>Reshape the grid to the dimension of the grid.</p></li>
+</ul>
+<p>We can encapsulate this in a <code class="docutils literal notranslate"><span class="pre">series_to_grid</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">series_to_grid</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Converts a geopandas.Series to a grid using the index&quot;&quot;&quot;</span>
+    <span class="n">these_points</span> <span class="o">=</span> <span class="p">(</span><span class="n">series</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">series</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">nrow</span><span class="o">*</span><span class="n">ncol</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    
+    <span class="n">array_index</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="n">these_points</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="c1"># the array index must be an integer</span>
+    
+    <span class="n">vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">nrow</span><span class="o">*</span><span class="n">ncol</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">vector</span><span class="p">[</span><span class="n">array_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="n">these_points</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">vector</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">grids</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">series_to_grid</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">aggregated_data</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> widget
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">grids</span><span class="p">[</span><span class="s1">&#39;count_segments&#39;</span><span class="p">],</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="plot-data-on-a-map">
+<h2>Plot data on a map<a class="headerlink" href="#plot-data-on-a-map" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#proj = EASEGrid2South()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">LambertAzimuthalEqualArea</span><span class="p">(</span><span class="n">central_latitude</span><span class="o">=-</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="nb">min</span><span class="p">(</span><span class="n">map_extent</span><span class="p">)</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">3000000.0</span><span class="p">:</span>
+    <span class="n">plot_extent</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">3000000.0</span><span class="p">,</span> <span class="mf">3000000.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">3000000.0</span><span class="p">,</span> <span class="mf">3000000.0</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">plot_extent</span> <span class="o">=</span> <span class="n">map_extent</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">plot_extent</span><span class="p">,</span> <span class="n">proj</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">LAND</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">grids</span><span class="p">[</span><span class="s1">&#39;count_segments&#39;</span><span class="p">],</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">map_extent</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="appendix">
+<h2>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">#</a></h2>
+<section id="get-grid-parameters-for-ross-sea-region">
+<h3>Get grid parameters for Ross Sea region<a class="headerlink" href="#get-grid-parameters-for-ross-sea-region" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import GeoJSON of Ross Sea - this is very approximate</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="n">ross_sea_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;ross_sea.json&quot;</span><span class="p">)</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="n">ross_sea_gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">easegrid2_epsg</span><span class="p">)</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate parameters for a grid with resolution that covers region</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="mf">10000.</span>
+<span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span> <span class="o">=</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="n">bound</span><span class="o">/</span><span class="n">resolution</span><span class="p">)</span> <span class="o">*</span> <span class="n">resolution</span> <span class="k">for</span> <span class="n">bound</span><span class="p">,</span> <span class="n">func</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">bounds</span><span class="p">),</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">])][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">grid_extent_x</span> <span class="o">=</span> <span class="n">maxx</span> <span class="o">-</span> <span class="n">minx</span>
+<span class="n">grid_extent_y</span> <span class="o">=</span> <span class="n">maxy</span> <span class="o">-</span> <span class="n">miny</span>
+
+<span class="n">width</span> <span class="o">=</span> <span class="n">height</span> <span class="o">=</span> <span class="n">resolution</span>
+
+<span class="n">ncol</span> <span class="o">=</span> <span class="n">grid_extent_x</span> <span class="o">/</span> <span class="n">width</span>
+<span class="n">nrow</span> <span class="o">=</span> <span class="n">grid_extent_y</span> <span class="o">/</span> <span class="n">height</span>
+
+<span class="n">upper_left_x</span> <span class="o">=</span> <span class="n">minx</span>
+<span class="n">upper_left_y</span> <span class="o">=</span> <span class="n">maxy</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nrow = </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">nrow</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ncol = </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">ncol</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;width = </span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;height = -</span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;upper_left_x = </span><span class="si">{</span><span class="n">upper_left_x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;upper_left_y = </span><span class="si">{</span><span class="n">upper_left_y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+      
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./external"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../tutorials/IS2_ATL15_surface_height_anomalies/IS2_ATL15_surface_height_anomalies.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Using ICESat-2 ATL15 (Gridded Arctic Land Ice Height) to investigate ice-surface height anomalies</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../contributing/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Contributing</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Mines Glaciology Laboratory, Colorado School of Mines<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
