@@ -1,0 +1,2017 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>CryoCloud Tutorials: SlideRule &#8212; CryoCloud</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Contributing" href="../../contributing/index.html" />
+    <link rel="prev" title="Determining ice sheet change using Greenland Ice Mapping Project (GrIMP) tools" href="../GrIMP/GrIMP_tutorial_AGU23.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LZVEY6377Z"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-LZVEY6377Z');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CryoCloud</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to CryoCloud!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Details
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/about.html">
+   About
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/mission.html">
+   Mission
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/Getting_Started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/hub_best_practices.html">
+   CryoCloud Best Practices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/Code_of_Conduct.html">
+   CryoCloud Code of Conduct
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/citing_cryocloud.html">
+   Citing CryoCloud
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cloud Training
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recorded/index.html">
+   Cloud Training
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  How Tos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../how_tos/index.html">
+   How To…
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../how_tos/background/index.html">
+     Background Work
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/github.html">
+       GitHub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/jupyterhub.html">
+       JupyterHub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/git.html">
+       Git
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/earthdata.html">
+       Earthdata Login
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/earthengine.html">
+       Google Earth Engine Sign-Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/swc.html">
+       Software Carpentry Training
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/python.html">
+       Python Installation and Environments
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/nbdime/nbdime-hub.html">
+       nbdime - version control for Jupyter notebooks
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../how_tos/data_access/index.html">
+     Data access
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/data_access/Cloud_Sentinel2_access.html">
+       Sentinel 2 cloud access
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/data_access/Instructions_for_configuring_AWS_S3_bucket.html">
+       Instructions for setting up an AWS S3 bucket for your project
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/data_access/CryoCloudScratchBucket.html">
+       Using CryoCloud S3 Scratch Bucket
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/ICESat2_Earthaccess.html">
+       Earthaccess
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Earthdata_Cloud__Single_File__HTTPS_Access_COG_Example.html">
+       COG HTTPS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Earthdata_Cloud__Single_File_Direct_S3_Access_COG_Example.html">
+       COG Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Multi-File_Direct_S3_Access_COG_Example.html">
+       Multi-COG Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Earthdata_Cloud__Single_File__Direct_S3_Access_NetCDF4_Example.html">
+       NetCDF/HDF5 Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Multi-File_Direct_S3_Access_NetCDF_Example.html">
+       Multi-NetCDF/HDF5 Direct S3
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tutorials
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   Tutorials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../IS2_cloud_Landsat_integration.html">
+     ICESat-2 and Landsat cloud access and data integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../IS2_ATL15_surface_height_anomalies/IS2_ATL15_surface_height_anomalies.html">
+     Using ICESat-2 ATL15 (Gridded Arctic Land Ice Height) to investigate ice-surface height anomalies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../external/ICESAT2_ATL10-h5coro_large_scale_time_series.html">
+     ICESat-2 ATL10-h5coro large-scale time series
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../GrIMP/GrIMP_tutorial_AGU23.html">
+     Determining ice sheet change using Greenland Ice Mapping Project (GrIMP) tools
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     CryoCloud Tutorials: SlideRule
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../contributing/index.html">
+   Contributing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/workflow.html">
+     Workflow for contributing to our JupyterBook (or any GitHub project)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/glossary.html">
+   Glossaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/IS2-resources.html">
+   ICESat-2 Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/open_science.html">
+   Open Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/open_source_software.html">
+   Open-source Software
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/questions.html">
+   How to Get Help
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/CryoInTheCloud/CryoCloudWebsite/main?urlpath=lab/tree/book/tutorials/SlideRule_applications/SlideRule_applications.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/issues/new?title=Issue%20on%20page%20%2Ftutorials/SlideRule_applications/SlideRule_applications.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/edit/main/book/tutorials/SlideRule_applications/SlideRule_applications.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/tutorials/SlideRule_applications/SlideRule_applications.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sliderule-introduction">
+   SlideRule Introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#q-what-is-icesat-2">
+     <strong>
+      Q: What is ICESat-2?
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#q-where-is-icesat-2-data-located">
+     <strong>
+      Q: Where is ICESat-2 Data Located
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#q-what-does-the-sliderule-icesat-2-api-actually-do">
+     <strong>
+      Q: What does the SlideRule ICESat-2 API actually do?
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-by-initiating-sliderule">
+   Start by initiating SlideRule
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-options-for-making-science-data-processing-requests-to-sliderule">
+     Set options for making science data processing requests to SlideRule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#select-regions-of-interest-for-submitting-to-sliderule">
+     Select regions of interest for submitting to SlideRule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-and-transmit-requests-to-sliderule">
+     Build and transmit requests to SlideRule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#review-geodataframe-output">
+     Review GeoDataFrame output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-geodataframe-to-map">
+     Add GeoDataFrame to map
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-plots-for-a-single-track">
+     Create plots for a single track
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-icesat-2-sliderule-example-polar-altimetry-and-raster-sampling">
+   Advanced ICESat-2 SlideRule Example: Polar Altimetry and Raster Sampling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#leaflet-basemaps-and-layers">
+     Leaflet Basemaps and Layers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#update-options-for-making-science-data-processing-requests-to-sliderule">
+     Update options for making science data processing requests to SlideRule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-geodataframe-to-polar-stereographic-map">
+     Add GeoDataFrame to polar stereographic map
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-static-map-with-sliderule-returns">
+     Create a static map with SlideRule returns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-icesat-2-sliderule-example-phoreal-vegetation-metrics">
+   Advanced ICESat-2 SlideRule Example: PhoREAL Vegetation Metrics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-options-for-making-phoreal-science-data-processing-requests-to-sliderule">
+     Set options for making PhoREAL science data processing requests to SlideRule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Review GeoDataFrame output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-vegetation-metrics-geodataframe-to-map">
+     Add Vegetation Metrics GeoDataFrame to map
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-icesat-2-sliderule-example-subsetting-atl03-photon-cloud-data">
+   Advanced ICESat-2 SlideRule Example: Subsetting ATL03 photon cloud data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Review GeoDataFrame output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-plot-for-a-single-track-of-photon-heights">
+     Create plot for a single track of photon heights
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#direct-file-read-example">
+   Direct File Read Example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#private-clusters">
+   Private Clusters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>CryoCloud Tutorials: SlideRule</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sliderule-introduction">
+   SlideRule Introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#q-what-is-icesat-2">
+     <strong>
+      Q: What is ICESat-2?
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#q-where-is-icesat-2-data-located">
+     <strong>
+      Q: Where is ICESat-2 Data Located
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#q-what-does-the-sliderule-icesat-2-api-actually-do">
+     <strong>
+      Q: What does the SlideRule ICESat-2 API actually do?
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-by-initiating-sliderule">
+   Start by initiating SlideRule
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-options-for-making-science-data-processing-requests-to-sliderule">
+     Set options for making science data processing requests to SlideRule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#select-regions-of-interest-for-submitting-to-sliderule">
+     Select regions of interest for submitting to SlideRule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-and-transmit-requests-to-sliderule">
+     Build and transmit requests to SlideRule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#review-geodataframe-output">
+     Review GeoDataFrame output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-geodataframe-to-map">
+     Add GeoDataFrame to map
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-plots-for-a-single-track">
+     Create plots for a single track
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-icesat-2-sliderule-example-polar-altimetry-and-raster-sampling">
+   Advanced ICESat-2 SlideRule Example: Polar Altimetry and Raster Sampling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#leaflet-basemaps-and-layers">
+     Leaflet Basemaps and Layers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#update-options-for-making-science-data-processing-requests-to-sliderule">
+     Update options for making science data processing requests to SlideRule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-geodataframe-to-polar-stereographic-map">
+     Add GeoDataFrame to polar stereographic map
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-static-map-with-sliderule-returns">
+     Create a static map with SlideRule returns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-icesat-2-sliderule-example-phoreal-vegetation-metrics">
+   Advanced ICESat-2 SlideRule Example: PhoREAL Vegetation Metrics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-options-for-making-phoreal-science-data-processing-requests-to-sliderule">
+     Set options for making PhoREAL science data processing requests to SlideRule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Review GeoDataFrame output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-vegetation-metrics-geodataframe-to-map">
+     Add Vegetation Metrics GeoDataFrame to map
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-icesat-2-sliderule-example-subsetting-atl03-photon-cloud-data">
+   Advanced ICESat-2 SlideRule Example: Subsetting ATL03 photon cloud data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Review GeoDataFrame output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-plot-for-a-single-track-of-photon-heights">
+     Create plot for a single track of photon heights
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#direct-file-read-example">
+   Direct File Read Example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#private-clusters">
+   Private Clusters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="cryocloud-tutorials-sliderule">
+<h1>CryoCloud Tutorials: SlideRule<a class="headerlink" href="#cryocloud-tutorials-sliderule" title="Permalink to this headline">#</a></h1>
+<p>Tutorial Leads: <a class="reference external" href="mailto:scottyh&#37;&#52;&#48;uw&#46;edu">Scott Henderson</a> and <a class="reference external" href="mailto:tsutterl&#37;&#52;&#48;uw&#46;edu">Tyler Sutterley</a></p>
+<div class="highlight-{admonition}Learning notranslate"><div class="highlight"><pre><span></span>- How to use Sliderule software for scalable ICESat-2 data access &amp; on-demand processing
+- Integrating ICESat-2 data with other datasets (such as raster DEMs)
+- Visualizing ICESat-2 elevations with interactive maps and matplotlib figures
+</pre></div>
+</div>
+<section id="sliderule-introduction">
+<h2>SlideRule Introduction<a class="headerlink" href="#sliderule-introduction" title="Permalink to this headline">#</a></h2>
+<p>SlideRule is a collaborative effort between NASA Goddard Space Flight Center (GSFC) and the University of Washington. It is an on-demand science data processing service that runs on Amazon Web Services (AWS) and responds to REST API calls to process and return science results.  This <em>science data as a service</em> model is a new way for researchers to work and analyze data. SlideRule was designed to enable researchers to have low-latency access to custom-generated, high-level data products.</p>
+<p>SlideRule users provide specific parameters at the time of the request to compute products that fit their science needs. SlideRule then uses cloud-optimized versions of computational algorithms and dynamic scaling of the cluster to process data efficiently. All data is then returned to the user as a <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>.</p>
+<p>SlideRule has access to ICESat-2, GEDI, Landsat, ArcticDEM, REMA, and other datasets stored in s3. The SlideRule Python client is organized into the following submodules, each with a specific functionality:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sliderule</span></code>: the core module</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">earthdata</span></code> :functions that access CMR (NASA’s Common Metadata Repository), CMR-STAC, and TNM (The National Map, for the 3DEP data hosted by USGS)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h5</span></code>: APIs for directly reading HDF5 and NetCDF4 data using <code class="docutils literal notranslate"><span class="pre">h5coro</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raster</span></code>: APIs for sampling supported raster datasets</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">icesat2</span></code>: APIs for processing ICESat-2 data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gedi</span></code>: APIs for processing GEDI data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">io</span></code>: functions for reading and writing local files with SlideRule results</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ipysliderule</span></code>: functions for building interactive Jupyter notebooks that interface to SlideRule</p></li>
+</ul>
+<p><a class="reference external" href="https://slideruleearth.io/web/rtd/">Documentation for using SlideRule</a> is available from the <a class="reference external" href="https://slideruleearth.io/web/">project website</a></p>
+<div class="highlight-{admonition}Quick notranslate"><div class="highlight"><pre><span></span>* Website: https://slideruleearth.io
+* Documentation: https://slideruleearth.io/web/rtd
+* Web Demo: https://demo.slideruleearth.io
+* GitHub Repository: https://github.com/ICESat2-SlideRule/sliderule
+* Python Examples GitHub Repository: https://github.com/ICESat2-SlideRule/sliderule-python
+</pre></div>
+</div>
+<section id="q-what-is-icesat-2">
+<h3><strong>Q: What is ICESat-2?</strong><a class="headerlink" href="#q-what-is-icesat-2" title="Permalink to this headline">#</a></h3>
+<p>ICESat-2 is a spaceborne <em>laser altimeter</em> that measures the surface topography of the Earth. ICESat-2 emits six 532nm laser beams which reflect off the Earth’s surface approximately every 70cm <em>along-track</em>.</p>
+</section>
+<section id="q-where-is-icesat-2-data-located">
+<h3><strong>Q: Where is ICESat-2 Data Located</strong><a class="headerlink" href="#q-where-is-icesat-2-data-located" title="Permalink to this headline">#</a></h3>
+<p>All ICESat-2 data is hosted by the NASA Snow and Ice Distributed Active Archive Centers (DAAC) at the National Snow and Ice Data Center (NSIDC). Most of the ICESat-2 data is additionally hosted on AWS s3 buckets in <code class="docutils literal notranslate"><span class="pre">us-west-2</span></code>, which are accessible through NASA Earthdata cloud.</p>
+</section>
+<section id="q-what-does-the-sliderule-icesat-2-api-actually-do">
+<h3><strong>Q: What does the SlideRule ICESat-2 API actually do?</strong><a class="headerlink" href="#q-what-does-the-sliderule-icesat-2-api-actually-do" title="Permalink to this headline">#</a></h3>
+<p>Along with data access and subsetting, SlideRule can create a simplified version of the <a class="reference external" href="https://nsidc.org/data/atl06">ICESat-2 land ice height (ATL06)</a> product that can be adjusted to suit different needs. SlideRule processes the <a class="reference external" href="https://nsidc.org/data/atl03">ICESat-2 geolocated photon height (ATL03)</a> data products into <em>along-track</em> segments of surface elevation. SlideRule let’s you create customized ICESat-2 segment heights <em>directly</em> from the photon height data anywhere on the globe, <em>on-demand</em> and quickly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># install the latest version of sliderule</span>
+<span class="o">%</span><span class="k">pip</span> install sliderule==4.0.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">logging</span><span class="o">,</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">sliderule.h5</span>
+<span class="kn">import</span> <span class="nn">sliderule.icesat2</span>
+<span class="kn">import</span> <span class="nn">sliderule.io</span>
+<span class="kn">import</span> <span class="nn">sliderule.ipysliderule</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">shapely.geometry</span>
+<span class="kn">import</span> <span class="nn">owslib.wms</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="start-by-initiating-sliderule">
+<h2>Start by initiating SlideRule<a class="headerlink" href="#start-by-initiating-sliderule" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Sets the URL for accessing the SlideRule service</p></li>
+<li><p>Builds a table of servers available for processing data</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the url for the sliderule service</span>
+<span class="c1"># set the logging level</span>
+<span class="n">sliderule</span><span class="o">.</span><span class="n">icesat2</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="s2">&quot;slideruleearth.io&quot;</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+<span class="c1"># turn off warnings for tutorial</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="set-options-for-making-science-data-processing-requests-to-sliderule">
+<h3>Set options for making science data processing requests to SlideRule<a class="headerlink" href="#set-options-for-making-science-data-processing-requests-to-sliderule" title="Permalink to this headline">#</a></h3>
+<p>We’ll start with a basic example where we can vary the length of each segment for a SlideRule ICESat-2 <code class="docutils literal notranslate"><span class="pre">atl06</span></code> request. We will get the average height of the surface by fitting a sloping segment to photons <em>along-track</em>. We will use all photons that lie within a <em>window</em> of the fit surface. This process can capture the effects of small-scale surface topography when appropriate segment length scales are chosen.</p>
+<table>
+  <tbody>
+    <tr>
+      <th align='center' max-width="30%">Parameter</th>
+      <th align='left' max-width="70%">Definition</th>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="30%">
+        Surface Type
+       </td>
+      <td align='left' valign='top' width="70%">
+        Sets the parameters for ATL03 photon confidence classification
+        <ol style="line-height: 1.5em">
+            <li>land</li>
+            <li>ocean</li>
+            <li>sea ice</li>
+            <li>land ice</li>
+            <li>inland water</li>
+        </ol>
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="30%">
+        Length
+       </td>
+      <td align='left' valign='top' width="70%">
+        How long each segment should be in meters
+       </td>
+    </tr>
+  </tbody>
+</table><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># display widgets for setting SlideRule parameters</span>
+<span class="n">SRwidgets</span> <span class="o">=</span> <span class="n">sliderule</span><span class="o">.</span><span class="n">ipysliderule</span><span class="o">.</span><span class="n">widgets</span><span class="p">()</span>
+<span class="n">SRwidgets</span><span class="o">.</span><span class="n">set_atl06_defaults</span><span class="p">()</span>
+<span class="n">SRwidgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">(</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">atl06</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;basic&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="select-regions-of-interest-for-submitting-to-sliderule">
+<h3>Select regions of interest for submitting to SlideRule<a class="headerlink" href="#select-regions-of-interest-for-submitting-to-sliderule" title="Permalink to this headline">#</a></h3>
+<p>Create polygons or bounding boxes for our regions of interest. This map is also our viewer for inspecting our SlideRule ICESat-2 data returns.</p>
+<p>Interactive maps within the SlideRule python API are build upon <a class="reference external" href="https://ipyleaflet.readthedocs.io">ipyleaflet</a>, which are Jupyter and python bindings for the fantastic <a class="reference external" href="https://leafletjs.com/">Leaflet</a> javascript library.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create ipyleaflet map in specified projection</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="n">sliderule</span><span class="o">.</span><span class="n">ipysliderule</span><span class="o">.</span><span class="n">leaflet</span><span class="p">(</span><span class="s1">&#39;Global&#39;</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">full_screen_control</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># read and add region of interest</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;grandmesa.geojson&#39;</span><span class="p">)</span>
+<span class="n">m1</span><span class="o">.</span><span class="n">add_region</span><span class="p">(</span><span class="n">sliderule</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">from_geodataframe</span><span class="p">(</span><span class="n">reg</span><span class="p">))</span>
+<span class="n">m1</span><span class="o">.</span><span class="n">map</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="build-and-transmit-requests-to-sliderule">
+<h3>Build and transmit requests to SlideRule<a class="headerlink" href="#build-and-transmit-requests-to-sliderule" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>SlideRule will query the <a class="reference external" href="https://cmr.earthdata.nasa.gov/">NASA Common Metadata Repository (CMR)</a> for ATL03 data within our region of interest</p></li>
+<li><p>When using the <code class="docutils literal notranslate"><span class="pre">icesat2</span></code> asset, the ICESat-2 ATL03 data are then accessed from the NSIDC AWS s3 bucket in <code class="docutils literal notranslate"><span class="pre">us-west-2</span></code></p></li>
+<li><p>The ATL03 granules is spatially subset within SlideRule to our exact region of interest</p></li>
+<li><p>SlideRule then uses our specified parameters to calculate average height segments from the ATL03 data in parallel</p></li>
+<li><p>The completed data is streamed concurrently back and combined into a <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> within the Python client</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="c1"># build sliderule parameters using latest values from widget</span>
+<span class="n">parms</span> <span class="o">=</span> <span class="n">SRwidgets</span><span class="o">.</span><span class="n">build_atl06</span><span class="p">()</span>
+
+<span class="c1"># clear existing geodataframe results</span>
+<span class="n">elevations</span> <span class="o">=</span> <span class="p">[</span><span class="n">sliderule</span><span class="o">.</span><span class="n">emptyframe</span><span class="p">()]</span>
+
+<span class="c1"># for each region of interest</span>
+<span class="k">for</span> <span class="n">poly</span> <span class="ow">in</span> <span class="n">m1</span><span class="o">.</span><span class="n">regions</span><span class="p">:</span>
+    <span class="c1"># add polygon from map to sliderule parameters</span>
+    <span class="n">parms</span><span class="p">[</span><span class="s2">&quot;poly&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">poly</span>
+    <span class="c1"># make the request to the SlideRule (ATL06-SR) endpoint</span>
+    <span class="c1"># and pass it the request parameters to request ATL06 Data</span>
+    <span class="n">elevations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sliderule</span><span class="o">.</span><span class="n">icesat2</span><span class="o">.</span><span class="n">atl06p</span><span class="p">(</span><span class="n">parms</span><span class="p">))</span>
+<span class="c1"># concatenate the results into a single geodataframe</span>
+<span class="n">gdf1</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">elevations</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="review-geodataframe-output">
+<h3>Review GeoDataFrame output<a class="headerlink" href="#review-geodataframe-output" title="Permalink to this headline">#</a></h3>
+<p>Here, we will inspect the columns, number of returns and returns at the top of the GeoDataFrame using <code class="docutils literal notranslate"><span class="pre">head()</span></code>.</p>
+<p>See the <a class="reference external" href="https://slideruleearth.io/web/rtd/user_guide/ICESat-2.html#elevations-atl06">SlideRule ICESat-2 Elevations documentation</a> for more descriptions of each column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Returned </span><span class="si">{</span><span class="n">gdf1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> records&#39;</span><span class="p">)</span>
+<span class="n">gdf1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="add-geodataframe-to-map">
+<h3>Add GeoDataFrame to map<a class="headerlink" href="#add-geodataframe-to-map" title="Permalink to this headline">#</a></h3>
+<p>Choose a variable for visualization on the interactive leaflet map. The data can be plotted in any available <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">matplotlib colormap</a>. SlideRule as a default limits the number of points in the plot to ensure the stability of the leaflet map.</p>
+<p>Here, we’re going to visualize the surface elevation field <code class="docutils literal notranslate"><span class="pre">h_mean</span></code>. This is the average elevation of the ICESat-2 geolocated photons that are located within a vertical window (<code class="docutils literal notranslate"><span class="pre">w_surface_window_final</span></code>) around the surface.</p>
+<p>You can <em>hover</em> over individual data points to display a <em>tooltip</em> containing the data values at that location.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span>
+    <span class="n">SRwidgets</span><span class="o">.</span><span class="n">variable</span><span class="p">,</span>
+    <span class="n">SRwidgets</span><span class="o">.</span><span class="n">cmap</span><span class="p">,</span>
+    <span class="n">SRwidgets</span><span class="o">.</span><span class="n">reverse</span><span class="p">,</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1"># ATL06-SR fields for hover tooltip</span>
+<span class="n">fields</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">default_atl06_fields</span><span class="p">()</span>
+<span class="n">gdf1</span><span class="o">.</span><span class="n">leaflet</span><span class="o">.</span><span class="n">GeoData</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">map</span><span class="p">,</span> <span class="n">column_name</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">column_name</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">colormap</span><span class="p">,</span>
+    <span class="n">max_plot_points</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">)</span>
+<span class="c1"># install handlers and callbacks</span>
+<span class="n">gdf1</span><span class="o">.</span><span class="n">leaflet</span><span class="o">.</span><span class="n">add_selected_callback</span><span class="p">(</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">atl06_click_handler</span><span class="p">)</span>
+<span class="n">m1</span><span class="o">.</span><span class="n">add_region_callback</span><span class="p">(</span><span class="n">gdf1</span><span class="o">.</span><span class="n">leaflet</span><span class="o">.</span><span class="n">handle_region</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-plots-for-a-single-track">
+<h3>Create plots for a single track<a class="headerlink" href="#create-plots-for-a-single-track" title="Permalink to this headline">#</a></h3>
+<p>SlideRule ICESat-2 transect plot types:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cycles</span></code>: Will plot all available cycles of data returned by SlideRule for a single RGT and ground track</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Will plot data returned by SlideRule for a single RGT, ground track and cycle</p></li>
+</ul>
+<p>Note: the cycles plots should only be used in regions with <a class="reference external" href="https://icesat-2.gsfc.nasa.gov/science/specs">repeat Reference Ground Track (RGT) pointing</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set defaults for along-track plot</span>
+<span class="n">SRwidgets</span><span class="o">.</span><span class="n">rgt</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;737&#39;</span>
+<span class="n">SRwidgets</span><span class="o">.</span><span class="n">ground_track</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;gt3r&#39;</span>
+<span class="n">SRwidgets</span><span class="o">.</span><span class="n">cycle</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;20&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To select an alternative track to plot, you can <em>click</em> on one of the data points in the leaflet map. This will auto-populate the RGT, Ground Track, and Cycle fields below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># along-track plot parameters</span>
+<span class="n">SRwidgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span>
+    <span class="n">SRwidgets</span><span class="o">.</span><span class="n">plot_kind</span><span class="p">,</span>
+    <span class="n">SRwidgets</span><span class="o">.</span><span class="n">rgt</span><span class="p">,</span>
+    <span class="n">SRwidgets</span><span class="o">.</span><span class="n">ground_track</span><span class="p">,</span>
+    <span class="n">SRwidgets</span><span class="o">.</span><span class="n">cycle</span><span class="p">,</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1"># default is to skip cycles with significant off-pointing</span>
+<span class="n">gdf1</span><span class="o">.</span><span class="n">icesat2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">plot_kind</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">cycle_start</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend_frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">plot_kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Can you identify the plateau at Grand Mesa?</p>
+</div>
+</section>
+</section>
+<section id="advanced-icesat-2-sliderule-example-polar-altimetry-and-raster-sampling">
+<h2>Advanced ICESat-2 SlideRule Example: Polar Altimetry and Raster Sampling<a class="headerlink" href="#advanced-icesat-2-sliderule-example-polar-altimetry-and-raster-sampling" title="Permalink to this headline">#</a></h2>
+<p>SlideRule also can use different sources for photon classification before calculating the average segment height.<br />
+This is useful for example, in cases where there may be a vegetated canopy affecting the spread of the photon returns.</p>
+<ul class="simple">
+<li><p>ATL03 photon confidence values, based on algorithm-specific classification types for land, ocean, sea-ice, land-ice, or inland water</p></li>
+<li><p><a class="reference external" href="https://nsidc.org/data/atl08">ATL08 Land and Vegetation Height product</a> photon classification</p></li>
+<li><p>Experimental <a class="reference external" href="https://github.com/tsutterley/yapc">YAPC (Yet Another Photon Classification)</a> photon-density-based classification</p></li>
+</ul>
+<p>For this example, we will also use SlideRule to sample a digital elevation model (DEM) at the locations of our ICESat-2 elevations. For a detailed discussion of the raster sampling capability see the <a class="reference external" href="https://slideruleearth.io/web/rtd/user_guide/GeoRaster.html">GeoRaster page</a> and the <a class="reference external" href="https://slideruleearth.io/web/rtd/user_guide/SlideRule.html#raster-sampling">sampling parameters</a> in the SlideRule documentation.</p>
+<div class="highlight-attention notranslate"><div class="highlight"><pre><span></span>SlideRule does not currently include first-photon bias or transmit-pulse shape bias corrections in the fit heights.
+</pre></div>
+</div>
+<section id="leaflet-basemaps-and-layers">
+<h3>Leaflet Basemaps and Layers<a class="headerlink" href="#leaflet-basemaps-and-layers" title="Permalink to this headline">#</a></h3>
+<p>There are 3 projections available within SlideRule for mapping (<a class="reference external" href="https://epsg.io/3857">Global</a>, <a class="reference external" href="https://epsg.io/5936">North</a> and <a class="reference external" href="https://epsg.io/3031">South</a>).  There are also contextual layers available for each projection. Most <a class="reference external" href="https://xyzservices.readthedocs.io/en/stable/introduction.html">xyzservice providers</a> can be added as contextual layers to the global Web Mercator maps.</p>
+<table>
+  <tbody>
+    <tr>
+      <th align='center' max-width="30%"><a href="https://epsg.io/3857">Global (Web Mercator, EPSG:3857)</a></th>
+      <th align='center' max-width="30%"><a href="https://epsg.io/5936">North (Alaska Polar Stereographic, EPSG:5936)</a></th>
+      <th align='center' max-width="30%"><a href="https://epsg.io/3031">South (Antarctic Polar Stereographic, EPSG:3031)</a></th>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="30%">
+        <ul style="line-height: 1.5em">
+            <li><a href="https://apps.nationalmap.gov/3depdem/">USGS 3DEP Hillshade</a></li>
+            <li><a href="https://asterweb.jpl.nasa.gov/gdem.asp">ASTER GDEM Hillshade</a></li>
+            <li><a href="https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9">ESRI Imagery</a></li>
+            <li><a href="http://glims.colorado.edu/glacierdata/">Global Land Ice Measurements from Space (GLIMS)</a></li>
+            <li><a href="https://www.glims.org/RGI/">Randolph Glacier Inventory (RGI)</a></li>
+        </ul>
+       </td>
+       <td align='left' valign='top' width="30%">
+        <ul style="line-height: 1.5em">
+            <li><a href="http://goto.arcgisonline.com/maps/Arctic_Imagery">ESRI Imagery</a></li>
+            <li><a href="https://www.pgc.umn.edu/data/arcticdem">ArcticDEM</a></li>
+        </ul>
+       </td>
+       <td align='left' valign='top' width="30%">
+        <ul style="line-height: 1.5em">
+            <li><a href="https://lima.usgs.gov/">Landsat Image Mosaic of Antarctica (LIMA)</a></li>
+            <li><a href="https://nsidc.org/data/nsidc-0280">MODIS Mosaic of Antarctica (MOA)</a></li>
+            <li><a href="https://nsidc.org/data/NSIDC-0103">Radarsat Antarctic Mapping Project (RAMP)</a></li>
+            <li><a href="https://www.pgc.umn.edu/data/rema">Reference Elevation Model of Antarctica (REMA)</a></li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>Here, we will use the visualize data at Fenris Glacier in Greenland using the Northern Hemisphere polar stereographic projection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create ipyleaflet map in specified projection</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">sliderule</span><span class="o">.</span><span class="n">ipysliderule</span><span class="o">.</span><span class="n">leaflet</span><span class="p">(</span><span class="s1">&#39;North&#39;</span><span class="p">,</span>
+    <span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="mf">66.55</span><span class="p">,</span> <span class="o">-</span><span class="mf">36.75</span><span class="p">),</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="c1"># add ArcticDEM Hillshade layer</span>
+<span class="n">m2</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span>
+    <span class="n">layers</span><span class="o">=</span><span class="s1">&#39;ArcticDEM&#39;</span><span class="p">,</span>
+    <span class="n">rendering_rule</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterFunction&#39;</span><span class="p">:</span> <span class="s1">&#39;Hillshade Gray&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="c1"># read and add region of interest</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;Fenris_Gletscher_PS_v1.4.2.geojson&#39;</span><span class="p">)</span>
+<span class="n">m2</span><span class="o">.</span><span class="n">add_region</span><span class="p">(</span><span class="n">sliderule</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">from_geodataframe</span><span class="p">(</span><span class="n">reg</span><span class="p">))</span>
+<span class="n">m2</span><span class="o">.</span><span class="n">map</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="update-options-for-making-science-data-processing-requests-to-sliderule">
+<h3>Update options for making science data processing requests to SlideRule<a class="headerlink" href="#update-options-for-making-science-data-processing-requests-to-sliderule" title="Permalink to this headline">#</a></h3>
+<p>Here we’ll be able to adjust all the potential parameters for making a SlideRule ICESat-2 <code class="docutils literal notranslate"><span class="pre">atl06</span></code> request.</p>
+<table>
+  <tbody>
+    <tr>
+      <th align='center' max-width="25%">Parameter</th>
+      <th align='left' max-width="75%">Definition</th>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Classification
+       </td>
+      <td align='left' valign='top' width="75%">
+        Photon classification types to use in signal selection
+        <ul style="line-height: 1.5em">
+            <li>atl03: signal confidence</li>
+            <li>quality: signal quality flag</li>
+            <li>atl08: classification from the land and vegetation algorithm</li>
+            <li>yapc: confidence determined using a clustering algorithm</li>
+        </ul>
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Surface Type
+       </td>
+      <td align='left' valign='top' width="75%">
+        Sets the parameters for ATL03 photon confidence classification
+        <ol style="line-height: 1.5em">
+            <li>land</li>
+            <li>ocean</li>
+            <li>sea ice</li>
+            <li>land ice</li>
+            <li>inland water</li>
+        </ol>
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Confidence
+       </td>
+      <td align='left' valign='top' width="75%">
+        Numerical assessment of the signal likelihood of each photon
+        <ol start="0" style="line-height: 1.5em">
+            <li>photon is background</li>
+            <li>photon is background within buffer of known surface</li>
+            <li>low confidence of photon being signal</li>
+            <li>medium confidence of photon being signal</li>
+            <li>high confidence of photon being signal</li>
+        </ol>
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Quality
+       </td>
+      <td align='left' valign='top' width="75%">
+        ATL03 instrumental photon quality 
+        <ol start="0" style="line-height: 1.5em">
+            <li>photon is nominal</li>
+            <li>photon is possible afterpulse</li>
+            <li>photon is possible impulse response</li>
+            <li>photon is possible transmit echo path (TEP)</li>
+        </ol>
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Land class
+       </td>
+      <td align='left' valign='top' width="75%">
+        ATL08 land and vegetation classification
+        <ol start="0" style="line-height: 1.5em">
+            <li>photon is noise or background</li>
+            <li>photon is ground</li>
+            <li>photon is canopy</li>
+            <li>photon is top of canopy</li>
+            <li>photon is not classified</li>
+        </ol>
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        YAPC kNN
+       </td>
+      <td align='left' valign='top' width="75%">
+        Number of nearest neighbors to use in classification algorithm
+        <ol start="0" style="line-height: 1.5em">
+            <li>Automatic selection</li>
+        </ol>
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        YAPC h window
+       </td>
+      <td align='left' valign='top' width="75%">
+        Window height for filtering neighbors in classification algorithm
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        YAPC x window
+       </td>
+      <td align='left' valign='top' width="75%">
+        Window width for filtering neighbors in classification algorithm
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        YAPC minimum PE
+       </td>
+      <td align='left' valign='top' width="75%">
+        Minimum number of photon events needed to create a YAPC score in classification algorithm
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        YAPC score
+       </td>
+      <td align='left' valign='top' width="75%">
+        Minimum YAPC score for photons to be valid
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Length
+       </td>
+      <td align='left' valign='top' width="75%">
+        How long each segment should be in meters
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Step
+       </td>
+      <td align='left' valign='top' width="75%">
+        Distance between successive segments in meters
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        PE Count
+       </td>
+      <td align='left' valign='top' width="75%">
+        Minimum number of photon events needed within a segment to be valid
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Window
+       </td>
+      <td align='left' valign='top' width="75%">
+        Minimum height of the final surface window used for selecting photons
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Sigma
+       </td>
+      <td align='left' valign='top' width="75%">
+        Maximum allowed dispersion around the median height in meters
+       </td>
+    </tr>
+  </tbody>
+</table><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># display widgets for setting SlideRule parameters</span>
+<span class="n">SRwidgets</span><span class="o">.</span><span class="n">set_atl06_defaults</span><span class="p">()</span>
+<span class="n">SRwidgets</span><span class="o">.</span><span class="n">classification</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;atl03&#39;</span><span class="p">]</span>
+<span class="n">SRwidgets</span><span class="o">.</span><span class="n">surface_type</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;Land ice&#39;</span>
+<span class="n">SRwidgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">(</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">atl06</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="c1"># build sliderule parameters using latest values from widget</span>
+<span class="n">parms</span> <span class="o">=</span> <span class="n">SRwidgets</span><span class="o">.</span><span class="n">build_atl06</span><span class="p">()</span>
+<span class="c1"># reduce data to a single cycle</span>
+<span class="n">parms</span><span class="p">[</span><span class="s2">&quot;cycle&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">19</span>
+<span class="c1"># additionally sample ArcticDEM mosaic at ATL06-SR points</span>
+<span class="n">parms</span><span class="p">[</span><span class="s2">&quot;samples&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mosaic</span><span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;asset&quot;</span><span class="p">:</span> <span class="s2">&quot;arcticdem-mosaic&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;radius&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+    <span class="s2">&quot;zonal_stats&quot;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="p">})</span>
+
+<span class="c1"># clear existing geodataframe results</span>
+<span class="n">elevations</span> <span class="o">=</span> <span class="p">[</span><span class="n">sliderule</span><span class="o">.</span><span class="n">emptyframe</span><span class="p">()]</span>
+
+<span class="c1"># for each region of interest</span>
+<span class="k">for</span> <span class="n">poly</span> <span class="ow">in</span> <span class="n">m2</span><span class="o">.</span><span class="n">regions</span><span class="p">:</span>
+    <span class="c1"># add polygon from map to sliderule parameters</span>
+    <span class="n">parms</span><span class="p">[</span><span class="s2">&quot;poly&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">poly</span>
+    <span class="c1"># make the request to the SlideRule (ATL06-SR) endpoint</span>
+    <span class="c1"># and pass it the request parameters to request ATL06 Data</span>
+    <span class="n">elevations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sliderule</span><span class="o">.</span><span class="n">icesat2</span><span class="o">.</span><span class="n">atl06p</span><span class="p">(</span><span class="n">parms</span><span class="p">))</span>
+<span class="c1"># concatenate the results into a single geodataframe</span>
+<span class="n">gdf2</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">elevations</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="add-geodataframe-to-polar-stereographic-map">
+<h3>Add GeoDataFrame to polar stereographic map<a class="headerlink" href="#add-geodataframe-to-polar-stereographic-map" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1"># ATL06-SR fields for hover tooltip</span>
+<span class="n">fields</span> <span class="o">=</span> <span class="n">m2</span><span class="o">.</span><span class="n">default_atl06_fields</span><span class="p">()</span>
+<span class="n">gdf2</span><span class="o">.</span><span class="n">leaflet</span><span class="o">.</span><span class="n">GeoData</span><span class="p">(</span><span class="n">m2</span><span class="o">.</span><span class="n">map</span><span class="p">,</span> <span class="n">column_name</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">column_name</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">colormap</span><span class="p">,</span>
+    <span class="n">max_plot_points</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">)</span>
+<span class="c1"># install handlers and callbacks</span>
+<span class="n">gdf2</span><span class="o">.</span><span class="n">leaflet</span><span class="o">.</span><span class="n">add_selected_callback</span><span class="p">(</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">atl06_click_handler</span><span class="p">)</span>
+<span class="n">m2</span><span class="o">.</span><span class="n">add_region_callback</span><span class="p">(</span><span class="n">gdf2</span><span class="o">.</span><span class="n">leaflet</span><span class="o">.</span><span class="n">handle_region</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-a-static-map-with-sliderule-returns">
+<h3>Create a static map with SlideRule returns<a class="headerlink" href="#create-a-static-map-with-sliderule-returns" title="Permalink to this headline">#</a></h3>
+<p>Here, we’re going to create a static map of Fenris Glacier in Greenland with our SlideRule returns from ICESat-2 and ArcticDEM. We’re going to plot the data in a different Polar Stereographic projection (NSIDC Sea Ice Polar Stereographic North). <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> <code class="docutils literal notranslate"><span class="pre">GeoDataFrames</span></code> can be transformed to different <a class="reference external" href="http://geopandas.org/projections.html">Coordinate Reference Systems (CRS)</a> using the <code class="docutils literal notranslate"><span class="pre">to_crs()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_arcticdem</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot ArcticDEM layer as a basemap</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ax: obj, default None</span>
+<span class="sd">        Figure axis</span>
+<span class="sd">    kwargs: dict, default {}</span>
+<span class="sd">        Additional keyword arguments for ``wms.getmap``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># set default keyword arguments</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;layers&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;format&#39;</span><span class="p">,</span> <span class="s1">&#39;image/png&#39;</span><span class="p">)</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;srs&#39;</span><span class="p">,</span> <span class="s1">&#39;EPSG:3413&#39;</span><span class="p">)</span>
+    <span class="c1"># create figure axis if non-existent</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="c1"># get the pixel bounds and resolution of the map</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">()</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">()</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+    <span class="c1"># calculate the size of the map in pixels</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">])</span>
+    <span class="c1"># calculate the bounding box of the map in projected coordinates</span>
+    <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span>
+    <span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xbound</span><span class="p">()</span>
+    <span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ybound</span><span class="p">()</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;bbox&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="p">)</span>
+    <span class="c1"># url of ArcticDEM WMS</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;http://elevation2.arcgis.com/arcgis/services/Polar/&#39;</span>
+        <span class="s1">&#39;ArcticDEM/ImageServer/WMSserver&#39;</span><span class="p">)</span>
+    <span class="n">wms</span> <span class="o">=</span> <span class="n">owslib</span><span class="o">.</span><span class="n">wms</span><span class="o">.</span><span class="n">WebMapService</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;1.1.1&#39;</span><span class="p">)</span>
+    <span class="n">basemap</span> <span class="o">=</span> <span class="n">wms</span><span class="o">.</span><span class="n">getmap</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="c1"># read WMS layer and plot</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">basemap</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">bbox</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1"># create polar stereographic plot of ATL06-SR data</span>
+<span class="c1"># EPSG codes are a simple way to define many coordinate reference systems</span>
+<span class="n">crs</span> <span class="o">=</span> <span class="s1">&#39;EPSG:3413&#39;</span>
+<span class="c1"># create figure axis</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mf">3.5</span><span class="p">))</span>
+<span class="n">ax1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
+
+<span class="c1"># calculate normalization for height plots</span>
+<span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">gdf2</span><span class="p">[</span><span class="s1">&#39;h_mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">((</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">))</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># calculate difference between sliderule and ArcticDEM mosaic heights</span>
+<span class="n">gdf2</span><span class="p">[</span><span class="s1">&#39;difference&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf2</span><span class="p">[</span><span class="s1">&#39;h_mean&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">gdf2</span><span class="p">[</span><span class="s1">&#39;mosaic.mean&#39;</span><span class="p">]</span>
+<span class="n">filtered</span> <span class="o">=</span> <span class="n">gdf2</span><span class="p">[</span><span class="n">gdf2</span><span class="p">[</span><span class="s1">&#39;difference&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">]</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">crs</span><span class="p">)</span>
+
+<span class="c1"># plot ATL06-SR elevation</span>
+<span class="n">ax1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ATL06-SR&#39;</span><span class="p">)</span>
+<span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Elevation [m]&#39;</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">filtered</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">column</span><span class="o">=</span><span class="s1">&#39;h_mean&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma_r&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">))</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">set_rasterized</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># plot ArcticDEM mosaic elevation</span>
+<span class="n">ax1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ArcticDEM Mosaic&#39;</span><span class="p">)</span>
+<span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Elevation [m]&#39;</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">filtered</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">column</span><span class="o">=</span><span class="s1">&#39;mosaic.mean&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma_r&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">))</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">set_rasterized</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># plot difference between heights</span>
+<span class="n">ax1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ATL06-SR - ArcticDEM&#39;</span><span class="p">)</span>
+<span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Elevation Difference [m]&#39;</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">filtered</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">column</span><span class="o">=</span><span class="s1">&#39;difference&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">30</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend_kwds</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">))</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">set_rasterized</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># convert regions into a geoseries object</span>
+<span class="n">regions</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">poly</span> <span class="ow">in</span> <span class="n">m2</span><span class="o">.</span><span class="n">regions</span><span class="p">:</span>
+    <span class="n">lon</span><span class="p">,</span><span class="n">lat</span> <span class="o">=</span> <span class="n">sliderule</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">from_region</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+    <span class="n">regions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span><span class="n">lat</span><span class="p">)))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span><span class="n">regions</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">crs</span><span class="p">)</span>
+
+<span class="c1"># add background and labels</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">ax1</span><span class="p">:</span>
+    <span class="c1"># plot each region of interest</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="c1"># plot ArcticDEM as basemap</span>
+    <span class="n">plot_arcticdem</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">srs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
+    <span class="c1"># add x label</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> [</span><span class="si">{1}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Easting&#39;</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">))</span>
+<span class="c1"># add y label</span>
+<span class="n">ax1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> [</span><span class="si">{1}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Northing&#39;</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">))</span>
+
+<span class="c1"># adjust subplot and show</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Compared with the ArcticDEM mosaic, ICESat-2 is showing much lower elevations for large parts of this glacier. Any ideas on why?</p>
+</div>
+</section>
+</section>
+<section id="advanced-icesat-2-sliderule-example-phoreal-vegetation-metrics">
+<h2>Advanced ICESat-2 SlideRule Example: PhoREAL Vegetation Metrics<a class="headerlink" href="#advanced-icesat-2-sliderule-example-phoreal-vegetation-metrics" title="Permalink to this headline">#</a></h2>
+<p>For this example, we will also use SlideRule to produce canopy metrics using the ATL08 PhoREAL API. The name comes from the University of Texas team that developed PhoREAL and collaborated with us to get their algorithms into SlideRule. The PhoREAL functionality within SlideRule uses the land surface classifications for each photon provided by the <a class="reference external" href="https://nsidc.org/data/atl08">ICESat-2 Land and Vegetation Height Product (ATL08)</a>. Similar to the SlideRule elevation functionality, these metrics can be calculated at different lengths scales and with different options for classification. The set of parameters specific to the ATL08 processing are provided under the <code class="docutils literal notranslate"><span class="pre">phoreal</span></code> key.</p>
+<p>Documentation for this functionality can be found in the <a class="reference external" href="https://slideruleearth.io/web/rtd/api_reference/icesat2.html#atl08p">API reference</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create ipyleaflet map in specified projection</span>
+<span class="n">m3</span> <span class="o">=</span> <span class="n">sliderule</span><span class="o">.</span><span class="n">ipysliderule</span><span class="o">.</span><span class="n">leaflet</span><span class="p">(</span><span class="s1">&#39;Global&#39;</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">full_screen_control</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># add ESRI imagery layer</span>
+<span class="n">m3</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">layers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ESRI imagery&#39;</span><span class="p">])</span>
+<span class="c1"># read and add region of interest</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;grandmesa.geojson&#39;</span><span class="p">)</span>
+<span class="n">m3</span><span class="o">.</span><span class="n">add_region</span><span class="p">(</span><span class="n">sliderule</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">from_geodataframe</span><span class="p">(</span><span class="n">reg</span><span class="p">))</span>
+<span class="n">m3</span><span class="o">.</span><span class="n">map</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="set-options-for-making-phoreal-science-data-processing-requests-to-sliderule">
+<h3>Set options for making PhoREAL science data processing requests to SlideRule<a class="headerlink" href="#set-options-for-making-phoreal-science-data-processing-requests-to-sliderule" title="Permalink to this headline">#</a></h3>
+<p>Here, we’ll be able to adjust all the potential parameters for making a SlideRule ICESat-2 <code class="docutils literal notranslate"><span class="pre">atl08</span></code> request.</p>
+<table>
+  <tbody>
+    <tr>
+      <th align='center' max-width="25%">Parameter</th>
+      <th align='left' max-width="75%">Definition</th>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Classification
+       </td>
+      <td align='left' valign='top' width="75%">
+        Photon classification types to use in signal selection
+        <ul style="line-height: 1.5em">
+            <li>atl03: signal confidence</li>
+            <li>quality: signal quality flag</li>
+            <li>atl08: classification from the land and vegetation algorithm</li>
+            <li>yapc: confidence determined using a clustering algorithm</li>
+        </ul>
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Land class
+       </td>
+      <td align='left' valign='top' width="75%">
+        ATL08 land and vegetation classification
+        <ol start="0" style="line-height: 1.5em">
+            <li>photon is noise or background</li>
+            <li>photon is ground</li>
+            <li>photon is canopy</li>
+            <li>photon is top of canopy</li>
+            <li>photon is not classified</li>
+        </ol>
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        PhoREAL Bin Size
+       </td>
+      <td align='left' valign='top' width="75%">
+        Size of the vertical histogram bin in meters
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        PhoREAL Geolocation
+       </td>
+      <td align='left' valign='top' width="75%">
+        Method for calculating segment geolocation variables
+        <ul start="0" style="line-height: 1.5em">
+            <li>mean: average value across all photons in the segment</li>
+            <li>median: median value across all photons in the segment</li>
+            <li>center: center of first and last photons in the segment</li>
+        </ul>
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        PhoREAL Use abs h
+       </td>
+      <td align='left' valign='top' width="75%">
+        Use absolute photon event elevations rather than normalized heights
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        PhoREAL ABoVE
+       </td>
+      <td align='left' valign='top' width="75%">
+        Use the ABoVE photon classifier
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        PhoREAL Waveform
+       </td>
+      <td align='left' valign='top' width="75%">
+        Return the photon height histograms
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Length
+       </td>
+      <td align='left' valign='top' width="75%">
+        How long each segment should be in meters
+       </td>
+    </tr>
+    <tr>
+      <td align='left' valign='top' width="25%">
+        Step
+       </td>
+      <td align='left' valign='top' width="75%">
+        Distance between successive segments in meters
+       </td>
+    </tr>
+  </tbody>
+</table><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># display widgets for setting SlideRule parameters</span>
+<span class="n">SRwidgets</span><span class="o">.</span><span class="n">set_atl08_defaults</span><span class="p">()</span>
+<span class="n">SRwidgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">(</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">atl08</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="c1"># build sliderule parameters using latest values from widget</span>
+<span class="n">parms</span> <span class="o">=</span> <span class="n">SRwidgets</span><span class="o">.</span><span class="n">build_atl08</span><span class="p">()</span>
+<span class="c1"># reduce data to a single cycle</span>
+<span class="n">parms</span><span class="p">[</span><span class="s2">&quot;cycle&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+
+<span class="c1"># clear existing geodataframe results</span>
+<span class="n">elevations</span> <span class="o">=</span> <span class="p">[</span><span class="n">sliderule</span><span class="o">.</span><span class="n">emptyframe</span><span class="p">()]</span>
+
+<span class="c1"># for each region of interest</span>
+<span class="k">for</span> <span class="n">poly</span> <span class="ow">in</span> <span class="n">m3</span><span class="o">.</span><span class="n">regions</span><span class="p">:</span>
+    <span class="c1"># add polygon from map to sliderule parameters</span>
+    <span class="n">parms</span><span class="p">[</span><span class="s2">&quot;poly&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">poly</span>
+    <span class="c1"># make the request to the SlideRule (ATL08-SR) endpoint</span>
+    <span class="c1"># and pass it the request parameters to request ATL08 vegetation metrics</span>
+    <span class="n">elevations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sliderule</span><span class="o">.</span><span class="n">icesat2</span><span class="o">.</span><span class="n">atl08p</span><span class="p">(</span><span class="n">parms</span><span class="p">,</span> <span class="n">keep_id</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="c1"># concatenate the results into a single geodataframe</span>
+<span class="n">gdf3</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">elevations</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Review GeoDataFrame output<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>There are different columns for the <code class="docutils literal notranslate"><span class="pre">atl08</span></code> request, which add the vegetation metrics. Here, we will inspect the top of the ATL08 GeoDataFrame using <code class="docutils literal notranslate"><span class="pre">head()</span></code>.</p>
+<p>See the <a class="reference external" href="https://slideruleearth.io/web/rtd/user_guide/ICESat-2.html#vegetation-metrics-atl08">SlideRule ICESat-2 Vegetation Metrics documentation</a> for descriptions of each column</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Returned </span><span class="si">{</span><span class="n">gdf3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> records&#39;</span><span class="p">)</span>
+<span class="n">gdf3</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="add-vegetation-metrics-geodataframe-to-map">
+<h3>Add Vegetation Metrics GeoDataFrame to map<a class="headerlink" href="#add-vegetation-metrics-geodataframe-to-map" title="Permalink to this headline">#</a></h3>
+<p>Here, we’re going to visualize the canopy height <code class="docutils literal notranslate"><span class="pre">h_canopy</span></code>. This is the 98<sup>th</sup> percentile of the histogram of canopy photons that are located above the Earth’s surface.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span>
+    <span class="n">SRwidgets</span><span class="o">.</span><span class="n">variable</span><span class="p">,</span>
+    <span class="n">SRwidgets</span><span class="o">.</span><span class="n">cmap</span><span class="p">,</span>
+    <span class="n">SRwidgets</span><span class="o">.</span><span class="n">reverse</span><span class="p">,</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1"># ATL06-SR fields for hover tooltip</span>
+<span class="n">fields</span> <span class="o">=</span> <span class="n">m3</span><span class="o">.</span><span class="n">default_atl08_fields</span><span class="p">()</span>
+<span class="n">gdf3</span><span class="o">.</span><span class="n">leaflet</span><span class="o">.</span><span class="n">GeoData</span><span class="p">(</span><span class="n">m3</span><span class="o">.</span><span class="n">map</span><span class="p">,</span> <span class="n">column_name</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">column_name</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">colormap</span><span class="p">,</span>
+    <span class="n">max_plot_points</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tooltip_width</span><span class="o">=</span><span class="s1">&#39;280px&#39;</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">)</span>
+<span class="c1"># install handlers and callbacks</span>
+<span class="n">gdf3</span><span class="o">.</span><span class="n">leaflet</span><span class="o">.</span><span class="n">add_selected_callback</span><span class="p">(</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">atl06_click_handler</span><span class="p">)</span>
+<span class="n">m3</span><span class="o">.</span><span class="n">add_region_callback</span><span class="p">(</span><span class="n">gdf3</span><span class="o">.</span><span class="n">leaflet</span><span class="o">.</span><span class="n">handle_region</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>How does the canopy height compare with the visual imagery at Grand Mesa?</p>
+</div>
+</section>
+</section>
+<section id="advanced-icesat-2-sliderule-example-subsetting-atl03-photon-cloud-data">
+<h2>Advanced ICESat-2 SlideRule Example: Subsetting ATL03 photon cloud data<a class="headerlink" href="#advanced-icesat-2-sliderule-example-subsetting-atl03-photon-cloud-data" title="Permalink to this headline">#</a></h2>
+<p>SlideRule can also be used to subset ATL03 geolocated photon height products, which are returned as a geopandas GeoDataFrame at the photon rate.  Documentation for this function can be found in the <a class="reference external" href="https://slideruleearth.io/web/rtd/api_reference/icesat2.html#atl03sp">API reference</a>.</p>
+<p>Because each granule contains so many photons, it is good practice to subset the data as much as possible by limiting the subsetting area and the number of granules to be processed. Here, we supply a GeoJSON file of Fenris Glacier for trimming the photon data. We also supply a reference ground track and cycle number to reduce the number of granules to be processed to a single file. Finally, we specify that only tracks <code class="docutils literal notranslate"><span class="pre">GT1L</span></code> and <code class="docutils literal notranslate"><span class="pre">GT1R</span></code> within the granule should be subset. This will still return hundreds of thousands of photons for the region!</p>
+<p>The other parameters in the request are used to specify different aspects of the ATL03 subsetting request.  The surface type for photon classification (<code class="docutils literal notranslate"><span class="pre">srt</span></code>) in this case is <em>land ice</em>. This surface type parameter is used in conjunction the photon confidence level <code class="docutils literal notranslate"><span class="pre">cnf</span></code> parameter. Here, we are requesting that all classified photons for the surface type are returned.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read Region of Interest</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;Fenris_Gletscher_PS_v1.4.2.geojson&#39;</span><span class="p">)</span>
+<span class="n">region</span> <span class="o">=</span> <span class="n">sliderule</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">from_geodataframe</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span>
+<span class="n">RGT</span> <span class="o">=</span> <span class="mi">71</span>
+<span class="n">cycle</span> <span class="o">=</span> <span class="mi">19</span>
+<span class="c1"># only process data for GT1L and GT1R</span>
+<span class="n">PT</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Build ATL03 Subsetting Request Parameters</span>
+<span class="n">parms</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;poly&quot;</span><span class="p">:</span> <span class="n">region</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s2">&quot;rgt&quot;</span><span class="p">:</span> <span class="n">RGT</span><span class="p">,</span>
+    <span class="s2">&quot;cycle&quot;</span><span class="p">:</span> <span class="n">cycle</span><span class="p">,</span>
+    <span class="s2">&quot;track&quot;</span><span class="p">:</span> <span class="n">PT</span><span class="p">,</span>
+    <span class="s2">&quot;srt&quot;</span><span class="p">:</span> <span class="n">sliderule</span><span class="o">.</span><span class="n">icesat2</span><span class="o">.</span><span class="n">SRT_LAND_ICE</span><span class="p">,</span>
+    <span class="s2">&quot;cnf&quot;</span><span class="p">:</span> <span class="n">sliderule</span><span class="o">.</span><span class="n">icesat2</span><span class="o">.</span><span class="n">CNF_BACKGROUND</span><span class="p">,</span>
+    <span class="s2">&quot;len&quot;</span><span class="p">:</span> <span class="mf">20.0</span><span class="p">,</span>
+    <span class="s2">&quot;pass_invalid&quot;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="p">}</span>
+
+<span class="c1"># Make ATL03 Subsetting Request</span>
+<span class="n">atl03</span> <span class="o">=</span> <span class="n">sliderule</span><span class="o">.</span><span class="n">icesat2</span><span class="o">.</span><span class="n">atl03sp</span><span class="p">(</span><span class="n">parms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h3>Review GeoDataFrame output<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>The ATL03 GeoDataFrame will have variables at the photon rate. Here, we will inspect the columns and variables at the top of the ATL03 GeoDataFrame using <code class="docutils literal notranslate"><span class="pre">head()</span></code>. See the <a class="reference external" href="https://slideruleearth.io/web/rtd/user_guide/ICESat-2.html#segmented-photon-data-atl03">SlideRule ICESat-2 Geolocated Photon documentation</a> for descriptions of each column</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Returned </span><span class="si">{</span><span class="n">atl03</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> records&#39;</span><span class="p">)</span>
+<span class="n">atl03</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-plot-for-a-single-track-of-photon-heights">
+<h3>Create plot for a single track of photon heights<a class="headerlink" href="#create-plot-for-a-single-track-of-photon-heights" title="Permalink to this headline">#</a></h3>
+<p>Here, we’re going to use the same SlideRule ICESat-2 transect plot functionality as prior, but for visualizing the geolocated photons.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Will plot ATL03 data returned by SlideRule for a single RGT, ground track and cycle</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atl03</span><span class="o">.</span><span class="n">icesat2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">atl03</span><span class="o">=</span><span class="s1">&#39;dataframe&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;ATL03 Photon Cloud&#39;</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend_frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">classification</span><span class="o">=</span><span class="s1">&#39;atl03&#39;</span><span class="p">,</span> <span class="n">segments</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">RGT</span><span class="o">=</span><span class="n">RGT</span><span class="p">,</span> <span class="n">cycle</span><span class="o">=</span><span class="n">cycle</span><span class="p">,</span> <span class="n">GT</span><span class="o">=</span><span class="n">sliderule</span><span class="o">.</span><span class="n">icesat2</span><span class="o">.</span><span class="n">GT1R</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A lot of these photon events are “background” photons, meaning that they are likely emitted from the sun and not from ICESat-2.</p>
+</div>
+</section>
+</section>
+<section id="direct-file-read-example">
+<h2>Direct File Read Example<a class="headerlink" href="#direct-file-read-example" title="Permalink to this headline">#</a></h2>
+<p>SlideRule also can directly read data from HDF5 files stored in s3 using <code class="docutils literal notranslate"><span class="pre">h5coro</span></code>, a cloud-optimized HDF5 reader built by the SlideRule team. In the example below, data from the first 25 segments are read from an ATL06 granule.  The results are returned in a dictionary of arrays, where each key is the name of the dataset.  The entirety of a dataset can be read by setting the number of rows to <code class="docutils literal notranslate"><span class="pre">h5.ALL_ROWS</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resource</span> <span class="o">=</span> <span class="s1">&#39;ATL06_20181017222812_02950102_006_02.h5&#39;</span>
+<span class="n">beams</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gt1l&#39;</span><span class="p">,</span> <span class="s1">&#39;gt1r&#39;</span><span class="p">,</span> <span class="s1">&#39;gt2l&#39;</span><span class="p">,</span> <span class="s1">&#39;gt2r&#39;</span><span class="p">,</span> <span class="s1">&#39;gt3l&#39;</span><span class="p">,</span> <span class="s1">&#39;gt3r&#39;</span><span class="p">]</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+<span class="n">startrow</span><span class="p">,</span> <span class="n">numrows</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;/</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">/land_ice_segments/</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">startrow</span><span class="o">=</span><span class="n">startrow</span><span class="p">,</span> <span class="n">numrows</span><span class="o">=</span><span class="n">numrows</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">beams</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">]</span>
+<span class="n">atl06</span> <span class="o">=</span> <span class="n">sliderule</span><span class="o">.</span><span class="n">h5</span><span class="o">.</span><span class="n">h5p</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span> <span class="s1">&#39;icesat2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">beams</span><span class="p">:</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">atl06</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;/</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">/land_ice_segments/longitude&#39;</span><span class="p">],</span>
+        <span class="n">atl06</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;/</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">/land_ice_segments/latitude&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Longitude [</span><span class="se">\u00B0</span><span class="s1">]&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Latitude [</span><span class="se">\u00B0</span><span class="s1">]&#39;</span><span class="p">)</span>
+<span class="n">lgd</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">lgd</span><span class="o">.</span><span class="n">get_frame</span><span class="p">()</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lgd</span><span class="o">.</span><span class="n">get_lines</span><span class="p">():</span>
+    <span class="n">line</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="private-clusters">
+<h2>Private Clusters<a class="headerlink" href="#private-clusters" title="Permalink to this headline">#</a></h2>
+<p>The SlideRule project supports the deployment of private clusters.  A private cluster is a separate deployment of the public SlideRule service with the only difference being it requires authenticated access.  These clusters are managed through the <a class="reference external" href="https://ps.slideruleearth.io"><strong>SlideRule Provisioning System</strong></a> and require both an account on that system along with an association with a funding organization.  For more information on private clusters, please see the <a class="reference external" href="https://slideruleearth.io/web/rtd/user_guide/Private-Clusters.html">users guide</a>.</p>
+<p>The public SlideRule service is provisioned the exact same way as a private cluster and is managed by the SlideRule Provisioning System. Each cluster has its own subdomain and configuration. For the public cluster, the configuration specifies that no authentication is needed, and the subdomain is “sliderule”, so access to the public cluster is at <a class="reference external" href="https://sliderule.slideruleearth.io">https://sliderule.slideruleearth.io</a>.  For the other clusters, access requires authentication and the subdomain is the set to the name of the organization funding the cluster.  For example, the University of Washington private cluster is at <a class="reference external" href="https://uw.slideruleearth.io">https://uw.slideruleearth.io</a>.</p>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<table>
+  <tbody>
+    <tr>
+      <td align='center' width="10%">
+        <img src="https://slideruleearth.io/web/assets/images/SlideRule-whiteBelly.png">
+      </td>
+      <td align='left' max-width="90%">
+        SlideRule is a cost-effective <i>science data as a service</i> solution that provides responsive results to users. SlideRule can enable large scale access to the NASA and other Earth science data and provide science-quality algorithms in an open and documented way. The SlideRule team strives to provide simple, well-documented APIs that are easy to install and use, as well as a web client for online demonstration. Improvements and fixes can be made quickly to limit downtime and enable new functionality. The SlideRule system is highly scalable to meet the processing demand at any given time. In addition, private clusters can be made available to users for large-scale requests. See more at <a href="https://slideruleearth.io">slideruleearth.io</a>.
+      </td>
+    </tr>
+  </tbody>
+</table></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./tutorials/SlideRule_applications"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../GrIMP/GrIMP_tutorial_AGU23.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Determining ice sheet change using Greenland Ice Mapping Project (GrIMP) tools</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../contributing/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Contributing</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Mines Glaciology Laboratory, Colorado School of Mines<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
