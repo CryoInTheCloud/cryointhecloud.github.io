@@ -1,0 +1,1032 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction to NASA Earthdata Cloud and ICESat-2 &#8212; CryoCloud</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using NASA Earthdata Search to Discover Cloud-Hosted Data" href="2.earthdata_search.html" />
+    <link rel="prev" title="Analysis-ready, cloud-optimized data: writing zarr directories" href="../ARCOdata_writingZarrs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LZVEY6377Z"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-LZVEY6377Z');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CryoCloud</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to CryoCloud!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Details
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/about.html">
+   About
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/mission.html">
+   Mission
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/Getting_Started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/hub_best_practices.html">
+   CryoCloud Best Practices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/Code_of_Conduct.html">
+   CryoCloud Code of Conduct
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/citing_cryocloud.html">
+   Citing CryoCloud
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cloud Training
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recorded/index.html">
+   Cloud Training
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  How Tos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../how_tos/index.html">
+   How To…
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../how_tos/background/index.html">
+     Background Work
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/github.html">
+       GitHub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/jupyterhub.html">
+       JupyterHub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/git.html">
+       Git
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/earthdata.html">
+       Earthdata Login
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/earthengine.html">
+       Google Earth Engine Sign-Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/swc.html">
+       Software Carpentry Training
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/python.html">
+       Python Installation and Environments
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/nbdime/nbdime-hub.html">
+       nbdime - version control for Jupyter notebooks
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../how_tos/data_access/index.html">
+     Data access
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/data_access/Cloud_Sentinel2_access.html">
+       Sentinel 2 cloud access
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/data_access/Instructions_for_configuring_AWS_S3_bucket.html">
+       Instructions for setting up an AWS S3 bucket for your project
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/data_access/CryoCloudScratchBucket.html">
+       Using CryoCloud S3 Scratch Bucket
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/ICESat2_Earthaccess.html">
+       Earthaccess
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Earthdata_Cloud__Single_File__HTTPS_Access_COG_Example.html">
+       COG HTTPS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Earthdata_Cloud__Single_File_Direct_S3_Access_COG_Example.html">
+       COG Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Multi-File_Direct_S3_Access_COG_Example.html">
+       Multi-COG Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Earthdata_Cloud__Single_File__Direct_S3_Access_NetCDF4_Example.html">
+       NetCDF/HDF5 Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Multi-File_Direct_S3_Access_NetCDF_Example.html">
+       Multi-NetCDF/HDF5 Direct S3
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tutorials
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   Tutorials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../IS2_cloud_Landsat_integration.html">
+     ICESat-2 and Landsat cloud access and data integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../IS2_ATL15_surface_height_anomalies/IS2_ATL15_surface_height_anomalies.html">
+     Using ICESat-2 ATL15 (Gridded Arctic Land Ice Height) to investigate ice-surface height anomalies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../external/ICESAT2_ATL10-h5coro_large_scale_time_series.html">
+     ICESat-2 ATL10-h5coro large-scale time series
+    </a>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../ARCOdata_writingZarrs.html">
+     Analysis-ready, cloud-optimized data: writing zarr directories
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Introduction to NASA Earthdata Cloud and ICESat-2
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2.earthdata_search.html">
+       Using NASA Earthdata Search to Discover Cloud-Hosted Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.earthaccess.html">
+       NASA Earthdata Cloud and data access using earthaccess and icepyx
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="4.icepyx.html">
+       NASA Earthdata Cloud and data access using earthaccess and icepyx
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../GrIMP/GrIMP_tutorial_AGU23.html">
+     Determining ice sheet change using Greenland Ice Mapping Project (GrIMP) tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../SlideRule_applications/SlideRule_applications.html">
+     CryoCloud Tutorials: SlideRule
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../contributing/index.html">
+   Contributing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/workflow.html">
+     Workflow for contributing to our JupyterBook (or any GitHub project)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/glossary.html">
+   Glossaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/IS2-resources.html">
+   ICESat-2 Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/open_science.html">
+   Open Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/open_source_software.html">
+   Open-source Software
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/questions.html">
+   How to Get Help
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/issues/new?title=Issue%20on%20page%20%2Ftutorials/NASA-Earthdata-Cloud-Access/1.Intro-Earthdata-Cloud.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/edit/main/book/tutorials/NASA-Earthdata-Cloud-Access/1.Intro-Earthdata-Cloud.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/tutorials/NASA-Earthdata-Cloud-Access/1.Intro-Earthdata-Cloud.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-outcomes">
+   Learning Outcomes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#credits">
+   Credits
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modes-of-data-access">
+   1. Modes of Data Access
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nasa-earthdata-cloud">
+   2. NASA Earthdata Cloud
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#earthdata-cloud-computing-basics">
+     Earthdata Cloud Computing Basics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cost-considerations">
+     Cost Considerations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-to-cloud">
+     “When To Cloud”
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-to-icesat-2">
+   3. Introduction to ICESat-2
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-collection">
+     Data Collection
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#counting-photons">
+     Counting Photons
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#navigating-icesat-2-tool-access-options">
+   4. Navigating ICESat-2 Tool &amp; Access options
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introduction to NASA Earthdata Cloud and ICESat-2</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-outcomes">
+   Learning Outcomes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#credits">
+   Credits
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modes-of-data-access">
+   1. Modes of Data Access
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nasa-earthdata-cloud">
+   2. NASA Earthdata Cloud
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#earthdata-cloud-computing-basics">
+     Earthdata Cloud Computing Basics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cost-considerations">
+     Cost Considerations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-to-cloud">
+     “When To Cloud”
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-to-icesat-2">
+   3. Introduction to ICESat-2
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-collection">
+     Data Collection
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#counting-photons">
+     Counting Photons
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#navigating-icesat-2-tool-access-options">
+   4. Navigating ICESat-2 Tool &amp; Access options
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-nasa-earthdata-cloud-and-icesat-2">
+<h1>Introduction to NASA Earthdata Cloud and ICESat-2<a class="headerlink" href="#introduction-to-nasa-earthdata-cloud-and-icesat-2" title="Permalink to this headline">#</a></h1>
+<section id="learning-outcomes">
+<h2>Learning Outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">#</a></h2>
+<p>The purpose of this overview is to introduce the data search and access options provided within the Earthdata Cloud, along with an introduction to NASA’s ICESat-2 Mission.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h2>
+<p>None</p>
+</section>
+<section id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">#</a></h2>
+<p>This guide was adapted from the following tutorials:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://icesat-2-2023.hackweek.io/tutorials/data-access-and-format/overview.html">Data Discovery and Access: Overview</a> by Andy Barrett, NSIDC DAAC</p></li>
+<li><p><a class="reference external" href="https://nasa-openscapes.github.io/2023-ssc/tutorials/data-access/icepyx.html">Using icepyx to access ICESat-2 data</a> by Rachel Wegener, University of Maryland</p></li>
+<li><p><a class="reference external" href="https://nsidc.github.io/data_strategies_for_future_us/data_strategies_slides#/workflow-solutions-3">Data Strategies for Future Us</a> by Andy Barrett, NSIDC DAAC</p></li>
+<li><p><a class="reference external" href="https://nasa-openscapes.github.io/2023-ssc/tutorials/data-access/">Accessing and working with ICESat-2 data in the cloud</a> by Rachel Wegener, University of Maryland; Luis Lopez, NSIDC DAAC; and Amy Steiker, NSIDC DAAC.</p></li>
+</ul>
+</section>
+<section id="modes-of-data-access">
+<h2>1. Modes of Data Access<a class="headerlink" href="#modes-of-data-access" title="Permalink to this headline">#</a></h2>
+<p>In the past, most of our scientific data analysis workflows have started with searching for data and then downloading that data to a local machine; whether that is the hard drive of your laptop or workstation, or some shared storage device hosted by your institution or research group. This can be a time consuming process if the volume of data is large, even with fast internet. It also requires that you have sufficient disk-space and update your copy every time an updated version of the data is released. If you want to work with data from different geoscience domains, you may have to download data from several data centers.</p>
+<figure>
+<center>
+    <img src='images/shiklomanov-cloud-paradigm.png' alt='Earthdata Cloud Transition. Credit: Alexey Shiklomanov, NASA ESDIS'/>
+</center>
+</figure>
+<p>Figure credit: Alexey Shiklomanov, NASA ESDIS Project Scientist, from <a class="reference external" href="https://docs.google.com/presentation/d/12mh_8WU9lsrPviBO_MBv2blbjRufXoQmqCB4XGyxQ90/edit?pli=1">The future of NASA Earth Science in the commercial cloud:
+Challenges and opportunities</a></p>
+<p>However, a change is a-foot. New modes of data access are becoming available. Driven by the growth in the volume of data from future satellite missions, the archiving and distribution of NASA data is in a <a class="reference external" href="https://www.earthdata.nasa.gov/eosdis/cloud-evolution">state of transition</a>. Over the next few years, all NASA data will be migrated to the NASA Earthdata Cloud, a cloud-hosted data store that will have all NASA datasets in one place. This not only offers new modes of accessing NASA data but also offers new ways of working with this data. As with Google Docs or Sheets, data in these “files” is not just stored in the cloud but compute resources offered by cloud providers allow you to process and analyze the data in the cloud. When you edit your Google Doc or Sheet, you are working in the cloud, not on your computer. All you need is a web browser; you can work with these files on your laptop, tablet or even your phone. If you choose to share these documents with others, they can actively collaborate with you on the same document also in the cloud. For large geoscience datasets, this means you can <em>skip the download</em> and take your <em>analysis to the data</em>.</p>
+</section>
+<section id="nasa-earthdata-cloud">
+<h2>2. NASA Earthdata Cloud<a class="headerlink" href="#nasa-earthdata-cloud" title="Permalink to this headline">#</a></h2>
+<p>NASA’s cloud-hosted storage is known as the Earthdata Cloud; all NASA datasets are being migrated to be available in the cloud. During this transition period, data will still remain freely available for download directly from the DAACs (Distributed Active Archive Centers), which have archived and distributed NASA data for over 20 years.</p>
+<figure>
+<center>
+    <img src='images/NSIDC-DAAC.png' alt='NSIDC DAAC Intro'/>
+</center>
+</figure>
+<p>The NSIDC DAAC now offers all <a class="reference external" href="https://nsidc.org/data/icesat-2">ICESat-2</a> and <a class="reference external" href="https://nsidc.org/data/icesat">ICESat/GLAS</a> data products via Earthdata Cloud. A listing of all NSIDC DAAC cloud-hosted data can be found <a class="reference external" href="https://nsidc.org/data/earthdata-cloud/data">here</a>. More details on ICESat-2 below.</p>
+<section id="earthdata-cloud-computing-basics">
+<h3>Earthdata Cloud Computing Basics<a class="headerlink" href="#earthdata-cloud-computing-basics" title="Permalink to this headline">#</a></h3>
+<p>“The Cloud” is a somewhat nebulous term (pun intended). In general, the cloud is a network of remote servers that run software and services that are accessed over the internet.  There is a growing number of commercial cloud providers (Google Cloud Services, Amazon Web Services, Microsoft Azure). NASA has contracted with Amazon Web Services (AWS) to host data using the AWS Simple Storage Service (S3). AWS offers a large number of services in addition to S3 storage. A key service is Amazon Elastic Compute Cloud (Amazon EC2). This is the service that is <em>under-the-hood</em> of the CryoCloud JupyterHub you are using during today’s workshop.  When you start a JupyterHub, an EC2 <em>instance</em> is started.  You can think of an EC2 <em>instance</em> as a remote computer.</p>
+<p>AWS has the concept of a region, which is a cluster of data centers. These data centers house the servers that run S3 and EC2 instances. NASA Earthdata Cloud is hosted in the <code class="docutils literal notranslate"><span class="pre">us-west-2</span></code> region. This is important because if your EC2 instance is in the same region as the Earthdata Cloud S3 storage, you can access data in S3 directly in a way that is analogous to accessing a file on your laptop’s or workstation’s hard drive. This is one of the key advantages of working in the cloud; you can do analysis where the data is stored without having to download or move the data to another machine.</p>
+</section>
+<section id="cost-considerations">
+<h3>Cost Considerations<a class="headerlink" href="#cost-considerations" title="Permalink to this headline">#</a></h3>
+<p>The notion of <em>analysis in place</em>, or the concept of bringing your compute, or processing, to the data, provides several advantages over the more traditional download method: You no longer need to move data from its archived location, and you only pay for the compute needed to do your analysis. A few key points about cost:</p>
+<ul class="simple">
+<li><p>Cost to access: As long as you are performing your processing in the same location (region) as where the data are located in Earthdata Cloud, then the cost to access the data is completely free. CryoCloud is running in the same <code class="docutils literal notranslate"><span class="pre">us-west-2</span></code> region as where the NASA Earthdata Cloud data are stored.</p></li>
+<li><p>Cost to compute: Just like your laptop costs money up front that provides you with certain CPU and memory, the compute resources needed to run your analyses do cost money. This can be thought of as the difference between an upfront cost like purchasing a laptop to process data locally versus something you can pay for as you go. There is a cost associated with the EC2 instance mentioned above, paid for by CryoCloud.</p></li>
+<li><p>Cost to store: With <em>analysis in place</em>, the data are being streamed directly from its native location in the cloud, so storage is not needed. However you may wish to store analysis outputs or other data using your own S3 bucket, which does incur a cost.</p></li>
+</ul>
+</section>
+<section id="when-to-cloud">
+<h3>“When To Cloud”<a class="headerlink" href="#when-to-cloud" title="Permalink to this headline">#</a></h3>
+<p>Migrating to a cloud-based data analysis workflow can often have a steep learning curve and feel overwhelming. There are times when the cloud is effective and times when the download model may still be more appropriate. Here are a few key questions to ask yourself:</p>
+<ul class="simple">
+<li><p>What is the data volume?</p></li>
+<li><p>How long will it take to download?</p></li>
+<li><p>Can you store all that data (cost and space)?</p></li>
+<li><p>Do you have the computing power for processing?</p></li>
+<li><p>Does your team need a common computing environment?</p></li>
+<li><p>Do you need to share data at each step or just an end product?</p></li>
+</ul>
+</section>
+</section>
+<section id="introduction-to-icesat-2">
+<h2>3. Introduction to ICESat-2<a class="headerlink" href="#introduction-to-icesat-2" title="Permalink to this headline">#</a></h2>
+<p><img alt="IS2" src="https://icesat-2.gsfc.nasa.gov/sites/default/files/MissionLogo_0.png" /></p>
+<p>ICESat-2 carries a satellite lidar instrument, ATLAS. Lidar is an active remote sensing technique in which pulses of light are emitted and the return time is used to measure distance, in this case the height of something on the earth’s surface. The available ICESat-2 data products range from sea ice freeboard to land elevation to cloud backscatter characteristics. A list of available products can be found <a class="reference external" href="https://icesat-2.gsfc.nasa.gov/science/data-products">here</a>.</p>
+<p><img alt="IS2-Product-Tree" src="https://nsidc.org/sites/default/files/styles/article_image/public/images/Other/icesat2_graphic_2023_update_final.png.webp" /></p>
+<p>More key features of ICESat-2:</p>
+<ul class="simple">
+<li><p>Height determined using round-trip travel time of laser light (photon counting lidar)</p></li>
+<li><p>10,000 laser pulses released per second, split into 3 weak/strong beam pairs at a wavelength of 532 nanometers (bright green on the visible spectrum).</p></li>
+<li><p>Measurements taken every 70 cm along the satellite’s ground track, roughly 11 m wide footprint.</p></li>
+<li><p>The number of photons that return to the telescope depends on surface reflectivity and cloud cover (which obscures ATLAS’s view of Earth). As such, the spatial resolution of signal photons varies.</p></li>
+</ul>
+<section id="data-collection">
+<h3>Data Collection<a class="headerlink" href="#data-collection" title="Permalink to this headline">#</a></h3>
+<p>ICESat-2 measures data along 3 strong/weak beam pairs, resulting in 3 strong beams and 3 weak beams. The strong and weak beams are calibrated such that the weak beams have more sensitivity to viewing very bright surfaces (Ex. ice), while the strong beams are able to view surfaces with lower reflectances (Ex. water). The beams are designated in each data product as <code class="docutils literal notranslate"><span class="pre">gt1l</span></code>, <code class="docutils literal notranslate"><span class="pre">gt1r</span></code>, <code class="docutils literal notranslate"><span class="pre">gt2l</span></code>, <code class="docutils literal notranslate"><span class="pre">gt2r</span></code>, <code class="docutils literal notranslate"><span class="pre">gt3l</span></code>, and <code class="docutils literal notranslate"><span class="pre">gt3r</span></code>, where <code class="docutils literal notranslate"><span class="pre">gt</span></code> stands for “ground track”, the number refers to the photon emitter, and the <code class="docutils literal notranslate"><span class="pre">l</span></code> and <code class="docutils literal notranslate"><span class="pre">r</span></code> indicate “left” or “right” beam of the pair. Which of these designations is strong or weak depends on the orientation of the satellite (forwards, <code class="docutils literal notranslate"><span class="pre">sc_orient==1</span></code>; backwards, <code class="docutils literal notranslate"><span class="pre">sc_orient==0</span></code>). A helpful table of which beams are strong/weak can be found on p131 of the <a class="reference external" href="https://icesat-2.gsfc.nasa.gov/sites/default/files/page_files/ICESat2_ATL03_ATBD_r006.pdf">ATL03 Algorithm Theoretical Basis Document</a>. The ATLAS spot number (values 1-6) is based on the ground track designation (<code class="docutils literal notranslate"><span class="pre">gt1l</span></code> etc.) and spacecraft orientation and, once determined, can be used to consistently identify strong (Spots 1, 3, and 5) and weak (Spots 2, 4, and 6) beams.</p>
+<p><img alt="Tracks" src="https://ars.els-cdn.com/content/image/1-s2.0-S0034425718305066-gr1.jpg" /></p>
+<p>Photo: Neuenschwander et. al. 2019, Remote Sens. Env. <a class="reference external" href="https://doi.org/10.1016/j.rse.2018.11.005">DOI</a></p>
+</section>
+<section id="counting-photons">
+<h3>Counting Photons<a class="headerlink" href="#counting-photons" title="Permalink to this headline">#</a></h3>
+<p>The ICESat-2 lidar collects at the single photon level, different from most commercial lidar systems. A lot of additional photons get returned as solar background noise, and removing these unwanted photons is a key part of the algorithms that produce the higher level data products.</p>
+<blockquote>
+<div><p><em>Fig. 2. Results from signal finding methods for simulated ATLAS data. Black points show raw point cloud data as ingested from ATL03 product. Blue points overlaid in each plot show which photons each method identified as signal. Top panel reflects the signal photons as identified on the ATL03 data product (medium and high confidence signal photons). Bottom panel reflects the signal photons identified from the ATL08 DRAGANN method.</em> (Neuenschwander &amp; Pitts, 2019)</p>
+</div></blockquote>
+<p>Photo: Neuenschwander et. al. 2019, Remote Sens. Env. <a class="reference external" href="https://doi.org/10.1016/j.rse.2018.11.005">DOI</a></p>
+<p>To aggregate all these photons into more manegable chunks, many of the Level-3B products such as <a class="reference external" href="https://nsidc.org/data/atl08">ATL08</a> consolidate the photons into variable segment lengths.</p>
+</section>
+</section>
+<section id="navigating-icesat-2-tool-access-options">
+<h2>4. Navigating ICESat-2 Tool &amp; Access options<a class="headerlink" href="#navigating-icesat-2-tool-access-options" title="Permalink to this headline">#</a></h2>
+<p>There are many options across NASA Earthdata when it comes to search, access, visualization, and customization tools. The <a class="reference external" href="https://nasa-openscapes.github.io/earthdata-cloud-cookbook/cheatsheets.html#tools-services-roadmap">Tools &amp; Services Roadmap</a> cheatsheet as part of the NASA Openscapes Cookbook presents a high level view of some of these pathways.</p>
+<p>We will be highlighting a few tool and access options specifically for ICESat-2 today. This table provides an overview of the capabilities supported by <code class="docutils literal notranslate"><span class="pre">icepyx</span></code>, <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code>, and SlideRule Earth. These open-source tools have been co-evolving through ongoing collaboration across our cryospheric open source software community.</p>
+<table class="colwidths-auto table" id="data-access-overview-table">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Data Access Method and Tools</span><a class="headerlink" href="#data-access-overview-table" title="Permalink to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">icepyx</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">earthaccess</span></code></p></th>
+<th class="head"><p>NASA Earthdata Search</p></th>
+<th class="head"><p>SlideRule Earth</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Filter spatially using:</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>- Interactive map widget</p></td>
+<td><p></p></td>
+<td><p>soon!</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+</tr>
+<tr class="row-even"><td><p>- Bounding Box</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+</tr>
+<tr class="row-odd"><td><p>- Polygon</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+</tr>
+<tr class="row-even"><td><p>- GeoJSON or Shapefile</p></td>
+<td><p>x</p></td>
+<td><p>soon!</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+</tr>
+<tr class="row-odd"><td><p>Filter by time and date</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+</tr>
+<tr class="row-even"><td><p>Preview data</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Download data from DAAC</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Access cloud-hosted data</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+</tr>
+<tr class="row-odd"><td><p>Subset (spatially, temporally, by variable)</p></td>
+<td><p>x</p></td>
+<td><p></p></td>
+<td><p>x</p></td>
+<td><p>x</p></td>
+</tr>
+<tr class="row-even"><td><p>Plot data with built-in methods</p></td>
+<td><p>x</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p>x</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./tutorials/NASA-Earthdata-Cloud-Access"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../ARCOdata_writingZarrs.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Analysis-ready, cloud-optimized data: writing zarr directories</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="2.earthdata_search.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Using NASA Earthdata Search to Discover Cloud-Hosted Data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Mines Glaciology Laboratory, Colorado School of Mines<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

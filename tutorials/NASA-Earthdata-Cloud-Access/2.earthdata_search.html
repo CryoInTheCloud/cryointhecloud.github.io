@@ -1,0 +1,854 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Using NASA Earthdata Search to Discover Cloud-Hosted Data &#8212; CryoCloud</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="NASA Earthdata Cloud and data access using earthaccess and icepyx" href="3.earthaccess.html" />
+    <link rel="prev" title="Introduction to NASA Earthdata Cloud and ICESat-2" href="1.Intro-Earthdata-Cloud.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LZVEY6377Z"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-LZVEY6377Z');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CryoCloud</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to CryoCloud!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Details
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/about.html">
+   About
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/mission.html">
+   Mission
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/Getting_Started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/hub_best_practices.html">
+   CryoCloud Best Practices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/Code_of_Conduct.html">
+   CryoCloud Code of Conduct
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../content/citing_cryocloud.html">
+   Citing CryoCloud
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cloud Training
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recorded/index.html">
+   Cloud Training
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  How Tos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../how_tos/index.html">
+   How To…
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../how_tos/background/index.html">
+     Background Work
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/github.html">
+       GitHub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/jupyterhub.html">
+       JupyterHub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/git.html">
+       Git
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/earthdata.html">
+       Earthdata Login
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/earthengine.html">
+       Google Earth Engine Sign-Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/swc.html">
+       Software Carpentry Training
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/background/python.html">
+       Python Installation and Environments
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/nbdime/nbdime-hub.html">
+       nbdime - version control for Jupyter notebooks
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../how_tos/data_access/index.html">
+     Data access
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/data_access/Cloud_Sentinel2_access.html">
+       Sentinel 2 cloud access
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/data_access/Instructions_for_configuring_AWS_S3_bucket.html">
+       Instructions for setting up an AWS S3 bucket for your project
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../how_tos/data_access/CryoCloudScratchBucket.html">
+       Using CryoCloud S3 Scratch Bucket
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/ICESat2_Earthaccess.html">
+       Earthaccess
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Earthdata_Cloud__Single_File__HTTPS_Access_COG_Example.html">
+       COG HTTPS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Earthdata_Cloud__Single_File_Direct_S3_Access_COG_Example.html">
+       COG Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Multi-File_Direct_S3_Access_COG_Example.html">
+       Multi-COG Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Earthdata_Cloud__Single_File__Direct_S3_Access_NetCDF4_Example.html">
+       NetCDF/HDF5 Direct S3
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../external/Multi-File_Direct_S3_Access_NetCDF_Example.html">
+       Multi-NetCDF/HDF5 Direct S3
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tutorials
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   Tutorials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../IS2_cloud_Landsat_integration.html">
+     ICESat-2 and Landsat cloud access and data integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../IS2_ATL15_surface_height_anomalies/IS2_ATL15_surface_height_anomalies.html">
+     Using ICESat-2 ATL15 (Gridded Arctic Land Ice Height) to investigate ice-surface height anomalies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../external/ICESAT2_ATL10-h5coro_large_scale_time_series.html">
+     ICESat-2 ATL10-h5coro large-scale time series
+    </a>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../ARCOdata_writingZarrs.html">
+     Analysis-ready, cloud-optimized data: writing zarr directories
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="1.Intro-Earthdata-Cloud.html">
+       Introduction to NASA Earthdata Cloud and ICESat-2
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Using NASA Earthdata Search to Discover Cloud-Hosted Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3.earthaccess.html">
+       NASA Earthdata Cloud and data access using earthaccess and icepyx
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="4.icepyx.html">
+       NASA Earthdata Cloud and data access using earthaccess and icepyx
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../GrIMP/GrIMP_tutorial_AGU23.html">
+     Determining ice sheet change using Greenland Ice Mapping Project (GrIMP) tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../SlideRule_applications/SlideRule_applications.html">
+     CryoCloud Tutorials: SlideRule
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../contributing/index.html">
+   Contributing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/workflow.html">
+     Workflow for contributing to our JupyterBook (or any GitHub project)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/glossary.html">
+   Glossaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/IS2-resources.html">
+   ICESat-2 Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/open_science.html">
+   Open Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/open_source_software.html">
+   Open-source Software
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/questions.html">
+   How to Get Help
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/issues/new?title=Issue%20on%20page%20%2Ftutorials/NASA-Earthdata-Cloud-Access/2.earthdata_search.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/edit/main/book/tutorials/NASA-Earthdata-Cloud-Access/2.earthdata_search.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/tutorials/NASA-Earthdata-Cloud-Access/2.earthdata_search.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objective">
+   Learning Objective
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#searching-for-data-and-s3-links-using-earthdata-search">
+   Searching for data and S3 links using Earthdata Search
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#search-for-data">
+     Search for Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-s3-links-and-aws-s3-credentials">
+     Getting S3 links and AWS S3 Credentials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-links-and-credentials-from-the-command-line">
+     Using links and credentials from the command line
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Using NASA Earthdata Search to Discover Cloud-Hosted Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objective">
+   Learning Objective
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#searching-for-data-and-s3-links-using-earthdata-search">
+   Searching for data and S3 links using Earthdata Search
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#search-for-data">
+     Search for Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-s3-links-and-aws-s3-credentials">
+     Getting S3 links and AWS S3 Credentials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-links-and-credentials-from-the-command-line">
+     Using links and credentials from the command line
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="using-nasa-earthdata-search-to-discover-cloud-hosted-data">
+<h1>Using NASA Earthdata Search to Discover Cloud-Hosted Data<a class="headerlink" href="#using-nasa-earthdata-search-to-discover-cloud-hosted-data" title="Permalink to this headline">#</a></h1>
+<section id="learning-objective">
+<h2>Learning Objective<a class="headerlink" href="#learning-objective" title="Permalink to this headline">#</a></h2>
+<p>In this tutorial you will learn how to:</p>
+<ul class="simple">
+<li><p>Discover cloud-hosted datasets using NASA Earthdata Search.</p></li>
+<li><p>Get AWS S3 credentials so you can access this data.</p></li>
+<li><p>Get the S3 links to data granules.</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>An Earthdata Login account. See the NASA Openscapes Cookbook “<a class="reference external" href="https://nasa-openscapes.github.io/earthdata-cloud-cookbook/appendix/authentication.html">Authentication</a>” guide for more information.</p></li>
+</ul>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<p>NASA Earthdata Search is a web-based tool to discover, filter, visualize and access all of NASA’s Earth science data, both in Earthdata Cloud and archived at the NASA DAACs. It is a useful first step in data discovery, especially if you are not sure what data is available for your research problem.</p>
+<p>This tutorial is based on the NSIDC <a class="reference external" href="https://nsidc.org/data/user-resources/help-center/nasa-earthdata-cloud-data-access-guide">NASA Earthdata Cloud Access Guide</a> and the “<a class="reference external" href="https://nasa-openscapes.github.io/earthdata-cloud-cookbook/how-tos/find-data/earthdata_search.html">How do I find data using Earthdata Search?</a>” guide in the NASA Earthdata Cookbook.</p>
+</section>
+<section id="searching-for-data-and-s3-links-using-earthdata-search">
+<h2>Searching for data and S3 links using Earthdata Search<a class="headerlink" href="#searching-for-data-and-s3-links-using-earthdata-search" title="Permalink to this headline">#</a></h2>
+<section id="search-for-data">
+<h3>Search for Data<a class="headerlink" href="#search-for-data" title="Permalink to this headline">#</a></h3>
+<p>Step 1. Go to <a class="reference external" href="https://search.earthdata.nasa.gov">https://search.earthdata.nasa.gov</a> and log in using your Earthdata Login credentials by clicking on the Earthdata Login button in the top-right corner.</p>
+<p>Step 2. Check the <strong>Available in Earthdata Cloud</strong> box in the <strong>Filter Collections</strong> side-bar on the left of the page (Box 1 on the screenshot below).  The Matching Collections will appear in the results box.  All datasets in Earthdata Cloud have a badge showing a cloud symbol and “Earthdata Cloud” next to them.  To narrow the search, we will filter by datasets supported by NSIDC by typing “NSIDC” in the search box (Box 2 on the screen shot below).  If you want, you could narrow the search further using spatial and temporal filters or any of the other filters in the filter collections box.</p>
+<figure>
+<center>
+    <img src='images/Screenshot_EDSC_Searching_Cloud_Datasets.png' alt='Screenshot of Search for Cloud Datasets in Earthdata Search'/>
+</center>
+</figure>
+<p>Step 3. You can now select the dataset you want by clicking on that dataset.  The Search Results box now contains granules that match your search.  The location of these granules is shown on the map.  The search can be refined using spatial and temporal filters or you can select individual granules using the “+” symbol on each granule search result.  Once you have the data you want, click the <strong>Download All</strong> (Box 1 in the screenshot below). In the sidebar that appears, select <strong>Direct Download</strong> (Box 2 in the screenshot below). Then select <strong>Download Data</strong>.</p>
+<figure>
+    <center>
+        <img src='images/Screenshot_EDSC_getting_s3_links_workflow.png' alt='Screenshot of getting S3 links'/>
+    </center>
+</figure>
+</section>
+<section id="getting-s3-links-and-aws-s3-credentials">
+<h3>Getting S3 links and AWS S3 Credentials<a class="headerlink" href="#getting-s3-links-and-aws-s3-credentials" title="Permalink to this headline">#</a></h3>
+<p>Step 4.  A Download Status window will appear (this may take a short amount of time) similar to the one shown below.  You will see a tab for <strong>AWS S3 Access</strong> (Box 1 in the screenshot below). Select this tab. A list of S3 links (urls) starting with <code class="docutils literal notranslate"><span class="pre">s3://</span></code> will be in the box below.  You can save them to a text file or copy them to your clipboard using the <strong>Save</strong> and <strong>Copy</strong> buttons (Box 2 in the screenshot below). Or you can copy each link separately by hovering over a link and clicking the clipboard icon (Box 3).</p>
+<p>Step 5.  To access data in Earthdata Cloud, you need AWS S3 credentials; “accessKeyId”, “secretAccessKey”, and “sessionToken”.  These are temporary credentials that last for one hour.  To get them click on the <strong>Get AWS S3 Credentials</strong> (Box 4 in the screenshot below).   This will open a new page that contains the three credentials.</p>
+<figure>
+    <center>
+        <img src='images/Screenshot_EDSC_S3_links_credentials.png' alt='Screenshot of S3 links and credentials'/>
+    </center>
+</figure>
+</section>
+<section id="using-links-and-credentials-from-the-command-line">
+<h3>Using links and credentials from the command line<a class="headerlink" href="#using-links-and-credentials-from-the-command-line" title="Permalink to this headline">#</a></h3>
+<p>In the next <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code> tutorial, we will work programmatically in the cloud to access datasets of interest. There are several ways to do this. One way to connect this web-based search part of the workflow to our next steps working in the cloud is to simply copy/paste the s3:// links provided in Step 3 above into a JupyterHub notebook or script in our cloud workspace, and continue the data analysis from there.</p>
+<p>One could also copy/paste the s3:// links and save them in a text file, then open and read the text file in the notebook or script in the CryoCloud.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./tutorials/NASA-Earthdata-Cloud-Access"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="1.Intro-Earthdata-Cloud.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Introduction to NASA Earthdata Cloud and ICESat-2</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="3.earthaccess.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">NASA Earthdata Cloud and data access using earthaccess and icepyx</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Mines Glaciology Laboratory, Colorado School of Mines<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
