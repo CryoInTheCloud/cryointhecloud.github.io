@@ -1023,8 +1023,13 @@ title="Print to PDF"
 <p>Along with data access and subsetting, SlideRule can create a simplified version of the <a class="reference external" href="https://nsidc.org/data/atl06">ICESat-2 land ice height (ATL06)</a> product that can be adjusted to suit different needs. SlideRule processes the <a class="reference external" href="https://nsidc.org/data/atl03">ICESat-2 geolocated photon height (ATL03)</a> data products into <em>along-track</em> segments of surface elevation. SlideRule let’s you create customized ICESat-2 segment heights <em>directly</em> from the photon height data anywhere on the globe, <em>on-demand</em> and quickly.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># install the latest version of sliderule</span>
-<span class="o">%</span><span class="k">pip</span> install sliderule==4.0.5
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This notebook requires Sliderule&gt;=4.1</span>
+<span class="o">%</span><span class="k">pip</span> install --quiet &quot;sliderule&gt;=4.1&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
 </div>
@@ -1038,9 +1043,17 @@ title="Print to PDF"
 <span class="kn">import</span> <span class="nn">sliderule.icesat2</span>
 <span class="kn">import</span> <span class="nn">sliderule.io</span>
 <span class="kn">import</span> <span class="nn">sliderule.ipysliderule</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">shapely.geometry</span>
 <span class="kn">import</span> <span class="nn">owslib.wms</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
 </pre></div>
 </div>
 </div>
@@ -1106,6 +1119,10 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "ddd4b6909d4e43e5a9853923155c4127", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 </section>
 <section id="select-regions-of-interest-for-submitting-to-sliderule">
@@ -1124,6 +1141,10 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "d52f271604bf4b03b550fc1e8751df93", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 </section>
 <section id="build-and-transmit-requests-to-sliderule">
@@ -1156,6 +1177,12 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.76 s, sys: 251 ms, total: 8.01 s
+Wall time: 2min 56s
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="review-geodataframe-output">
@@ -1169,6 +1196,139 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Returned 297393 records
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>h_mean</th>
+      <th>segment_id</th>
+      <th>spot</th>
+      <th>x_atc</th>
+      <th>rgt</th>
+      <th>y_atc</th>
+      <th>dh_fit_dx</th>
+      <th>pflags</th>
+      <th>w_surface_window_final</th>
+      <th>h_sigma</th>
+      <th>rms_misfit</th>
+      <th>cycle</th>
+      <th>gt</th>
+      <th>n_fit_photons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2018-12-13 08:01:25.641970944</th>
+      <td>POINT (-108.08709 39.14534)</td>
+      <td>2056.711710</td>
+      <td>784635.0</td>
+      <td>2.0</td>
+      <td>15715688.0</td>
+      <td>1156.0</td>
+      <td>-2381.687988</td>
+      <td>0.269039</td>
+      <td>0.0</td>
+      <td>9.998273</td>
+      <td>0.461017</td>
+      <td>1.814868</td>
+      <td>1.0</td>
+      <td>50.0</td>
+      <td>16.0</td>
+    </tr>
+    <tr>
+      <th>2018-12-13 08:01:25.644785920</th>
+      <td>POINT (-108.08712 39.14516)</td>
+      <td>2060.451774</td>
+      <td>784636.0</td>
+      <td>2.0</td>
+      <td>15715708.0</td>
+      <td>1156.0</td>
+      <td>-2381.638672</td>
+      <td>0.190734</td>
+      <td>2.0</td>
+      <td>5.752973</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>50.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>2018-12-13 08:01:25.650857728</th>
+      <td>POINT (-108.01334 39.14127)</td>
+      <td>2212.098551</td>
+      <td>784627.0</td>
+      <td>6.0</td>
+      <td>15715528.0</td>
+      <td>1156.0</td>
+      <td>4008.179199</td>
+      <td>0.131911</td>
+      <td>0.0</td>
+      <td>3.418886</td>
+      <td>0.145620</td>
+      <td>0.617595</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>39.0</td>
+    </tr>
+    <tr>
+      <th>2018-12-13 08:01:25.653670656</th>
+      <td>POINT (-108.01337 39.14109)</td>
+      <td>2214.409829</td>
+      <td>784628.0</td>
+      <td>6.0</td>
+      <td>15715548.0</td>
+      <td>1156.0</td>
+      <td>4008.182861</td>
+      <td>0.084734</td>
+      <td>0.0</td>
+      <td>3.000000</td>
+      <td>0.055851</td>
+      <td>0.460987</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>74.0</td>
+    </tr>
+    <tr>
+      <th>2018-12-13 08:01:25.656484608</th>
+      <td>POINT (-108.01339 39.14091)</td>
+      <td>2216.056906</td>
+      <td>784629.0</td>
+      <td>6.0</td>
+      <td>15715568.0</td>
+      <td>1156.0</td>
+      <td>4008.188232</td>
+      <td>0.083600</td>
+      <td>0.0</td>
+      <td>3.000000</td>
+      <td>0.041939</td>
+      <td>0.390870</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>87.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="add-geodataframe-to-map">
@@ -1186,11 +1346,14 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "850cfe0a1fe6489b8193a2dc3609587e", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="c1"># ATL06-SR fields for hover tooltip</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ATL06-SR fields for hover tooltip</span>
 <span class="n">fields</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">default_atl06_fields</span><span class="p">()</span>
 <span class="n">gdf1</span><span class="o">.</span><span class="n">leaflet</span><span class="o">.</span><span class="n">GeoData</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">map</span><span class="p">,</span> <span class="n">column_name</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">column_name</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">colormap</span><span class="p">,</span>
     <span class="n">max_plot_points</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">)</span>
@@ -1233,15 +1396,21 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "037cd93ebb1e40e6b9fa545cdd3b5b9b", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="c1"># default is to skip cycles with significant off-pointing</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># default is to skip cycles with significant off-pointing</span>
 <span class="n">gdf1</span><span class="o">.</span><span class="n">icesat2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">plot_kind</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">cycle_start</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
     <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend_frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">plot_kwargs</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/SlideRule_applications_21_0.png" src="../../_images/SlideRule_applications_21_0.png" />
 </div>
 </div>
 <div class="admonition tip">
@@ -1318,6 +1487,10 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "367eb84a5fef46d89e0cfa3225236fde", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 </section>
 <section id="update-options-for-making-science-data-processing-requests-to-sliderule">
@@ -1496,6 +1669,10 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "379e8fa59b82465c85f31e48dd650fc2", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1526,14 +1703,27 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP Request Error: Request Entity Too Large
+Using simplified polygon (for CMR request only!), 457 points using tolerance of 0.0001
+HTTP Request Error: Request Entity Too Large
+Using simplified polygon (for CMR request only!), 375 points using tolerance of 0.001
+HTTP Request Error: Request Entity Too Large
+Using simplified polygon (for CMR request only!), 73 points using tolerance of 0.01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.49 s, sys: 109 ms, total: 3.6 s
+Wall time: 1min 21s
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="add-geodataframe-to-polar-stereographic-map">
 <h3>Add GeoDataFrame to polar stereographic map<a class="headerlink" href="#add-geodataframe-to-polar-stereographic-map" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="c1"># ATL06-SR fields for hover tooltip</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ATL06-SR fields for hover tooltip</span>
 <span class="n">fields</span> <span class="o">=</span> <span class="n">m2</span><span class="o">.</span><span class="n">default_atl06_fields</span><span class="p">()</span>
 <span class="n">gdf2</span><span class="o">.</span><span class="n">leaflet</span><span class="o">.</span><span class="n">GeoData</span><span class="p">(</span><span class="n">m2</span><span class="o">.</span><span class="n">map</span><span class="p">,</span> <span class="n">column_name</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">column_name</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">colormap</span><span class="p">,</span>
     <span class="n">max_plot_points</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">)</span>
@@ -1591,8 +1781,7 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="c1"># create polar stereographic plot of ATL06-SR data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create polar stereographic plot of ATL06-SR data</span>
 <span class="c1"># EPSG codes are a simple way to define many coordinate reference systems</span>
 <span class="n">crs</span> <span class="o">=</span> <span class="s1">&#39;EPSG:3413&#39;</span>
 <span class="c1"># create figure axis</span>
@@ -1653,6 +1842,9 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/SlideRule_applications_33_0.png" src="../../_images/SlideRule_applications_33_0.png" />
+</div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1678,6 +1870,10 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "7c6e9be6571442799ac21eff527dee7c", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 <section id="set-options-for-making-phoreal-science-data-processing-requests-to-sliderule">
 <h3>Set options for making PhoREAL science data processing requests to SlideRule<a class="headerlink" href="#set-options-for-making-phoreal-science-data-processing-requests-to-sliderule" title="Permalink to this headline">#</a></h3>
@@ -1787,6 +1983,10 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "e273f4e52097457c9ac77751c3916bd5", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1811,6 +2011,12 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.06 s, sys: 23.5 ms, total: 1.09 s
+Wall time: 12.7 s
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="id1">
@@ -1824,6 +2030,176 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Returned 27492 records
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>cycle</th>
+      <th>h_mean_canopy</th>
+      <th>rgt</th>
+      <th>gt</th>
+      <th>landcover</th>
+      <th>canopy_openness</th>
+      <th>h_te_median</th>
+      <th>gnd_ph_count</th>
+      <th>x_atc</th>
+      <th>...</th>
+      <th>snowcover</th>
+      <th>solar_elevation</th>
+      <th>veg_ph_count</th>
+      <th>h_max_canopy</th>
+      <th>canopy_h_metrics</th>
+      <th>spot</th>
+      <th>ph_count</th>
+      <th>h_min_canopy</th>
+      <th>segment_id</th>
+      <th>h_canopy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2022-07-05 17:55:20.565275648</th>
+      <td>POINT (-107.77143 39.14705)</td>
+      <td>16.0</td>
+      <td>13.092090</td>
+      <td>211.0</td>
+      <td>50.0</td>
+      <td>111.0</td>
+      <td>8.008397</td>
+      <td>3092.035645</td>
+      <td>2.0</td>
+      <td>2.833825e+12</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>66.309395</td>
+      <td>15.0</td>
+      <td>23.778809</td>
+      <td>(0.784912109375, 0.784912109375, 0.78491210937...</td>
+      <td>2.0</td>
+      <td>17.0</td>
+      <td>0.542725</td>
+      <td>784595.0</td>
+      <td>23.778809</td>
+    </tr>
+    <tr>
+      <th>2022-07-05 17:55:20.567925760</th>
+      <td>POINT (-107.77145 39.14689)</td>
+      <td>16.0</td>
+      <td>12.478679</td>
+      <td>211.0</td>
+      <td>50.0</td>
+      <td>111.0</td>
+      <td>8.395076</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>2.833825e+12</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>66.309395</td>
+      <td>9.0</td>
+      <td>22.807617</td>
+      <td>(0.784912109375, 0.784912109375, 0.78491210937...</td>
+      <td>2.0</td>
+      <td>9.0</td>
+      <td>0.542725</td>
+      <td>784596.0</td>
+      <td>22.807617</td>
+    </tr>
+    <tr>
+      <th>2022-07-05 17:55:20.570825728</th>
+      <td>POINT (-107.77147 39.14670)</td>
+      <td>16.0</td>
+      <td>12.215991</td>
+      <td>211.0</td>
+      <td>50.0</td>
+      <td>111.0</td>
+      <td>9.614838</td>
+      <td>3090.658447</td>
+      <td>1.0</td>
+      <td>2.833857e+12</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>66.309509</td>
+      <td>20.0</td>
+      <td>25.861328</td>
+      <td>(2.033203125, 2.033203125, 2.033203125, 2.0332...</td>
+      <td>2.0</td>
+      <td>21.0</td>
+      <td>1.491211</td>
+      <td>784597.0</td>
+      <td>25.861328</td>
+    </tr>
+    <tr>
+      <th>2022-07-05 17:55:20.572175872</th>
+      <td>POINT (-107.77148 39.14661)</td>
+      <td>16.0</td>
+      <td>13.466128</td>
+      <td>211.0</td>
+      <td>50.0</td>
+      <td>111.0</td>
+      <td>9.000566</td>
+      <td>3090.658447</td>
+      <td>1.0</td>
+      <td>2.833884e+12</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>66.309608</td>
+      <td>23.0</td>
+      <td>25.861328</td>
+      <td>(2.033203125, 2.033203125, 2.73828125, 2.73828...</td>
+      <td>2.0</td>
+      <td>24.0</td>
+      <td>1.491211</td>
+      <td>784597.0</td>
+      <td>25.861328</td>
+    </tr>
+    <tr>
+      <th>2022-07-05 17:55:20.573575680</th>
+      <td>POINT (-107.77149 39.14653)</td>
+      <td>16.0</td>
+      <td>16.001398</td>
+      <td>211.0</td>
+      <td>50.0</td>
+      <td>111.0</td>
+      <td>5.272099</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>2.833884e+12</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>66.309608</td>
+      <td>11.0</td>
+      <td>23.672363</td>
+      <td>(7.568359375, 7.568359375, 7.568359375, 10.362...</td>
+      <td>2.0</td>
+      <td>11.0</td>
+      <td>7.016846</td>
+      <td>784598.0</td>
+      <td>23.672363</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="add-vegetation-metrics-geodataframe-to-map">
@@ -1839,11 +2215,14 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "94f4097abf0541688e8ede2d1e454fc5", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="c1"># ATL06-SR fields for hover tooltip</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ATL06-SR fields for hover tooltip</span>
 <span class="n">fields</span> <span class="o">=</span> <span class="n">m3</span><span class="o">.</span><span class="n">default_atl08_fields</span><span class="p">()</span>
 <span class="n">gdf3</span><span class="o">.</span><span class="n">leaflet</span><span class="o">.</span><span class="n">GeoData</span><span class="p">(</span><span class="n">m3</span><span class="o">.</span><span class="n">map</span><span class="p">,</span> <span class="n">column_name</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">column_name</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">SRwidgets</span><span class="o">.</span><span class="n">colormap</span><span class="p">,</span>
     <span class="n">max_plot_points</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tooltip_width</span><span class="o">=</span><span class="s1">&#39;280px&#39;</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -1893,6 +2272,16 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP Request Error: Request Entity Too Large
+Using simplified polygon (for CMR request only!), 457 points using tolerance of 0.0001
+HTTP Request Error: Request Entity Too Large
+Using simplified polygon (for CMR request only!), 375 points using tolerance of 0.001
+HTTP Request Error: Request Entity Too Large
+Using simplified polygon (for CMR request only!), 73 points using tolerance of 0.01
+</pre></div>
+</div>
+</div>
 </div>
 <section id="id2">
 <h3>Review GeoDataFrame output<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
@@ -1904,6 +2293,200 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Returned 311014 records
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>background_rate</th>
+      <th>segment_dist</th>
+      <th>pair</th>
+      <th>segment_id</th>
+      <th>rgt</th>
+      <th>solar_elevation</th>
+      <th>sc_orient</th>
+      <th>track</th>
+      <th>cycle</th>
+      <th>quality_ph</th>
+      <th>...</th>
+      <th>landcover</th>
+      <th>relief</th>
+      <th>atl08_class</th>
+      <th>height</th>
+      <th>yapc_score</th>
+      <th>snowcover</th>
+      <th>y_atc</th>
+      <th>x_atc</th>
+      <th>geometry</th>
+      <th>spot</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-03-26 00:46:52.890679296</th>
+      <td>12313.95134</td>
+      <td>1.261795e+07</td>
+      <td>0</td>
+      <td>629952</td>
+      <td>71</td>
+      <td>-18.709667</td>
+      <td>0</td>
+      <td>1</td>
+      <td>19</td>
+      <td>0</td>
+      <td>...</td>
+      <td>255</td>
+      <td>0.0</td>
+      <td>4</td>
+      <td>2572.278076</td>
+      <td>0</td>
+      <td>255</td>
+      <td>3279.790527</td>
+      <td>-9.537612</td>
+      <td>POINT (-36.15309 66.83899)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2023-03-26 00:46:52.890679296</th>
+      <td>12313.95134</td>
+      <td>1.261795e+07</td>
+      <td>0</td>
+      <td>629952</td>
+      <td>71</td>
+      <td>-18.709667</td>
+      <td>0</td>
+      <td>1</td>
+      <td>19</td>
+      <td>0</td>
+      <td>...</td>
+      <td>255</td>
+      <td>0.0</td>
+      <td>4</td>
+      <td>2573.593262</td>
+      <td>0</td>
+      <td>255</td>
+      <td>3279.780273</td>
+      <td>-9.541133</td>
+      <td>POINT (-36.15309 66.83899)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2023-03-26 00:46:52.890679296</th>
+      <td>12313.95134</td>
+      <td>1.261795e+07</td>
+      <td>0</td>
+      <td>629952</td>
+      <td>71</td>
+      <td>-18.709667</td>
+      <td>0</td>
+      <td>1</td>
+      <td>19</td>
+      <td>0</td>
+      <td>...</td>
+      <td>255</td>
+      <td>0.0</td>
+      <td>4</td>
+      <td>2576.837158</td>
+      <td>0</td>
+      <td>255</td>
+      <td>3279.754639</td>
+      <td>-9.549738</td>
+      <td>POINT (-36.15309 66.83899)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2023-03-26 00:46:52.890679296</th>
+      <td>12313.95134</td>
+      <td>1.261795e+07</td>
+      <td>0</td>
+      <td>629952</td>
+      <td>71</td>
+      <td>-18.709667</td>
+      <td>0</td>
+      <td>1</td>
+      <td>19</td>
+      <td>0</td>
+      <td>...</td>
+      <td>255</td>
+      <td>0.0</td>
+      <td>4</td>
+      <td>2576.950439</td>
+      <td>0</td>
+      <td>255</td>
+      <td>3279.753906</td>
+      <td>-9.549738</td>
+      <td>POINT (-36.15309 66.83899)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2023-03-26 00:46:52.890679296</th>
+      <td>12313.95134</td>
+      <td>1.261795e+07</td>
+      <td>0</td>
+      <td>629952</td>
+      <td>71</td>
+      <td>-18.709667</td>
+      <td>0</td>
+      <td>1</td>
+      <td>19</td>
+      <td>0</td>
+      <td>...</td>
+      <td>255</td>
+      <td>0.0</td>
+      <td>4</td>
+      <td>2572.457275</td>
+      <td>0</td>
+      <td>255</td>
+      <td>3279.789062</td>
+      <td>-9.538003</td>
+      <td>POINT (-36.15309 66.83899)</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="create-plot-for-a-single-track-of-photon-heights">
@@ -1920,6 +2503,9 @@ This is useful for example, in cases where there may be a vegetated canopy affec
     <span class="n">RGT</span><span class="o">=</span><span class="n">RGT</span><span class="p">,</span> <span class="n">cycle</span><span class="o">=</span><span class="n">cycle</span><span class="p">,</span> <span class="n">GT</span><span class="o">=</span><span class="n">sliderule</span><span class="o">.</span><span class="n">icesat2</span><span class="o">.</span><span class="n">GT1R</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/SlideRule_applications_51_0.png" src="../../_images/SlideRule_applications_51_0.png" />
 </div>
 </div>
 <div class="admonition tip">
@@ -1946,8 +2532,7 @@ This is useful for example, in cases where there may be a vegetated canopy affec
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">beams</span><span class="p">:</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">atl06</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;/</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">/land_ice_segments/longitude&#39;</span><span class="p">],</span>
         <span class="n">atl06</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;/</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">/land_ice_segments/latitude&#39;</span><span class="p">],</span>
@@ -1961,6 +2546,9 @@ This is useful for example, in cases where there may be a vegetated canopy affec
     <span class="n">line</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/SlideRule_applications_55_0.png" src="../../_images/SlideRule_applications_55_0.png" />
 </div>
 </div>
 </section>
