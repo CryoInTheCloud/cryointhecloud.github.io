@@ -643,32 +643,49 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="cryocloud-best-practices">
 <h1>CryoCloud Best Practices<a class="headerlink" href="#cryocloud-best-practices" title="Permalink to this headline">#</a></h1>
+<p>Who and how you can access the CryoCloud - Setup instructions in the <a class="reference internal" href="Getting_Started.html"><span class="doc std std-doc">Getting Started section</span></a></p>
+<hr class="docutils" />
+<p>To save money for us, when you finish on the Hub</p>
 <ul class="simple">
-<li><p>Who and how you can access the CryoCloud - Setup instructions in <a class="reference internal" href="Getting_Started.html"><span class="doc std std-doc">Getting Started section</span></a></p></li>
-<li><p>To save money for us, when you finish on the Hub, go to File &gt; Hub Control Panel &gt; push Stop Server</p>
-<ul>
-<li><p>Hub will automatically shut off after 90 min of no use or logging off otherwise</p></li>
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">File</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Hub</span> <span class="pre">Control</span> <span class="pre">Panel</span></code> &gt; push <code class="docutils literal notranslate"><span class="pre">Stop</span> <span class="pre">Server</span></code></p></li>
+<li><p>Once that button disappears, your server has stopped</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">Out</span></code></p></li>
+<li><p>Close that tab before starting CryoCloud again to prevent errors –&gt; You may receive an error if you try to restart CryoCloud from this same tab</p></li>
 </ul>
-</li>
-<li><p>Keep personal storage to &lt;10 Gb unless you talk to us about it</p>
-<ul>
+<p>Hub will automatically shut off after 90 min of no use or logging off otherwise</p>
+<hr class="docutils" />
+<p>Keep personal storage to &lt;10 Gb unless you talk to us about it</p>
+<ul class="simple">
 <li><p>We recommend that you stream data (no download) or download and delete automatically where possible</p></li>
 <li><p>It costs $90 a month to store 2 Tb of data</p></li>
-<li><p>We need to apply for more cloud credits if our users need more storage</p></li>
+<li><p>Reach out if you need more storage because we can apply for more cloud credits if needed</p></li>
 </ul>
-</li>
-<li><p>Pip installs on your hub last only for that session</p>
-<ul>
+<hr class="docutils" />
+<p>Pip installs on your hub last only for that session</p>
+<ul class="simple">
 <li><p>If multiple people use a missing package, let us know and we will add it to everyone’s environment</p></li>
 <li><p>Guidance for adding packages in <a class="reference internal" href="../contributing/workflow.html"><span class="doc std std-doc">Contributing/Workflows</span></a></p></li>
 <li><p>Otherwise you have two options to maintain shareability and replicability:</p>
 <ul>
-<li><p>Install on each use with <code class="docutils literal notranslate"><span class="pre">%pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> run in the first cell of your Jupyter notebook</p></li>
-<li><p>Use own additional environment using instructions in <a class="reference internal" href="../how_tos/background/python.html"><span class="doc std std-doc">Python Installation and Environments</span></a></p></li>
+<li><p>Install the package each time you open CryoCloud using <code class="docutils literal notranslate"><span class="pre">%pip</span> <span class="pre">install</span> <span class="pre">packagename</span></code> or <code class="docutils literal notranslate"><span class="pre">%conda</span> <span class="pre">install</span> <span class="pre">packagename</span></code> run in the first cell of your Jupyter notebook (<code class="docutils literal notranslate"><span class="pre">%pip</span></code> is better than <code class="docutils literal notranslate"><span class="pre">!pip</span></code> because it ensures installation to the right directory)</p></li>
+<li><p>Create a persistent environment by building a new kernel, using instructions in <a class="reference internal" href="../how_tos/background/python.html"><span class="doc std std-doc">Python Installation and Environments</span></a></p></li>
 </ul>
 </li>
 </ul>
-</li>
+<hr class="docutils" />
+<p>Using <code class="docutils literal notranslate"><span class="pre">Other</span></code> docker images and environments at startup.</p>
+<p>When selecting server size, you have a dropdown with options of selecting Python, R, Matlab, and Other. What you choose here determines what software tools you will have access to and what coding enviorment you will start with. You are choosing what is called a ‘Docker image’. Choosing a different docker image is like choosing between two laptops that have different apps and capabilities installed. If you want to use a different environment/docker image than what we have as the defaults or if you want an older version of our current environments, select <code class="docutils literal notranslate"><span class="pre">Other</span></code> and then you can input a link, known as a ‘tag’, to another docker image so that CryoCloud knowns to build a different setup for you. A box, called ‘Custom’, will appear when you select <code class="docutils literal notranslate"><span class="pre">Other</span></code> and you can put in the tag there. This is how you can find the tag you want:</p>
+<p>If you want to use an older/different environment from our CryoCloud repositories</p>
+<ul class="simple">
+<li><p>Go to <a class="reference external" href="https://quay.io/user/cryointhecloud/">https://quay.io/user/cryointhecloud/</a></p></li>
+<li><p>Select the image you want - our Python image is called <code class="docutils literal notranslate"><span class="pre">cryo-hub-image</span></code> for example, so if you want to view our older versions of the Python image, click that. For reference, <code class="docutils literal notranslate"><span class="pre">cryo-hub-image</span></code> is attached to our GitHub <code class="docutils literal notranslate"><span class="pre">hub-image</span></code> repo (<a class="reference external" href="https://github.com/CryoInTheCloud/hub-image">https://github.com/CryoInTheCloud/hub-image</a>) if you want to look at the current environment.</p></li>
+<li><p>Once you have chosen which tag you want to use, you can write out the tag and paste that into the <code class="docutils literal notranslate"><span class="pre">Custom</span></code> box</p></li>
+<li><p>For our docker repository, the tags look like this with a <code class="docutils literal notranslate"><span class="pre">website/account/image:tag</span></code> format where the last numbers are the part you want to replace with whichever tag numbers are associated with the docker image you chose: <code class="docutils literal notranslate"><span class="pre">quay.io/cryointhecloud/cryo-hub-image:4047b77921f5</span></code></p></li>
+</ul>
+<p>If you want to use a tag from Docker Hub</p>
+<ul class="simple">
+<li><p>Search for them in <a class="reference external" href="https://hub.docker.com/">https://hub.docker.com/</a></p></li>
+<li><p>The tags will take the form of <code class="docutils literal notranslate"><span class="pre">account/image:tag</span></code>: <code class="docutils literal notranslate"><span class="pre">isce/isce2:20240107</span></code></p></li>
 </ul>
 </section>
 
