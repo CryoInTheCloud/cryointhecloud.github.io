@@ -733,8 +733,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-icepyx-to-simplify-searching-for-icesat-2-data-and-authenticating-with-aws-s3-login-credentials">
-     Using icepyx to simplify searching for ICESat-2 data and authenticating with AWS s3 login credentials
+    <a class="reference internal nav-link" href="#using-icepyx-to-simplify-searching-for-icesat-2-data">
+     Using icepyx to simplify searching for ICESat-2 data
     </a>
    </li>
   </ul>
@@ -868,8 +868,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-icepyx-to-simplify-searching-for-icesat-2-data-and-authenticating-with-aws-s3-login-credentials">
-     Using icepyx to simplify searching for ICESat-2 data and authenticating with AWS s3 login credentials
+    <a class="reference internal nav-link" href="#using-icepyx-to-simplify-searching-for-icesat-2-data">
+     Using icepyx to simplify searching for ICESat-2 data
     </a>
    </li>
   </ul>
@@ -959,8 +959,116 @@ title="Print to PDF"
 <p>Tip: If you need to import a library that is not pre-installed, use <code class="docutils literal notranslate"><span class="pre">%pip</span> <span class="pre">install</span> <span class="pre">&lt;package-name&gt;</span></code> alone within a Jupyter notebook cell to install it for this instance of CryoCloud (the pip installation will not presist between logins. All of the libraries we intend to use are pre-installed so we can skip this step.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install icepyx==1.0.0
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: icepyx==1.0.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (1.0.0)
+Requirement already satisfied: h5py in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (3.9.0)
+Requirement already satisfied: fiona in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (1.9.4)
+Requirement already satisfied: datashader in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (0.16.0)
+Requirement already satisfied: shapely in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (2.0.1)
+Requirement already satisfied: geopandas in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (0.13.2)
+Requirement already satisfied: s3fs in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (2023.6.0)
+Requirement already satisfied: xarray in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (2023.12.0)
+Requirement already satisfied: earthaccess&gt;=0.5.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (0.8.2)
+Requirement already satisfied: matplotlib in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (3.8.2)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (2.31.0)
+Requirement already satisfied: holoviews in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (1.18.1)
+Requirement already satisfied: numpy in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (1.23.5)
+Requirement already satisfied: h5netcdf in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (1.1.0)
+Requirement already satisfied: backoff in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (2.2.1)
+Requirement already satisfied: hvplot in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (0.8.4)
+Requirement already satisfied: tinynetrc&lt;2.0.0,&gt;=1.3.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (1.3.1)
+Requirement already satisfied: pqdm&gt;=0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (0.2.0)
+Requirement already satisfied: multimethod&gt;=1.8 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (1.9.1)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (2.8.2)
+Requirement already satisfied: fsspec&gt;=2022.11 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (2023.6.0)
+Requirement already satisfied: python-cmr&gt;=0.9.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (0.9.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from requests-&gt;icepyx==1.0.0) (2023.7.22)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from requests-&gt;icepyx==1.0.0) (1.26.18)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from requests-&gt;icepyx==1.0.0) (3.4)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from requests-&gt;icepyx==1.0.0) (3.3.0)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from s3fs-&gt;icepyx==1.0.0) (3.9.1)
+Requirement already satisfied: aiobotocore~=2.5.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from s3fs-&gt;icepyx==1.0.0) (2.5.0)
+Requirement already satisfied: numba in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (0.56.4)
+Requirement already satisfied: pillow in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (9.5.0)
+Requirement already satisfied: multipledispatch in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (0.6.0)
+Requirement already satisfied: scipy in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (1.9.3)
+Requirement already satisfied: colorcet in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (3.0.1)
+Requirement already satisfied: toolz in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (0.12.0)
+Requirement already satisfied: pyct in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (0.5.0)
+Requirement already satisfied: dask in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (2022.11.0)
+Requirement already satisfied: param in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (1.13.0)
+Requirement already satisfied: pandas in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (1.5.1)
+Requirement already satisfied: click~=8.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from fiona-&gt;icepyx==1.0.0) (8.1.7)
+Requirement already satisfied: cligj&gt;=0.5 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from fiona-&gt;icepyx==1.0.0) (0.7.2)
+Requirement already satisfied: click-plugins&gt;=1.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from fiona-&gt;icepyx==1.0.0) (1.1.1)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.10/site-packages (from fiona-&gt;icepyx==1.0.0) (1.16.0)
+Requirement already satisfied: attrs&gt;=19.2.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from fiona-&gt;icepyx==1.0.0) (23.1.0)
+Requirement already satisfied: packaging in /srv/conda/envs/notebook/lib/python3.10/site-packages (from geopandas-&gt;icepyx==1.0.0) (23.2)
+Requirement already satisfied: pyproj&gt;=3.0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from geopandas-&gt;icepyx==1.0.0) (3.6.1)
+Requirement already satisfied: pyviz-comms&gt;=0.7.4 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from holoviews-&gt;icepyx==1.0.0) (2.3.2)
+Requirement already satisfied: panel&gt;=1.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from holoviews-&gt;icepyx==1.0.0) (1.2.3)
+Requirement already satisfied: bokeh&gt;=1.0.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from hvplot-&gt;icepyx==1.0.0) (3.2.2)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;icepyx==1.0.0) (3.1.1)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;icepyx==1.0.0) (1.2.0)
+Requirement already satisfied: cycler&gt;=0.10 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;icepyx==1.0.0) (0.12.1)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;icepyx==1.0.0) (1.4.5)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;icepyx==1.0.0) (4.46.0)
+Requirement already satisfied: aioitertools&gt;=0.5.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiobotocore~=2.5.0-&gt;s3fs-&gt;icepyx==1.0.0) (0.11.0)
+Requirement already satisfied: botocore&lt;1.29.77,&gt;=1.29.76 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiobotocore~=2.5.0-&gt;s3fs-&gt;icepyx==1.0.0) (1.29.76)
+Requirement already satisfied: wrapt&gt;=1.10.10 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiobotocore~=2.5.0-&gt;s3fs-&gt;icepyx==1.0.0) (1.16.0)
+Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;icepyx==1.0.0) (4.0.3)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;icepyx==1.0.0) (1.9.3)
+Requirement already satisfied: frozenlist&gt;=1.1.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;icepyx==1.0.0) (1.4.0)
+Requirement already satisfied: aiosignal&gt;=1.1.2 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;icepyx==1.0.0) (1.3.1)
+Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;icepyx==1.0.0) (6.0.4)
+Requirement already satisfied: PyYAML&gt;=3.10 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (5.4.1)
+Requirement already satisfied: Jinja2&gt;=2.9 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (3.1.2)
+Requirement already satisfied: xyzservices&gt;=2021.09.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (2023.10.1)
+Requirement already satisfied: tornado&gt;=5.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (6.1)
+Requirement already satisfied: pytz&gt;=2020.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from pandas-&gt;datashader-&gt;icepyx==1.0.0) (2023.3.post1)
+Requirement already satisfied: mdit-py-plugins in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (0.4.0)
+Requirement already satisfied: typing-extensions in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (4.8.0)
+Requirement already satisfied: tqdm&gt;=4.48.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (4.64.1)
+Requirement already satisfied: linkify-it-py in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (2.0.0)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (6.1.0)
+Requirement already satisfied: markdown-it-py in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (2.2.0)
+Requirement already satisfied: markdown in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (3.5.1)
+Requirement already satisfied: bounded-pool-executor in /srv/conda/envs/notebook/lib/python3.10/site-packages (from pqdm&gt;=0.1-&gt;earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (0.0.3)
+Requirement already satisfied: cloudpickle&gt;=1.1.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from dask-&gt;datashader-&gt;icepyx==1.0.0) (3.0.0)
+Requirement already satisfied: partd&gt;=0.3.10 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from dask-&gt;datashader-&gt;icepyx==1.0.0) (1.4.1)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.10/site-packages (from numba-&gt;datashader-&gt;icepyx==1.0.0) (68.2.2)
+Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from numba-&gt;datashader-&gt;icepyx==1.0.0) (0.39.1)
+Requirement already satisfied: jmespath&lt;2.0.0,&gt;=0.7.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from botocore&lt;1.29.77,&gt;=1.29.76-&gt;aiobotocore~=2.5.0-&gt;s3fs-&gt;icepyx==1.0.0) (1.0.1)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from Jinja2&gt;=2.9-&gt;bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (2.1.3)
+Requirement already satisfied: locket in /srv/conda/envs/notebook/lib/python3.10/site-packages (from partd&gt;=0.3.10-&gt;dask-&gt;datashader-&gt;icepyx==1.0.0) (1.0.0)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.10/site-packages (from bleach-&gt;panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (0.5.1)
+Requirement already satisfied: uc-micro-py in /srv/conda/envs/notebook/lib/python3.10/site-packages (from linkify-it-py-&gt;panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (1.0.1)
+Requirement already satisfied: mdurl~=0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from markdown-it-py-&gt;panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (0.1.0)
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Needed for pandas read_excel</span>
 <span class="o">%</span><span class="k">pip</span> install openpyxl
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting openpyxl
+  Downloading openpyxl-3.1.2-py2.py3-none-any.whl (249 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">250.0/250.0 kB</span> <span class=" -Color -Color-Red">2.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>00:0100:01
+?25hCollecting et-xmlfile
+  Downloading et_xmlfile-1.1.0-py3-none-any.whl (4.7 kB)
+Installing collected packages: et-xmlfile, openpyxl
+Successfully installed et-xmlfile-1.1.0 openpyxl-3.1.2
+Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
 </div>
@@ -1011,6 +1119,1064 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/javascript">(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+  var py_version = '3.2.2'.replace('rc', '-rc.').replace('.dev', '-dev.');
+  var is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1;
+  var reloading = false;
+  var Bokeh = root.Bokeh;
+  var bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks;
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, js_modules, js_exports, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+    if (js_modules == null) js_modules = [];
+    if (js_exports == null) js_exports = {};
+
+    root._bokeh_onload_callbacks.push(callback);
+
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
+      run_callbacks();
+      return null;
+    }
+    if (!reloading) {
+      console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    }
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+    window._bokeh_on_load = on_load
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      window.requirejs.config({'packages': {}, 'paths': {'jspanel': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/jspanel', 'jspanel-modal': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal', 'jspanel-tooltip': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip', 'jspanel-hint': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint', 'jspanel-layout': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout', 'jspanel-contextmenu': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu', 'jspanel-dock': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock', 'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@7.2.3/dist/gridstack-all', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'jspanel': {'exports': 'jsPanel'}, 'gridstack': {'exports': 'GridStack'}}});
+      require(["jspanel"], function(jsPanel) {
+	window.jsPanel = jsPanel
+	on_load()
+      })
+      require(["jspanel-modal"], function() {
+	on_load()
+      })
+      require(["jspanel-tooltip"], function() {
+	on_load()
+      })
+      require(["jspanel-hint"], function() {
+	on_load()
+      })
+      require(["jspanel-layout"], function() {
+	on_load()
+      })
+      require(["jspanel-contextmenu"], function() {
+	on_load()
+      })
+      require(["jspanel-dock"], function() {
+	on_load()
+      })
+      require(["gridstack"], function(GridStack) {
+	window.GridStack = GridStack
+	on_load()
+      })
+      require(["notyf"], function() {
+	on_load()
+      })
+      root._bokeh_is_loading = css_urls.length + 9;
+    } else {
+      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
+    }
+
+    var existing_stylesheets = []
+    var links = document.getElementsByTagName('link')
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i]
+      if (link.href != null) {
+	existing_stylesheets.push(link.href)
+      }
+    }
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      if (existing_stylesheets.indexOf(url) !== -1) {
+	on_load()
+	continue;
+      }
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }    if (((window['jsPanel'] !== undefined) && (!(window['jsPanel'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/jspanel.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    if (((window['GridStack'] !== undefined) && (!(window['GridStack'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/gridstack/gridstack@7.2.3/dist/gridstack-all.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    if (((window['Notyf'] !== undefined) && (!(window['Notyf'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    var existing_scripts = []
+    var scripts = document.getElementsByTagName('script')
+    for (var i = 0; i < scripts.length; i++) {
+      var script = scripts[i]
+      if (script.src != null) {
+	existing_scripts.push(script.src)
+      }
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+    for (var i = 0; i < js_modules.length; i++) {
+      var url = js_modules[i];
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+    for (const name in js_exports) {
+      var url = js_exports[name];
+      if (skip.indexOf(url) >= 0 || root[name] != null) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onerror = on_error;
+      element.async = false;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      element.textContent = `
+      import ${name} from "${url}"
+      window.${name} = ${name}
+      window._bokeh_on_load()
+      `
+      document.head.appendChild(element);
+    }
+    if (!js_urls.length && !js_modules.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.2.2.min.js", "https://cdn.holoviz.org/panel/1.2.3/dist/panel.min.js"];
+  var js_modules = [];
+  var js_exports = {};
+  var css_urls = [];
+  var inline_js = [    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }
+      // Cache old bokeh versions
+      if (Bokeh != undefined && !reloading) {
+	var NewBokeh = root.Bokeh;
+	if (Bokeh.versions === undefined) {
+	  Bokeh.versions = new Map();
+	}
+	if (NewBokeh.version !== Bokeh.version) {
+	  Bokeh.versions.set(NewBokeh.version, NewBokeh)
+	}
+	root.Bokeh = Bokeh;
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+    root._bokeh_is_initializing = false
+  }
+
+  function load_or_wait() {
+    // Implement a backoff loop that tries to ensure we do not load multiple
+    // versions of Bokeh and its dependencies at the same time.
+    // In recent versions we use the root._bokeh_is_initializing flag
+    // to determine whether there is an ongoing attempt to initialize
+    // bokeh, however for backward compatibility we also try to ensure
+    // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
+    // before older versions are fully initialized.
+    if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
+      root._bokeh_is_initializing = false;
+      root._bokeh_onload_callbacks = undefined;
+      console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
+      load_or_wait();
+    } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
+      setTimeout(load_or_wait, 100);
+    } else {
+      Bokeh = root.Bokeh;
+      bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+      root._bokeh_is_initializing = true
+      root._bokeh_onload_callbacks = []
+      if (!reloading && (!bokeh_loaded || is_dev)) {
+	root.Bokeh = undefined;
+      }
+      load_libs(css_urls, js_urls, js_modules, js_exports, function() {
+	console.debug("Bokeh: BokehJS plotting callback run at", now());
+	run_inline_js();
+      });
+    }
+  }
+  // Give older versions of the autoload script a head-start to ensure
+  // they initialize before we start loading newer version.
+  setTimeout(load_or_wait, 100)
+}(window));</script><script type="application/javascript">
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+</script><div class="output text_html"><style>*[data-root-id],
+*[data-root-id] > * {
+  box-sizing: border-box;
+  font-family: var(--jp-ui-font-family);
+  font-size: var(--jp-ui-font-size1);
+  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
+}
+
+/* Override VSCode background color */
+.cell-output-ipywidget-background:has(
+    > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
+  ),
+.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
+  background-color: transparent !important;
+}
+</style></div><script type="application/javascript">(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+  var py_version = '3.2.2'.replace('rc', '-rc.').replace('.dev', '-dev.');
+  var is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1;
+  var reloading = true;
+  var Bokeh = root.Bokeh;
+  var bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks;
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, js_modules, js_exports, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+    if (js_modules == null) js_modules = [];
+    if (js_exports == null) js_exports = {};
+
+    root._bokeh_onload_callbacks.push(callback);
+
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
+      run_callbacks();
+      return null;
+    }
+    if (!reloading) {
+      console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    }
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+    window._bokeh_on_load = on_load
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      window.requirejs.config({'packages': {}, 'paths': {'jspanel': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/jspanel', 'jspanel-modal': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal', 'jspanel-tooltip': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip', 'jspanel-hint': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint', 'jspanel-layout': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout', 'jspanel-contextmenu': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu', 'jspanel-dock': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock', 'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@7.2.3/dist/gridstack-all', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'jspanel': {'exports': 'jsPanel'}, 'gridstack': {'exports': 'GridStack'}}});
+      require(["jspanel"], function(jsPanel) {
+	window.jsPanel = jsPanel
+	on_load()
+      })
+      require(["jspanel-modal"], function() {
+	on_load()
+      })
+      require(["jspanel-tooltip"], function() {
+	on_load()
+      })
+      require(["jspanel-hint"], function() {
+	on_load()
+      })
+      require(["jspanel-layout"], function() {
+	on_load()
+      })
+      require(["jspanel-contextmenu"], function() {
+	on_load()
+      })
+      require(["jspanel-dock"], function() {
+	on_load()
+      })
+      require(["gridstack"], function(GridStack) {
+	window.GridStack = GridStack
+	on_load()
+      })
+      require(["notyf"], function() {
+	on_load()
+      })
+      root._bokeh_is_loading = css_urls.length + 9;
+    } else {
+      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
+    }
+
+    var existing_stylesheets = []
+    var links = document.getElementsByTagName('link')
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i]
+      if (link.href != null) {
+	existing_stylesheets.push(link.href)
+      }
+    }
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      if (existing_stylesheets.indexOf(url) !== -1) {
+	on_load()
+	continue;
+      }
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }    if (((window['jsPanel'] !== undefined) && (!(window['jsPanel'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/jspanel.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    if (((window['GridStack'] !== undefined) && (!(window['GridStack'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/gridstack/gridstack@7.2.3/dist/gridstack-all.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    if (((window['Notyf'] !== undefined) && (!(window['Notyf'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    var existing_scripts = []
+    var scripts = document.getElementsByTagName('script')
+    for (var i = 0; i < scripts.length; i++) {
+      var script = scripts[i]
+      if (script.src != null) {
+	existing_scripts.push(script.src)
+      }
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+    for (var i = 0; i < js_modules.length; i++) {
+      var url = js_modules[i];
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+    for (const name in js_exports) {
+      var url = js_exports[name];
+      if (skip.indexOf(url) >= 0 || root[name] != null) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onerror = on_error;
+      element.async = false;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      element.textContent = `
+      import ${name} from "${url}"
+      window.${name} = ${name}
+      window._bokeh_on_load()
+      `
+      document.head.appendChild(element);
+    }
+    if (!js_urls.length && !js_modules.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = [];
+  var js_modules = [];
+  var js_exports = {};
+  var css_urls = [];
+  var inline_js = [    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }
+      // Cache old bokeh versions
+      if (Bokeh != undefined && !reloading) {
+	var NewBokeh = root.Bokeh;
+	if (Bokeh.versions === undefined) {
+	  Bokeh.versions = new Map();
+	}
+	if (NewBokeh.version !== Bokeh.version) {
+	  Bokeh.versions.set(NewBokeh.version, NewBokeh)
+	}
+	root.Bokeh = Bokeh;
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+    root._bokeh_is_initializing = false
+  }
+
+  function load_or_wait() {
+    // Implement a backoff loop that tries to ensure we do not load multiple
+    // versions of Bokeh and its dependencies at the same time.
+    // In recent versions we use the root._bokeh_is_initializing flag
+    // to determine whether there is an ongoing attempt to initialize
+    // bokeh, however for backward compatibility we also try to ensure
+    // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
+    // before older versions are fully initialized.
+    if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
+      root._bokeh_is_initializing = false;
+      root._bokeh_onload_callbacks = undefined;
+      console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
+      load_or_wait();
+    } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
+      setTimeout(load_or_wait, 100);
+    } else {
+      Bokeh = root.Bokeh;
+      bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+      root._bokeh_is_initializing = true
+      root._bokeh_onload_callbacks = []
+      if (!reloading && (!bokeh_loaded || is_dev)) {
+	root.Bokeh = undefined;
+      }
+      load_libs(css_urls, js_urls, js_modules, js_exports, function() {
+	console.debug("Bokeh: BokehJS plotting callback run at", now());
+	run_inline_js();
+      });
+    }
+  }
+  // Give older versions of the autoload script a head-start to ensure
+  // they initialize before we start loading newer version.
+  setTimeout(load_or_wait, 100)
+}(window));</script><script type="application/javascript">
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+</script><div class="output text_html"><style>*[data-root-id],
+*[data-root-id] > * {
+  box-sizing: border-box;
+  font-family: var(--jp-ui-font-family);
+  font-size: var(--jp-ui-font-size1);
+  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
+}
+
+/* Override VSCode background color */
+.cell-output-ipywidget-background:has(
+    > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
+  ),
+.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
+  background-color: transparent !important;
+}
+</style></div></div>
 </div>
 </section>
 <section id="greenland-subglacial-lakes">
@@ -1505,7 +2671,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "3e60d53fff844048b80af76b30f0bc68", "version_major": 2, "version_minor": 0}
+{"model_id": "95840c19526b422b8e869d0ac49758e6", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 </section>
@@ -1651,8 +2817,8 @@ title="Print to PDF"
 <section id="streaming-cloud-hosted-data-from-nasa-earth-data-cloud">
 <h2>Streaming cloud-hosted data from NASA Earth Data Cloud<a class="headerlink" href="#streaming-cloud-hosted-data-from-nasa-earth-data-cloud" title="Permalink to this headline">#</a></h2>
 <p>We will be working with cloud-hosted data files. This <a class="reference external" href="https://nsidc.org/data/user-resources/help-center/nasa-earthdata-cloud-data-access-guide">guide</a> explains how to find and access Earthdata cloud-hosted data. <a class="reference external" href="https://nsidc.org/data/earthdata-cloud">Here</a> is a complete list of earthdata cloud-hosted data products currently available from NSIDC.</p>
-<section id="using-icepyx-to-simplify-searching-for-icesat-2-data-and-authenticating-with-aws-s3-login-credentials">
-<h3>Using icepyx to simplify searching for ICESat-2 data and authenticating with AWS s3 login credentials<a class="headerlink" href="#using-icepyx-to-simplify-searching-for-icesat-2-data-and-authenticating-with-aws-s3-login-credentials" title="Permalink to this headline">#</a></h3>
+<section id="using-icepyx-to-simplify-searching-for-icesat-2-data">
+<h3>Using icepyx to simplify searching for ICESat-2 data<a class="headerlink" href="#using-icepyx-to-simplify-searching-for-icesat-2-data" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://icepyx.readthedocs.io/en/latest/">icepyx</a> is a community and Python software library that simplifies the process of searching (querying), accessing (via download or in the cloud), and working with (including subsetting, visualizing, and reading in) ICESat-2 data products. A series of <a class="reference external" href="https://github.com/icesat2py/icepyx/tree/main/doc/source/example_notebooks">examples</a> introduce users to its functionality, and the icepyx community always welcomes new members, feature requests, bug reports, etc.</p>
 <p>To search for data spatially, icepyx accepts shapefiles, kml files, and geopackage files, as well as bounding boxes and polygons, as input bounding regions. So we’ll first save one of the lakes’ geometries as a geopackage and use it to query ICESat-2 data for that region.</p>
 <div class="cell docutils container">
@@ -1690,23 +2856,19 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/srv/conda/envs/notebook/lib/python3.10/site-packages/geoviews/operation/__init__.py:14: HoloviewsDeprecationWarning: &#39;ResamplingOperation&#39; is deprecated and will be removed in version 1.18, use &#39;ResampleOperation2D&#39; instead.
-  from holoviews.operation.datashader import (
-</pre></div>
-</div>
 <script type="application/javascript">(function(root) {
   function now() {
     return new Date();
   }
 
   var force = true;
+  var py_version = '3.2.2'.replace('rc', '-rc.').replace('.dev', '-dev.');
+  var is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1;
+  var reloading = false;
+  var Bokeh = root.Bokeh;
+  var bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
 
-  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
-    root._bokeh_onload_callbacks = [];
-    root._bokeh_is_loading = undefined;
-  }
-
-  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+  if (typeof (root._bokeh_timeout) === "undefined" || force) {
     root._bokeh_timeout = Date.now() + 5000;
     root._bokeh_failed_load = false;
   }
@@ -1718,26 +2880,30 @@ title="Print to PDF"
           callback();
       });
     } finally {
-      delete root._bokeh_onload_callbacks
+      delete root._bokeh_onload_callbacks;
     }
     console.debug("Bokeh: all callbacks have finished");
   }
 
-  function load_libs(css_urls, js_urls, js_modules, callback) {
+  function load_libs(css_urls, js_urls, js_modules, js_exports, callback) {
     if (css_urls == null) css_urls = [];
     if (js_urls == null) js_urls = [];
     if (js_modules == null) js_modules = [];
+    if (js_exports == null) js_exports = {};
 
     root._bokeh_onload_callbacks.push(callback);
+
     if (root._bokeh_is_loading > 0) {
       console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
       return null;
     }
-    if (js_urls.length === 0 && js_modules.length === 0) {
+    if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
       run_callbacks();
       return null;
     }
-    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    if (!reloading) {
+      console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    }
 
     function on_load() {
       root._bokeh_is_loading--;
@@ -1746,13 +2912,63 @@ title="Print to PDF"
         run_callbacks()
       }
     }
+    window._bokeh_on_load = on_load
 
     function on_error() {
       console.error("failed to load " + url);
     }
 
+    var skip = [];
+    if (window.requirejs) {
+      window.requirejs.config({'packages': {}, 'paths': {'jspanel': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/jspanel', 'jspanel-modal': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal', 'jspanel-tooltip': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip', 'jspanel-hint': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint', 'jspanel-layout': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout', 'jspanel-contextmenu': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu', 'jspanel-dock': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock', 'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@7.2.3/dist/gridstack-all', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'jspanel': {'exports': 'jsPanel'}, 'gridstack': {'exports': 'GridStack'}}});
+      require(["jspanel"], function(jsPanel) {
+	window.jsPanel = jsPanel
+	on_load()
+      })
+      require(["jspanel-modal"], function() {
+	on_load()
+      })
+      require(["jspanel-tooltip"], function() {
+	on_load()
+      })
+      require(["jspanel-hint"], function() {
+	on_load()
+      })
+      require(["jspanel-layout"], function() {
+	on_load()
+      })
+      require(["jspanel-contextmenu"], function() {
+	on_load()
+      })
+      require(["jspanel-dock"], function() {
+	on_load()
+      })
+      require(["gridstack"], function(GridStack) {
+	window.GridStack = GridStack
+	on_load()
+      })
+      require(["notyf"], function() {
+	on_load()
+      })
+      root._bokeh_is_loading = css_urls.length + 9;
+    } else {
+      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
+    }
+
+    var existing_stylesheets = []
+    var links = document.getElementsByTagName('link')
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i]
+      if (link.href != null) {
+	existing_stylesheets.push(link.href)
+      }
+    }
     for (var i = 0; i < css_urls.length; i++) {
       var url = css_urls[i];
+      if (existing_stylesheets.indexOf(url) !== -1) {
+	on_load()
+	continue;
+      }
       const element = document.createElement("link");
       element.onload = on_load;
       element.onerror = on_error;
@@ -1761,34 +2977,32 @@ title="Print to PDF"
       element.href = url;
       console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
       document.body.appendChild(element);
-    }
-
-    var skip = [];
-    if (window.requirejs) {
-      window.requirejs.config({'packages': {}, 'paths': {'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@4.2.5/dist/gridstack-h5', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'gridstack': {'exports': 'GridStack'}}});
-      require(["gridstack"], function(GridStack) {
-	window.GridStack = GridStack
-	on_load()
-      })
-      require(["notyf"], function() {
-	on_load()
-      })
-      root._bokeh_is_loading = css_urls.length + 2;
-    } else {
-      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length;
+    }    if (((window['jsPanel'] !== undefined) && (!(window['jsPanel'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/jspanel.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
     }    if (((window['GridStack'] !== undefined) && (!(window['GridStack'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/0.14.4/dist/bundled/gridstack/gridstack@4.2.5/dist/gridstack-h5.js'];
+      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/gridstack/gridstack@7.2.3/dist/gridstack-all.js'];
       for (var i = 0; i < urls.length; i++) {
         skip.push(urls[i])
       }
     }    if (((window['Notyf'] !== undefined) && (!(window['Notyf'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/0.14.4/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
+      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
       for (var i = 0; i < urls.length; i++) {
         skip.push(urls[i])
       }
-    }    for (var i = 0; i < js_urls.length; i++) {
+    }    var existing_scripts = []
+    var scripts = document.getElementsByTagName('script')
+    for (var i = 0; i < scripts.length; i++) {
+      var script = scripts[i]
+      if (script.src != null) {
+	existing_scripts.push(script.src)
+      }
+    }
+    for (var i = 0; i < js_urls.length; i++) {
       var url = js_urls[i];
-      if (skip.indexOf(url) >= 0) {
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
 	if (!window.requirejs) {
 	  on_load();
 	}
@@ -1804,7 +3018,7 @@ title="Print to PDF"
     }
     for (var i = 0; i < js_modules.length; i++) {
       var url = js_modules[i];
-      if (skip.indexOf(url) >= 0) {
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
 	if (!window.requirejs) {
 	  on_load();
 	}
@@ -1819,6 +3033,26 @@ title="Print to PDF"
       console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
       document.head.appendChild(element);
     }
+    for (const name in js_exports) {
+      var url = js_exports[name];
+      if (skip.indexOf(url) >= 0 || root[name] != null) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onerror = on_error;
+      element.async = false;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      element.textContent = `
+      import ${name} from "${url}"
+      window.${name} = ${name}
+      window._bokeh_on_load()
+      `
+      document.head.appendChild(element);
+    }
     if (!js_urls.length && !js_modules.length) {
       on_load()
     }
@@ -1830,12 +3064,11 @@ title="Print to PDF"
     document.body.appendChild(element);
   }
 
-  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-2.4.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.4.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.4.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-2.4.3.min.js", "https://unpkg.com/@holoviz/panel@0.14.4/dist/panel.min.js"];
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.2.2.min.js", "https://cdn.holoviz.org/panel/1.2.3/dist/panel.min.js", "https://cdn.jsdelivr.net/npm/@holoviz/geoviews@1.10.1/dist/geoviews.min.js"];
   var js_modules = [];
-  var css_urls = ["https://cdn.holoviz.org/panel/0.14.4/dist/css/alerts.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/card.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/dataframe.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/debugger.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/json.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/loading.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/markdown.css", "https://cdn.holoviz.org/panel/0.14.4/dist/css/widgets.css"];
+  var js_exports = {};
+  var css_urls = [];
   var inline_js = [    function(Bokeh) {
-      inject_raw_css("\n    .bk.pn-loading.arc:before {\n      background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n      background-size: auto calc(min(50%, 400px));\n    }\n    ");
-    },    function(Bokeh) {
       Bokeh.set_log_level("info");
     },
 function(Bokeh) {} // ensure no trailing comma for IE
@@ -1845,23 +3078,58 @@ function(Bokeh) {} // ensure no trailing comma for IE
     if ((root.Bokeh !== undefined) || (force === true)) {
       for (var i = 0; i < inline_js.length; i++) {
         inline_js[i].call(root, root.Bokeh);
+      }
+      // Cache old bokeh versions
+      if (Bokeh != undefined && !reloading) {
+	var NewBokeh = root.Bokeh;
+	if (Bokeh.versions === undefined) {
+	  Bokeh.versions = new Map();
+	}
+	if (NewBokeh.version !== Bokeh.version) {
+	  Bokeh.versions.set(NewBokeh.version, NewBokeh)
+	}
+	root.Bokeh = Bokeh;
       }} else if (Date.now() < root._bokeh_timeout) {
       setTimeout(run_inline_js, 100);
     } else if (!root._bokeh_failed_load) {
       console.log("Bokeh: BokehJS failed to load within specified timeout.");
       root._bokeh_failed_load = true;
     }
+    root._bokeh_is_initializing = false
   }
 
-  if (root._bokeh_is_loading === 0) {
-    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
-    run_inline_js();
-  } else {
-    load_libs(css_urls, js_urls, js_modules, function() {
-      console.debug("Bokeh: BokehJS plotting callback run at", now());
-      run_inline_js();
-    });
+  function load_or_wait() {
+    // Implement a backoff loop that tries to ensure we do not load multiple
+    // versions of Bokeh and its dependencies at the same time.
+    // In recent versions we use the root._bokeh_is_initializing flag
+    // to determine whether there is an ongoing attempt to initialize
+    // bokeh, however for backward compatibility we also try to ensure
+    // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
+    // before older versions are fully initialized.
+    if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
+      root._bokeh_is_initializing = false;
+      root._bokeh_onload_callbacks = undefined;
+      console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
+      load_or_wait();
+    } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
+      setTimeout(load_or_wait, 100);
+    } else {
+      Bokeh = root.Bokeh;
+      bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+      root._bokeh_is_initializing = true
+      root._bokeh_onload_callbacks = []
+      if (!reloading && (!bokeh_loaded || is_dev)) {
+	root.Bokeh = undefined;
+      }
+      load_libs(css_urls, js_urls, js_modules, js_exports, function() {
+	console.debug("Bokeh: BokehJS plotting callback run at", now());
+	run_inline_js();
+      });
+    }
   }
+  // Give older versions of the autoload script a head-start to ensure
+  // they initialize before we start loading newer version.
+  setTimeout(load_or_wait, 100)
 }(window));</script><script type="application/javascript">
 if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
   window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
@@ -2101,10 +3369,20 @@ if (window.Jupyter !== undefined) {
   } catch(err) {
   }
 }
-</script><div class="output text_html"><style>.bk-root, .bk-root .bk:before, .bk-root .bk:after {
-  font-family: var(--jp-ui-font-size1);
+</script><div class="output text_html"><style>*[data-root-id],
+*[data-root-id] > * {
+  box-sizing: border-box;
+  font-family: var(--jp-ui-font-family);
   font-size: var(--jp-ui-font-size1);
-  color: var(--jp-ui-font-color1);
+  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
+}
+
+/* Override VSCode background color */
+.cell-output-ipywidget-background:has(
+    > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
+  ),
+.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
+  background-color: transparent !important;
 }
 </style></div><div class="output text_html">
 <div class="logo-block">
@@ -2188,14 +3466,21 @@ roTBs2RqAAAAAElFTkSuQmCC'
 
 
 </div>
-</div><div class="output text_html"><div id='1004'>
-  <div class="bk-root" id="93f759b9-9218-4980-9e44-22fb371a4ac7" data-root-id="1004"></div>
+</div><div class="output text_html"><div id='p1005'>
+  <div id="a8bf7d34-6313-46bb-8dae-91c7eacc9d1b" data-root-id="p1005" style="display: contents;"></div>
 </div>
 <script type="application/javascript">(function(root) {
+  var docs_json = {"4715665c-676a-4e81-9339-31e3aea47bd8":{"version":"3.2.2","title":"Bokeh Application","roots":[{"type":"object","name":"Row","id":"p1005","attributes":{"name":"Row01638","tags":["embedded"],"stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"p1008","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.3/dist/css/loading.css"}},{"type":"object","name":"ImportedStyleSheet","id":"p1080","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.3/dist/css/listpanel.css"}},{"type":"object","name":"ImportedStyleSheet","id":"p1006","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.3/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"p1007","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.3/dist/bundled/theme/native.css"}}],"min_width":500,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"Spacer","id":"p1009","attributes":{"name":"HSpacer01648","stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"id":"p1008"},{"id":"p1006"},{"id":"p1007"}],"margin":0,"sizing_mode":"stretch_width","align":"start"}},{"type":"object","name":"Figure","id":"p1029","attributes":{"width":500,"height":500,"margin":[5,10],"sizing_mode":"fixed","align":"start","x_range":{"type":"object","name":"Range1d","id":"p1019","attributes":{"tags":[[["Longitude","Longitude",null]],[]],"start":-1926515.2104731994,"end":-1767016.442085009,"reset_start":-1926515.2104731994,"reset_end":-1767016.442085009,"min_interval":5}},"y_range":{"type":"object","name":"Range1d","id":"p1020","attributes":{"tags":[[["Latitude","Latitude",null]],{"type":"map","entries":[["invert_yaxis",false],["autorange",false]]}],"start":16247760.343431555,"end":16407294.693241727,"reset_start":16247760.343431555,"reset_end":16407294.693241727,"min_interval":5}},"x_scale":{"type":"object","name":"LinearScale","id":"p1039"},"y_scale":{"type":"object","name":"LinearScale","id":"p1040"},"title":{"type":"object","name":"Title","id":"p1032","attributes":{"text_color":"black","text_font_size":"12pt"}},"renderers":[{"type":"object","name":"TileRenderer","id":"p1062","attributes":{"level":"underlay","tile_source":{"type":"object","name":"WMTSTileSource","id":"p1058","attributes":{"url":"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{Z}/{Y}/{X}.jpg","attribution":"&copy; <a href=\"http://downloads.esri.com/ArcGISOnline/docs/tou_summary.pdf\">Esri</a>, Earthstar Geographics"}}}},{"type":"object","name":"GlyphRenderer","id":"p1073","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1064","attributes":{"selected":{"type":"object","name":"Selection","id":"p1065","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1066"},"data":{"type":"map","entries":[["xs",[{"type":"ndarray","array":{"type":"bytes","data":"vYk/obNKO8G2fBo6B1g7wQgwlu9gZzvB2WqJaZp4O8HijF4PiYs7wdzL4XH+nzvBxOcAu8i1O8HTEIsis8w7wVEdEWeG5DvBPv0WSgn9O8HSttYOARY8wWhd4voxLzzB6Mz8119IPMGnCIh2TmE8wZih6y/CeTzBZldVaICRPMEeRDIPUKg8wSl0tx36vTzBiiXGEkrSPMHAgGprDuU8wfYSJBcZ9jzBCWYW5z8FPcFZsC73XBI9wTm/OhBPHT3BZxjeAfolPcFNCUbzRiw9wVs5dakkMD3B6pT8wYcxPcFuOvvgajA9waiSStHOLD3Bdc3PlbomPcF2SwlrOx49weZmFbhkEz3BwY6g7k8GPcEtWmJZHPc8wZo8E9nu5TzB24oNkPHSPMH4yhp9U748wduxPwZIqDzBmUGrdAaRPMFlhD1jyXg8wX+UZSHOXzzBv0JaDFRGPMHVI+rgmyw8wfzXTAjnEjzBTi5+4nb5O8GAFLsQjOA7wdVvt8JlyDvBHhITCUGxO8GAq3MvWJs7wfY0eyDihjvBvLSX1RF0O8EruWTUFWM7we4SC7sXVDvBp/q63DtHO8HqrwrvoDw7wVRrsshfNDvBIabQMYsuO8GuVJnFLys7wTB5EeVTKjvBKak/uvcrO8HakgpLFTA7wRqk2JqgNjvBDJjn2Yc/O8E="},"shape":[64],"dtype":"float64","order":"little"}]],["ys",[{"type":"ndarray","array":{"type":"bytes","data":"i4Qf/7gUb0Ec38g2BxJvQR4lq9CCD29BD2ISxjENb0GfKdWPGQtvQR+gJBs/CW9BTU6sv6YHb0EgNQU3VAZvQQSkfZVKBW9BRfw1RIwEb0HXvpH8GgRvQaLp+8T3A29B56797iIEb0GB2qYWnARvQbqrRyNiBW9B9Wl8SXMGb0GiaYsOzQdvQR17Fk1sCW9Bb7ogO00Lb0ETU2lxaw1vQSLxGvTBD29BljHOPEsSb0HWYttFARVvQW089ZbdF29BUeECU9kab0HVfitH7R1vQSU6AfsRIW9Bn+qzwT8kb0FNeC7MbidvQeC3+zuXKm9B23rJNrEtb0FlcVr6tDBvQRmnsfCaM29BLhY9xFs2b0GGQMBz8DhvQQM5vGVSO29BF0MQe3s9b0FtX40gZj9vQeTtN18NQW9BhRn16mxCb0G4F2YvgUNvQSJVuVpHRG9BRGVBZr1Eb0Fgt6oc4kRvQVh6sx21RG9BbWhU3zZEb0G4EVWsaENvQbNGUqBMQm9BMBdJoeVAb0GUFsRWNz9vQUng0h5GPW9BoOL8ABc7b0FwBmifrzhvQa6vcSYWNm9BBrn8OlEzb0H3a7nnZzBvQc8arYlhLW9BHw0+vEUqb0HDBQZFHCdvQfQHqv/sI29BeV7xyb8gb0G/iFBwnB1vQQfUFpuKGm9BSEtnvJEXb0E="},"shape":[64],"dtype":"float64","order":"little"}]]]}}},"view":{"type":"object","name":"CDSView","id":"p1074","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1075"}}},"glyph":{"type":"object","name":"MultiLine","id":"p1070","attributes":{"tags":["apply_ranges"],"xs":{"type":"field","field":"xs"},"ys":{"type":"field","field":"ys"},"line_color":{"type":"value","value":"red"}}},"selection_glyph":{"type":"object","name":"MultiLine","id":"p1076","attributes":{"tags":["apply_ranges"],"xs":{"type":"field","field":"xs"},"ys":{"type":"field","field":"ys"},"line_color":{"type":"value","value":"red"},"line_alpha":{"type":"value","value":1.0},"line_width":{"type":"value","value":1},"line_join":{"type":"value","value":"bevel"},"line_cap":{"type":"value","value":"butt"},"line_dash":{"type":"value","value":[]},"line_dash_offset":{"type":"value","value":0}}},"nonselection_glyph":{"type":"object","name":"MultiLine","id":"p1071","attributes":{"tags":["apply_ranges"],"xs":{"type":"field","field":"xs"},"ys":{"type":"field","field":"ys"},"line_color":{"type":"value","value":"red"},"line_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"MultiLine","id":"p1072","attributes":{"tags":["apply_ranges"],"xs":{"type":"field","field":"xs"},"ys":{"type":"field","field":"ys"},"line_color":{"type":"value","value":"red"},"line_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1038","attributes":{"tools":[{"type":"object","name":"WheelZoomTool","id":"p1023","attributes":{"zoom_on_axis":false}},{"type":"object","name":"BoxZoomTool","id":"p1024","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1004","attributes":{"syncable":false,"level":"overlay","visible":false,"left_units":"canvas","right_units":"canvas","bottom_units":"canvas","top_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}},"match_aspect":true}},{"type":"object","name":"PanTool","id":"p1052"},{"type":"object","name":"ResetTool","id":"p1053"}],"active_drag":{"id":"p1052"}}},"left":[{"type":"object","name":"LinearAxis","id":"p1046","attributes":{"ticker":{"type":"object","name":"MercatorTicker","id":"p1056","attributes":{"mantissas":[1,2,5],"dimension":"lat"}},"formatter":{"type":"object","name":"MercatorTickFormatter","id":"p1057","attributes":{"dimension":"lat"}},"axis_label":"Latitude","major_label_policy":{"type":"object","name":"AllLabels","id":"p1049"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1041","attributes":{"ticker":{"type":"object","name":"MercatorTicker","id":"p1054","attributes":{"mantissas":[1,2,5],"dimension":"lon"}},"formatter":{"type":"object","name":"MercatorTickFormatter","id":"p1055","attributes":{"dimension":"lon"}},"axis_label":"Longitude","major_label_policy":{"type":"object","name":"AllLabels","id":"p1044"}}}],"center":[{"type":"object","name":"Grid","id":"p1045","attributes":{"axis":{"id":"p1041"},"grid_line_color":null}},{"type":"object","name":"Grid","id":"p1050","attributes":{"dimension":1,"axis":{"id":"p1046"},"grid_line_color":null}}],"min_border_top":10,"min_border_bottom":10,"min_border_left":10,"min_border_right":10,"output_backend":"webgl"}},{"type":"object","name":"Spacer","id":"p1078","attributes":{"name":"HSpacer01651","stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"id":"p1008"},{"id":"p1006"},{"id":"p1007"}],"margin":0,"sizing_mode":"stretch_width","align":"start"}}]}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"mode","kind":"Any","default":"warn"},{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationAreaBase1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]}]}};
+  var render_items = [{"docid":"4715665c-676a-4e81-9339-31e3aea47bd8","roots":{"p1005":"a8bf7d34-6313-46bb-8dae-91c7eacc9d1b"},"root_ids":["p1005"]}];
+  var docs = Object.values(docs_json)
+  if (!docs) {
+    return
+  }
+  const py_version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
+  const is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1
   function embed_document(root) {
-    var docs_json = {"1b21ede4-7778-42cb-b0d7-65d9da5da642":{"defs":[{"extends":null,"module":null,"name":"ReactiveHTML1","overrides":[],"properties":[]},{"extends":null,"module":null,"name":"FlexBox1","overrides":[],"properties":[{"default":"flex-start","kind":null,"name":"align_content"},{"default":"flex-start","kind":null,"name":"align_items"},{"default":"row","kind":null,"name":"flex_direction"},{"default":"wrap","kind":null,"name":"flex_wrap"},{"default":"flex-start","kind":null,"name":"justify_content"}]},{"extends":null,"module":null,"name":"GridStack1","overrides":[],"properties":[{"default":"warn","kind":null,"name":"mode"},{"default":null,"kind":null,"name":"ncols"},{"default":null,"kind":null,"name":"nrows"},{"default":true,"kind":null,"name":"allow_resize"},{"default":true,"kind":null,"name":"allow_drag"},{"default":[],"kind":null,"name":"state"}]},{"extends":null,"module":null,"name":"click1","overrides":[],"properties":[{"default":"","kind":null,"name":"terminal_output"},{"default":"","kind":null,"name":"debug_name"},{"default":0,"kind":null,"name":"clears"}]},{"extends":null,"module":null,"name":"NotificationAreaBase1","overrides":[],"properties":[{"default":"bottom-right","kind":null,"name":"position"},{"default":0,"kind":null,"name":"_clear"}]},{"extends":null,"module":null,"name":"NotificationArea1","overrides":[],"properties":[{"default":[],"kind":null,"name":"notifications"},{"default":"bottom-right","kind":null,"name":"position"},{"default":0,"kind":null,"name":"_clear"},{"default":[{"background":"#ffc107","icon":{"className":"fas fa-exclamation-triangle","color":"white","tagName":"i"},"type":"warning"},{"background":"#007bff","icon":{"className":"fas fa-info-circle","color":"white","tagName":"i"},"type":"info"}],"kind":null,"name":"types"}]},{"extends":null,"module":null,"name":"Notification","overrides":[],"properties":[{"default":null,"kind":null,"name":"background"},{"default":3000,"kind":null,"name":"duration"},{"default":null,"kind":null,"name":"icon"},{"default":"","kind":null,"name":"message"},{"default":null,"kind":null,"name":"notification_type"},{"default":false,"kind":null,"name":"_destroyed"}]},{"extends":null,"module":null,"name":"TemplateActions1","overrides":[],"properties":[{"default":0,"kind":null,"name":"open_modal"},{"default":0,"kind":null,"name":"close_modal"}]},{"extends":null,"module":null,"name":"MaterialTemplateActions1","overrides":[],"properties":[{"default":0,"kind":null,"name":"open_modal"},{"default":0,"kind":null,"name":"close_modal"}]}],"roots":{"references":[{"attributes":{"dimension":"lon"},"id":"1046","type":"MercatorTicker"},{"attributes":{},"id":"1059","type":"AllLabels"},{"attributes":{"dimension":"lat"},"id":"1048","type":"MercatorTicker"},{"attributes":{"match_aspect":true,"overlay":{"id":"1039"}},"id":"1016","type":"BoxZoomTool"},{"attributes":{"line_alpha":{"value":1.0},"line_cap":{"value":"butt"},"line_color":{"value":"red"},"line_dash":{"value":[]},"line_dash_offset":{"value":0},"line_join":{"value":"bevel"},"line_width":{"value":1},"tags":["apply_ranges"],"xs":{"field":"xs"},"ys":{"field":"ys"}},"id":"1079","type":"MultiLine"},{"attributes":{"attribution":"&copy; <a href=\"http://downloads.esri.com/ArcGISOnline/docs/tou_summary.pdf\">Esri</a>, Earthstar Geographics","url":"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{Z}/{Y}/{X}.jpg"},"id":"1064","type":"WMTSTileSource"},{"attributes":{"axis":{"id":"1028"},"coordinates":null,"grid_line_color":null,"group":null,"ticker":null},"id":"1031","type":"Grid"},{"attributes":{},"id":"1038","type":"ResetTool"},{"attributes":{"active_drag":{"id":"1037"},"tools":[{"id":"1015"},{"id":"1016"},{"id":"1037"},{"id":"1038"}]},"id":"1040","type":"Toolbar"},{"attributes":{"zoom_on_axis":false},"id":"1015","type":"WheelZoomTool"},{"attributes":{"end":-1767016.442085009,"min_interval":5,"reset_end":-1767016.442085009,"reset_start":-1926515.2104731994,"start":-1926515.2104731994,"tags":[[["Longitude","Longitude",null]],[]]},"id":"1011","type":"Range1d"},{"attributes":{"dimension":"lon"},"id":"1047","type":"MercatorTickFormatter"},{"attributes":{"dimension":"lat"},"id":"1049","type":"MercatorTickFormatter"},{"attributes":{"coordinates":null,"group":null,"level":"underlay","tile_source":{"id":"1064"}},"id":"1067","type":"TileRenderer"},{"attributes":{},"id":"1026","type":"LinearScale"},{"attributes":{"below":[{"id":"1028"}],"center":[{"id":"1031"},{"id":"1035"}],"height":500,"left":[{"id":"1032"}],"margin":[5,5,5,5],"min_border_bottom":10,"min_border_left":10,"min_border_right":10,"min_border_top":10,"output_backend":"webgl","renderers":[{"id":"1067"},{"id":"1077"}],"sizing_mode":"fixed","title":{"id":"1020"},"toolbar":{"id":"1040"},"width":500,"x_range":{"id":"1011"},"x_scale":{"id":"1026"},"y_range":{"id":"1012"},"y_scale":{"id":"1027"}},"id":"1019","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1027","type":"LinearScale"},{"attributes":{"source":{"id":"1071"}},"id":"1078","type":"CDSView"},{"attributes":{"coordinates":null,"group":null,"text_color":"black","text_font_size":"12pt"},"id":"1020","type":"Title"},{"attributes":{"bottom_units":"screen","coordinates":null,"fill_alpha":0.5,"fill_color":"lightgrey","group":null,"left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","syncable":false,"top_units":"screen"},"id":"1039","type":"BoxAnnotation"},{"attributes":{},"id":"1085","type":"UnionRenderers"},{"attributes":{"line_color":{"value":"red"},"tags":["apply_ranges"],"xs":{"field":"xs"},"ys":{"field":"ys"}},"id":"1074","type":"MultiLine"},{"attributes":{"axis_label":"Latitude","coordinates":null,"formatter":{"id":"1049"},"group":null,"major_label_policy":{"id":"1059"},"ticker":{"id":"1048"}},"id":"1032","type":"LinearAxis"},{"attributes":{},"id":"1052","type":"AllLabels"},{"attributes":{"axis_label":"Longitude","coordinates":null,"formatter":{"id":"1047"},"group":null,"major_label_policy":{"id":"1052"},"ticker":{"id":"1046"}},"id":"1028","type":"LinearAxis"},{"attributes":{"line_alpha":{"value":0.1},"line_color":{"value":"red"},"tags":["apply_ranges"],"xs":{"field":"xs"},"ys":{"field":"ys"}},"id":"1075","type":"MultiLine"},{"attributes":{},"id":"1072","type":"Selection"},{"attributes":{"line_alpha":{"value":0.2},"line_color":{"value":"red"},"tags":["apply_ranges"],"xs":{"field":"xs"},"ys":{"field":"ys"}},"id":"1076","type":"MultiLine"},{"attributes":{},"id":"1037","type":"PanTool"},{"attributes":{"end":16407294.693241727,"min_interval":5,"reset_end":16407294.693241727,"reset_start":16247760.343431555,"start":16247760.343431555,"tags":[[["Latitude","Latitude",null]],{"autorange":false,"invert_yaxis":false}]},"id":"1012","type":"Range1d"},{"attributes":{"children":[{"id":"1019"}],"height":500,"margin":[0,0,0,0],"name":"Row01502","sizing_mode":"fixed","tags":["embedded"],"width":500},"id":"1004","type":"Row"},{"attributes":{"data":{"xs":[{"__ndarray__":"vYk/obNKO8G2fBo6B1g7wQgwlu9gZzvB2WqJaZp4O8HijF4PiYs7wdzL4XH+nzvBxOcAu8i1O8HTEIsis8w7wVEdEWeG5DvBPv0WSgn9O8HSttYOARY8wWhd4voxLzzB6Mz8119IPMGnCIh2TmE8wZih6y/CeTzBZldVaICRPMEeRDIPUKg8wSl0tx36vTzBiiXGEkrSPMHAgGprDuU8wfYSJBcZ9jzBCWYW5z8FPcFZsC73XBI9wTm/OhBPHT3BZxjeAfolPcFNCUbzRiw9wVs5dakkMD3B6pT8wYcxPcFuOvvgajA9waiSStHOLD3Bdc3PlbomPcF2SwlrOx49weZmFbhkEz3BwY6g7k8GPcEtWmJZHPc8wZo8E9nu5TzB24oNkPHSPMH4yhp9U748wduxPwZIqDzBmUGrdAaRPMFlhD1jyXg8wX+UZSHOXzzBv0JaDFRGPMHVI+rgmyw8wfzXTAjnEjzBTi5+4nb5O8GAFLsQjOA7wdVvt8JlyDvBHhITCUGxO8GAq3MvWJs7wfY0eyDihjvBvLSX1RF0O8EruWTUFWM7we4SC7sXVDvBp/q63DtHO8HqrwrvoDw7wVRrsshfNDvBIabQMYsuO8GuVJnFLys7wTB5EeVTKjvBKak/uvcrO8HakgpLFTA7wRqk2JqgNjvBDJjn2Yc/O8E=","dtype":"float64","order":"little","shape":[64]}],"ys":[{"__ndarray__":"i4Qf/7gUb0Ec38g2BxJvQR4lq9CCD29BD2ISxjENb0GfKdWPGQtvQR+gJBs/CW9BTU6sv6YHb0EgNQU3VAZvQQSkfZVKBW9BRfw1RIwEb0HXvpH8GgRvQaLp+8T3A29B56797iIEb0GB2qYWnARvQbqrRyNiBW9B9Wl8SXMGb0GiaYsOzQdvQR17Fk1sCW9Bb7ogO00Lb0ETU2lxaw1vQSLxGvTBD29BljHOPEsSb0HWYttFARVvQW089ZbdF29BUeECU9kab0HVfitH7R1vQSU6AfsRIW9Bn+qzwT8kb0FNeC7MbidvQeC3+zuXKm9B23rJNrEtb0FlcVr6tDBvQRmnsfCaM29BLhY9xFs2b0GGQMBz8DhvQQM5vGVSO29BF0MQe3s9b0FtX40gZj9vQeTtN18NQW9BhRn16mxCb0G4F2YvgUNvQSJVuVpHRG9BRGVBZr1Eb0Fgt6oc4kRvQVh6sx21RG9BbWhU3zZEb0G4EVWsaENvQbNGUqBMQm9BMBdJoeVAb0GUFsRWNz9vQUng0h5GPW9BoOL8ABc7b0FwBmifrzhvQa6vcSYWNm9BBrn8OlEzb0H3a7nnZzBvQc8arYlhLW9BHw0+vEUqb0HDBQZFHCdvQfQHqv/sI29BeV7xyb8gb0G/iFBwnB1vQQfUFpuKGm9BSEtnvJEXb0E=","dtype":"float64","order":"little","shape":[64]}]},"selected":{"id":"1072"},"selection_policy":{"id":"1085"}},"id":"1071","type":"ColumnDataSource"},{"attributes":{"coordinates":null,"data_source":{"id":"1071"},"glyph":{"id":"1074"},"group":null,"hover_glyph":null,"muted_glyph":{"id":"1076"},"nonselection_glyph":{"id":"1075"},"selection_glyph":{"id":"1079"},"view":{"id":"1078"}},"id":"1077","type":"GlyphRenderer"},{"attributes":{"axis":{"id":"1032"},"coordinates":null,"dimension":1,"grid_line_color":null,"group":null,"ticker":null},"id":"1035","type":"Grid"}],"root_ids":["1004"]},"title":"Bokeh Application","version":"2.4.3"}};
-    var render_items = [{"docid":"1b21ede4-7778-42cb-b0d7-65d9da5da642","root_ids":["1004"],"roots":{"1004":"93f759b9-9218-4980-9e44-22fb371a4ac7"}}];
-    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+    var Bokeh = get_bokeh(root)
+    Bokeh.embed.embed_items_notebook(docs_json, render_items);
     for (const render_item of render_items) {
       for (const root_id of render_item.root_ids) {
 	const id_el = document.getElementById(root_id)
@@ -2206,19 +3491,42 @@ roTBs2RqAAAAAElFTkSuQmCC'
       }
     }
   }
-  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+  function get_bokeh(root) {
+    if (root.Bokeh === undefined) {
+      return null
+    } else if (root.Bokeh.version !== py_version && !is_dev) {
+      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(py_version)) {
+	return null
+      }
+      return root.Bokeh.versions.get(py_version);
+    } else if (root.Bokeh.version === py_version) {
+      return root.Bokeh
+    }
+    return null
+  }
+  function is_loaded(root) {
+    var Bokeh = get_bokeh(root)
+    return (Bokeh != null && Bokeh.Panel !== undefined)
+  }
+  if (is_loaded(root)) {
     embed_document(root);
   } else {
     var attempts = 0;
     var timer = setInterval(function(root) {
-      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+      if (is_loaded(root)) {
         clearInterval(timer);
         embed_document(root);
       } else if (document.readyState == "complete") {
         attempts++;
         if (attempts > 200) {
           clearInterval(timer);
-          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+	  var Bokeh = get_bokeh(root)
+	  if (Bokeh == null || Bokeh.Panel == null) {
+            console.warn("Panel: ERROR: Unable to run Panel code because Bokeh or Panel library is missing");
+	  } else {
+	    console.warn("Panel: WARNING: Attempting to render but not all required libraries could be resolved.")
+	    embed_document(root)
+	  }
         }
       }
     }, 25, root)
@@ -2234,29 +3542,30 @@ roTBs2RqAAAAAElFTkSuQmCC'
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Number of available granules&#39;: 4,
- &#39;Average size of granules (MB)&#39;: 136.18148589135,
- &#39;Total size of all granules (MB)&#39;: 544.7259435654}
+ &#39;Average size of granules (MB)&#39;: 193.56415557861328,
+ &#39;Total size of all granules (MB)&#39;: 774.2566223144531}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s see the granule IDs and cloud access urls (note that due to some missing ICESat-2 product metadata, icepyx is still working to provide s3 urls for some products)</span>
-<span class="n">gran_ids</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">avail_granules</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cloud</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">gran_ids</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ipx</span><span class="o">.</span><span class="n">__version__</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;ATL15_GL_0314_10km_002_01.nc&#39;,
-  &#39;ATL15_GL_0314_40km_002_01.nc&#39;,
-  &#39;ATL15_GL_0314_20km_002_01.nc&#39;,
-  &#39;ATL15_GL_0314_01km_002_01.nc&#39;],
- [&#39;s3://nsidc-cumulus-prod-protected/ATLAS/ATL15/002/2019/ATL15_GL_0314_10km_002_01.nc&#39;,
-  &#39;s3://nsidc-cumulus-prod-protected/ATLAS/ATL15/002/2019/ATL15_GL_0314_40km_002_01.nc&#39;,
-  &#39;s3://nsidc-cumulus-prod-protected/ATLAS/ATL15/002/2019/ATL15_GL_0314_20km_002_01.nc&#39;,
-  &#39;s3://nsidc-cumulus-prod-protected/ATLAS/ATL15/002/2019/ATL15_GL_0314_01km_002_01.nc&#39;]]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.0.0&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s see the granule IDs and cloud access urls</span>
+<span class="n">gran_ids</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">avail_granules</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cloud</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gran_ids</span>
+<span class="n">s3url</span><span class="o">=</span><span class="s1">&#39;s3://nsidc-cumulus-prod-protected/ATLAS/ATL15/002/2019/ATL15_GL_0314_01km_002_01.nc&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -2275,45 +3584,16 @@ roTBs2RqAAAAAElFTkSuQmCC'
 </div>
 </div>
 </div>
-<p>You can manually find s3 URL’s for cloud-hosted data from NASA Earth Data: <a class="reference external" href="https://www.earthdata.nasa.gov/">https://www.earthdata.nasa.gov/</a></p>
+<p>You can manually find s3 URL’s for cloud-hosted data from <a class="reference external" href="https://www.earthdata.nasa.gov/">NASA Earth Data</a></p>
 <p>Learn more about finding cloud-hosted data from NASA Earth data cloud <a class="reference external" href="https://nsidc.org/data/user-resources/help-center/nasa-earthdata-cloud-data-access-guide">here</a></p>
-<p>The next step requires a NASA Earthdata user account. You can register for a free account <a class="reference external" href="https://www.earthdata.nasa.gov/eosdis/science-system-description/eosdis-components/earthdata-login">here</a>.</p>
+<p>The next step (accessing data in the cloud) requires a NASA Earthdata user account.
+You can register for a free account <a class="reference external" href="https://www.earthdata.nasa.gov/eosdis/science-system-description/eosdis-components/earthdata-login">here</a>.
+icepyx will automatically ask for your credentials when you perform a task that needs them.
+If you do not have them stored as environment variables or in a .netrc file, you will be prompted to enter them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authenicate using your NASA Earth Data login credentials; enter your user id and password when prompted</span>
-<span class="n">region</span><span class="o">.</span><span class="n">earthdata_login</span><span class="p">(</span><span class="n">s3token</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EARTHDATA_USERNAME and EARTHDATA_PASSWORD are not set in the current environment, try setting them or use a different strategy (netrc, interactive)
-You&#39;re now authenticated with NASA Earthdata Login
-Using token with expiration date: 11/18/2023
-Using .netrc file for EDL
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note: you may see an “Internal Server Error” in the above output.
-This is related only to the cloud credentialing (note it should also say “You’re now authenticated with NASA Earthdata login”), and is the result of internal changes to the way authentication happens at NSIDC.
-Since testing times are not known a priori, cloud credentialing via software packages like icepyx and earthaccess sometimes needs to be altered until things stabilize.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # IDEALLY, this will work (and will also ultimately be further simplified)</span>
-
-<span class="c1"># # set up our s3 file system using our credentials</span>
-<span class="c1"># s3 = earthaccess.get_s3fs_session(daac=&#39;NSIDC&#39;, provider=region._s3login_credentials)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If the above cell results in an error (specifically a KeyError: &#39;accessKeyId&#39;), please try this approach instead</span>
-<span class="n">credentials</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://data.nsidc.earthdatacloud.nasa.gov/s3credentials&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-<span class="n">s3</span> <span class="o">=</span> <span class="n">s3fs</span><span class="o">.</span><span class="n">S3FileSystem</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">credentials</span><span class="p">[</span><span class="s1">&#39;accessKeyId&#39;</span><span class="p">],</span>
-                       <span class="n">secret</span><span class="o">=</span><span class="n">credentials</span><span class="p">[</span><span class="s1">&#39;secretAccessKey&#39;</span><span class="p">],</span>
-                       <span class="n">token</span><span class="o">=</span><span class="n">credentials</span><span class="p">[</span><span class="s1">&#39;sessionToken&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set up our s3 file system using our credentials</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">earthaccess</span><span class="o">.</span><span class="n">get_s3fs_session</span><span class="p">(</span><span class="n">daac</span><span class="o">=</span><span class="s1">&#39;NSIDC&#39;</span><span class="p">,</span> <span class="n">provider</span><span class="o">=</span><span class="n">region</span><span class="o">.</span><span class="n">_s3login_credentials</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2710,14 +3990,14 @@ Data variables:
     misfit_rms           (time, y, x) float32 nan nan nan nan ... nan nan nan
     misfit_scaled_rms    (time, y, x) float32 nan nan nan nan ... nan nan nan
 Attributes:
-    description:  delta_h group includes variables describing height differen...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-ff2c2107-23bf-4f69-9a91-5bdca15aa052' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-ff2c2107-23bf-4f69-9a91-5bdca15aa052' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>x</span>: 1541</li><li><span class='xr-has-index'>y</span>: 2701</li><li><span class='xr-has-index'>time</span>: 15</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-0f930dea-30c9-4d9d-9814-a96e03d1ef72' class='xr-section-summary-in' type='checkbox'  checked><label for='section-0f930dea-30c9-4d9d-9814-a96e03d1ef72' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-6.7e+05 -6.69e+05 ... 8.7e+05</div><input id='attrs-4c148efa-499d-46b1-a3be-b079b3e80764' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4c148efa-499d-46b1-a3be-b079b3e80764' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ce5f05d4-5182-4897-a522-374d4208f2f5' class='xr-var-data-in' type='checkbox'><label for='data-ce5f05d4-5182-4897-a522-374d4208f2f5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>x</dd><dt><span>datatype :</span></dt><dd>float64</dd><dt><span>least_significant_digit :</span></dt><dd>None</dd><dt><span>description :</span></dt><dd>x coordinate of the 1-km cell centers, in projected coordinates</dd><dt><span>long_name :</span></dt><dd>polar stereographic x at 1km</dd><dt><span>source :</span></dt><dd>ATBD section 3.2</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd><dt><span>standard_name :</span></dt><dd>projection_x_coordinate</dd></dl></div><div class='xr-var-data'><pre>array([-670000., -669000., -668000., ...,  868000.,  869000.,  870000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-3.35e+06 -3.349e+06 ... -6.5e+05</div><input id='attrs-67baa498-9715-4638-ad86-0a56b80cfc24' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-67baa498-9715-4638-ad86-0a56b80cfc24' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-31a064d5-c5d6-4825-95c2-47dc25675574' class='xr-var-data-in' type='checkbox'><label for='data-31a064d5-c5d6-4825-95c2-47dc25675574' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>y</dd><dt><span>datatype :</span></dt><dd>float64</dd><dt><span>least_significant_digit :</span></dt><dd>None</dd><dt><span>description :</span></dt><dd>y coordinate of the 1-km cell centers, in projected coordinates</dd><dt><span>long_name :</span></dt><dd>polar stereographic y at 1km</dd><dt><span>source :</span></dt><dd>ATBD section 3.2</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd><dt><span>standard_name :</span></dt><dd>projection_y_coordinate</dd></dl></div><div class='xr-var-data'><pre>array([-3350000., -3349000., -3348000., ...,  -652000.,  -651000.,  -650000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2018-10-01T22:30:00 ... 2022-04-...</div><input id='attrs-489778eb-95ce-40ce-b1b9-08739e24426e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-489778eb-95ce-40ce-b1b9-08739e24426e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-52346d67-2c3f-442d-becb-4c4353fdd013' class='xr-var-data-in' type='checkbox'><label for='data-52346d67-2c3f-442d-becb-4c4353fdd013' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>dimensions :</span></dt><dd>time</dd><dt><span>datatype :</span></dt><dd>float64</dd><dt><span>least_significant_digit :</span></dt><dd>None</dd><dt><span>description :</span></dt><dd>Time for each node, in days since 2018-01-01:T00.00.00 UTC</dd><dt><span>long_name :</span></dt><dd>quarterly h(t) time</dd><dt><span>source :</span></dt><dd>ATBD section 4.2</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2018-10-01T22:30:00.000000000&#x27;, &#x27;2019-01-01T06:00:00.000000000&#x27;,
+    description:  delta_h group includes variables describing height differen...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-3bb5969c-1957-4f65-8eff-641e6727087f' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3bb5969c-1957-4f65-8eff-641e6727087f' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>x</span>: 1541</li><li><span class='xr-has-index'>y</span>: 2701</li><li><span class='xr-has-index'>time</span>: 15</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-55ac515d-6c47-4a28-aeb5-133ae3f1c3be' class='xr-section-summary-in' type='checkbox'  checked><label for='section-55ac515d-6c47-4a28-aeb5-133ae3f1c3be' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-6.7e+05 -6.69e+05 ... 8.7e+05</div><input id='attrs-9f40635f-5034-4d9e-8448-7cd585e1d6c8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9f40635f-5034-4d9e-8448-7cd585e1d6c8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-83184e05-ba35-4cd9-bde3-34af40ac08ee' class='xr-var-data-in' type='checkbox'><label for='data-83184e05-ba35-4cd9-bde3-34af40ac08ee' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>x</dd><dt><span>datatype :</span></dt><dd>float64</dd><dt><span>least_significant_digit :</span></dt><dd>None</dd><dt><span>description :</span></dt><dd>x coordinate of the 1-km cell centers, in projected coordinates</dd><dt><span>long_name :</span></dt><dd>polar stereographic x at 1km</dd><dt><span>source :</span></dt><dd>ATBD section 3.2</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd><dt><span>standard_name :</span></dt><dd>projection_x_coordinate</dd></dl></div><div class='xr-var-data'><pre>array([-670000., -669000., -668000., ...,  868000.,  869000.,  870000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-3.35e+06 -3.349e+06 ... -6.5e+05</div><input id='attrs-7727e218-be65-4f29-a278-eb238bc9a8fe' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7727e218-be65-4f29-a278-eb238bc9a8fe' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6ce51028-20e6-42c4-90fa-13f1fcce0b9e' class='xr-var-data-in' type='checkbox'><label for='data-6ce51028-20e6-42c4-90fa-13f1fcce0b9e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>y</dd><dt><span>datatype :</span></dt><dd>float64</dd><dt><span>least_significant_digit :</span></dt><dd>None</dd><dt><span>description :</span></dt><dd>y coordinate of the 1-km cell centers, in projected coordinates</dd><dt><span>long_name :</span></dt><dd>polar stereographic y at 1km</dd><dt><span>source :</span></dt><dd>ATBD section 3.2</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd><dt><span>standard_name :</span></dt><dd>projection_y_coordinate</dd></dl></div><div class='xr-var-data'><pre>array([-3350000., -3349000., -3348000., ...,  -652000.,  -651000.,  -650000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2018-10-01T22:30:00 ... 2022-04-...</div><input id='attrs-c7bdb5d7-2a83-4339-9e07-75745d61202f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c7bdb5d7-2a83-4339-9e07-75745d61202f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a93ec10e-7c96-4dd2-ad1e-1c88c60b0898' class='xr-var-data-in' type='checkbox'><label for='data-a93ec10e-7c96-4dd2-ad1e-1c88c60b0898' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>dimensions :</span></dt><dd>time</dd><dt><span>datatype :</span></dt><dd>float64</dd><dt><span>least_significant_digit :</span></dt><dd>None</dd><dt><span>description :</span></dt><dd>Time for each node, in days since 2018-01-01:T00.00.00 UTC</dd><dt><span>long_name :</span></dt><dd>quarterly h(t) time</dd><dt><span>source :</span></dt><dd>ATBD section 4.2</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2018-10-01T22:30:00.000000000&#x27;, &#x27;2019-01-01T06:00:00.000000000&#x27;,
        &#x27;2019-04-02T13:30:00.000000000&#x27;, &#x27;2019-07-02T21:00:00.000000000&#x27;,
        &#x27;2019-10-02T04:30:00.000000000&#x27;, &#x27;2020-01-01T12:00:00.000000000&#x27;,
        &#x27;2020-04-01T19:30:00.000000000&#x27;, &#x27;2020-07-02T03:00:00.000000000&#x27;,
        &#x27;2020-10-01T10:30:00.000000000&#x27;, &#x27;2020-12-31T18:00:00.000000000&#x27;,
        &#x27;2021-04-02T01:30:00.000000000&#x27;, &#x27;2021-07-02T09:00:00.000000000&#x27;,
        &#x27;2021-10-01T16:30:00.000000000&#x27;, &#x27;2022-01-01T00:00:00.000000000&#x27;,
-       &#x27;2022-04-02T07:30:00.000000000&#x27;], dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-5a49f260-7f74-4b60-bde0-9798416e8e1d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5a49f260-7f74-4b60-bde0-9798416e8e1d' class='xr-section-summary' >Data variables: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>Polar_Stereographic</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int8</div><div class='xr-var-preview xr-preview'>-127</div><input id='attrs-928d6aa5-acdb-40d7-9d02-fa1082bdd5a1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-928d6aa5-acdb-40d7-9d02-fa1082bdd5a1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-93941463-33d2-48e5-86c5-0a3f4143428a' class='xr-var-data-in' type='checkbox'><label for='data-93941463-33d2-48e5-86c5-0a3f4143428a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>Polar_Stereographic</dd><dt><span>grid_mapping_name :</span></dt><dd>polar_stereographic</dd><dt><span>straight_vertical_longitude_from_pole :</span></dt><dd>-45.0</dd><dt><span>latitude_of_projection_origin :</span></dt><dd>90.0</dd><dt><span>standard_parallel :</span></dt><dd>70.0</dd><dt><span>scale_factor_at_projection_origin :</span></dt><dd>1.0</dd><dt><span>false_easting :</span></dt><dd>0.0</dd><dt><span>false_northing :</span></dt><dd>0.0</dd><dt><span>semi_major_axis :</span></dt><dd>6378.137</dd><dt><span>semi_minor_axis :</span></dt><dd>6356.752</dd><dt><span>inverse_flattening :</span></dt><dd>298.257223563</dd><dt><span>spatial_epsg :</span></dt><dd>3413</dd><dt><span>spatial_ref :</span></dt><dd>PROJCS[&quot;WGS 84 / NSIDC Sea Ice Polar Stereographic North&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],UNIT[&quot;degree&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]],PROJECTION[&quot;Polar_Stereographic&quot;],PARAMETER[&quot;latitude_of_origin&quot;,70],PARAMETER[&quot;central_meridian&quot;,-45],PARAMETER[&quot;scale_factor&quot;,1],PARAMETER[&quot;false_easting&quot;,0],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;X&quot;,EAST],AXIS[&quot;Y&quot;,NORTH],AUTHORITY[&quot;EPSG&quot;,&quot;3413&quot;]]</dd><dt><span>crs_wkt :</span></dt><dd>PROJCS[&quot;WGS 84 / NSIDC Sea Ice Polar Stereographic North&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],UNIT[&quot;degree&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]],PROJECTION[&quot;Polar_Stereographic&quot;],PARAMETER[&quot;latitude_of_origin&quot;,70],PARAMETER[&quot;central_meridian&quot;,-45],PARAMETER[&quot;scale_factor&quot;,1],PARAMETER[&quot;false_easting&quot;,0],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;X&quot;,EAST],AXIS[&quot;Y&quot;,NORTH],AUTHORITY[&quot;EPSG&quot;,&quot;3413&quot;]]</dd><dt><span>GeoTransform :</span></dt><dd>[-670000.    1000.       0. -650000.       0.   -1000.]</dd></dl></div><div class='xr-var-data'><pre>array(-127, dtype=int8)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ice_area</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-c7365a7d-d2ec-4963-aa71-c29fe6c75c17' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c7365a7d-d2ec-4963-aa71-c29fe6c75c17' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-38d8b50b-6a9f-44e7-80bb-13c15e98696c' class='xr-var-data-in' type='checkbox'><label for='data-38d8b50b-6a9f-44e7-80bb-13c15e98696c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>meters^2</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Ice-covered area of each 1x1 km grid cell, accounting for the area distortion in the polar-stereographic projections</dd><dt><span>long_name :</span></dt><dd>ice-covered area at 1 km</dd><dt><span>source :</span></dt><dd>ATBD section 3.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>array([[[nan, nan, nan, ..., nan, nan, nan],
+       &#x27;2022-04-02T07:30:00.000000000&#x27;], dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-6a18ce32-1dd2-41d1-b5a7-51cc9c0c275a' class='xr-section-summary-in' type='checkbox'  checked><label for='section-6a18ce32-1dd2-41d1-b5a7-51cc9c0c275a' class='xr-section-summary' >Data variables: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>Polar_Stereographic</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int8</div><div class='xr-var-preview xr-preview'>-127</div><input id='attrs-f382baef-93c3-4167-9d37-9920d77ec8f5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f382baef-93c3-4167-9d37-9920d77ec8f5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f894ec84-e4a2-4561-aad9-dfabcb8a5c28' class='xr-var-data-in' type='checkbox'><label for='data-f894ec84-e4a2-4561-aad9-dfabcb8a5c28' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>Polar_Stereographic</dd><dt><span>grid_mapping_name :</span></dt><dd>polar_stereographic</dd><dt><span>straight_vertical_longitude_from_pole :</span></dt><dd>-45.0</dd><dt><span>latitude_of_projection_origin :</span></dt><dd>90.0</dd><dt><span>standard_parallel :</span></dt><dd>70.0</dd><dt><span>scale_factor_at_projection_origin :</span></dt><dd>1.0</dd><dt><span>false_easting :</span></dt><dd>0.0</dd><dt><span>false_northing :</span></dt><dd>0.0</dd><dt><span>semi_major_axis :</span></dt><dd>6378.137</dd><dt><span>semi_minor_axis :</span></dt><dd>6356.752</dd><dt><span>inverse_flattening :</span></dt><dd>298.257223563</dd><dt><span>spatial_epsg :</span></dt><dd>3413</dd><dt><span>spatial_ref :</span></dt><dd>PROJCS[&quot;WGS 84 / NSIDC Sea Ice Polar Stereographic North&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],UNIT[&quot;degree&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]],PROJECTION[&quot;Polar_Stereographic&quot;],PARAMETER[&quot;latitude_of_origin&quot;,70],PARAMETER[&quot;central_meridian&quot;,-45],PARAMETER[&quot;scale_factor&quot;,1],PARAMETER[&quot;false_easting&quot;,0],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;X&quot;,EAST],AXIS[&quot;Y&quot;,NORTH],AUTHORITY[&quot;EPSG&quot;,&quot;3413&quot;]]</dd><dt><span>crs_wkt :</span></dt><dd>PROJCS[&quot;WGS 84 / NSIDC Sea Ice Polar Stereographic North&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],UNIT[&quot;degree&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]],PROJECTION[&quot;Polar_Stereographic&quot;],PARAMETER[&quot;latitude_of_origin&quot;,70],PARAMETER[&quot;central_meridian&quot;,-45],PARAMETER[&quot;scale_factor&quot;,1],PARAMETER[&quot;false_easting&quot;,0],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;X&quot;,EAST],AXIS[&quot;Y&quot;,NORTH],AUTHORITY[&quot;EPSG&quot;,&quot;3413&quot;]]</dd><dt><span>GeoTransform :</span></dt><dd>[-670000.    1000.       0. -650000.       0.   -1000.]</dd></dl></div><div class='xr-var-data'><pre>array(-127, dtype=int8)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ice_area</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-4407531b-3446-4c08-a5eb-61922e4f3b4c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4407531b-3446-4c08-a5eb-61922e4f3b4c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-64dca15f-3b53-415c-953c-cd5e70e0d76d' class='xr-var-data-in' type='checkbox'><label for='data-64dca15f-3b53-415c-953c-cd5e70e0d76d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>meters^2</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Ice-covered area of each 1x1 km grid cell, accounting for the area distortion in the polar-stereographic projections</dd><dt><span>long_name :</span></dt><dd>ice-covered area at 1 km</dd><dt><span>source :</span></dt><dd>ATBD section 3.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>array([[[nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
         ...,
@@ -2757,7 +4037,7 @@ Attributes:
         ...,
         [nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
-        [nan, nan, nan, ..., nan, nan, nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>delta_h</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-118b23c8-dd88-4324-a61d-04147b744fc3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-118b23c8-dd88-4324-a61d-04147b744fc3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-21206b68-417a-4330-a539-72a55528ff8c' class='xr-var-data-in' type='checkbox'><label for='data-21206b68-417a-4330-a539-72a55528ff8c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Height change relative to the datum (Jan 1, 2020) surface</dd><dt><span>long_name :</span></dt><dd>height change  at 1 km</dd><dt><span>source :</span></dt><dd>ATBD section 3.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>array([[[nan, nan, nan, ..., nan, nan, nan],
+        [nan, nan, nan, ..., nan, nan, nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>delta_h</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-b374b677-f141-44e4-9e60-78af2da6db43' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b374b677-f141-44e4-9e60-78af2da6db43' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-12fd8f4b-8169-4ce4-aaea-7be51f00fd21' class='xr-var-data-in' type='checkbox'><label for='data-12fd8f4b-8169-4ce4-aaea-7be51f00fd21' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Height change relative to the datum (Jan 1, 2020) surface</dd><dt><span>long_name :</span></dt><dd>height change  at 1 km</dd><dt><span>source :</span></dt><dd>ATBD section 3.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>array([[[nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
         ...,
@@ -2797,7 +4077,7 @@ Attributes:
         ...,
         [nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
-        [nan, nan, nan, ..., nan, nan, nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>delta_h_sigma</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-c8a5fdb5-c02b-4cd8-aaa3-f0c3d196b3f5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c8a5fdb5-c02b-4cd8-aaa3-f0c3d196b3f5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3e6c642a-07c3-4314-b48a-cfb2a72a0f82' class='xr-var-data-in' type='checkbox'><label for='data-3e6c642a-07c3-4314-b48a-cfb2a72a0f82' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Estimated error in height change relative to the datum (Jan 1, 2020) surface</dd><dt><span>long_name :</span></dt><dd>height change uncertainty at 1 km</dd><dt><span>source :</span></dt><dd>ATBD section 3.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>array([[[nan, nan, nan, ..., nan, nan, nan],
+        [nan, nan, nan, ..., nan, nan, nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>delta_h_sigma</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-3801984a-d674-416c-89f8-49ca8d093603' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3801984a-d674-416c-89f8-49ca8d093603' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cb7c7bda-0c0f-4f4c-9818-378329f8720a' class='xr-var-data-in' type='checkbox'><label for='data-cb7c7bda-0c0f-4f4c-9818-378329f8720a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Estimated error in height change relative to the datum (Jan 1, 2020) surface</dd><dt><span>long_name :</span></dt><dd>height change uncertainty at 1 km</dd><dt><span>source :</span></dt><dd>ATBD section 3.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>array([[[nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
         ...,
@@ -2837,7 +4117,7 @@ Attributes:
         ...,
         [nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
-        [nan, nan, nan, ..., nan, nan, nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>data_count</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-9ba5f071-304d-4035-a028-b5aa0d5408c1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9ba5f071-304d-4035-a028-b5aa0d5408c1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-468038a1-88c2-4ac7-bf93-a6bcdaf06b19' class='xr-var-data-in' type='checkbox'><label for='data-468038a1-88c2-4ac7-bf93-a6bcdaf06b19' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>counts</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Weighted number of data contributing to each node in the 1-km height-change grid</dd><dt><span>long_name :</span></dt><dd>data count </dd><dt><span>source :</span></dt><dd>ATBD section 5.2.4.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>array([[[nan, nan, nan, ..., nan, nan, nan],
+        [nan, nan, nan, ..., nan, nan, nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>data_count</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-00aeaa7e-644d-4060-8244-27c960fbbdd6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-00aeaa7e-644d-4060-8244-27c960fbbdd6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e5cb5d5b-368b-4f8c-990b-2685dcdf87f2' class='xr-var-data-in' type='checkbox'><label for='data-e5cb5d5b-368b-4f8c-990b-2685dcdf87f2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>counts</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Weighted number of data contributing to each node in the 1-km height-change grid</dd><dt><span>long_name :</span></dt><dd>data count </dd><dt><span>source :</span></dt><dd>ATBD section 5.2.4.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>array([[[nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
         ...,
@@ -2877,7 +4157,7 @@ Attributes:
         ...,
         [nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
-        [nan, nan, nan, ..., nan, nan, nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>misfit_rms</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-00be9712-9ab8-4b94-ad60-e4f5fb535210' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-00be9712-9ab8-4b94-ad60-e4f5fb535210' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ea7e192f-f5d2-4802-9aa7-e2d45308a51c' class='xr-var-data-in' type='checkbox'><label for='data-ea7e192f-f5d2-4802-9aa7-e2d45308a51c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Misfit associated with each node in the 1-km height-change grid</dd><dt><span>long_name :</span></dt><dd>rms misfit </dd><dt><span>source :</span></dt><dd>ATBD section 5.2.4.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>array([[[nan, nan, nan, ..., nan, nan, nan],
+        [nan, nan, nan, ..., nan, nan, nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>misfit_rms</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-a9bf8bfb-57f9-40e0-9335-e00a51114de6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a9bf8bfb-57f9-40e0-9335-e00a51114de6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-93652cb8-2dff-41de-bd46-d0674dc4e27e' class='xr-var-data-in' type='checkbox'><label for='data-93652cb8-2dff-41de-bd46-d0674dc4e27e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Misfit associated with each node in the 1-km height-change grid</dd><dt><span>long_name :</span></dt><dd>rms misfit </dd><dt><span>source :</span></dt><dd>ATBD section 5.2.4.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>array([[[nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
         ...,
@@ -2917,7 +4197,7 @@ Attributes:
         ...,
         [nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
-        [nan, nan, nan, ..., nan, nan, nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>misfit_scaled_rms</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-fbbe0a40-1a60-4cba-9259-7e1578f00792' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fbbe0a40-1a60-4cba-9259-7e1578f00792' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f1f35277-a93b-44c5-b937-daadd3105850' class='xr-var-data-in' type='checkbox'><label for='data-f1f35277-a93b-44c5-b937-daadd3105850' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>counts</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Scaled misfit associated with each node in the 1-km height-change grid</dd><dt><span>long_name :</span></dt><dd>scaled rms misfit</dd><dt><span>source :</span></dt><dd>ATBD section 5.2.4.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>array([[[nan, nan, nan, ..., nan, nan, nan],
+        [nan, nan, nan, ..., nan, nan, nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>misfit_scaled_rms</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-6714a815-3c8f-46bf-8ab0-740f2f28f60c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6714a815-3c8f-46bf-8ab0-740f2f28f60c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d616f9cd-b988-4b0a-aa63-8e4da70b0c1d' class='xr-var-data-in' type='checkbox'><label for='data-d616f9cd-b988-4b0a-aa63-8e4da70b0c1d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>counts</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Scaled misfit associated with each node in the 1-km height-change grid</dd><dt><span>long_name :</span></dt><dd>scaled rms misfit</dd><dt><span>source :</span></dt><dd>ATBD section 5.2.4.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>array([[[nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
         ...,
@@ -2957,17 +4237,17 @@ Attributes:
         ...,
         [nan, nan, nan, ..., nan, nan, nan],
         [nan, nan, nan, ..., nan, nan, nan],
-        [nan, nan, nan, ..., nan, nan, nan]]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-de4f43ff-028f-4e9f-b0d2-abe0d31bd3f1' class='xr-section-summary-in' type='checkbox'  ><label for='section-de4f43ff-028f-4e9f-b0d2-abe0d31bd3f1' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e7fb78a0-0eef-47ab-9977-c876e9c62f48' class='xr-index-data-in' type='checkbox'/><label for='index-e7fb78a0-0eef-47ab-9977-c876e9c62f48' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-670000.0, -669000.0, -668000.0, -667000.0, -666000.0, -665000.0,
+        [nan, nan, nan, ..., nan, nan, nan]]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4e78885c-55dd-4202-a1b4-e15da52e7b57' class='xr-section-summary-in' type='checkbox'  ><label for='section-4e78885c-55dd-4202-a1b4-e15da52e7b57' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-fce8b362-757d-4320-b07f-d2df3ec5adbf' class='xr-index-data-in' type='checkbox'/><label for='index-fce8b362-757d-4320-b07f-d2df3ec5adbf' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-670000.0, -669000.0, -668000.0, -667000.0, -666000.0, -665000.0,
               -664000.0, -663000.0, -662000.0, -661000.0,
               ...
                861000.0,  862000.0,  863000.0,  864000.0,  865000.0,  866000.0,
                867000.0,  868000.0,  869000.0,  870000.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=1541))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-5f8ba137-f0f9-4cbf-b0d5-c3e6d962c319' class='xr-index-data-in' type='checkbox'/><label for='index-5f8ba137-f0f9-4cbf-b0d5-c3e6d962c319' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-3350000.0, -3349000.0, -3348000.0, -3347000.0, -3346000.0,
+             dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=1541))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-701403e9-1182-43ff-a3ab-a6f17ba65602' class='xr-index-data-in' type='checkbox'/><label for='index-701403e9-1182-43ff-a3ab-a6f17ba65602' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-3350000.0, -3349000.0, -3348000.0, -3347000.0, -3346000.0,
               -3345000.0, -3344000.0, -3343000.0, -3342000.0, -3341000.0,
               ...
                -659000.0,  -658000.0,  -657000.0,  -656000.0,  -655000.0,
                -654000.0,  -653000.0,  -652000.0,  -651000.0,  -650000.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=2701))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-35bff9eb-5b87-4712-9b01-2586ec89386d' class='xr-index-data-in' type='checkbox'/><label for='index-35bff9eb-5b87-4712-9b01-2586ec89386d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2018-10-01 22:30:00&#x27;, &#x27;2019-01-01 06:00:00&#x27;,
+             dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=2701))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-f80c7aea-e943-4c4e-81e0-e19ab2e7e2d3' class='xr-index-data-in' type='checkbox'/><label for='index-f80c7aea-e943-4c4e-81e0-e19ab2e7e2d3' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2018-10-01 22:30:00&#x27;, &#x27;2019-01-01 06:00:00&#x27;,
                &#x27;2019-04-02 13:30:00&#x27;, &#x27;2019-07-02 21:00:00&#x27;,
                &#x27;2019-10-02 04:30:00&#x27;, &#x27;2020-01-01 12:00:00&#x27;,
                &#x27;2020-04-01 19:30:00&#x27;, &#x27;2020-07-02 03:00:00&#x27;,
@@ -2975,7 +4255,69 @@ Attributes:
                &#x27;2021-04-02 01:30:00&#x27;, &#x27;2021-07-02 09:00:00&#x27;,
                &#x27;2021-10-01 16:30:00&#x27;, &#x27;2022-01-01 00:00:00&#x27;,
                &#x27;2022-04-02 07:30:00&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-923f1768-3b21-4147-b263-2674b4de46aa' class='xr-section-summary-in' type='checkbox'  checked><label for='section-923f1768-3b21-4147-b263-2674b4de46aa' class='xr-section-summary' >Attributes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>description :</span></dt><dd>delta_h group includes variables describing height differences between the model surface at any time and the DEM surface at a resolution of 1 km.</dd></dl></div></li></ul></div></div></div></div>
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-fb4c1f34-6892-4fcb-8cec-d824c3c1a8d1' class='xr-section-summary-in' type='checkbox'  checked><label for='section-fb4c1f34-6892-4fcb-8cec-d824c3c1a8d1' class='xr-section-summary' >Attributes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>description :</span></dt><dd>delta_h group includes variables describing height differences between the model surface at any time and the DEM surface at a resolution of 1 km.</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reader</span> <span class="o">=</span> <span class="n">ipx</span><span class="o">.</span><span class="n">Read</span><span class="p">(</span><span class="n">s3url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Enter your Earthdata Login username:  icepyx_devteam
+Enter your Earthdata password:  ········
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Indicate which variables you&#39;d like to read in.</span>
+<span class="c1"># More information on managing ICESat-2 variables is available in the icepyx documentation and examples.</span>
+<span class="n">reader</span><span class="o">.</span><span class="n">vars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">var_list</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;delta_h&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">reader</span><span class="o">.</span><span class="n">vars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">var_list</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;delta_h&quot;</span><span class="p">])</span>
+
+<span class="nn">File /srv/conda/envs/notebook/lib/python3.10/site-packages/icepyx/core/variables.py:496,</span> in <span class="ni">Variables.append</span><span class="nt">(self, defaults, var_list, beam_list, keyword_list)</span>
+<span class="g g-Whitespace">    </span><span class="mi">487</span> <span class="k">assert</span> <span class="ow">not</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">488</span>     <span class="n">defaults</span> <span class="o">==</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">489</span>     <span class="ow">and</span> <span class="n">var_list</span> <span class="o">==</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">490</span>     <span class="ow">and</span> <span class="n">beam_list</span> <span class="o">==</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">491</span>     <span class="ow">and</span> <span class="n">keyword_list</span> <span class="o">==</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">492</span> <span class="p">),</span> <span class="s2">&quot;You must enter parameters to add to a variable subset list. If you do not want to subset by variable, ensure your is2.subsetparams dictionary does not contain the key &#39;Coverage&#39;.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">494</span> <span class="n">final_vars</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="ne">--&gt; </span><span class="mi">496</span> <span class="n">vgrp</span><span class="p">,</span> <span class="n">allpaths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avail</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">internal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">497</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_valid_lists</span><span class="p">(</span><span class="n">vgrp</span><span class="p">,</span> <span class="n">allpaths</span><span class="p">,</span> <span class="n">var_list</span><span class="p">,</span> <span class="n">beam_list</span><span class="p">,</span> <span class="n">keyword_list</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">499</span> <span class="c1"># Instantiate self.wanted to an empty dictionary if it doesn&#39;t exist</span>
+
+<span class="nn">File /srv/conda/envs/notebook/lib/python3.10/site-packages/icepyx/core/variables.py:150,</span> in <span class="ni">Variables.avail</span><span class="nt">(self, options, internal)</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_avail&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_avail</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>     <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;s3&quot;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">150</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_avail</span> <span class="o">=</span> <span class="n">is2ref</span><span class="o">.</span><span class="n">_get_custom_options</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span>             <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">product</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span>         <span class="p">)[</span><span class="s2">&quot;variables&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span>         <span class="c1"># If a path was given, use that file to read the variables</span>
+<span class="g g-Whitespace">    </span><span class="mi">155</span>         <span class="kn">import</span> <span class="nn">h5py</span>
+
+<span class="nn">File /srv/conda/envs/notebook/lib/python3.10/site-packages/icepyx/core/is2ref.py:112,</span> in <span class="ni">_get_custom_options</span><span class="nt">(session, product, version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="n">format_vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">formats</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">formats</span><span class="p">))]</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">112</span>     <span class="n">format_vals</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span>     <span class="c1"># ATL23 does not have an empty value</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span>     <span class="k">pass</span>
+
+<span class="ne">ValueError</span>: list.remove(x): x not in list
+</pre></div>
+</div>
+</div>
 </div>
 <p>We can acquaint ourselves with this dataset in a few ways:</p>
 <ul class="simple">
