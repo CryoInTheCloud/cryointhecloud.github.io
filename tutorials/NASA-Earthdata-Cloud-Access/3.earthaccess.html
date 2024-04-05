@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>NASA Earthdata Cloud and data access using earthaccess and icepyx &#8212; CryoCloud</title>
+    <title>Part 1: Introduction to the earthaccess python library &#8212; CryoCloud</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -357,7 +357,13 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
-       NASA Earthdata Cloud and data access using earthaccess and icepyx
+       Part 1: Introduction to the
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         earthaccess
+        </span>
+       </code>
+       python library
       </a>
      </li>
      <li class="toctree-l3">
@@ -668,82 +674,64 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   NASA Earthdata Cloud and data access using earthaccess and icepyx
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tutorial-overview">
+   Tutorial Overview
   </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#part-1-introduction-to-the-earthaccess-python-library">
-   Part 1: Introduction to the
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     earthaccess
-    </span>
-   </code>
-   python library
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tutorial-overview">
-     Tutorial Overview
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#learning-objectives">
-       Learning Objectives
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#prerequisites">
-     Prerequisites
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#credits">
-     Credits
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computing-environment">
-     Computing Environment
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#authenticate">
-     Authenticate
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#search-for-icesat-2-collections">
-     Search for ICESat-2 Collections
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#search-for-cloud-hosted-data">
-       Search for cloud-hosted data
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#search-a-data-set-using-spatial-and-temporal-filters">
-     Search a data set using spatial and temporal filters
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#use-direct-access-to-open-load-and-display-data-stored-on-s3">
-     Use Direct-Access to open, load and display data stored on S3
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#additional-resources">
-     Additional resources
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-objectives">
+     Learning Objectives
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#credits">
+   Credits
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computing-environment">
+   Computing Environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#authenticate">
+   Authenticate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#search-for-icesat-2-collections">
+   Search for ICESat-2 Collections
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#search-for-cloud-hosted-data">
+     Search for cloud-hosted data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#search-a-data-set-using-spatial-and-temporal-filters">
+   Search a data set using spatial and temporal filters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-direct-access-to-open-load-and-display-data-stored-on-s3">
+   Use Direct-Access to open, load and display data stored on S3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-resources">
+   Additional resources
+  </a>
  </li>
 </ul>
 
@@ -754,7 +742,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>NASA Earthdata Cloud and data access using earthaccess and icepyx</h1>
+                <h1>Part 1: Introduction to the earthaccess python library</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -764,82 +752,64 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   NASA Earthdata Cloud and data access using earthaccess and icepyx
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tutorial-overview">
+   Tutorial Overview
   </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#part-1-introduction-to-the-earthaccess-python-library">
-   Part 1: Introduction to the
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     earthaccess
-    </span>
-   </code>
-   python library
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tutorial-overview">
-     Tutorial Overview
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#learning-objectives">
-       Learning Objectives
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#prerequisites">
-     Prerequisites
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#credits">
-     Credits
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computing-environment">
-     Computing Environment
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#authenticate">
-     Authenticate
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#search-for-icesat-2-collections">
-     Search for ICESat-2 Collections
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#search-for-cloud-hosted-data">
-       Search for cloud-hosted data
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#search-a-data-set-using-spatial-and-temporal-filters">
-     Search a data set using spatial and temporal filters
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#use-direct-access-to-open-load-and-display-data-stored-on-s3">
-     Use Direct-Access to open, load and display data stored on S3
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#additional-resources">
-     Additional resources
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-objectives">
+     Learning Objectives
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#credits">
+   Credits
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computing-environment">
+   Computing Environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#authenticate">
+   Authenticate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#search-for-icesat-2-collections">
+   Search for ICESat-2 Collections
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#search-for-cloud-hosted-data">
+     Search for cloud-hosted data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#search-a-data-set-using-spatial-and-temporal-filters">
+   Search a data set using spatial and temporal filters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-direct-access-to-open-load-and-display-data-stored-on-s3">
+   Use Direct-Access to open, load and display data stored on S3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-resources">
+   Additional resources
+  </a>
  </li>
 </ul>
 
@@ -851,10 +821,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="nasa-earthdata-cloud-and-data-access-using-earthaccess-and-icepyx">
-<h1>NASA Earthdata Cloud and data access using earthaccess and icepyx<a class="headerlink" href="#nasa-earthdata-cloud-and-data-access-using-earthaccess-and-icepyx" title="Permalink to this headline">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="part-1-introduction-to-the-earthaccess-python-library">
+  <section class="tex2jax_ignore mathjax_ignore" id="part-1-introduction-to-the-earthaccess-python-library">
 <h1>Part 1: Introduction to the <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code> python library<a class="headerlink" href="#part-1-introduction-to-the-earthaccess-python-library" title="Permalink to this headline">#</a></h1>
 <section id="tutorial-overview">
 <h2>Tutorial Overview<a class="headerlink" href="#tutorial-overview" title="Permalink to this headline">#</a></h2>
