@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>NASA Earthdata Cloud and data access using earthaccess and icepyx &#8212; CryoCloud</title>
+    <title>Part 2: Using the icepyx python library to access ICESat-2 data &#8212; CryoCloud</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -368,7 +368,13 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
-       NASA Earthdata Cloud and data access using earthaccess and icepyx
+       Part 2: Using the
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         icepyx
+        </span>
+       </code>
+       python library to access ICESat-2 data
       </a>
      </li>
     </ul>
@@ -674,111 +680,93 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   NASA Earthdata Cloud and data access using earthaccess and icepyx
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tutorial-overview">
+   Tutorial Overview
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-objectives">
+     Learning Objectives
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#part-2-using-the-icepyx-python-library-to-access-icesat-2-data">
-   Part 2: Using the
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#credits">
+   Credits
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-icepyx-to-search-and-access-icesat-2-data">
+   Using
    <code class="docutils literal notranslate">
     <span class="pre">
      icepyx
     </span>
    </code>
-   python library to access ICESat-2 data
+   to search and access ICESat-2 data
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tutorial-overview">
-     Tutorial Overview
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#learning-objectives">
-       Learning Objectives
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#prerequisites">
-     Prerequisites
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#credits">
-     Credits
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-icepyx-to-search-and-access-icesat-2-data">
-     Using
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-a-file-with-icepyx">
+   Reading a file with icepyx
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-read-object">
+     Create a
      <code class="docutils literal notranslate">
       <span class="pre">
-       icepyx
+       Read
       </span>
      </code>
-     to search and access ICESat-2 data
+     object
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reading-a-file-with-icepyx">
-     Reading a file with icepyx
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#create-a-read-object">
-       Create a
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         Read
-        </span>
-       </code>
-       object
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#select-your-variables">
-       Select your variables
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#load-the-data">
-       Load the data!
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#when-to-cloud">
-     When to Cloud
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#select-your-variables">
+     Select your variables
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#some-example-plots">
-     Some example plots
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#example-1-view-the-photon-classifications">
-       Example 1: View the photon classifications
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#plot-the-canopy-compared-to-the-ground-height">
-       Plot the canopy compared to the ground height
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#summary">
-     Summary
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-the-data">
+     Load the data!
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-to-cloud">
+   When to Cloud
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-example-plots">
+   Some example plots
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-1-view-the-photon-classifications">
+     Example 1: View the photon classifications
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-the-canopy-compared-to-the-ground-height">
+     Plot the canopy compared to the ground height
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
  </li>
 </ul>
 
@@ -789,7 +777,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>NASA Earthdata Cloud and data access using earthaccess and icepyx</h1>
+                <h1>Part 2: Using the icepyx python library to access ICESat-2 data</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -799,111 +787,93 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   NASA Earthdata Cloud and data access using earthaccess and icepyx
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tutorial-overview">
+   Tutorial Overview
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-objectives">
+     Learning Objectives
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#part-2-using-the-icepyx-python-library-to-access-icesat-2-data">
-   Part 2: Using the
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#credits">
+   Credits
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-icepyx-to-search-and-access-icesat-2-data">
+   Using
    <code class="docutils literal notranslate">
     <span class="pre">
      icepyx
     </span>
    </code>
-   python library to access ICESat-2 data
+   to search and access ICESat-2 data
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tutorial-overview">
-     Tutorial Overview
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#learning-objectives">
-       Learning Objectives
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#prerequisites">
-     Prerequisites
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#credits">
-     Credits
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-icepyx-to-search-and-access-icesat-2-data">
-     Using
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-a-file-with-icepyx">
+   Reading a file with icepyx
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-read-object">
+     Create a
      <code class="docutils literal notranslate">
       <span class="pre">
-       icepyx
+       Read
       </span>
      </code>
-     to search and access ICESat-2 data
+     object
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reading-a-file-with-icepyx">
-     Reading a file with icepyx
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#create-a-read-object">
-       Create a
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         Read
-        </span>
-       </code>
-       object
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#select-your-variables">
-       Select your variables
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#load-the-data">
-       Load the data!
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#when-to-cloud">
-     When to Cloud
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#select-your-variables">
+     Select your variables
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#some-example-plots">
-     Some example plots
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#example-1-view-the-photon-classifications">
-       Example 1: View the photon classifications
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#plot-the-canopy-compared-to-the-ground-height">
-       Plot the canopy compared to the ground height
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#summary">
-     Summary
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-the-data">
+     Load the data!
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-to-cloud">
+   When to Cloud
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-example-plots">
+   Some example plots
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-1-view-the-photon-classifications">
+     Example 1: View the photon classifications
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-the-canopy-compared-to-the-ground-height">
+     Plot the canopy compared to the ground height
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
  </li>
 </ul>
 
@@ -915,10 +885,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="nasa-earthdata-cloud-and-data-access-using-earthaccess-and-icepyx">
-<h1>NASA Earthdata Cloud and data access using earthaccess and icepyx<a class="headerlink" href="#nasa-earthdata-cloud-and-data-access-using-earthaccess-and-icepyx" title="Permalink to this headline">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="part-2-using-the-icepyx-python-library-to-access-icesat-2-data">
+  <section class="tex2jax_ignore mathjax_ignore" id="part-2-using-the-icepyx-python-library-to-access-icesat-2-data">
 <h1>Part 2: Using the <code class="docutils literal notranslate"><span class="pre">icepyx</span></code> python library to access ICESat-2 data<a class="headerlink" href="#part-2-using-the-icepyx-python-library-to-access-icesat-2-data" title="Permalink to this headline">#</a></h1>
 <section id="tutorial-overview">
 <h2>Tutorial Overview<a class="headerlink" href="#tutorial-overview" title="Permalink to this headline">#</a></h2>
