@@ -831,12 +831,7 @@ title="Print to PDF"
 <section id="modes-of-data-access">
 <h2>1. Modes of Data Access<a class="headerlink" href="#modes-of-data-access" title="Permalink to this headline">#</a></h2>
 <p>In the past, most of our scientific data analysis workflows have started with searching for data and then downloading that data to a local machine; whether that is the hard drive of your laptop or workstation, or some shared storage device hosted by your institution or research group. This can be a time consuming process if the volume of data is large, even with fast internet. It also requires that you have sufficient disk-space and update your copy every time an updated version of the data is released. If you want to work with data from different geoscience domains, you may have to download data from several data centers.</p>
-<p><img alt="CloudParadigm" src="../../_images/shiklomanov-cloud-paradigm.png" /></p>
-<figure>
-<center>
-    <img src='./images/shiklomanov-cloud-paradigm.png' alt='Earthdata Cloud Transition. Credit: Alexey Shiklomanov, NASA ESDIS'/>
-</center>
-</figure>
+<p><img alt="EarthdataCloudParadigm" src="../../_images/shiklomanov-cloud-paradigm.png" /></p>
 <p>Figure credit: Alexey Shiklomanov, NASA ESDIS Project Scientist, from <a class="reference external" href="https://docs.google.com/presentation/d/12mh_8WU9lsrPviBO_MBv2blbjRufXoQmqCB4XGyxQ90/edit?pli=1">The future of NASA Earth Science in the commercial cloud:
 Challenges and opportunities</a></p>
 <p>However, a change is a-foot. New modes of data access are becoming available. Driven by the growth in the volume of data from future satellite missions, the archiving and distribution of NASA data is in a <a class="reference external" href="https://www.earthdata.nasa.gov/eosdis/cloud-evolution">state of transition</a>. Over the next few years, all NASA data will be migrated to the NASA Earthdata Cloud, a cloud-hosted data store that will have all NASA datasets in one place. This not only offers new modes of accessing NASA data but also offers new ways of working with this data. As with Google Docs or Sheets, data in these “files” is not just stored in the cloud but compute resources offered by cloud providers allow you to process and analyze the data in the cloud. When you edit your Google Doc or Sheet, you are working in the cloud, not on your computer. All you need is a web browser; you can work with these files on your laptop, tablet or even your phone. If you choose to share these documents with others, they can actively collaborate with you on the same document also in the cloud. For large geoscience datasets, this means you can <em>skip the download</em> and take your <em>analysis to the data</em>.</p>
@@ -844,11 +839,7 @@ Challenges and opportunities</a></p>
 <section id="nasa-earthdata-cloud">
 <h2>2. NASA Earthdata Cloud<a class="headerlink" href="#nasa-earthdata-cloud" title="Permalink to this headline">#</a></h2>
 <p>NASA’s cloud-hosted storage is known as the Earthdata Cloud; all NASA datasets are being migrated to be available in the cloud. During this transition period, data will still remain freely available for download directly from the DAACs (Distributed Active Archive Centers), which have archived and distributed NASA data for over 20 years.</p>
-<figure>
-<center>
-    <img src='./images/NSIDC-DAAC.png' alt='NSIDC DAAC Intro'/>
-</center>
-</figure>
+<p><img alt="NSIDC-DAAC-Intro" src="../../_images/NSIDC-DAAC.png" /></p>
 <p>The NSIDC DAAC now offers all <a class="reference external" href="https://nsidc.org/data/icesat-2">ICESat-2</a> and <a class="reference external" href="https://nsidc.org/data/icesat">ICESat/GLAS</a> data products via Earthdata Cloud. A listing of all NSIDC DAAC cloud-hosted data can be found <a class="reference external" href="https://nsidc.org/data/earthdata-cloud/data">here</a>. More details on ICESat-2 below.</p>
 <section id="earthdata-cloud-computing-basics">
 <h3>Earthdata Cloud Computing Basics<a class="headerlink" href="#earthdata-cloud-computing-basics" title="Permalink to this headline">#</a></h3>
@@ -898,10 +889,11 @@ Challenges and opportunities</a></p>
 <section id="counting-photons">
 <h3>Counting Photons<a class="headerlink" href="#counting-photons" title="Permalink to this headline">#</a></h3>
 <p>The ICESat-2 lidar collects at the single photon level, different from most commercial lidar systems. A lot of additional photons get returned as solar background noise, and removing these unwanted photons is a key part of the algorithms that produce the higher level data products.</p>
+<p><img alt="signal_photons" src="../../_images/ATL08_signalphotons.jpg" /></p>
 <blockquote>
 <div><p><em>Fig. 2. Results from signal finding methods for simulated ATLAS data. Black points show raw point cloud data as ingested from ATL03 product. Blue points overlaid in each plot show which photons each method identified as signal. Top panel reflects the signal photons as identified on the ATL03 data product (medium and high confidence signal photons). Bottom panel reflects the signal photons identified from the ATL08 DRAGANN method.</em> (Neuenschwander &amp; Pitts, 2019)</p>
 </div></blockquote>
-<p>Photo: Neuenschwander et. al. 2019, Remote Sens. Env. <a class="reference external" href="https://doi.org/10.1016/j.rse.2018.11.005">DOI</a></p>
+<p>Image: Neuenschwander et. al. 2019, Remote Sens. Env. <a class="reference external" href="https://doi.org/10.1016/j.rse.2018.11.005">DOI</a></p>
 <p>To aggregate all these photons into more manegable chunks, many of the Level-3B products such as <a class="reference external" href="https://nsidc.org/data/atl08">ATL08</a> consolidate the photons into variable segment lengths.</p>
 </section>
 </section>

@@ -835,12 +835,10 @@ title="Print to PDF"
 <p>This notebook demonstrates how to search for, access, and work with a cloud-hosted NASA dataset using the <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code> package. Data in the “NASA Earthdata Cloud” are stored in Amazon Web Services (AWS) Simple Storage Service (S3) Buckets. <strong>Direct Access</strong> is an efficient way to work with data stored in an S3 Bucket using an Amazon Compute Cloud (EC2) instance. Cloud-hosted granules can be opened and loaded into memory without the need to download them first. This allows you take advantage of the scalability and power of cloud computing.</p>
 <p>We use <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code>, a package developed by Luis Lopez (NSIDC developer) to allow easy search of the NASA Common Metadata Repository (CMR) and download of NASA data collections. It can be used for programmatic search and access for both <em>DAAC-hosted</em> and <em>cloud-hosted</em> data. It manages authenticating using Earthdata Login credentials which are then used to obtain the S3 tokens that are needed for S3 direct access. <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code> can be used to find and access both DAAC-hosted and cloud-hosted data in just <strong>three</strong> lines of code. See <a class="reference external" href="https://github.com/nsidc/earthaccess">https://github.com/nsidc/earthaccess</a>.</p>
 <p>As an example data collection, we use ICESat-2 Land Ice Height (ATL06) granules over the Juneau Icefield, AK, for March and April 2020. ICESat-2 data granules, including ATL06, are stored in HDF5 format. We demonstrate how to open an HDF5 granule and access data variables using <code class="docutils literal notranslate"><span class="pre">xarray</span></code>. Land Ice Heights are then plotted using <code class="docutils literal notranslate"><span class="pre">hvplot</span></code>.</p>
-<figure>
-<center>
-    <img src='./images/atl06_example_plot.png' alt='Example plot using data downloaded in tutorial'/>
-    <figcaption> ATL06 Land Ice Heights for the margin of the Juneau Ice Field </figcaption>
-</center>
-</figure>
+<p><img alt="ExamplePlotusingTutorialData" src="../../_images/atl06_example_plot.png" /></p>
+<blockquote>
+<div><p>ATL06 Land Ice Heights for the margin of the Juneau Ice Field</p>
+</div></blockquote>
 <section id="learning-objectives">
 <h3>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">#</a></h3>
 <p>In this tutorial you will learn:</p>
