@@ -1,0 +1,155 @@
+Traceback (most recent call last):
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+myVelSeries = nisar.nisarVelSeries() 
+# Path to local file
+localFile = '/home/jovyan/shared-public/GeoTIFF/GL_vel_mosaic_Annual_01Dec20_30Nov21_*_v04.0'
+# This builds a series, which is specified by a list of files. So with 1 file, the brackets are used to pass a list rather than a single file name
+myVelSeries.readSeriesFromTiff([localFile], useDT=False, useErrors=False, readSpeed=True, url=False, useStack=True, overviewLevel=1)  
+myVelSeries.xr
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/xarray/backends/file_manager.py:201[0m, in [0;36mCachingFileManager._acquire_with_cache_info[0;34m(self, needs_lock)[0m
+[1;32m    200[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 201[0m     file [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_cache[49m[43m[[49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_key[49m[43m][49m
+[1;32m    202[0m [38;5;28;01mexcept[39;00m [38;5;167;01mKeyError[39;00m:
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/xarray/backends/lru_cache.py:55[0m, in [0;36mLRUCache.__getitem__[0;34m(self, key)[0m
+[1;32m     54[0m [38;5;28;01mwith[39;00m [38;5;28mself[39m[38;5;241m.[39m_lock:
+[0;32m---> 55[0m     value [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_cache[49m[43m[[49m[43mkey[49m[43m][49m
+[1;32m     56[0m     [38;5;28mself[39m[38;5;241m.[39m_cache[38;5;241m.[39mmove_to_end(key)
+
+[0;31mKeyError[0m: [<function open at 0x7fd2cd7b73a0>, ('/home/jovyan/shared-public/GeoTIFF/GL_vel_mosaic_Annual_01Dec20_30Nov21_vx_v04.0.tif',), 'r', (('overview_level', 1), ('sharing', False))]
+
+During handling of the above exception, another exception occurred:
+
+[0;31mCPLE_OpenFailedError[0m                      Traceback (most recent call last)
+File [0;32mrasterio/_base.pyx:310[0m, in [0;36mrasterio._base.DatasetBase.__init__[0;34m()[0m
+
+File [0;32mrasterio/_base.pyx:221[0m, in [0;36mrasterio._base.open_dataset[0;34m()[0m
+
+File [0;32mrasterio/_err.pyx:221[0m, in [0;36mrasterio._err.exc_wrap_pointer[0;34m()[0m
+
+[0;31mCPLE_OpenFailedError[0m: /home/jovyan/shared-public/GeoTIFF/GL_vel_mosaic_Annual_01Dec20_30Nov21_vx_v04.0.tif: No such file or directory
+
+During handling of the above exception, another exception occurred:
+
+[0;31mRasterioIOError[0m                           Traceback (most recent call last)
+Cell [0;32mIn [8], line 5[0m
+[1;32m      3[0m localFile [38;5;241m=[39m [38;5;124m'[39m[38;5;124m/home/jovyan/shared-public/GeoTIFF/GL_vel_mosaic_Annual_01Dec20_30Nov21_*_v04.0[39m[38;5;124m'[39m
+[1;32m      4[0m [38;5;66;03m# This builds a series, which is specified by a list of files. So with 1 file, the brackets are used to pass a list rather than a single file name[39;00m
+[0;32m----> 5[0m [43mmyVelSeries[49m[38;5;241;43m.[39;49m[43mreadSeriesFromTiff[49m[43m([49m[43m[[49m[43mlocalFile[49m[43m][49m[43m,[49m[43m [49m[43museDT[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m[43m [49m[43museErrors[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m[43m [49m[43mreadSpeed[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43murl[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m[43m [49m[43museStack[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43moverviewLevel[49m[38;5;241;43m=[39;49m[38;5;241;43m1[39;49m[43m)[49m  
+[1;32m      6[0m myVelSeries[38;5;241m.[39mxr
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nisardev/nisarVelSeries.py:203[0m, in [0;36mnisarVelSeries.readSeriesFromTiff[0;34m(self, fileNames, useVelocity, useErrors, useDT, readSpeed, url, useStack, index1, index2, dateFormat, overviewLevel, suffix, chunkSize)[0m
+[1;32m    201[0m myVel [38;5;241m=[39m nisarVel()
+[1;32m    202[0m myVel[38;5;241m.[39mstackTemplate [38;5;241m=[39m stackTemplate
+[0;32m--> 203[0m [43mmyVel[49m[38;5;241;43m.[39;49m[43mreadDataFromTiff[49m[43m([49m[43mfileName[49m[43m,[49m[43m [49m[43museVelocity[49m[38;5;241;43m=[39;49m[43museVelocity[49m[43m,[49m
+[1;32m    204[0m [43m                       [49m[43museErrors[49m[38;5;241;43m=[39;49m[43museErrors[49m[43m,[49m
+[1;32m    205[0m [43m                       [49m[43mreadSpeed[49m[38;5;241;43m=[39;49m[43mreadSpeed[49m[43m,[49m
+[1;32m    206[0m [43m                       [49m[43murl[49m[38;5;241;43m=[39;49m[43murl[49m[43m,[49m[43m [49m[43museStack[49m[38;5;241;43m=[39;49m[43museStack[49m[43m,[49m
+[1;32m    207[0m [43m                       [49m[43mindex1[49m[38;5;241;43m=[39;49m[43mindex1[49m[43m,[49m[43m [49m[43mindex2[49m[38;5;241;43m=[39;49m[43mindex2[49m[43m,[49m
+[1;32m    208[0m [43m                       [49m[43mdateFormat[49m[38;5;241;43m=[39;49m[43mdateFormat[49m[43m,[49m
+[1;32m    209[0m [43m                       [49m[43moverviewLevel[49m[38;5;241;43m=[39;49m[43moverviewLevel[49m[43m,[49m
+[1;32m    210[0m [43m                       [49m[43msuffix[49m[38;5;241;43m=[39;49m[43msuffix[49m[43m,[49m[43m [49m[43mchunkSize[49m[38;5;241;43m=[39;49m[43mchunkSize[49m[43m)[49m
+[1;32m    211[0m stackTemplate [38;5;241m=[39m myVel[38;5;241m.[39mstackTemplate
+[1;32m    212[0m [38;5;28mself[39m[38;5;241m.[39mvelMaps[38;5;241m.[39mappend(myVel)
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nisardev/nisarVel.py:207[0m, in [0;36mnisarVel.readDataFromTiff[0;34m(self, fileNameBase, useVelocity, useErrors, useDT, readSpeed, url, useStack, index1, index2, dateFormat, overviewLevel, masked, suffix, date1, date2, chunkSize)[0m
+[1;32m    205[0m [38;5;28;01melse[39;00m:
+[1;32m    206[0m     skip [38;5;241m=[39m [[38;5;124m'[39m[38;5;124mvv[39m[38;5;124m'[39m]  [38;5;66;03m# Force skip[39;00m
+[0;32m--> 207[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mreadXR[49m[43m([49m[43mfileNameBase[49m[43m,[49m[43m [49m[43murl[49m[38;5;241;43m=[39;49m[43murl[49m[43m,[49m[43m [49m[43mmasked[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43museStack[49m[38;5;241;43m=[39;49m[43museStack[49m[43m,[49m
+[1;32m    208[0m [43m            [49m[43mtime[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mmidDate[49m[43m,[49m[43m [49m[43mskip[49m[38;5;241;43m=[39;49m[43mskip[49m[43m,[49m[43m [49m[43mtime1[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdate1[49m[43m,[49m
+[1;32m    209[0m [43m            [49m[43mtime2[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdate2[49m[43m,[49m[43m [49m[43moverviewLevel[49m[38;5;241;43m=[39;49m[43moverviewLevel[49m[43m,[49m
+[1;32m    210[0m [43m            [49m[43msuffix[49m[38;5;241;43m=[39;49m[43msuffix[49m[43m,[49m[43m [49m[43mchunkSize[49m[38;5;241;43m=[39;49m[43mchunkSize[49m[43m)[49m
+[1;32m    211[0m [38;5;66;03m# compute speed rather than download[39;00m
+[1;32m    212[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m readSpeed [38;5;129;01mand[39;00m useVelocity:
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nisardev/nisarBase2D.py:142[0m, in [0;36mnisarBase2D.readXR[0;34m(self, fileNameBase, url, masked, useStack, time, time1, time2, xrName, skip, overviewLevel, suffix, chunkSize, fill_value)[0m
+[1;32m    137[0m [38;5;66;03m# Do a lazy open on the tiffs[39;00m
+[1;32m    138[0m [38;5;66;03m# For now useStack turned off since it tries to read the full res[39;00m
+[1;32m    139[0m [38;5;66;03m# data and donwsample instead of the pyramid[39;00m
+[1;32m    140[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m useStack [38;5;129;01mor[39;00m overviewLevel [38;5;241m>[39m [38;5;241m-[39m[38;5;241m1[39m:
+[1;32m    141[0m     [38;5;66;03m# print('noStack')[39;00m
+[0;32m--> 142[0m     myXR [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_lazy_openTiff[49m[43m([49m[43mfileNameBase[49m[43m,[49m[43m [49m[43murl[49m[38;5;241;43m=[39;49m[43murl[49m[43m,[49m[43m [49m[43mmasked[49m[38;5;241;43m=[39;49m[43mmasked[49m[43m,[49m
+[1;32m    143[0m [43m                               [49m[43mtime[49m[38;5;241;43m=[39;49m[43mtime[49m[43m,[49m[43m [49m[43mxrName[49m[38;5;241;43m=[39;49m[43mxrName[49m[43m,[49m[43m [49m[43mskip[49m[38;5;241;43m=[39;49m[43mskip[49m[43m,[49m
+[1;32m    144[0m [43m                               [49m[43moverviewLevel[49m[38;5;241;43m=[39;49m[43moverviewLevel[49m[43m,[49m
+[1;32m    145[0m [43m                               [49m[43msuffix[49m[38;5;241;43m=[39;49m[43msuffix[49m[43m,[49m[43m [49m[43mchunkSize[49m[38;5;241;43m=[39;49m[43mchunkSize[49m[43m)[49m
+[1;32m    146[0m [38;5;28;01melse[39;00m:  [38;5;66;03m# Not debugged[39;00m
+[1;32m    147[0m     items [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_construct_stac_items(fileNameBase, time,
+[1;32m    148[0m                                        url[38;5;241m=[39murl,
+[1;32m    149[0m                                        skip[38;5;241m=[39mskip)
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nisardev/nisarBase2D.py:432[0m, in [0;36mnisarBase2D._lazy_openTiff[0;34m(self, fileNameBase, masked, url, time, xrName, skip, overviewLevel, suffix, chunkSize)[0m
+[1;32m    430[0m bandTiff [38;5;241m=[39m bandTiff[38;5;241m.[39mreplace([38;5;124m'[39m[38;5;124m*[39m[38;5;124m'[39m, band) [38;5;241m+[39m [38;5;124m'[39m[38;5;124m.tif[39m[38;5;124m'[39m [38;5;241m+[39m suffix
+[1;32m    431[0m [38;5;66;03m# read file via rioxarry[39;00m
+[0;32m--> 432[0m da [38;5;241m=[39m [43mrioxarray[49m[38;5;241;43m.[39;49m[43mopen_rasterio[49m[43m([49m[43mbandTiff[49m[43m,[49m[43m [49m[43mlock[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m
+[1;32m    433[0m [43m                             [49m[43mdefault_name[49m[38;5;241;43m=[39;49m[43mfileNameBase[49m[43m,[49m
+[1;32m    434[0m [43m                             [49m[43mchunks[49m[38;5;241;43m=[39;49m[43mchunks[49m[43m,[49m[43m [49m[43mmasked[49m[38;5;241;43m=[39;49m[43mmasked[49m[43m,[49m
+[1;32m    435[0m [43m                             [49m[43moverview_level[49m[38;5;241;43m=[39;49m[43moverviewLevel[49m[43m)[49m
+[1;32m    436[0m [38;5;66;03m# Process time dim[39;00m
+[1;32m    437[0m [38;5;28;01mif[39;00m time [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/rioxarray/_io.py:1124[0m, in [0;36mopen_rasterio[0;34m(filename, parse_coordinates, chunks, cache, lock, masked, mask_and_scale, variable, group, default_name, decode_times, decode_timedelta, band_as_variable, **open_kwargs)[0m
+[1;32m   1122[0m     [38;5;28;01melse[39;00m:
+[1;32m   1123[0m         manager [38;5;241m=[39m URIManager(file_opener, filename, mode[38;5;241m=[39m[38;5;124m"[39m[38;5;124mr[39m[38;5;124m"[39m, kwargs[38;5;241m=[39mopen_kwargs)
+[0;32m-> 1124[0m     riods [38;5;241m=[39m [43mmanager[49m[38;5;241;43m.[39;49m[43macquire[49m[43m([49m[43m)[49m
+[1;32m   1125[0m     captured_warnings [38;5;241m=[39m rio_warnings[38;5;241m.[39mcopy()
+[1;32m   1127[0m [38;5;66;03m# raise the NotGeoreferencedWarning if applicable[39;00m
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/xarray/backends/file_manager.py:183[0m, in [0;36mCachingFileManager.acquire[0;34m(self, needs_lock)[0m
+[1;32m    168[0m [38;5;28;01mdef[39;00m [38;5;21macquire[39m([38;5;28mself[39m, needs_lock[38;5;241m=[39m[38;5;28;01mTrue[39;00m):
+[1;32m    169[0m     [38;5;124;03m"""Acquire a file object from the manager.[39;00m
+[1;32m    170[0m 
+[1;32m    171[0m [38;5;124;03m    A new file is only opened if it has expired from the[39;00m
+[0;32m   (...)[0m
+[1;32m    181[0m [38;5;124;03m        An open file object, as returned by ``opener(*args, **kwargs)``.[39;00m
+[1;32m    182[0m [38;5;124;03m    """[39;00m
+[0;32m--> 183[0m     file, _ [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_acquire_with_cache_info[49m[43m([49m[43mneeds_lock[49m[43m)[49m
+[1;32m    184[0m     [38;5;28;01mreturn[39;00m file
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/xarray/backends/file_manager.py:207[0m, in [0;36mCachingFileManager._acquire_with_cache_info[0;34m(self, needs_lock)[0m
+[1;32m    205[0m     kwargs [38;5;241m=[39m kwargs[38;5;241m.[39mcopy()
+[1;32m    206[0m     kwargs[[38;5;124m"[39m[38;5;124mmode[39m[38;5;124m"[39m] [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_mode
+[0;32m--> 207[0m file [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_opener[49m[43m([49m[38;5;241;43m*[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_args[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    208[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_mode [38;5;241m==[39m [38;5;124m"[39m[38;5;124mw[39m[38;5;124m"[39m:
+[1;32m    209[0m     [38;5;66;03m# ensure file doesn't get overridden when opened again[39;00m
+[1;32m    210[0m     [38;5;28mself[39m[38;5;241m.[39m_mode [38;5;241m=[39m [38;5;124m"[39m[38;5;124ma[39m[38;5;124m"[39m
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/rasterio/env.py:451[0m, in [0;36mensure_env_with_credentials.<locals>.wrapper[0;34m(*args, **kwds)[0m
+[1;32m    448[0m     session [38;5;241m=[39m DummySession()
+[1;32m    450[0m [38;5;28;01mwith[39;00m env_ctor(session[38;5;241m=[39msession):
+[0;32m--> 451[0m     [38;5;28;01mreturn[39;00m [43mf[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwds[49m[43m)[49m
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/rasterio/__init__.py:304[0m, in [0;36mopen[0;34m(fp, mode, driver, width, height, count, crs, transform, dtype, nodata, sharing, **kwargs)[0m
+[1;32m    301[0m path [38;5;241m=[39m _parse_path(raw_dataset_path)
+[1;32m    303[0m [38;5;28;01mif[39;00m mode [38;5;241m==[39m [38;5;124m"[39m[38;5;124mr[39m[38;5;124m"[39m:
+[0;32m--> 304[0m     dataset [38;5;241m=[39m [43mDatasetReader[49m[43m([49m[43mpath[49m[43m,[49m[43m [49m[43mdriver[49m[38;5;241;43m=[39;49m[43mdriver[49m[43m,[49m[43m [49m[43msharing[49m[38;5;241;43m=[39;49m[43msharing[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    305[0m [38;5;28;01melif[39;00m mode [38;5;241m==[39m [38;5;124m"[39m[38;5;124mr+[39m[38;5;124m"[39m:
+[1;32m    306[0m     dataset [38;5;241m=[39m get_writer_for_path(path, driver[38;5;241m=[39mdriver)(
+[1;32m    307[0m         path, mode, driver[38;5;241m=[39mdriver, sharing[38;5;241m=[39msharing, [38;5;241m*[39m[38;5;241m*[39mkwargs
+[1;32m    308[0m     )
+
+File [0;32mrasterio/_base.pyx:312[0m, in [0;36mrasterio._base.DatasetBase.__init__[0;34m()[0m
+
+[0;31mRasterioIOError[0m: /home/jovyan/shared-public/GeoTIFF/GL_vel_mosaic_Annual_01Dec20_30Nov21_vx_v04.0.tif: No such file or directory
+RasterioIOError: /home/jovyan/shared-public/GeoTIFF/GL_vel_mosaic_Annual_01Dec20_30Nov21_vx_v04.0.tif: No such file or directory
+

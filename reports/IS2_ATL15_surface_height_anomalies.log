@@ -1,0 +1,130 @@
+Traceback (most recent call last):
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%matplotlib widget
+
+# import internal libraries
+import os
+
+# import external libraries
+import earthaccess
+import geopandas as gpd
+import h5py
+import hvplot.xarray
+import icepyx as ipx
+# import matplotlib as mpl
+# mpl.use('TkAgg') 
+
+import matplotlib.colors as colors
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+import numpy as np
+import pandas as pd
+from pyproj import CRS, Transformer
+import rioxarray
+import s3fs
+import xarray as xr
+
+# define utility function
+def ll2ps(lon, lat):
+    """
+    Transform coordinates from geodetic coordinates (lon, lat)
+    to Greenland (epsg:3413) coordinates (x, y)
+    x, y = ll2ps(lon, lat)
+    Inputs
+    * lon, lat in decimal degrees (lon: W is negative; lat: S is negative)
+    Outputs
+    * x, y in [m]
+    """
+    crs_ll = CRS("EPSG:4326")
+    crs_xy = CRS("EPSG:3413")
+    ll_to_xy = Transformer.from_crs(crs_ll, crs_xy, always_xy = True)
+    x, y = ll_to_xy.transform(lon, lat)
+    return x, y
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn [3], line 1[0m
+[0;32m----> 1[0m [43mget_ipython[49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mrun_line_magic[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mmatplotlib[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mwidget[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[1;32m      3[0m [38;5;66;03m# import internal libraries[39;00m
+[1;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mos[39;00m
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/IPython/core/interactiveshell.py:2364[0m, in [0;36mInteractiveShell.run_line_magic[0;34m(self, magic_name, line, _stack_depth)[0m
+[1;32m   2362[0m     kwargs[[38;5;124m'[39m[38;5;124mlocal_ns[39m[38;5;124m'[39m] [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mget_local_scope(stack_depth)
+[1;32m   2363[0m [38;5;28;01mwith[39;00m [38;5;28mself[39m[38;5;241m.[39mbuiltin_trap:
+[0;32m-> 2364[0m     result [38;5;241m=[39m [43mfn[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m   2365[0m [38;5;28;01mreturn[39;00m result
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/IPython/core/magics/pylab.py:99[0m, in [0;36mPylabMagics.matplotlib[0;34m(self, line)[0m
+[1;32m     97[0m     [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mAvailable matplotlib backends: [39m[38;5;132;01m%s[39;00m[38;5;124m"[39m [38;5;241m%[39m backends_list)
+[1;32m     98[0m [38;5;28;01melse[39;00m:
+[0;32m---> 99[0m     gui, backend [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mshell[49m[38;5;241;43m.[39;49m[43menable_matplotlib[49m[43m([49m[43margs[49m[38;5;241;43m.[39;49m[43mgui[49m[38;5;241;43m.[39;49m[43mlower[49m[43m([49m[43m)[49m[43m [49m[38;5;28;43;01mif[39;49;00m[43m [49m[38;5;28;43misinstance[39;49m[43m([49m[43margs[49m[38;5;241;43m.[39;49m[43mgui[49m[43m,[49m[43m [49m[38;5;28;43mstr[39;49m[43m)[49m[43m [49m[38;5;28;43;01melse[39;49;00m[43m [49m[43margs[49m[38;5;241;43m.[39;49m[43mgui[49m[43m)[49m
+[1;32m    100[0m     [38;5;28mself[39m[38;5;241m.[39m_show_matplotlib_backend(args[38;5;241m.[39mgui, backend)
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/IPython/core/interactiveshell.py:3528[0m, in [0;36mInteractiveShell.enable_matplotlib[0;34m(self, gui)[0m
+[1;32m   3524[0m         [38;5;28mprint[39m([38;5;124m'[39m[38;5;124mWarning: Cannot change to a different GUI toolkit: [39m[38;5;132;01m%s[39;00m[38;5;124m.[39m[38;5;124m'[39m
+[1;32m   3525[0m                 [38;5;124m'[39m[38;5;124m Using [39m[38;5;132;01m%s[39;00m[38;5;124m instead.[39m[38;5;124m'[39m [38;5;241m%[39m (gui, [38;5;28mself[39m[38;5;241m.[39mpylab_gui_select))
+[1;32m   3526[0m         gui, backend [38;5;241m=[39m pt[38;5;241m.[39mfind_gui_and_backend([38;5;28mself[39m[38;5;241m.[39mpylab_gui_select)
+[0;32m-> 3528[0m [43mpt[49m[38;5;241;43m.[39;49m[43mactivate_matplotlib[49m[43m([49m[43mbackend[49m[43m)[49m
+[1;32m   3529[0m configure_inline_support([38;5;28mself[39m, backend)
+[1;32m   3531[0m [38;5;66;03m# Now we must activate the gui pylab wants to use, and fix %run to take[39;00m
+[1;32m   3532[0m [38;5;66;03m# plot updates into account[39;00m
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/IPython/core/pylabtools.py:360[0m, in [0;36mactivate_matplotlib[0;34m(backend)[0m
+[1;32m    355[0m [38;5;66;03m# Due to circular imports, pyplot may be only partially initialised[39;00m
+[1;32m    356[0m [38;5;66;03m# when this function runs.[39;00m
+[1;32m    357[0m [38;5;66;03m# So avoid needing matplotlib attribute-lookup to access pyplot.[39;00m
+[1;32m    358[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmatplotlib[39;00m [38;5;28;01mimport[39;00m pyplot [38;5;28;01mas[39;00m plt
+[0;32m--> 360[0m [43mplt[49m[38;5;241;43m.[39;49m[43mswitch_backend[49m[43m([49m[43mbackend[49m[43m)[49m
+[1;32m    362[0m plt[38;5;241m.[39mshow[38;5;241m.[39m_needmain [38;5;241m=[39m [38;5;28;01mFalse[39;00m
+[1;32m    363[0m [38;5;66;03m# We need to detect at runtime whether show() is called by the user.[39;00m
+[1;32m    364[0m [38;5;66;03m# For this, we wrap it into a decorator which adds a 'called' flag.[39;00m
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/matplotlib/pyplot.py:265[0m, in [0;36mswitch_backend[0;34m(newbackend)[0m
+[1;32m    262[0m         rcParamsOrig[[38;5;124m"[39m[38;5;124mbackend[39m[38;5;124m"[39m] [38;5;241m=[39m [38;5;124m"[39m[38;5;124magg[39m[38;5;124m"[39m
+[1;32m    263[0m         [38;5;28;01mreturn[39;00m
+[0;32m--> 265[0m backend_mod [38;5;241m=[39m [43mimportlib[49m[38;5;241;43m.[39;49m[43mimport_module[49m[43m([49m
+[1;32m    266[0m [43m    [49m[43mcbook[49m[38;5;241;43m.[39;49m[43m_backend_module_name[49m[43m([49m[43mnewbackend[49m[43m)[49m[43m)[49m
+[1;32m    268[0m required_framework [38;5;241m=[39m _get_required_interactive_framework(backend_mod)
+[1;32m    269[0m [38;5;28;01mif[39;00m required_framework [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/importlib/__init__.py:127[0m, in [0;36mimport_module[0;34m(name, package)[0m
+[1;32m    125[0m             [38;5;28;01mbreak[39;00m
+[1;32m    126[0m         level [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
+[0;32m--> 127[0m [38;5;28;01mreturn[39;00m [43m_bootstrap[49m[38;5;241;43m.[39;49m[43m_gcd_import[49m[43m([49m[43mname[49m[43m[[49m[43mlevel[49m[43m:[49m[43m][49m[43m,[49m[43m [49m[43mpackage[49m[43m,[49m[43m [49m[43mlevel[49m[43m)[49m
+
+File [0;32m<frozen importlib._bootstrap>:1030[0m, in [0;36m_gcd_import[0;34m(name, package, level)[0m
+
+File [0;32m<frozen importlib._bootstrap>:1007[0m, in [0;36m_find_and_load[0;34m(name, import_)[0m
+
+File [0;32m<frozen importlib._bootstrap>:972[0m, in [0;36m_find_and_load_unlocked[0;34m(name, import_)[0m
+
+File [0;32m<frozen importlib._bootstrap>:228[0m, in [0;36m_call_with_frames_removed[0;34m(f, *args, **kwds)[0m
+
+File [0;32m<frozen importlib._bootstrap>:1030[0m, in [0;36m_gcd_import[0;34m(name, package, level)[0m
+
+File [0;32m<frozen importlib._bootstrap>:1007[0m, in [0;36m_find_and_load[0;34m(name, import_)[0m
+
+File [0;32m<frozen importlib._bootstrap>:984[0m, in [0;36m_find_and_load_unlocked[0;34m(name, import_)[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'ipympl'
+ModuleNotFoundError: No module named 'ipympl'
+

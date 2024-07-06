@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -761,7 +763,7 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#log-into-nasa-s-earthdata-using-the-earthaccess-package">
+    <a class="reference internal nav-link" href="#log-into-nasas-earthdata-using-the-earthaccess-package">
      Log into NASA’s Earthdata using the earthaccess package
     </a>
    </li>
@@ -896,7 +898,7 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#log-into-nasa-s-earthdata-using-the-earthaccess-package">
+    <a class="reference internal nav-link" href="#log-into-nasas-earthdata-using-the-earthaccess-package">
      Log into NASA’s Earthdata using the earthaccess package
     </a>
    </li>
@@ -980,91 +982,239 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: icepyx==1.0.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (1.0.0)
-Requirement already satisfied: h5py in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (3.9.0)
-Requirement already satisfied: fiona in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (1.9.4)
-Requirement already satisfied: datashader in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (0.16.0)
-Requirement already satisfied: shapely in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (2.0.1)
-Requirement already satisfied: geopandas in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (0.13.2)
-Requirement already satisfied: s3fs in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (2023.6.0)
-Requirement already satisfied: xarray in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (2023.12.0)
-Requirement already satisfied: earthaccess&gt;=0.5.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (0.8.2)
-Requirement already satisfied: matplotlib in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (3.8.2)
-Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (2.31.0)
-Requirement already satisfied: holoviews in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (1.18.1)
-Requirement already satisfied: numpy in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (1.23.5)
-Requirement already satisfied: h5netcdf in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (1.1.0)
-Requirement already satisfied: backoff in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (2.2.1)
-Requirement already satisfied: hvplot in /srv/conda/envs/notebook/lib/python3.10/site-packages (from icepyx==1.0.0) (0.8.4)
-Requirement already satisfied: tinynetrc&lt;2.0.0,&gt;=1.3.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (1.3.1)
-Requirement already satisfied: pqdm&gt;=0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (0.2.0)
-Requirement already satisfied: multimethod&gt;=1.8 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (1.9.1)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (2.8.2)
-Requirement already satisfied: fsspec&gt;=2022.11 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (2023.6.0)
-Requirement already satisfied: python-cmr&gt;=0.9.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (0.9.0)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from requests-&gt;icepyx==1.0.0) (2023.7.22)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from requests-&gt;icepyx==1.0.0) (1.26.18)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from requests-&gt;icepyx==1.0.0) (3.4)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from requests-&gt;icepyx==1.0.0) (3.3.0)
-Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from s3fs-&gt;icepyx==1.0.0) (3.9.1)
-Requirement already satisfied: aiobotocore~=2.5.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from s3fs-&gt;icepyx==1.0.0) (2.5.0)
-Requirement already satisfied: numba in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (0.56.4)
-Requirement already satisfied: pillow in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (9.5.0)
-Requirement already satisfied: multipledispatch in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (0.6.0)
-Requirement already satisfied: scipy in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (1.9.3)
-Requirement already satisfied: colorcet in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (3.0.1)
-Requirement already satisfied: toolz in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (0.12.0)
-Requirement already satisfied: pyct in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (0.5.0)
-Requirement already satisfied: dask in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (2022.11.0)
-Requirement already satisfied: param in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (1.13.0)
-Requirement already satisfied: pandas in /srv/conda/envs/notebook/lib/python3.10/site-packages (from datashader-&gt;icepyx==1.0.0) (1.5.1)
-Requirement already satisfied: click~=8.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from fiona-&gt;icepyx==1.0.0) (8.1.7)
-Requirement already satisfied: cligj&gt;=0.5 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from fiona-&gt;icepyx==1.0.0) (0.7.2)
-Requirement already satisfied: click-plugins&gt;=1.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from fiona-&gt;icepyx==1.0.0) (1.1.1)
-Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.10/site-packages (from fiona-&gt;icepyx==1.0.0) (1.16.0)
-Requirement already satisfied: attrs&gt;=19.2.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from fiona-&gt;icepyx==1.0.0) (23.1.0)
-Requirement already satisfied: packaging in /srv/conda/envs/notebook/lib/python3.10/site-packages (from geopandas-&gt;icepyx==1.0.0) (23.2)
-Requirement already satisfied: pyproj&gt;=3.0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from geopandas-&gt;icepyx==1.0.0) (3.6.1)
-Requirement already satisfied: pyviz-comms&gt;=0.7.4 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from holoviews-&gt;icepyx==1.0.0) (2.3.2)
-Requirement already satisfied: panel&gt;=1.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from holoviews-&gt;icepyx==1.0.0) (1.2.3)
-Requirement already satisfied: bokeh&gt;=1.0.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from hvplot-&gt;icepyx==1.0.0) (3.2.2)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;icepyx==1.0.0) (3.1.1)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;icepyx==1.0.0) (1.2.0)
-Requirement already satisfied: cycler&gt;=0.10 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;icepyx==1.0.0) (0.12.1)
-Requirement already satisfied: kiwisolver&gt;=1.3.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;icepyx==1.0.0) (1.4.5)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;icepyx==1.0.0) (4.46.0)
-Requirement already satisfied: aioitertools&gt;=0.5.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiobotocore~=2.5.0-&gt;s3fs-&gt;icepyx==1.0.0) (0.11.0)
-Requirement already satisfied: botocore&lt;1.29.77,&gt;=1.29.76 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiobotocore~=2.5.0-&gt;s3fs-&gt;icepyx==1.0.0) (1.29.76)
-Requirement already satisfied: wrapt&gt;=1.10.10 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiobotocore~=2.5.0-&gt;s3fs-&gt;icepyx==1.0.0) (1.16.0)
-Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;icepyx==1.0.0) (4.0.3)
-Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;icepyx==1.0.0) (1.9.3)
-Requirement already satisfied: frozenlist&gt;=1.1.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;icepyx==1.0.0) (1.4.0)
-Requirement already satisfied: aiosignal&gt;=1.1.2 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;icepyx==1.0.0) (1.3.1)
-Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;icepyx==1.0.0) (6.0.4)
-Requirement already satisfied: PyYAML&gt;=3.10 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (5.4.1)
-Requirement already satisfied: Jinja2&gt;=2.9 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (3.1.2)
-Requirement already satisfied: xyzservices&gt;=2021.09.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (2023.10.1)
-Requirement already satisfied: tornado&gt;=5.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (6.1)
-Requirement already satisfied: pytz&gt;=2020.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from pandas-&gt;datashader-&gt;icepyx==1.0.0) (2023.3.post1)
-Requirement already satisfied: mdit-py-plugins in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (0.4.0)
-Requirement already satisfied: typing-extensions in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (4.8.0)
-Requirement already satisfied: tqdm&gt;=4.48.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (4.64.1)
-Requirement already satisfied: linkify-it-py in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (2.0.0)
-Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (6.1.0)
-Requirement already satisfied: markdown-it-py in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (2.2.0)
-Requirement already satisfied: markdown in /srv/conda/envs/notebook/lib/python3.10/site-packages (from panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (3.5.1)
-Requirement already satisfied: bounded-pool-executor in /srv/conda/envs/notebook/lib/python3.10/site-packages (from pqdm&gt;=0.1-&gt;earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (0.0.3)
-Requirement already satisfied: cloudpickle&gt;=1.1.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from dask-&gt;datashader-&gt;icepyx==1.0.0) (3.0.0)
-Requirement already satisfied: partd&gt;=0.3.10 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from dask-&gt;datashader-&gt;icepyx==1.0.0) (1.4.1)
-Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.10/site-packages (from numba-&gt;datashader-&gt;icepyx==1.0.0) (68.2.2)
-Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from numba-&gt;datashader-&gt;icepyx==1.0.0) (0.39.1)
-Requirement already satisfied: jmespath&lt;2.0.0,&gt;=0.7.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from botocore&lt;1.29.77,&gt;=1.29.76-&gt;aiobotocore~=2.5.0-&gt;s3fs-&gt;icepyx==1.0.0) (1.0.1)
-Requirement already satisfied: MarkupSafe&gt;=2.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from Jinja2&gt;=2.9-&gt;bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (2.1.3)
-Requirement already satisfied: locket in /srv/conda/envs/notebook/lib/python3.10/site-packages (from partd&gt;=0.3.10-&gt;dask-&gt;datashader-&gt;icepyx==1.0.0) (1.0.0)
-Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.10/site-packages (from bleach-&gt;panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (0.5.1)
-Requirement already satisfied: uc-micro-py in /srv/conda/envs/notebook/lib/python3.10/site-packages (from linkify-it-py-&gt;panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (1.0.1)
-Requirement already satisfied: mdurl~=0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from markdown-it-py-&gt;panel&gt;=1.0-&gt;holoviews-&gt;icepyx==1.0.0) (0.1.0)
-Note: you may need to restart the kernel to use updated packages.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting icepyx==1.0.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading icepyx-1.0.0-py3-none-any.whl (76 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/76.4 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">76.4/76.4 kB</span> <span class=" -Color -Color-Red">6.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: fiona in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (1.8.22)
+Requirement already satisfied: holoviews in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (1.15.1)
+Requirement already satisfied: requests in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (2.28.1)
+Requirement already satisfied: geopandas in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (0.12.1)
+Requirement already satisfied: shapely in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (1.8.5.post1)
+Requirement already satisfied: hvplot in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (0.8.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting s3fs
+  Downloading s3fs-2024.6.1-py3-none-any.whl (29 kB)
+Requirement already satisfied: xarray in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (2022.10.0)
+Requirement already satisfied: datashader in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (0.14.2)
+Requirement already satisfied: h5netcdf in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (0.0.0)
+Collecting earthaccess&gt;=0.5.1
+  Downloading earthaccess-0.9.0-py3-none-any.whl (57 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/57.1 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">57.1/57.1 kB</span> <span class=" -Color -Color-Red">28.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: numpy in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (1.23.4)
+Requirement already satisfied: matplotlib in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (3.6.1)
+Requirement already satisfied: h5py in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (3.7.0)
+Requirement already satisfied: backoff in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (2.2.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pqdm&gt;=0.1
+  Downloading pqdm-0.2.0-py2.py3-none-any.whl (6.8 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting fsspec&gt;=2022.11
+  Downloading fsspec-2024.6.1-py3-none-any.whl (177 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/177.6 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">177.6/177.6 kB</span> <span class=" -Color -Color-Red">61.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hCollecting python-cmr&gt;=0.9.0
+  Downloading python_cmr-0.11.0-py3-none-any.whl (13 kB)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (2.8.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting multimethod&gt;=1.8
+  Downloading multimethod-1.12-py3-none-any.whl (10 kB)
+Collecting tinynetrc&lt;2.0.0,&gt;=1.3.1
+  Downloading tinynetrc-1.3.1-py2.py3-none-any.whl (3.9 kB)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from requests-&gt;icepyx==1.0.0) (3.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from requests-&gt;icepyx==1.0.0) (2022.9.24)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from requests-&gt;icepyx==1.0.0) (1.26.11)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from requests-&gt;icepyx==1.0.0) (2.1.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting aiohttp!=4.0.0a0,!=4.0.0a1
+  Downloading aiohttp-3.9.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.2 MB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/1.2 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.2/1.2 MB</span> <span class=" -Color -Color-Red">135.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting aiobotocore&lt;3.0.0,&gt;=2.5.4
+  Downloading aiobotocore-2.13.1-py3-none-any.whl (76 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/76.9 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">76.9/76.9 kB</span> <span class=" -Color -Color-Red">34.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: param&gt;=1.6.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (1.12.2)
+Requirement already satisfied: datashape&gt;=0.5.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (0.5.4)
+Requirement already satisfied: pandas&gt;=0.24.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (1.5.1)
+Requirement already satisfied: colorcet&gt;=0.9.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (3.0.1)
+Requirement already satisfied: pillow&gt;=3.1.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (9.2.0)
+Requirement already satisfied: pyct&gt;=0.4.5 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (0.4.6)
+Requirement already satisfied: scipy in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (1.9.3)
+Requirement already satisfied: dask[complete] in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (2022.6.1)
+Requirement already satisfied: numba&gt;=0.51 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (0.56.3)
+Requirement already satisfied: packaging&gt;=21.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from xarray-&gt;icepyx==1.0.0) (21.3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: click-plugins&gt;=1.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (1.1.1)
+Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (65.5.0)
+Requirement already satisfied: attrs&gt;=17 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (21.4.0)
+Requirement already satisfied: munch in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (2.5.0)
+Requirement already satisfied: cligj&gt;=0.5 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (0.7.2)
+Requirement already satisfied: click&gt;=4.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (8.1.3)
+Requirement already satisfied: six&gt;=1.7 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (1.16.0)
+Requirement already satisfied: pyproj&gt;=2.6.1.post1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from geopandas-&gt;icepyx==1.0.0) (3.4.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: panel&gt;=0.13.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from holoviews-&gt;icepyx==1.0.0) (0.14.0)
+Requirement already satisfied: pyviz-comms&gt;=0.7.4 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from holoviews-&gt;icepyx==1.0.0) (2.2.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: bokeh&gt;=1.0.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from hvplot-&gt;icepyx==1.0.0) (2.4.3)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (0.11.0)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (1.0.6)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (4.38.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (1.4.4)
+Requirement already satisfied: pyparsing&gt;=2.2.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (3.0.9)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting aioitertools&lt;1.0.0,&gt;=0.5.1
+  Downloading aioitertools-0.11.0-py3-none-any.whl (23 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting botocore&lt;1.34.132,&gt;=1.34.70
+  Downloading botocore-1.34.131-py3-none-any.whl (12.3 MB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/12.3 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6.1/12.3 MB</span> <span class=" -Color -Color-Red">183.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">12.3/12.3 MB</span> <span class=" -Color -Color-Red">214.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">12.3/12.3 MB</span> <span class=" -Color -Color-Red">142.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting wrapt&lt;2.0.0,&gt;=1.10.10
+  Downloading wrapt-1.16.0-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (80 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/80.1 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">80.1/80.1 kB</span> <span class=" -Color -Color-Red">33.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting yarl&lt;2.0,&gt;=1.0
+  Downloading yarl-1.9.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (304 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/304.3 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">304.3/304.3 kB</span> <span class=" -Color -Color-Red">82.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting multidict&lt;7.0,&gt;=4.5
+  Downloading multidict-6.0.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (123 kB)
+?25l
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/123.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">123.8/123.8 kB</span> <span class=" -Color -Color-Red">53.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hCollecting aiosignal&gt;=1.1.2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting frozenlist&gt;=1.1.1
+  Downloading frozenlist-1.4.1-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (240 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/240.7 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">240.7/240.7 kB</span> <span class=" -Color -Color-Red">80.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting async-timeout&lt;5.0,&gt;=4.0
+  Downloading async_timeout-4.0.3-py3-none-any.whl (5.7 kB)
+Requirement already satisfied: typing-extensions&gt;=3.10.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (4.4.0)
+Requirement already satisfied: PyYAML&gt;=3.10 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (6.0)
+Requirement already satisfied: tornado&gt;=5.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (6.2)
+Requirement already satisfied: Jinja2&gt;=2.9 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (3.1.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: multipledispatch&gt;=0.4.7 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashape&gt;=0.5.1-&gt;datashader-&gt;icepyx==1.0.0) (0.6.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from numba&gt;=0.51-&gt;datashader-&gt;icepyx==1.0.0) (0.39.1)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from pandas&gt;=0.24.1-&gt;datashader-&gt;icepyx==1.0.0) (2022.6)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: tqdm&gt;=4.48.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from panel&gt;=0.13.1-&gt;holoviews-&gt;icepyx==1.0.0) (4.64.1)
+Requirement already satisfied: bleach in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from panel&gt;=0.13.1-&gt;holoviews-&gt;icepyx==1.0.0) (5.0.1)
+Requirement already satisfied: markdown in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from panel&gt;=0.13.1-&gt;holoviews-&gt;icepyx==1.0.0) (3.4.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting bounded-pool-executor
+  Downloading bounded_pool_executor-0.0.3-py3-none-any.whl (3.4 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting typing-extensions&gt;=3.10.0
+  Downloading typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: partd&gt;=0.3.10 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.3.0)
+Requirement already satisfied: toolz&gt;=0.8.2 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (0.12.0)
+Requirement already satisfied: cloudpickle&gt;=1.1.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (2.2.0)
+Requirement already satisfied: distributed==2022.6.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (2022.6.1)
+Requirement already satisfied: msgpack&gt;=0.6.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.0.4)
+Requirement already satisfied: sortedcontainers!=2.0.0,!=2.0.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (2.4.0)
+Requirement already satisfied: psutil&gt;=5.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (5.9.3)
+Requirement already satisfied: zict&gt;=0.1.3 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (2.2.0)
+Requirement already satisfied: locket&gt;=1.0.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.0.0)
+Requirement already satisfied: tblib&gt;=1.6.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.7.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting jmespath&lt;2.0.0,&gt;=0.7.1
+  Downloading jmespath-1.0.1-py3-none-any.whl (20 kB)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from Jinja2&gt;=2.9-&gt;bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (2.1.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: webencodings in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from bleach-&gt;panel&gt;=0.13.1-&gt;holoviews-&gt;icepyx==1.0.0) (0.5.1)
+Requirement already satisfied: importlib-metadata&gt;=4.4 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from markdown-&gt;panel&gt;=0.13.1-&gt;holoviews-&gt;icepyx==1.0.0) (5.0.0)
+Requirement already satisfied: zipp&gt;=0.5 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from importlib-metadata&gt;=4.4-&gt;markdown-&gt;panel&gt;=0.13.1-&gt;holoviews-&gt;icepyx==1.0.0) (3.10.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: heapdict in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from zict&gt;=0.1.3-&gt;distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.0.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: tinynetrc, bounded-pool-executor, wrapt, typing-extensions, multimethod, multidict, jmespath, fsspec, frozenlist, async-timeout, yarl, python-cmr, pqdm, botocore, aiosignal, aioitertools, aiohttp, aiobotocore, s3fs, earthaccess, icepyx
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: typing-extensions
+    Found existing installation: typing_extensions 4.4.0
+    Uninstalling typing_extensions-4.4.0:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Successfully uninstalled typing_extensions-4.4.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: fsspec
+    Found existing installation: fsspec 2022.10.0
+    Uninstalling fsspec-2022.10.0:
+      Successfully uninstalled fsspec-2022.10.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: icepyx
+    Found existing installation: icepyx 0.6.4
+    Uninstalling icepyx-0.6.4:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Successfully uninstalled icepyx-0.6.4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed aiobotocore-2.13.1 aiohttp-3.9.5 aioitertools-0.11.0 aiosignal-1.3.1 async-timeout-4.0.3 botocore-1.34.131 bounded-pool-executor-0.0.3 earthaccess-0.9.0 frozenlist-1.4.1 fsspec-2024.6.1 icepyx-1.0.0 jmespath-1.0.1 multidict-6.0.5 multimethod-1.12 pqdm-0.2.0 python-cmr-0.11.0 s3fs-2024.6.1 tinynetrc-1.3.1 typing-extensions-4.12.2 wrapt-1.16.0 yarl-1.9.4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
 </div>
@@ -1078,13 +1228,22 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting openpyxl
-  Downloading openpyxl-3.1.2-py2.py3-none-any.whl (249 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">250.0/250.0 kB</span> <span class=" -Color -Color-Red">2.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>00:0100:01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading openpyxl-3.1.5-py2.py3-none-any.whl (250 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/250.9 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">250.9/250.9 kB</span> <span class=" -Color -Color-Red">14.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting et-xmlfile
   Downloading et_xmlfile-1.1.0-py3-none-any.whl (4.7 kB)
-Installing collected packages: et-xmlfile, openpyxl
-Successfully installed et-xmlfile-1.1.0 openpyxl-3.1.2
-Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: et-xmlfile, openpyxl
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed et-xmlfile-1.1.0 openpyxl-3.1.5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
 </div>
@@ -1136,1063 +1295,75 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/javascript">(function(root) {
-  function now() {
-    return new Date();
-  }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;matplotlib&#39;</span><span class="p">,</span> <span class="s1">&#39;widget&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># import internal libraries</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">os</span>
 
-  var force = true;
-  var py_version = '3.2.2'.replace('rc', '-rc.').replace('.dev', '-dev.');
-  var is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1;
-  var reloading = false;
-  var Bokeh = root.Bokeh;
-  var bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/IPython/core/interactiveshell.py:2364,</span> in <span class="ni">InteractiveShell.run_line_magic</span><span class="nt">(self, magic_name, line, _stack_depth)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2362</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;local_ns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_local_scope</span><span class="p">(</span><span class="n">stack_depth</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2363</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2364</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2365</span> <span class="k">return</span> <span class="n">result</span>
 
-  if (typeof (root._bokeh_timeout) === "undefined" || force) {
-    root._bokeh_timeout = Date.now() + 5000;
-    root._bokeh_failed_load = false;
-  }
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/IPython/core/magics/pylab.py:99,</span> in <span class="ni">PylabMagics.matplotlib</span><span class="nt">(self, line)</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Available matplotlib backends: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">backends_list</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">99</span>     <span class="n">gui</span><span class="p">,</span> <span class="n">backend</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">enable_matplotlib</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">gui</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">args</span><span class="o">.</span><span class="n">gui</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_show_matplotlib_backend</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">gui</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
 
-  function run_callbacks() {
-    try {
-      root._bokeh_onload_callbacks.forEach(function(callback) {
-        if (callback != null)
-          callback();
-      });
-    } finally {
-      delete root._bokeh_onload_callbacks;
-    }
-    console.debug("Bokeh: all callbacks have finished");
-  }
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/IPython/core/interactiveshell.py:3528,</span> in <span class="ni">InteractiveShell.enable_matplotlib</span><span class="nt">(self, gui)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3524</span>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: Cannot change to a different GUI toolkit: </span><span class="si">%s</span><span class="s1">.&#39;</span>
+<span class="g g-Whitespace">   </span><span class="mi">3525</span>                 <span class="s1">&#39; Using </span><span class="si">%s</span><span class="s1"> instead.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">gui</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pylab_gui_select</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">3526</span>         <span class="n">gui</span><span class="p">,</span> <span class="n">backend</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">find_gui_and_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pylab_gui_select</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3528</span> <span class="n">pt</span><span class="o">.</span><span class="n">activate_matplotlib</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3529</span> <span class="n">configure_inline_support</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3531</span> <span class="c1"># Now we must activate the gui pylab wants to use, and fix %run to take</span>
+<span class="g g-Whitespace">   </span><span class="mi">3532</span> <span class="c1"># plot updates into account</span>
 
-  function load_libs(css_urls, js_urls, js_modules, js_exports, callback) {
-    if (css_urls == null) css_urls = [];
-    if (js_urls == null) js_urls = [];
-    if (js_modules == null) js_modules = [];
-    if (js_exports == null) js_exports = {};
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/IPython/core/pylabtools.py:360,</span> in <span class="ni">activate_matplotlib</span><span class="nt">(backend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span> <span class="c1"># Due to circular imports, pyplot may be only partially initialised</span>
+<span class="g g-Whitespace">    </span><span class="mi">356</span> <span class="c1"># when this function runs.</span>
+<span class="g g-Whitespace">    </span><span class="mi">357</span> <span class="c1"># So avoid needing matplotlib attribute-lookup to access pyplot.</span>
+<span class="g g-Whitespace">    </span><span class="mi">358</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="ne">--&gt; </span><span class="mi">360</span> <span class="n">plt</span><span class="o">.</span><span class="n">switch_backend</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="o">.</span><span class="n">_needmain</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span> <span class="c1"># We need to detect at runtime whether show() is called by the user.</span>
+<span class="g g-Whitespace">    </span><span class="mi">364</span> <span class="c1"># For this, we wrap it into a decorator which adds a &#39;called&#39; flag.</span>
 
-    root._bokeh_onload_callbacks.push(callback);
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/matplotlib/pyplot.py:265,</span> in <span class="ni">switch_backend</span><span class="nt">(newbackend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">262</span>         <span class="n">rcParamsOrig</span><span class="p">[</span><span class="s2">&quot;backend&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;agg&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>         <span class="k">return</span>
+<span class="ne">--&gt; </span><span class="mi">265</span> <span class="n">backend_mod</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">266</span>     <span class="n">cbook</span><span class="o">.</span><span class="n">_backend_module_name</span><span class="p">(</span><span class="n">newbackend</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">268</span> <span class="n">required_framework</span> <span class="o">=</span> <span class="n">_get_required_interactive_framework</span><span class="p">(</span><span class="n">backend_mod</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">269</span> <span class="k">if</span> <span class="n">required_framework</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 
-    if (root._bokeh_is_loading > 0) {
-      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
-      return null;
-    }
-    if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
-      run_callbacks();
-      return null;
-    }
-    if (!reloading) {
-      console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
-    }
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/importlib/__init__.py:127,</span> in <span class="ni">import_module</span><span class="nt">(name, package)</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span>             <span class="k">break</span>
+<span class="g g-Whitespace">    </span><span class="mi">126</span>         <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">--&gt; </span><span class="mi">127</span> <span class="k">return</span> <span class="n">_bootstrap</span><span class="o">.</span><span class="n">_gcd_import</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">level</span><span class="p">:],</span> <span class="n">package</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
 
-    function on_load() {
-      root._bokeh_is_loading--;
-      if (root._bokeh_is_loading === 0) {
-        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
-        run_callbacks()
-      }
-    }
-    window._bokeh_on_load = on_load
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1030,</span> in <span class="ni">_gcd_import</span><span class="nt">(name, package, level)</span>
 
-    function on_error() {
-      console.error("failed to load " + url);
-    }
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1007,</span> in <span class="ni">_find_and_load</span><span class="nt">(name, import_)</span>
 
-    var skip = [];
-    if (window.requirejs) {
-      window.requirejs.config({'packages': {}, 'paths': {'jspanel': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/jspanel', 'jspanel-modal': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal', 'jspanel-tooltip': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip', 'jspanel-hint': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint', 'jspanel-layout': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout', 'jspanel-contextmenu': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu', 'jspanel-dock': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock', 'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@7.2.3/dist/gridstack-all', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'jspanel': {'exports': 'jsPanel'}, 'gridstack': {'exports': 'GridStack'}}});
-      require(["jspanel"], function(jsPanel) {
-	window.jsPanel = jsPanel
-	on_load()
-      })
-      require(["jspanel-modal"], function() {
-	on_load()
-      })
-      require(["jspanel-tooltip"], function() {
-	on_load()
-      })
-      require(["jspanel-hint"], function() {
-	on_load()
-      })
-      require(["jspanel-layout"], function() {
-	on_load()
-      })
-      require(["jspanel-contextmenu"], function() {
-	on_load()
-      })
-      require(["jspanel-dock"], function() {
-	on_load()
-      })
-      require(["gridstack"], function(GridStack) {
-	window.GridStack = GridStack
-	on_load()
-      })
-      require(["notyf"], function() {
-	on_load()
-      })
-      root._bokeh_is_loading = css_urls.length + 9;
-    } else {
-      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
-    }
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:972,</span> in <span class="ni">_find_and_load_unlocked</span><span class="nt">(name, import_)</span>
 
-    var existing_stylesheets = []
-    var links = document.getElementsByTagName('link')
-    for (var i = 0; i < links.length; i++) {
-      var link = links[i]
-      if (link.href != null) {
-	existing_stylesheets.push(link.href)
-      }
-    }
-    for (var i = 0; i < css_urls.length; i++) {
-      var url = css_urls[i];
-      if (existing_stylesheets.indexOf(url) !== -1) {
-	on_load()
-	continue;
-      }
-      const element = document.createElement("link");
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.rel = "stylesheet";
-      element.type = "text/css";
-      element.href = url;
-      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
-      document.body.appendChild(element);
-    }    if (((window['jsPanel'] !== undefined) && (!(window['jsPanel'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/jspanel.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    if (((window['GridStack'] !== undefined) && (!(window['GridStack'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/gridstack/gridstack@7.2.3/dist/gridstack-all.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    if (((window['Notyf'] !== undefined) && (!(window['Notyf'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    var existing_scripts = []
-    var scripts = document.getElementsByTagName('script')
-    for (var i = 0; i < scripts.length; i++) {
-      var script = scripts[i]
-      if (script.src != null) {
-	existing_scripts.push(script.src)
-      }
-    }
-    for (var i = 0; i < js_urls.length; i++) {
-      var url = js_urls[i];
-      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
-	if (!window.requirejs) {
-	  on_load();
-	}
-	continue;
-      }
-      var element = document.createElement('script');
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.async = false;
-      element.src = url;
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      document.head.appendChild(element);
-    }
-    for (var i = 0; i < js_modules.length; i++) {
-      var url = js_modules[i];
-      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
-	if (!window.requirejs) {
-	  on_load();
-	}
-	continue;
-      }
-      var element = document.createElement('script');
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.async = false;
-      element.src = url;
-      element.type = "module";
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      document.head.appendChild(element);
-    }
-    for (const name in js_exports) {
-      var url = js_exports[name];
-      if (skip.indexOf(url) >= 0 || root[name] != null) {
-	if (!window.requirejs) {
-	  on_load();
-	}
-	continue;
-      }
-      var element = document.createElement('script');
-      element.onerror = on_error;
-      element.async = false;
-      element.type = "module";
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      element.textContent = `
-      import ${name} from "${url}"
-      window.${name} = ${name}
-      window._bokeh_on_load()
-      `
-      document.head.appendChild(element);
-    }
-    if (!js_urls.length && !js_modules.length) {
-      on_load()
-    }
-  };
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:228,</span> in <span class="ni">_call_with_frames_removed</span><span class="nt">(f, *args, **kwds)</span>
 
-  function inject_raw_css(css) {
-    const element = document.createElement("style");
-    element.appendChild(document.createTextNode(css));
-    document.body.appendChild(element);
-  }
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1030,</span> in <span class="ni">_gcd_import</span><span class="nt">(name, package, level)</span>
 
-  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.2.2.min.js", "https://cdn.holoviz.org/panel/1.2.3/dist/panel.min.js"];
-  var js_modules = [];
-  var js_exports = {};
-  var css_urls = [];
-  var inline_js = [    function(Bokeh) {
-      Bokeh.set_log_level("info");
-    },
-function(Bokeh) {} // ensure no trailing comma for IE
-  ];
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1007,</span> in <span class="ni">_find_and_load</span><span class="nt">(name, import_)</span>
 
-  function run_inline_js() {
-    if ((root.Bokeh !== undefined) || (force === true)) {
-      for (var i = 0; i < inline_js.length; i++) {
-        inline_js[i].call(root, root.Bokeh);
-      }
-      // Cache old bokeh versions
-      if (Bokeh != undefined && !reloading) {
-	var NewBokeh = root.Bokeh;
-	if (Bokeh.versions === undefined) {
-	  Bokeh.versions = new Map();
-	}
-	if (NewBokeh.version !== Bokeh.version) {
-	  Bokeh.versions.set(NewBokeh.version, NewBokeh)
-	}
-	root.Bokeh = Bokeh;
-      }} else if (Date.now() < root._bokeh_timeout) {
-      setTimeout(run_inline_js, 100);
-    } else if (!root._bokeh_failed_load) {
-      console.log("Bokeh: BokehJS failed to load within specified timeout.");
-      root._bokeh_failed_load = true;
-    }
-    root._bokeh_is_initializing = false
-  }
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:984,</span> in <span class="ni">_find_and_load_unlocked</span><span class="nt">(name, import_)</span>
 
-  function load_or_wait() {
-    // Implement a backoff loop that tries to ensure we do not load multiple
-    // versions of Bokeh and its dependencies at the same time.
-    // In recent versions we use the root._bokeh_is_initializing flag
-    // to determine whether there is an ongoing attempt to initialize
-    // bokeh, however for backward compatibility we also try to ensure
-    // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
-    // before older versions are fully initialized.
-    if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
-      root._bokeh_is_initializing = false;
-      root._bokeh_onload_callbacks = undefined;
-      console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
-      load_or_wait();
-    } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
-      setTimeout(load_or_wait, 100);
-    } else {
-      Bokeh = root.Bokeh;
-      bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
-      root._bokeh_is_initializing = true
-      root._bokeh_onload_callbacks = []
-      if (!reloading && (!bokeh_loaded || is_dev)) {
-	root.Bokeh = undefined;
-      }
-      load_libs(css_urls, js_urls, js_modules, js_exports, function() {
-	console.debug("Bokeh: BokehJS plotting callback run at", now());
-	run_inline_js();
-      });
-    }
-  }
-  // Give older versions of the autoload script a head-start to ensure
-  // they initialize before we start loading newer version.
-  setTimeout(load_or_wait, 100)
-}(window));</script><script type="application/javascript">
-if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
-  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
-}
-
-
-    function JupyterCommManager() {
-    }
-
-    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
-      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
-        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
-        comm_manager.register_target(comm_id, function(comm) {
-          comm.on_msg(msg_handler);
-        });
-      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
-        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
-          comm.onMsg = msg_handler;
-        });
-      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
-        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
-          var messages = comm.messages[Symbol.asyncIterator]();
-          function processIteratorResult(result) {
-            var message = result.value;
-            console.log(message)
-            var content = {data: message.data, comm_id};
-            var buffers = []
-            for (var buffer of message.buffers || []) {
-              buffers.push(new DataView(buffer))
-            }
-            var metadata = message.metadata || {};
-            var msg = {content, buffers, metadata}
-            msg_handler(msg);
-            return messages.next().then(processIteratorResult);
-          }
-          return messages.next().then(processIteratorResult);
-        })
-      }
-    }
-
-    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
-      if (comm_id in window.PyViz.comms) {
-        return window.PyViz.comms[comm_id];
-      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
-        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
-        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
-        if (msg_handler) {
-          comm.on_msg(msg_handler);
-        }
-      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
-        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
-        comm.open();
-        if (msg_handler) {
-          comm.onMsg = msg_handler;
-        }
-      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
-        var comm_promise = google.colab.kernel.comms.open(comm_id)
-        comm_promise.then((comm) => {
-          window.PyViz.comms[comm_id] = comm;
-          if (msg_handler) {
-            var messages = comm.messages[Symbol.asyncIterator]();
-            function processIteratorResult(result) {
-              var message = result.value;
-              var content = {data: message.data};
-              var metadata = message.metadata || {comm_id};
-              var msg = {content, metadata}
-              msg_handler(msg);
-              return messages.next().then(processIteratorResult);
-            }
-            return messages.next().then(processIteratorResult);
-          }
-        }) 
-        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
-          return comm_promise.then((comm) => {
-            comm.send(data, metadata, buffers, disposeOnDone);
-          });
-        };
-        var comm = {
-          send: sendClosure
-        };
-      }
-      window.PyViz.comms[comm_id] = comm;
-      return comm;
-    }
-    window.PyViz.comm_manager = new JupyterCommManager();
-    
-
-
-var JS_MIME_TYPE = 'application/javascript';
-var HTML_MIME_TYPE = 'text/html';
-var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
-var CLASS_NAME = 'output';
-
-/**
- * Render data to the DOM node
- */
-function render(props, node) {
-  var div = document.createElement("div");
-  var script = document.createElement("script");
-  node.appendChild(div);
-  node.appendChild(script);
-}
-
-/**
- * Handle when a new output is added
- */
-function handle_add_output(event, handle) {
-  var output_area = handle.output_area;
-  var output = handle.output;
-  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
-    return
-  }
-  var id = output.metadata[EXEC_MIME_TYPE]["id"];
-  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
-  if (id !== undefined) {
-    var nchildren = toinsert.length;
-    var html_node = toinsert[nchildren-1].children[0];
-    html_node.innerHTML = output.data[HTML_MIME_TYPE];
-    var scripts = [];
-    var nodelist = html_node.querySelectorAll("script");
-    for (var i in nodelist) {
-      if (nodelist.hasOwnProperty(i)) {
-        scripts.push(nodelist[i])
-      }
-    }
-
-    scripts.forEach( function (oldScript) {
-      var newScript = document.createElement("script");
-      var attrs = [];
-      var nodemap = oldScript.attributes;
-      for (var j in nodemap) {
-        if (nodemap.hasOwnProperty(j)) {
-          attrs.push(nodemap[j])
-        }
-      }
-      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
-      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-      oldScript.parentNode.replaceChild(newScript, oldScript);
-    });
-    if (JS_MIME_TYPE in output.data) {
-      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
-    }
-    output_area._hv_plot_id = id;
-    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
-      window.PyViz.plot_index[id] = Bokeh.index[id];
-    } else {
-      window.PyViz.plot_index[id] = null;
-    }
-  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
-    var bk_div = document.createElement("div");
-    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
-    var script_attrs = bk_div.children[0].attributes;
-    for (var i = 0; i < script_attrs.length; i++) {
-      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
-    }
-    // store reference to server id on output_area
-    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
-  }
-}
-
-/**
- * Handle when an output is cleared or removed
- */
-function handle_clear_output(event, handle) {
-  var id = handle.cell.output_area._hv_plot_id;
-  var server_id = handle.cell.output_area._bokeh_server_id;
-  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
-  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
-  if (server_id !== null) {
-    comm.send({event_type: 'server_delete', 'id': server_id});
-    return;
-  } else if (comm !== null) {
-    comm.send({event_type: 'delete', 'id': id});
-  }
-  delete PyViz.plot_index[id];
-  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
-    var doc = window.Bokeh.index[id].model.document
-    doc.clear();
-    const i = window.Bokeh.documents.indexOf(doc);
-    if (i > -1) {
-      window.Bokeh.documents.splice(i, 1);
-    }
-  }
-}
-
-/**
- * Handle kernel restart event
- */
-function handle_kernel_cleanup(event, handle) {
-  delete PyViz.comms["hv-extension-comm"];
-  window.PyViz.plot_index = {}
-}
-
-/**
- * Handle update_display_data messages
- */
-function handle_update_output(event, handle) {
-  handle_clear_output(event, {cell: {output_area: handle.output_area}})
-  handle_add_output(event, handle)
-}
-
-function register_renderer(events, OutputArea) {
-  function append_mime(data, metadata, element) {
-    // create a DOM node to render to
-    var toinsert = this.create_output_subarea(
-    metadata,
-    CLASS_NAME,
-    EXEC_MIME_TYPE
-    );
-    this.keyboard_manager.register_events(toinsert);
-    // Render to node
-    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
-    render(props, toinsert[0]);
-    element.append(toinsert);
-    return toinsert
-  }
-
-  events.on('output_added.OutputArea', handle_add_output);
-  events.on('output_updated.OutputArea', handle_update_output);
-  events.on('clear_output.CodeCell', handle_clear_output);
-  events.on('delete.Cell', handle_clear_output);
-  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
-
-  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
-    safe: true,
-    index: 0
-  });
-}
-
-if (window.Jupyter !== undefined) {
-  try {
-    var events = require('base/js/events');
-    var OutputArea = require('notebook/js/outputarea').OutputArea;
-    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
-      register_renderer(events, OutputArea);
-    }
-  } catch(err) {
-  }
-}
-</script><div class="output text_html"><style>*[data-root-id],
-*[data-root-id] > * {
-  box-sizing: border-box;
-  font-family: var(--jp-ui-font-family);
-  font-size: var(--jp-ui-font-size1);
-  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
-}
-
-/* Override VSCode background color */
-.cell-output-ipywidget-background:has(
-    > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
-  ),
-.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
-  background-color: transparent !important;
-}
-</style></div><script type="application/javascript">(function(root) {
-  function now() {
-    return new Date();
-  }
-
-  var force = true;
-  var py_version = '3.2.2'.replace('rc', '-rc.').replace('.dev', '-dev.');
-  var is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1;
-  var reloading = true;
-  var Bokeh = root.Bokeh;
-  var bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
-
-  if (typeof (root._bokeh_timeout) === "undefined" || force) {
-    root._bokeh_timeout = Date.now() + 5000;
-    root._bokeh_failed_load = false;
-  }
-
-  function run_callbacks() {
-    try {
-      root._bokeh_onload_callbacks.forEach(function(callback) {
-        if (callback != null)
-          callback();
-      });
-    } finally {
-      delete root._bokeh_onload_callbacks;
-    }
-    console.debug("Bokeh: all callbacks have finished");
-  }
-
-  function load_libs(css_urls, js_urls, js_modules, js_exports, callback) {
-    if (css_urls == null) css_urls = [];
-    if (js_urls == null) js_urls = [];
-    if (js_modules == null) js_modules = [];
-    if (js_exports == null) js_exports = {};
-
-    root._bokeh_onload_callbacks.push(callback);
-
-    if (root._bokeh_is_loading > 0) {
-      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
-      return null;
-    }
-    if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
-      run_callbacks();
-      return null;
-    }
-    if (!reloading) {
-      console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
-    }
-
-    function on_load() {
-      root._bokeh_is_loading--;
-      if (root._bokeh_is_loading === 0) {
-        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
-        run_callbacks()
-      }
-    }
-    window._bokeh_on_load = on_load
-
-    function on_error() {
-      console.error("failed to load " + url);
-    }
-
-    var skip = [];
-    if (window.requirejs) {
-      window.requirejs.config({'packages': {}, 'paths': {'jspanel': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/jspanel', 'jspanel-modal': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal', 'jspanel-tooltip': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip', 'jspanel-hint': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint', 'jspanel-layout': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout', 'jspanel-contextmenu': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu', 'jspanel-dock': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock', 'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@7.2.3/dist/gridstack-all', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'jspanel': {'exports': 'jsPanel'}, 'gridstack': {'exports': 'GridStack'}}});
-      require(["jspanel"], function(jsPanel) {
-	window.jsPanel = jsPanel
-	on_load()
-      })
-      require(["jspanel-modal"], function() {
-	on_load()
-      })
-      require(["jspanel-tooltip"], function() {
-	on_load()
-      })
-      require(["jspanel-hint"], function() {
-	on_load()
-      })
-      require(["jspanel-layout"], function() {
-	on_load()
-      })
-      require(["jspanel-contextmenu"], function() {
-	on_load()
-      })
-      require(["jspanel-dock"], function() {
-	on_load()
-      })
-      require(["gridstack"], function(GridStack) {
-	window.GridStack = GridStack
-	on_load()
-      })
-      require(["notyf"], function() {
-	on_load()
-      })
-      root._bokeh_is_loading = css_urls.length + 9;
-    } else {
-      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
-    }
-
-    var existing_stylesheets = []
-    var links = document.getElementsByTagName('link')
-    for (var i = 0; i < links.length; i++) {
-      var link = links[i]
-      if (link.href != null) {
-	existing_stylesheets.push(link.href)
-      }
-    }
-    for (var i = 0; i < css_urls.length; i++) {
-      var url = css_urls[i];
-      if (existing_stylesheets.indexOf(url) !== -1) {
-	on_load()
-	continue;
-      }
-      const element = document.createElement("link");
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.rel = "stylesheet";
-      element.type = "text/css";
-      element.href = url;
-      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
-      document.body.appendChild(element);
-    }    if (((window['jsPanel'] !== undefined) && (!(window['jsPanel'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/jspanel.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu.js', 'https://cdn.holoviz.org/panel/1.2.3/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    if (((window['GridStack'] !== undefined) && (!(window['GridStack'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/gridstack/gridstack@7.2.3/dist/gridstack-all.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    if (((window['Notyf'] !== undefined) && (!(window['Notyf'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.2.3/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    var existing_scripts = []
-    var scripts = document.getElementsByTagName('script')
-    for (var i = 0; i < scripts.length; i++) {
-      var script = scripts[i]
-      if (script.src != null) {
-	existing_scripts.push(script.src)
-      }
-    }
-    for (var i = 0; i < js_urls.length; i++) {
-      var url = js_urls[i];
-      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
-	if (!window.requirejs) {
-	  on_load();
-	}
-	continue;
-      }
-      var element = document.createElement('script');
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.async = false;
-      element.src = url;
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      document.head.appendChild(element);
-    }
-    for (var i = 0; i < js_modules.length; i++) {
-      var url = js_modules[i];
-      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
-	if (!window.requirejs) {
-	  on_load();
-	}
-	continue;
-      }
-      var element = document.createElement('script');
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.async = false;
-      element.src = url;
-      element.type = "module";
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      document.head.appendChild(element);
-    }
-    for (const name in js_exports) {
-      var url = js_exports[name];
-      if (skip.indexOf(url) >= 0 || root[name] != null) {
-	if (!window.requirejs) {
-	  on_load();
-	}
-	continue;
-      }
-      var element = document.createElement('script');
-      element.onerror = on_error;
-      element.async = false;
-      element.type = "module";
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      element.textContent = `
-      import ${name} from "${url}"
-      window.${name} = ${name}
-      window._bokeh_on_load()
-      `
-      document.head.appendChild(element);
-    }
-    if (!js_urls.length && !js_modules.length) {
-      on_load()
-    }
-  };
-
-  function inject_raw_css(css) {
-    const element = document.createElement("style");
-    element.appendChild(document.createTextNode(css));
-    document.body.appendChild(element);
-  }
-
-  var js_urls = [];
-  var js_modules = [];
-  var js_exports = {};
-  var css_urls = [];
-  var inline_js = [    function(Bokeh) {
-      Bokeh.set_log_level("info");
-    },
-function(Bokeh) {} // ensure no trailing comma for IE
-  ];
-
-  function run_inline_js() {
-    if ((root.Bokeh !== undefined) || (force === true)) {
-      for (var i = 0; i < inline_js.length; i++) {
-        inline_js[i].call(root, root.Bokeh);
-      }
-      // Cache old bokeh versions
-      if (Bokeh != undefined && !reloading) {
-	var NewBokeh = root.Bokeh;
-	if (Bokeh.versions === undefined) {
-	  Bokeh.versions = new Map();
-	}
-	if (NewBokeh.version !== Bokeh.version) {
-	  Bokeh.versions.set(NewBokeh.version, NewBokeh)
-	}
-	root.Bokeh = Bokeh;
-      }} else if (Date.now() < root._bokeh_timeout) {
-      setTimeout(run_inline_js, 100);
-    } else if (!root._bokeh_failed_load) {
-      console.log("Bokeh: BokehJS failed to load within specified timeout.");
-      root._bokeh_failed_load = true;
-    }
-    root._bokeh_is_initializing = false
-  }
-
-  function load_or_wait() {
-    // Implement a backoff loop that tries to ensure we do not load multiple
-    // versions of Bokeh and its dependencies at the same time.
-    // In recent versions we use the root._bokeh_is_initializing flag
-    // to determine whether there is an ongoing attempt to initialize
-    // bokeh, however for backward compatibility we also try to ensure
-    // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
-    // before older versions are fully initialized.
-    if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
-      root._bokeh_is_initializing = false;
-      root._bokeh_onload_callbacks = undefined;
-      console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
-      load_or_wait();
-    } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
-      setTimeout(load_or_wait, 100);
-    } else {
-      Bokeh = root.Bokeh;
-      bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
-      root._bokeh_is_initializing = true
-      root._bokeh_onload_callbacks = []
-      if (!reloading && (!bokeh_loaded || is_dev)) {
-	root.Bokeh = undefined;
-      }
-      load_libs(css_urls, js_urls, js_modules, js_exports, function() {
-	console.debug("Bokeh: BokehJS plotting callback run at", now());
-	run_inline_js();
-      });
-    }
-  }
-  // Give older versions of the autoload script a head-start to ensure
-  // they initialize before we start loading newer version.
-  setTimeout(load_or_wait, 100)
-}(window));</script><script type="application/javascript">
-if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
-  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
-}
-
-
-    function JupyterCommManager() {
-    }
-
-    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
-      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
-        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
-        comm_manager.register_target(comm_id, function(comm) {
-          comm.on_msg(msg_handler);
-        });
-      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
-        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
-          comm.onMsg = msg_handler;
-        });
-      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
-        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
-          var messages = comm.messages[Symbol.asyncIterator]();
-          function processIteratorResult(result) {
-            var message = result.value;
-            console.log(message)
-            var content = {data: message.data, comm_id};
-            var buffers = []
-            for (var buffer of message.buffers || []) {
-              buffers.push(new DataView(buffer))
-            }
-            var metadata = message.metadata || {};
-            var msg = {content, buffers, metadata}
-            msg_handler(msg);
-            return messages.next().then(processIteratorResult);
-          }
-          return messages.next().then(processIteratorResult);
-        })
-      }
-    }
-
-    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
-      if (comm_id in window.PyViz.comms) {
-        return window.PyViz.comms[comm_id];
-      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
-        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
-        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
-        if (msg_handler) {
-          comm.on_msg(msg_handler);
-        }
-      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
-        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
-        comm.open();
-        if (msg_handler) {
-          comm.onMsg = msg_handler;
-        }
-      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
-        var comm_promise = google.colab.kernel.comms.open(comm_id)
-        comm_promise.then((comm) => {
-          window.PyViz.comms[comm_id] = comm;
-          if (msg_handler) {
-            var messages = comm.messages[Symbol.asyncIterator]();
-            function processIteratorResult(result) {
-              var message = result.value;
-              var content = {data: message.data};
-              var metadata = message.metadata || {comm_id};
-              var msg = {content, metadata}
-              msg_handler(msg);
-              return messages.next().then(processIteratorResult);
-            }
-            return messages.next().then(processIteratorResult);
-          }
-        }) 
-        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
-          return comm_promise.then((comm) => {
-            comm.send(data, metadata, buffers, disposeOnDone);
-          });
-        };
-        var comm = {
-          send: sendClosure
-        };
-      }
-      window.PyViz.comms[comm_id] = comm;
-      return comm;
-    }
-    window.PyViz.comm_manager = new JupyterCommManager();
-    
-
-
-var JS_MIME_TYPE = 'application/javascript';
-var HTML_MIME_TYPE = 'text/html';
-var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
-var CLASS_NAME = 'output';
-
-/**
- * Render data to the DOM node
- */
-function render(props, node) {
-  var div = document.createElement("div");
-  var script = document.createElement("script");
-  node.appendChild(div);
-  node.appendChild(script);
-}
-
-/**
- * Handle when a new output is added
- */
-function handle_add_output(event, handle) {
-  var output_area = handle.output_area;
-  var output = handle.output;
-  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
-    return
-  }
-  var id = output.metadata[EXEC_MIME_TYPE]["id"];
-  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
-  if (id !== undefined) {
-    var nchildren = toinsert.length;
-    var html_node = toinsert[nchildren-1].children[0];
-    html_node.innerHTML = output.data[HTML_MIME_TYPE];
-    var scripts = [];
-    var nodelist = html_node.querySelectorAll("script");
-    for (var i in nodelist) {
-      if (nodelist.hasOwnProperty(i)) {
-        scripts.push(nodelist[i])
-      }
-    }
-
-    scripts.forEach( function (oldScript) {
-      var newScript = document.createElement("script");
-      var attrs = [];
-      var nodemap = oldScript.attributes;
-      for (var j in nodemap) {
-        if (nodemap.hasOwnProperty(j)) {
-          attrs.push(nodemap[j])
-        }
-      }
-      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
-      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-      oldScript.parentNode.replaceChild(newScript, oldScript);
-    });
-    if (JS_MIME_TYPE in output.data) {
-      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
-    }
-    output_area._hv_plot_id = id;
-    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
-      window.PyViz.plot_index[id] = Bokeh.index[id];
-    } else {
-      window.PyViz.plot_index[id] = null;
-    }
-  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
-    var bk_div = document.createElement("div");
-    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
-    var script_attrs = bk_div.children[0].attributes;
-    for (var i = 0; i < script_attrs.length; i++) {
-      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
-    }
-    // store reference to server id on output_area
-    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
-  }
-}
-
-/**
- * Handle when an output is cleared or removed
- */
-function handle_clear_output(event, handle) {
-  var id = handle.cell.output_area._hv_plot_id;
-  var server_id = handle.cell.output_area._bokeh_server_id;
-  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
-  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
-  if (server_id !== null) {
-    comm.send({event_type: 'server_delete', 'id': server_id});
-    return;
-  } else if (comm !== null) {
-    comm.send({event_type: 'delete', 'id': id});
-  }
-  delete PyViz.plot_index[id];
-  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
-    var doc = window.Bokeh.index[id].model.document
-    doc.clear();
-    const i = window.Bokeh.documents.indexOf(doc);
-    if (i > -1) {
-      window.Bokeh.documents.splice(i, 1);
-    }
-  }
-}
-
-/**
- * Handle kernel restart event
- */
-function handle_kernel_cleanup(event, handle) {
-  delete PyViz.comms["hv-extension-comm"];
-  window.PyViz.plot_index = {}
-}
-
-/**
- * Handle update_display_data messages
- */
-function handle_update_output(event, handle) {
-  handle_clear_output(event, {cell: {output_area: handle.output_area}})
-  handle_add_output(event, handle)
-}
-
-function register_renderer(events, OutputArea) {
-  function append_mime(data, metadata, element) {
-    // create a DOM node to render to
-    var toinsert = this.create_output_subarea(
-    metadata,
-    CLASS_NAME,
-    EXEC_MIME_TYPE
-    );
-    this.keyboard_manager.register_events(toinsert);
-    // Render to node
-    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
-    render(props, toinsert[0]);
-    element.append(toinsert);
-    return toinsert
-  }
-
-  events.on('output_added.OutputArea', handle_add_output);
-  events.on('output_updated.OutputArea', handle_update_output);
-  events.on('clear_output.CodeCell', handle_clear_output);
-  events.on('delete.Cell', handle_clear_output);
-  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
-
-  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
-    safe: true,
-    index: 0
-  });
-}
-
-if (window.Jupyter !== undefined) {
-  try {
-    var events = require('base/js/events');
-    var OutputArea = require('notebook/js/outputarea').OutputArea;
-    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
-      register_renderer(events, OutputArea);
-    }
-  } catch(err) {
-  }
-}
-</script><div class="output text_html"><style>*[data-root-id],
-*[data-root-id] > * {
-  box-sizing: border-box;
-  font-family: var(--jp-ui-font-family);
-  font-size: var(--jp-ui-font-size1);
-  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
-}
-
-/* Override VSCode background color */
-.cell-output-ipywidget-background:has(
-    > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
-  ),
-.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
-  background-color: transparent !important;
-}
-</style></div></div>
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;ipympl&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="greenland-subglacial-lakes">
@@ -5491,8 +4662,8 @@ On CryoCloud's top menu: click Kernel>Restart Kernel...
 </div>
 </div>
 </div>
-<section id="log-into-nasa-s-earthdata-using-the-earthaccess-package">
-<h3>Log into NASA’s Earthdata using the earthaccess package<a class="headerlink" href="#log-into-nasa-s-earthdata-using-the-earthaccess-package" title="Permalink to this headline">#</a></h3>
+<section id="log-into-nasas-earthdata-using-the-earthaccess-package">
+<h3>Log into NASA’s Earthdata using the earthaccess package<a class="headerlink" href="#log-into-nasas-earthdata-using-the-earthaccess-package" title="Permalink to this headline">#</a></h3>
 <p>There are multiple ways to provide your Earthdata credentials via <a class="reference external" href="https://nsidc.github.io/earthaccess/">earthaccess</a>. The <a class="reference external" href="https://nsidc.github.io/earthaccess/tutorials/restricted-datasets/#auth">earthaccess authentication class</a> automatically tries three methods for getting user credentials to log in:</p>
 <ol class="simple">
 <li><p>with <code class="docutils literal notranslate"><span class="pre">EARTHDATA_USERNAME</span></code> and <code class="docutils literal notranslate"><span class="pre">EARTHDATA_PASSWORD</span></code> environment variables</p></li>
@@ -7049,7 +6220,7 @@ Attributes:
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By Mines Glaciology Laboratory, Colorado School of Mines<br/>
+    By CryoCloud Team and Community, Colorado School of Mines<br/>
   
       &copy; Copyright 2022.<br/>
 </p>

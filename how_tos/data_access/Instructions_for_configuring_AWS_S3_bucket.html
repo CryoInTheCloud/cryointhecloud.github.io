@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Using CryoCloud S3 Scratch Bucket" href="CryoCloudScratchBucket.html" />
@@ -960,12 +962,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;gris-outlet-glacier-seasonality-icesat2/ATL06_20181020072141_03310105_001_01.h5&#39;,
- &#39;gris-outlet-glacier-seasonality-icesat2/gsfc.glb_.200204_202104_rl06v1.0_sla-ice6gd.h5&#39;,
- &#39;gris-outlet-glacier-seasonality-icesat2/new-file&#39;,
- &#39;gris-outlet-glacier-seasonality-icesat2/out.tif&#39;,
- &#39;gris-outlet-glacier-seasonality-icesat2/ssh_grids_v2205_1992101012.nc&#39;,
- &#39;gris-outlet-glacier-seasonality-icesat2/temporary_test_file&#39;]
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">s3fs</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">s3fs</span><span class="o">.</span><span class="n">S3FileSystem</span><span class="p">(</span><span class="n">anon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">profile</span><span class="o">=</span><span class="s1">&#39;icesat2&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">s3</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;gris-outlet-glacier-seasonality-icesat2&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;s3fs&#39;
 </pre></div>
 </div>
 </div>
@@ -3088,7 +3092,7 @@ if (window.Jupyter !== undefined) {
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By Mines Glaciology Laboratory, Colorado School of Mines<br/>
+    By CryoCloud Team and Community, Colorado School of Mines<br/>
   
       &copy; Copyright 2022.<br/>
 </p>
