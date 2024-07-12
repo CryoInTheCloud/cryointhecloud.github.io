@@ -37,7 +37,7 @@ File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/xar
 [0;32m---> 55[0m     value [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_cache[49m[43m[[49m[43mkey[49m[43m][49m
 [1;32m     56[0m     [38;5;28mself[39m[38;5;241m.[39m_cache[38;5;241m.[39mmove_to_end(key)
 
-[0;31mKeyError[0m: [<function open at 0x7fe4590fe3a0>, ('/home/jovyan/shared-public/GeoTIFF/GL_vel_mosaic_Annual_01Dec20_30Nov21_vx_v04.0.tif',), 'r', (('overview_level', 1), ('sharing', False))]
+[0;31mKeyError[0m: [<function open at 0x7f93892753a0>, ('/home/jovyan/shared-public/GeoTIFF/GL_vel_mosaic_Annual_01Dec20_30Nov21_vx_v04.0.tif',), 'r', (('overview_level', 1), ('sharing', False))]
 
 During handling of the above exception, another exception occurred:
 
