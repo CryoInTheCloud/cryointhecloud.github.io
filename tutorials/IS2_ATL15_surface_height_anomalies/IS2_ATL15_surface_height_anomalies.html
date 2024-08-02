@@ -51,8 +51,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -983,91 +981,129 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting icepyx==1.0.0
-  Downloading icepyx-1.0.0-py3-none-any.whl (76 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading icepyx-1.0.0-py3-none-any.whl (76 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/76.4 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">76.4/76.4 kB</span> <span class=" -Color -Color-Red">6.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: shapely in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (1.8.5.post1)
-Requirement already satisfied: numpy in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (1.23.4)
-Collecting earthaccess&gt;=0.5.1
-  Downloading earthaccess-0.9.0-py3-none-any.whl (57 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/57.1 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">57.1/57.1 kB</span> <span class=" -Color -Color-Red">24.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: matplotlib in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (3.6.1)
-Requirement already satisfied: holoviews in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (1.15.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">76.4/76.4 kB</span> <span class=" -Color -Color-Red">6.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: hvplot in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (0.8.1)
 Requirement already satisfied: requests in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (2.28.1)
 Requirement already satisfied: backoff in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (2.2.1)
-Requirement already satisfied: xarray in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (2022.10.0)
-Requirement already satisfied: fiona in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (1.8.22)
-Requirement already satisfied: datashader in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (0.14.2)
-Requirement already satisfied: geopandas in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (0.12.1)
-Requirement already satisfied: h5py in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (3.7.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting s3fs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting earthaccess&gt;=0.5.1
+  Downloading earthaccess-0.10.0-py3-none-any.whl (56 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/56.7 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">56.7/56.7 kB</span> <span class=" -Color -Color-Red">22.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: numpy in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (1.23.4)
+Collecting s3fs
   Downloading s3fs-2024.6.1-py3-none-any.whl (29 kB)
+Requirement already satisfied: geopandas in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (0.12.1)
+Requirement already satisfied: datashader in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (0.14.2)
+Requirement already satisfied: h5py in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (3.7.0)
 Requirement already satisfied: h5netcdf in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (0.0.0)
-Requirement already satisfied: hvplot in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (0.8.1)
+Requirement already satisfied: shapely in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (1.8.5.post1)
+Requirement already satisfied: xarray in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (2022.10.0)
+Requirement already satisfied: holoviews in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (1.15.1)
+Requirement already satisfied: matplotlib in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (3.6.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting python-cmr&gt;=0.9.0
-  Downloading python_cmr-0.11.0-py3-none-any.whl (13 kB)
-Collecting tinynetrc&lt;2.0.0,&gt;=1.3.1
-  Downloading tinynetrc-1.3.1-py2.py3-none-any.whl (3.9 kB)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (2.8.2)
-Collecting pqdm&gt;=0.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: fiona in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from icepyx==1.0.0) (1.8.22)
+Collecting importlib-resources&gt;=6.3.2
+  Downloading importlib_resources-6.4.0-py3-none-any.whl (38 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pqdm&gt;=0.1
   Downloading pqdm-0.2.0-py2.py3-none-any.whl (6.8 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting typing_extensions&gt;=4.10.0
+  Downloading typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting python-cmr&gt;=0.10.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading python_cmr-0.12.0-py3-none-any.whl (13 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting tinynetrc&lt;2.0.0,&gt;=1.3.1
+  Downloading tinynetrc-1.3.1-py2.py3-none-any.whl (3.9 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting multimethod&gt;=1.8
+  Downloading multimethod-1.12-py3-none-any.whl (10 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting numpy
+  Downloading numpy-2.0.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (19.5 MB)
+?25l
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/19.5 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6.3/19.5 MB</span> <span class=" -Color -Color-Red">188.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━ <span class=" -Color -Color-Green">12.7/19.5 MB</span> <span class=" -Color -Color-Red">186.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ <span class=" -Color -Color-Green">19.2/19.5 MB</span> <span class=" -Color -Color-Red">186.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">19.5/19.5 MB</span> <span class=" -Color -Color-Red">183.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">19.5/19.5 MB</span> <span class=" -Color -Color-Red">90.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting fsspec&gt;=2022.11
   Downloading fsspec-2024.6.1-py3-none-any.whl (177 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/177.6 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">177.6/177.6 kB</span> <span class=" -Color -Color-Red">56.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting multimethod&gt;=1.8
-  Downloading multimethod-1.12-py3-none-any.whl (10 kB)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from requests-&gt;icepyx==1.0.0) (2022.9.24)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">177.6/177.6 kB</span> <span class=" -Color -Color-Red">44.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from requests-&gt;icepyx==1.0.0) (3.4)
 Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from requests-&gt;icepyx==1.0.0) (2.1.1)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from requests-&gt;icepyx==1.0.0) (2022.9.24)
 Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from requests-&gt;icepyx==1.0.0) (1.26.11)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from requests-&gt;icepyx==1.0.0) (3.4)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting aiohttp!=4.0.0a0,!=4.0.0a1
-  Downloading aiohttp-3.9.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.2 MB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/1.2 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.2/1.2 MB</span> <span class=" -Color -Color-Red">57.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting aiobotocore&lt;3.0.0,&gt;=2.5.4
   Downloading aiobotocore-2.13.1-py3-none-any.whl (76 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/76.9 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">76.9/76.9 kB</span> <span class=" -Color -Color-Red">37.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">76.9/76.9 kB</span> <span class=" -Color -Color-Red">22.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scipy in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (1.9.3)
-Requirement already satisfied: pyct&gt;=0.4.5 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (0.4.6)
-Requirement already satisfied: param&gt;=1.6.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (1.12.2)
-Requirement already satisfied: colorcet&gt;=0.9.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (3.0.1)
-Requirement already satisfied: pandas&gt;=0.24.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (1.5.1)
-Requirement already satisfied: pillow&gt;=3.1.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (9.2.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting aiohttp!=4.0.0a0,!=4.0.0a1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading aiohttp-3.10.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.2 MB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/1.2 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.2/1.2 MB</span> <span class=" -Color -Color-Red">96.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pillow&gt;=3.1.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (9.2.0)
 Requirement already satisfied: numba&gt;=0.51 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (0.56.3)
+Requirement already satisfied: param&gt;=1.6.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (1.12.2)
+Requirement already satisfied: pyct&gt;=0.4.5 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (0.4.6)
+Requirement already satisfied: scipy in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (1.9.3)
+Requirement already satisfied: pandas&gt;=0.24.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (1.5.1)
+Requirement already satisfied: colorcet&gt;=0.9.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (3.0.1)
 Requirement already satisfied: datashape&gt;=0.5.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (0.5.4)
 Requirement already satisfied: dask[complete] in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashader-&gt;icepyx==1.0.0) (2022.6.1)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: packaging&gt;=21.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from xarray-&gt;icepyx==1.0.0) (21.3)
-Requirement already satisfied: six&gt;=1.7 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (1.16.0)
-Requirement already satisfied: click&gt;=4.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (8.1.3)
-Requirement already satisfied: click-plugins&gt;=1.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (1.1.1)
-Requirement already satisfied: cligj&gt;=0.5 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (0.7.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: click&gt;=4.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (8.1.3)
+Requirement already satisfied: attrs&gt;=17 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (21.4.0)
 Requirement already satisfied: munch in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (2.5.0)
 Requirement already satisfied: setuptools in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (65.5.0)
-Requirement already satisfied: attrs&gt;=17 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (21.4.0)
+Requirement already satisfied: click-plugins&gt;=1.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (1.1.1)
+Requirement already satisfied: six&gt;=1.7 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (1.16.0)
+Requirement already satisfied: cligj&gt;=0.5 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from fiona-&gt;icepyx==1.0.0) (0.7.2)
 Requirement already satisfied: pyproj&gt;=2.6.1.post1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from geopandas-&gt;icepyx==1.0.0) (3.4.0)
 </pre></div>
 </div>
@@ -1078,17 +1114,22 @@ Requirement already satisfied: panel&gt;=0.13.1 in /usr/share/miniconda3/envs/cr
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: bokeh&gt;=1.0.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from hvplot-&gt;icepyx==1.0.0) (2.4.3)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (4.38.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (2.8.2)
 Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (1.0.6)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (1.4.4)
 Requirement already satisfied: pyparsing&gt;=2.2.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (3.0.9)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (1.4.4)
 Requirement already satisfied: cycler&gt;=0.10 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (0.11.0)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from matplotlib-&gt;icepyx==1.0.0) (4.38.0)
+Collecting aioitertools&lt;1.0.0,&gt;=0.5.1
+  Downloading aioitertools-0.11.0-py3-none-any.whl (23 kB)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting wrapt&lt;2.0.0,&gt;=1.10.10
   Downloading wrapt-1.16.0-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (80 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/80.1 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">80.1/80.1 kB</span> <span class=" -Color -Color-Red">31.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">80.1/80.1 kB</span> <span class=" -Color -Color-Red">21.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -1097,56 +1138,103 @@ Requirement already satisfied: cycler&gt;=0.10 in /usr/share/miniconda3/envs/cry
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/12.3 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6.3/12.3 MB</span> <span class=" -Color -Color-Red">188.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">12.3/12.3 MB</span> <span class=" -Color -Color-Red">190.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">5.7/12.3 MB</span> <span class=" -Color -Color-Red">172.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">12.3/12.3 MB</span> <span class=" -Color -Color-Red">115.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ <span class=" -Color -Color-Green">12.0/12.3 MB</span> <span class=" -Color -Color-Red">178.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">12.3/12.3 MB</span> <span class=" -Color -Color-Red">173.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting aioitertools&lt;1.0.0,&gt;=0.5.1
-  Downloading aioitertools-0.11.0-py3-none-any.whl (23 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">12.3/12.3 MB</span> <span class=" -Color -Color-Red">106.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hCollecting aiohappyeyeballs&gt;=2.3.0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting async-timeout&lt;5.0,&gt;=4.0
-  Downloading async_timeout-4.0.3-py3-none-any.whl (5.7 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting multidict&lt;7.0,&gt;=4.5
-  Downloading multidict-6.0.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (123 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/123.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">123.8/123.8 kB</span> <span class=" -Color -Color-Red">47.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading aiohappyeyeballs-2.3.4-py3-none-any.whl (12 kB)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting frozenlist&gt;=1.1.1
   Downloading frozenlist-1.4.1-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (240 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/240.7 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">240.7/240.7 kB</span> <span class=" -Color -Color-Red">70.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting yarl&lt;2.0,&gt;=1.0
-  Downloading yarl-1.9.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (304 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/304.3 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">304.3/304.3 kB</span> <span class=" -Color -Color-Red">77.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">240.7/240.7 kB</span> <span class=" -Color -Color-Red">57.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting aiosignal&gt;=1.1.2
   Downloading aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting yarl&lt;2.0,&gt;=1.0
+  Downloading yarl-1.9.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (304 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/304.3 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">304.3/304.3 kB</span> <span class=" -Color -Color-Red">71.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting multidict&lt;7.0,&gt;=4.5
+  Downloading multidict-6.0.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (123 kB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/123.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">123.8/123.8 kB</span> <span class=" -Color -Color-Red">41.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hCollecting async-timeout&lt;5.0,&gt;=4.0
+  Downloading async_timeout-4.0.3-py3-none-any.whl (5.7 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: tornado&gt;=5.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (6.2)
 Requirement already satisfied: Jinja2&gt;=2.9 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (3.1.2)
-Requirement already satisfied: tornado&gt;=5.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (6.2)
 Requirement already satisfied: PyYAML&gt;=3.10 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (6.0)
-Requirement already satisfied: typing-extensions&gt;=3.10.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;icepyx==1.0.0) (4.4.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: multipledispatch&gt;=0.4.7 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from datashape&gt;=0.5.1-&gt;datashader-&gt;icepyx==1.0.0) (0.6.0)
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: zipp&gt;=3.1.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from importlib-resources&gt;=6.3.2-&gt;earthaccess&gt;=0.5.1-&gt;icepyx==1.0.0) (3.10.0)
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: llvmlite&lt;0.40,&gt;=0.39.0dev0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from numba&gt;=0.51-&gt;datashader-&gt;icepyx==1.0.0) (0.39.1)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from pandas&gt;=0.24.1-&gt;datashader-&gt;icepyx==1.0.0) (2022.6)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting numba&gt;=0.51
+  Downloading numba-0.60.0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (3.7 MB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/3.7 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.7/3.7 MB</span> <span class=" -Color -Color-Red">117.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting llvmlite&lt;0.44,&gt;=0.43.0dev0
+  Downloading llvmlite-0.43.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (43.9 MB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/43.9 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">5.2/43.9 MB</span> <span class=" -Color -Color-Red">156.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">10.8/43.9 MB</span> <span class=" -Color -Color-Red">159.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">16.4/43.9 MB</span> <span class=" -Color -Color-Red">162.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">22.1/43.9 MB</span> <span class=" -Color -Color-Red">164.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">27.8/43.9 MB</span> <span class=" -Color -Color-Red">166.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━ <span class=" -Color -Color-Green">33.6/43.9 MB</span> <span class=" -Color -Color-Red">168.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━ <span class=" -Color -Color-Green">39.2/43.9 MB</span> <span class=" -Color -Color-Red">166.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">43.9/43.9 MB</span> <span class=" -Color -Color-Red">177.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">43.9/43.9 MB</span> <span class=" -Color -Color-Red">177.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">43.9/43.9 MB</span> <span class=" -Color -Color-Red">177.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">43.9/43.9 MB</span> <span class=" -Color -Color-Red">60.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pytz&gt;=2020.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from pandas&gt;=0.24.1-&gt;datashader-&gt;icepyx==1.0.0) (2022.6)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: bleach in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from panel&gt;=0.13.1-&gt;holoviews-&gt;icepyx==1.0.0) (5.0.1)
@@ -1158,20 +1246,35 @@ Requirement already satisfied: tqdm&gt;=4.48.0 in /usr/share/miniconda3/envs/cry
   Downloading bounded_pool_executor-0.0.3-py3-none-any.whl (3.4 kB)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting typing-extensions&gt;=3.10.0
-  Downloading typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: partd&gt;=0.3.10 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.3.0)
+Requirement already satisfied: cloudpickle&gt;=1.1.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (2.2.0)
+Requirement already satisfied: toolz&gt;=0.8.2 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (0.12.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: toolz&gt;=0.8.2 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (0.12.0)
-Requirement already satisfied: cloudpickle&gt;=1.1.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (2.2.0)
-Requirement already satisfied: partd&gt;=0.3.10 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.3.0)
-Requirement already satisfied: distributed==2022.6.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (2022.6.1)
-Requirement already satisfied: tblib&gt;=1.6.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.7.0)
-Requirement already satisfied: sortedcontainers!=2.0.0,!=2.0.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (2.4.0)
-Requirement already satisfied: zict&gt;=0.1.3 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (2.2.0)
-Requirement already satisfied: psutil&gt;=5.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (5.9.3)
-Requirement already satisfied: locket&gt;=1.0.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.0.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: distributed==2022.6.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (2022.6.1)
 Requirement already satisfied: msgpack&gt;=0.6.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.0.4)
+Requirement already satisfied: zict&gt;=0.1.3 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (2.2.0)
+Requirement already satisfied: locket&gt;=1.0.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.0.0)
+Requirement already satisfied: tblib&gt;=1.6.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.7.0)
+Requirement already satisfied: psutil&gt;=5.0 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (5.9.3)
+Requirement already satisfied: sortedcontainers!=2.0.0,!=2.0.1 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (2.4.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting numpy
+  Downloading numpy-1.25.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.3 MB)
+?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/18.3 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">5.1/18.3 MB</span> <span class=" -Color -Color-Red">155.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">10.8/18.3 MB</span> <span class=" -Color -Color-Red">159.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━ <span class=" -Color -Color-Green">16.9/18.3 MB</span> <span class=" -Color -Color-Red">172.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">18.3/18.3 MB</span> <span class=" -Color -Color-Red">172.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">18.3/18.3 MB</span> <span class=" -Color -Color-Red">94.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting jmespath&lt;2.0.0,&gt;=0.7.1
@@ -1181,40 +1284,67 @@ Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/share/miniconda3/envs/
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: webencodings in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from bleach-&gt;panel&gt;=0.13.1-&gt;holoviews-&gt;icepyx==1.0.0) (0.5.1)
 Requirement already satisfied: importlib-metadata&gt;=4.4 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from markdown-&gt;panel&gt;=0.13.1-&gt;holoviews-&gt;icepyx==1.0.0) (5.0.0)
-Requirement already satisfied: zipp&gt;=0.5 in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from importlib-metadata&gt;=4.4-&gt;markdown-&gt;panel&gt;=0.13.1-&gt;holoviews-&gt;icepyx==1.0.0) (3.10.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: heapdict in /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages (from zict&gt;=0.1.3-&gt;distributed==2022.6.1-&gt;dask[complete]-&gt;datashader-&gt;icepyx==1.0.0) (1.0.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: tinynetrc, bounded-pool-executor, wrapt, typing-extensions, multimethod, multidict, jmespath, fsspec, frozenlist, async-timeout, yarl, python-cmr, pqdm, botocore, aiosignal, aioitertools, aiohttp, aiobotocore, s3fs, earthaccess, icepyx
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: tinynetrc, bounded-pool-executor, wrapt, typing_extensions, numpy, multimethod, multidict, llvmlite, jmespath, importlib-resources, fsspec, frozenlist, async-timeout, aiohappyeyeballs, yarl, python-cmr, pqdm, numba, botocore, aiosignal, aioitertools, aiohttp, aiobotocore, s3fs, earthaccess, icepyx
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: typing-extensions
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: typing_extensions
     Found existing installation: typing_extensions 4.4.0
     Uninstalling typing_extensions-4.4.0:
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Successfully uninstalled typing_extensions-4.4.0
+  Attempting uninstall: numpy
+    Found existing installation: numpy 1.23.4
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: fsspec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Uninstalling numpy-1.23.4:
+      Successfully uninstalled numpy-1.23.4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: llvmlite
+    Found existing installation: llvmlite 0.39.1
+    Uninstalling llvmlite-0.39.1:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Successfully uninstalled llvmlite-0.39.1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: importlib-resources
+    Found existing installation: importlib-resources 5.10.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Uninstalling importlib-resources-5.10.0:
+      Successfully uninstalled importlib-resources-5.10.0
+  Attempting uninstall: fsspec
     Found existing installation: fsspec 2022.10.0
-    Uninstalling fsspec-2022.10.0:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Uninstalling fsspec-2022.10.0:
       Successfully uninstalled fsspec-2022.10.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: numba
+    Found existing installation: numba 0.56.3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Uninstalling numba-0.56.3:
+      Successfully uninstalled numba-0.56.3
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: icepyx
     Found existing installation: icepyx 0.6.4
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Uninstalling icepyx-0.6.4:
+    Uninstalling icepyx-0.6.4:
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Successfully uninstalled icepyx-0.6.4
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed aiobotocore-2.13.1 aiohttp-3.9.5 aioitertools-0.11.0 aiosignal-1.3.1 async-timeout-4.0.3 botocore-1.34.131 bounded-pool-executor-0.0.3 earthaccess-0.9.0 frozenlist-1.4.1 fsspec-2024.6.1 icepyx-1.0.0 jmespath-1.0.1 multidict-6.0.5 multimethod-1.12 pqdm-0.2.0 python-cmr-0.11.0 s3fs-2024.6.1 tinynetrc-1.3.1 typing-extensions-4.12.2 wrapt-1.16.0 yarl-1.9.4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed aiobotocore-2.13.1 aiohappyeyeballs-2.3.4 aiohttp-3.10.0 aioitertools-0.11.0 aiosignal-1.3.1 async-timeout-4.0.3 botocore-1.34.131 bounded-pool-executor-0.0.3 earthaccess-0.10.0 frozenlist-1.4.1 fsspec-2024.6.1 icepyx-1.0.0 importlib-resources-6.4.0 jmespath-1.0.1 llvmlite-0.43.0 multidict-6.0.5 multimethod-1.12 numba-0.60.0 numpy-1.25.2 pqdm-0.2.0 python-cmr-0.12.0 s3fs-2024.6.1 tinynetrc-1.3.1 typing_extensions-4.12.2 wrapt-1.16.0 yarl-1.9.4
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
@@ -1235,11 +1365,8 @@ Requirement already satisfied: zipp&gt;=0.5 in /usr/share/miniconda3/envs/cryocl
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading openpyxl-3.1.5-py2.py3-none-any.whl (250 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/250.9 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">250.9/250.9 kB</span> <span class=" -Color -Color-Red">10.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting et-xmlfile
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">250.9/250.9 kB</span> <span class=" -Color -Color-Red">13.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hCollecting et-xmlfile
   Downloading et_xmlfile-1.1.0-py3-none-any.whl (4.7 kB)
 </pre></div>
 </div>
