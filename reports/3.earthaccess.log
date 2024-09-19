@@ -112,6 +112,6 @@ File [0;32m/usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/par
 [1;32m   1350[0m [38;5;28;01melse[39;00m:
 [1;32m   1351[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m ([38;5;28missubclass[39m(val, class_)):
 
-[0;31mValueError[0m: ClassSelector parameter None value must be an instance of (function, tuple), not <function size at 0x7f500c424330>.
-ValueError: ClassSelector parameter None value must be an instance of (function, tuple), not <function size at 0x7f500c424330>.
+[0;31mValueError[0m: ClassSelector parameter None value must be an instance of (function, tuple), not <function size at 0x7f6af405b3f0>.
+ValueError: ClassSelector parameter None value must be an instance of (function, tuple), not <function size at 0x7f6af405b3f0>.
 
