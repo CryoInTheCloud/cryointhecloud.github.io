@@ -961,13 +961,140 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">s3fs</span>
+<span class="ne">ProfileNotFound</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">s3fs</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">s3fs</span><span class="o">.</span><span class="n">S3FileSystem</span><span class="p">(</span><span class="n">anon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">profile</span><span class="o">=</span><span class="s1">&#39;icesat2&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">s3</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;gris-outlet-glacier-seasonality-icesat2&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">s3</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;gris-outlet-glacier-seasonality-icesat2&#39;</span><span class="p">)</span>
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;s3fs&#39;
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/fsspec/asyn.py:118,</span> in <span class="ni">sync_wrapper.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span> <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>     <span class="bp">self</span> <span class="o">=</span> <span class="n">obj</span> <span class="ow">or</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">118</span>     <span class="k">return</span> <span class="n">sync</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/fsspec/asyn.py:103,</span> in <span class="ni">sync</span><span class="nt">(loop, func, timeout, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span>     <span class="k">raise</span> <span class="n">FSTimeoutError</span> <span class="kn">from</span> <span class="nn">return_result</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">return_result</span><span class="p">,</span> <span class="ne">BaseException</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">103</span>     <span class="k">raise</span> <span class="n">return_result</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="k">return</span> <span class="n">return_result</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/fsspec/asyn.py:56,</span> in <span class="ni">_runner</span><span class="nt">(event, coro, result, timeout)</span>
+<span class="g g-Whitespace">     </span><span class="mi">54</span>     <span class="n">coro</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="n">coro</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">56</span>     <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="n">coro</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span>     <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ex</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/s3fs/core.py:1008,</span> in <span class="ni">S3FileSystem._ls</span><span class="nt">(self, path, detail, refresh, versions)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1006</span>     <span class="n">files</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lsbuckets</span><span class="p">(</span><span class="n">refresh</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1007</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1008</span>     <span class="n">files</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lsdir</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">refresh</span><span class="p">,</span> <span class="n">versions</span><span class="o">=</span><span class="n">versions</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1009</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span> <span class="ow">and</span> <span class="s2">&quot;/&quot;</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1010</span>         <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/s3fs/core.py:723,</span> in <span class="ni">S3FileSystem._lsdir</span><span class="nt">(self, path, refresh, max_items, delimiter, prefix, versions)</span>
+<span class="g g-Whitespace">    </span><span class="mi">721</span> <span class="n">dirs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">722</span> <span class="n">files</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">--&gt; </span><span class="mi">723</span> <span class="k">async</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iterdir</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">724</span>     <span class="n">bucket</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">725</span>     <span class="n">max_items</span><span class="o">=</span><span class="n">max_items</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">726</span>     <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">727</span>     <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">728</span>     <span class="n">versions</span><span class="o">=</span><span class="n">versions</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">729</span> <span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">730</span>     <span class="k">if</span> <span class="n">c</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;directory&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">731</span>         <span class="n">dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/s3fs/core.py:754,</span> in <span class="ni">S3FileSystem._iterdir</span><span class="nt">(self, bucket, max_items, delimiter, prefix, versions)</span>
+<span class="g g-Whitespace">    </span><span class="mi">750</span> <span class="k">if</span> <span class="n">versions</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">version_aware</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">751</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">752</span>         <span class="s2">&quot;versions cannot be specified if the filesystem is not version aware&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">753</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">754</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_session</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">755</span> <span class="n">s3</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">756</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">version_aware</span><span class="p">:</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/s3fs/core.py:544,</span> in <span class="ni">S3FileSystem.set_session</span><span class="nt">(self, refresh, kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">540</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">541</span>     <span class="n">s3creator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">542</span>         <span class="s2">&quot;s3&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">conf</span><span class="p">,</span> <span class="o">**</span><span class="n">init_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">client_kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">544</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_s3</span> <span class="o">=</span> <span class="k">await</span> <span class="n">s3creator</span><span class="o">.</span><span class="fm">__aenter__</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">546</span> <span class="bp">self</span><span class="o">.</span><span class="n">_s3creator</span> <span class="o">=</span> <span class="n">s3creator</span>
+<span class="g g-Whitespace">    </span><span class="mi">547</span> <span class="c1"># the following actually closes the aiohttp connection; use of privates</span>
+<span class="g g-Whitespace">    </span><span class="mi">548</span> <span class="c1"># might break in the future, would cause exception at gc time</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/aiobotocore/session.py:25,</span> in <span class="ni">ClientCreatorContext.__aenter__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="k">async</span> <span class="k">def</span> <span class="fm">__aenter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AioBaseClient</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">25</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coro</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="fm">__aenter__</span><span class="p">()</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/aiobotocore/session.py:144,</span> in <span class="ni">AioSession._create_client</span><span class="nt">(self, service_name, region_name, api_version, use_ssl, verify, endpoint_url, aws_access_key_id, aws_secret_access_key, aws_session_token, config)</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span> <span class="k">elif</span> <span class="n">default_client_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span>     <span class="n">config</span> <span class="o">=</span> <span class="n">default_client_config</span>
+<span class="ne">--&gt; </span><span class="mi">144</span> <span class="n">region_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolve_region_name</span><span class="p">(</span><span class="n">region_name</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span> <span class="c1"># Figure out the verify value base on the various</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span> <span class="c1"># configuration options.</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span> <span class="k">if</span> <span class="n">verify</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/botocore/session.py:1021,</span> in <span class="ni">Session._resolve_region_name</span><span class="nt">(self, region_name, config)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1019</span>         <span class="n">region_name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">region_name</span>
+<span class="g g-Whitespace">   </span><span class="mi">1020</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1021</span>         <span class="n">region_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_config_variable</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="n">validate_region_name</span><span class="p">(</span><span class="n">region_name</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="c1"># For any client that we create in retrieving credentials</span>
+<span class="g g-Whitespace">   </span><span class="mi">1025</span> <span class="c1"># we want to create it using the same region as specified in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1026</span> <span class="c1"># creating this client. It is important to note though that the</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1031</span> <span class="c1"># the credentials returned at regional endpoints are valid across</span>
+<span class="g g-Whitespace">   </span><span class="mi">1032</span> <span class="c1"># all regions in the partition.</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/botocore/session.py:323,</span> in <span class="ni">Session.get_config_variable</span><span class="nt">(self, logical_name, methods)</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span> <span class="k">if</span> <span class="n">methods</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_config_variable_with_custom_methods</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="n">logical_name</span><span class="p">,</span> <span class="n">methods</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">323</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="s1">&#39;config_store&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_config_variable</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">324</span>     <span class="n">logical_name</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span> <span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/botocore/configprovider.py:472,</span> in <span class="ni">ConfigValueStore.get_config_variable</span><span class="nt">(self, logical_name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">470</span>     <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">471</span> <span class="n">provider</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mapping</span><span class="p">[</span><span class="n">logical_name</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">472</span> <span class="k">return</span> <span class="n">provider</span><span class="o">.</span><span class="n">provide</span><span class="p">()</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/botocore/configprovider.py:678,</span> in <span class="ni">ChainProvider.provide</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">671</span> <span class="sd">&quot;&quot;&quot;Provide the value from the first provider to return non-None.</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span><span class="sd"> Each provider in the chain has its provide method called. The first</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span><span class="sd"> one in the chain to return a non-None value is the returned from the</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span><span class="sd"> ChainProvider. When no non-None value is found, None is returned.</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span> <span class="k">for</span> <span class="n">provider</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_providers</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">678</span>     <span class="n">value</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">provide</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>     <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">680</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/botocore/configprovider.py:765,</span> in <span class="ni">ScopedConfigProvider.provide</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">763</span> <span class="k">def</span> <span class="nf">provide</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">764</span>     <span class="sd">&quot;&quot;&quot;Provide a value from a config file property.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">765</span>     <span class="n">scoped_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get_scoped_config</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">766</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_config_var_name</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">767</span>         <span class="n">section_config</span> <span class="o">=</span> <span class="n">scoped_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_config_var_name</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/cryocloud/lib/python3.9/site-packages/botocore/session.py:422,</span> in <span class="ni">Session.get_scoped_config</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span>     <span class="k">return</span> <span class="n">profile_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">{})</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span> <span class="k">elif</span> <span class="n">profile_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">profile_map</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span>     <span class="c1"># Otherwise if they specified a profile, it has to</span>
+<span class="g g-Whitespace">    </span><span class="mi">420</span>     <span class="c1"># exist (even if it&#39;s the default profile) otherwise</span>
+<span class="g g-Whitespace">    </span><span class="mi">421</span>     <span class="c1"># we complain.</span>
+<span class="ne">--&gt; </span><span class="mi">422</span>     <span class="k">raise</span> <span class="n">ProfileNotFound</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="n">profile_name</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">423</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">424</span>     <span class="k">return</span> <span class="n">profile_map</span><span class="p">[</span><span class="n">profile_name</span><span class="p">]</span>
+
+<span class="ne">ProfileNotFound</span>: The config profile (icesat2) could not be found
 </pre></div>
 </div>
 </div>
