@@ -301,6 +301,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../ICESat2_ATL15_dhdt/ICESat2_ATL15_dhdt.html">
+     Streaming cloud-hosted ICESat-2 ATL15 (Gridded Antarctic/Arctic Land Ice Height) to calculate dh/dt trends
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../IS2_ATL15_surface_height_anomalies/IS2_ATL15_surface_height_anomalies.html">
      Using ICESat-2 ATL15 (Gridded Arctic Land Ice Height) to investigate ice-surface height anomalies
     </a>
@@ -1071,30 +1076,6 @@ title="Print to PDF"
 <span class="kn">import</span> <span class="nn">sliderule.ipysliderule</span>
 <span class="kn">import</span> <span class="nn">shapely.geometry</span>
 <span class="kn">import</span> <span class="nn">owslib.wms</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error: missing required packages. (No module named &#39;ipyleaflet&#39;)
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">sliderule.icesat2</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">sliderule.io</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">sliderule.ipysliderule</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">shapely.geometry</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">import</span> <span class="nn">owslib.wms</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">cryocloud</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.9</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sliderule</span><span class="o">/</span><span class="n">ipysliderule</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">64</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="c1"># imports that raise error if not present</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">64</span>     <span class="kn">import</span> <span class="nn">ipyleaflet</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span> <span class="k">except</span> <span class="ne">ModuleNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span>     <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Error: missing required packages. (</span><span class="si">%s</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)))</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;ipyleaflet&#39;
 </pre></div>
 </div>
 </div>
