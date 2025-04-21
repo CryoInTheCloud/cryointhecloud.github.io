@@ -1,0 +1,1691 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Streaming cloud-hosted ICESat-2 ATL15 (Gridded Antarctic/Arctic Land Ice Height) to calculate dh/dt trends &#8212; CryoCloud</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LZVEY6377Z"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-LZVEY6377Z');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/ICESat2_ATL15_dhdt/ICESat2_ATL15_dhdt';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using ICESat-2 ATL15 (Gridded Arctic Land Ice Height) to investigate ice-surface height anomalies" href="../IS2_ATL15_surface_height_anomalies/IS2_ATL15_surface_height_anomalies.html" />
+    <link rel="prev" title="ICESat-2 and Landsat cloud access and data integration" href="../IS2_cloud_Landsat_integration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="CryoCloud - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="CryoCloud - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to CryoCloud: Empowering collaborative Earth science in the cloud
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../content/about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/mission.html">Mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/Getting_Started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/hub_best_practices.html">CryoCloud Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/Code_of_Conduct.html">CryoCloud Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/citing_cryocloud.html">Citing CryoCloud</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cloud Training</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../recorded/index.html">Cloud Training</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">How Tos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../how_tos/index.html">How To…</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../how_tos/background/index.html">Background Work</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../how_tos/background/github.html">GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../how_tos/background/jupyterhub.html">JupyterHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../how_tos/background/git.html">Git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../how_tos/background/earthdata.html">Earthdata Login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../how_tos/background/earthengine.html">Google Earth Engine Sign-Up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../how_tos/background/swc.html">Software Carpentry Training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../how_tos/background/python.html">Python Installation and Environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../how_tos/nbdime/nbdime-hub.html">nbdime - version control for Jupyter notebooks</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../how_tos/data_access/index.html">Data access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../how_tos/data_access/Cloud_Sentinel2_access.html">Sentinel 2 cloud access</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../how_tos/data_access/Instructions_for_configuring_AWS_S3_bucket.html">Instructions for setting up an AWS S3 bucket for your project</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../how_tos/data_access/CryoCloudScratchBucket.html">Using CryoCloud S3 Scratch Bucket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../external/ICESat2_Earthaccess.html">Earthaccess</a></li>
+
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../cryocloud_demo/CryoCloud_demo.html">Demo CryoCloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../IS2_cloud_Landsat_integration.html">ICESat-2 and Landsat cloud access and data integration</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Streaming cloud-hosted ICESat-2 ATL15 (Gridded Antarctic/Arctic Land Ice Height) to calculate dh/dt trends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../IS2_ATL15_surface_height_anomalies/IS2_ATL15_surface_height_anomalies.html">Using ICESat-2 ATL15 (Gridded Arctic Land Ice Height) to investigate ice-surface height anomalies</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../NASA-Earthdata-Cloud-Access/index.html">NASA Earthdata Cloud and data access using earthaccess and icepyx</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../NASA-Earthdata-Cloud-Access/1.Intro-Earthdata-Cloud.html">Introduction to NASA Earthdata Cloud and ICESat-2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../NASA-Earthdata-Cloud-Access/2.earthdata_search.html">Using NASA Earthdata Search to Discover Cloud-Hosted Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../NASA-Earthdata-Cloud-Access/3.earthaccess.html">Part 1: Introduction to the <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code> python library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../NASA-Earthdata-Cloud-Access/4.icepyx.html">Part 2: Using the <code class="docutils literal notranslate"><span class="pre">icepyx</span></code> python library to access ICESat-2 data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../NASA-Earthdata-Cloud-Access/4b.icepyx-ATL06.html">Part 2b: Using the <code class="docutils literal notranslate"><span class="pre">icepyx</span></code> python library to access ICESat-2 data (ATL06)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../SlideRule_applications/SlideRule_applications.html">CryoCloud Tutorials: SlideRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dask_for_geoscientists.html">Parallelized Cloud Computing with Dask for Geoscientists</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../ARCOdata_writingZarrs.html">Analysis-ready, cloud-optimized data: writing zarr directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GrIMP/GrIMP_tutorial_AGU23.html">Determining ice sheet change using Greenland Ice Mapping Project (GrIMP) tools</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contributing/index.html">Contributing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/workflow.html">Workflow for contributing to our JupyterBook (or any GitHub project)</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../reference/projects_supported.html">Publications, data products, and libraries supported by CryoCloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/glossary.html">Glossaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/IS2-resources.html">ICESat-2 Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/open_science.html">Open Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/open_source_software.html">Open-source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/questions.html">How to Get Help</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/CryoInTheCloud/CryoCloudWebsite/main?urlpath=lab/tree/book/tutorials/ICESat2_ATL15_dhdt/ICESat2_ATL15_dhdt.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://hub.cryointhecloud.com/hub/user-redirect/git-pull?repo=https%3A//github.com/CryoInTheCloud/CryoCloudWebsite&urlpath=lab/tree/CryoCloudWebsite/book/tutorials/ICESat2_ATL15_dhdt/ICESat2_ATL15_dhdt.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/CryoInTheCloud/CryoCloudWebsite" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/edit/main/book/tutorials/ICESat2_ATL15_dhdt/ICESat2_ATL15_dhdt.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/issues/new?title=Issue%20on%20page%20%2Ftutorials/ICESat2_ATL15_dhdt/ICESat2_ATL15_dhdt.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/tutorials/ICESat2_ATL15_dhdt/ICESat2_ATL15_dhdt.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Streaming cloud-hosted ICESat-2 ATL15 (Gridded Antarctic/Arctic Land Ice Height) to calculate dh/dt trends</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-learning-outcomes">Key learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-icesat-2">What is ICESat-2?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-atl14-15">What is ATL14/15?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming-cloud-hosted-data-from-nasa-earthdata-cloud">Streaming cloud-hosted data from NASA Earthdata Cloud</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-functions">Define functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greenland-ice-sheet-dh-dt">Greenland Ice Sheet dh/dt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antarctica-ice-sheet-atl15-pre-processing">Antarctica Ice Sheet ATL15 pre-processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antarctic-ice-sheet-dh-dt">Antarctic Ice Sheet dh/dt</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="streaming-cloud-hosted-icesat-2-atl15-gridded-antarctic-arctic-land-ice-height-to-calculate-dh-dt-trends">
+<h1>Streaming cloud-hosted ICESat-2 ATL15 (Gridded Antarctic/Arctic Land Ice Height) to calculate dh/dt trends<a class="headerlink" href="#streaming-cloud-hosted-icesat-2-atl15-gridded-antarctic-arctic-land-ice-height-to-calculate-dh-dt-trends" title="Permalink to this heading">#</a></h1>
+<br>
+<p><strong>Authors</strong></p>
+<ul class="simple">
+<li><p>Wilson Sauthoff (<a class="reference external" href="https://wsauthoff.github.io">https://wsauthoff.github.io</a>)</p></li>
+<li><p>Matthew Siegfried (<a class="reference external" href="https://mrsiegfried.github.io/">https://mrsiegfried.github.io/</a>)</p></li>
+</ul>
+<div class="section" id="key-learning-outcomes">
+<h2>Key learning outcomes<a class="headerlink" href="#key-learning-outcomes" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Learn how to open, plot, and explore gridded raster data from the ICESat-2 ATL15 data product.</p></li>
+<li><p>Use Xarray to import multi-dimensional data stored in “the cloud” and apply a function across a data cube.</p></li>
+<li><p>Use gridded time series data to calculate per pixel height change (dh/dt) trends across the full duration of the ICESat-2 mission (2019 to latest release date).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This tutorial requires a ~8 GB server instance</span>
+
+<span class="c1"># Import libraries</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">earthaccess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl_colors</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.font_manager</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">fm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.gridspec</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gridspec</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">patches</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ticker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1.anchored_artists</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnchoredSizeBar</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_axes_locatable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="what-is-icesat-2">
+<h2>What is ICESat-2?<a class="headerlink" href="#what-is-icesat-2" title="Permalink to this heading">#</a></h2>
+<p>ICESat-2 (Ice, Cloud, and land Elevation Satellite 2), part of NASA’s Earth Observing System, is a satellite mission for measuring ice sheet elevation and sea ice thickness, as well as land topography, vegetation characteristics, and clouds. It does so using an altimeter or an altitude meter, which is an instrument used to measure the altitude of an object above a fixed level (the datum we talked about earlier). This is typically achieved by measuring the time it takes for a lidar or radar pulse, released by a satellite-based altimeter, to travel to a surface, reflect, and return to be recorded by an onboard instrument. ICESat-2 uses three pairs of laser pulsers and the detector to count the reflected photons.</p>
+<p>ICESat-2 laser configuration (from <a class="reference external" href="https://doi.org/10.1016/j.rse.2019.111352">Smith and others, 2019</a>):</p>
+<p><img alt="ICESat-2 laser configuration" src="../../_images/Smith_2019_fig1.png" /></p>
+<div class="section" id="what-is-atl14-15">
+<h3>What is ATL14/15?<a class="headerlink" href="#what-is-atl14-15" title="Permalink to this heading">#</a></h3>
+<p>ATL15 is one of the various <a class="reference external" href="https://icesat-2.gsfc.nasa.gov/science/data-products">ICESat-2 data products</a>. ATL15 provides various resolutions (1 km, 10 km, 20 km, and 40 km) of gridded (AKA raster) data of height change at 3-month intervals (Smith and others, 2022), allowing for estimation of dh/dt at each grid cell.</p>
+<p>ATL14 is an accompnaying high-resolution (100 m) digital elevation model (DEM) that provides spatially continuous gridded data of ice sheet surface height at a specific datetime. ATL15 height changes are relative to the ATL14 DEM.</p>
+<p>Learn more about the ICESat-2 ATL14/15 Gridded Antarctic and Arctic Land Ice Height Change data product dataset <a class="reference external" href="https://doi.org/10.5067/ATLAS/ATL15.004">here</a>.</p>
+</div>
+</div>
+<div class="section" id="streaming-cloud-hosted-data-from-nasa-earthdata-cloud">
+<h2>Streaming cloud-hosted data from NASA Earthdata Cloud<a class="headerlink" href="#streaming-cloud-hosted-data-from-nasa-earthdata-cloud" title="Permalink to this heading">#</a></h2>
+<p>We will be working with cloud-hosted data files. This <a class="reference external" href="https://nsidc.org/data/user-resources/help-center/nasa-earthdata-cloud-data-access-guide">guide</a> explains how to find and access Earthdata cloud-hosted data. <a class="reference external" href="https://nsidc.org/data/earthdata-cloud">Here</a> is a complete list of earthdata cloud-hosted data products currently available from NSIDC.</p>
+<p><strong>Streaming cloud-hosted NASA Earthdata requires a free account. Get one <a class="reference external" href="https://www.earthdata.nasa.gov/eosdis/science-system-description/eosdis-components/earthdata-login">here</a>.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Log into NASA Earthdata to search for datasets</span>
+<span class="n">earthaccess</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;earthaccess.auth.Auth at 0x7ff27abe7990&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find ICESat-2 ATL15 version four data granules in the northern hemisphere</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">earthaccess</span><span class="o">.</span><span class="n">search_data</span><span class="p">(</span>
+    <span class="n">doi</span><span class="o">=</span><span class="s1">&#39;10.5067/ATLAS/ATL15.004&#39;</span><span class="p">,</span>
+    <span class="n">bounding_box</span><span class="o">=</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span>  <span class="c1"># (lower_left_lon, lower_left_lat , upper_right_lon, upper_right_lat))</span>
+    <span class="n">cloud_hosted</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open data granules as s3 files to stream</span>
+<span class="n">files</span> <span class="o">=</span> <span class="n">earthaccess</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">files</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "1e113f55eaac43009dd2e085bb6194ff", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "36c124386670443e9254f280f01029df", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "4583faa9dda248d08b191fd5b1c5b92f", "version_major": 2, "version_minor": 0}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_SV_0321_40km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_GL_0321_40km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_CS_0321_01km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_SV_0321_10km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_GL_0321_20km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_SV_0321_20km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_RA_0321_20km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_RA_0321_01km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_IS_0321_40km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_IS_0321_01km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_CN_0321_20km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_CN_0321_40km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_CN_0321_10km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_IS_0321_10km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_CS_0321_10km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_CS_0321_20km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_SV_0321_01km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_IS_0321_20km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_RA_0321_40km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_GL_0321_01km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_CN_0321_01km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_CS_0321_40km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_RA_0321_10km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_GL_0321_10km_004_01.nc&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># After viewing files, index the files you wish to open</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">19</span><span class="p">])</span>  <span class="c1"># 1-km resolution Greenland ATL15</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_GL_0321_01km_004_01.nc&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open ATL15 Greenland data granule into an xarray dataset</span>
+<span class="n">ATL15_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;delta_h&#39;</span><span class="p">)</span>
+
+<span class="c1"># View file structure and metadata of dataset</span>
+<span class="n">ATL15_ds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+html[data-theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 2GB
+Dimensions:              (x: 1541, y: 2741, time: 21)
+Coordinates:
+  * x                    (x) float64 12kB -6.7e+05 -6.69e+05 ... 8.7e+05
+  * y                    (y) float64 22kB -3.35e+06 -3.349e+06 ... -6.1e+05
+  * time                 (time) datetime64[ns] 168B 2019-01-01T06:00:00 ... 2...
+Data variables:
+    Polar_Stereographic  int8 1B ...
+    ice_area             (time, y, x) float32 355MB ...
+    delta_h              (time, y, x) float32 355MB ...
+    delta_h_sigma        (time, y, x) float32 355MB ...
+    data_count           (time, y, x) float32 355MB ...
+    misfit_rms           (time, y, x) float32 355MB ...
+    misfit_scaled_rms    (time, y, x) float32 355MB ...
+Attributes:
+    description:  delta_h group includes variables describing height differen...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-01065e65-cc97-4dfc-b40e-17838ad64f5b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-01065e65-cc97-4dfc-b40e-17838ad64f5b' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>x</span>: 1541</li><li><span class='xr-has-index'>y</span>: 2741</li><li><span class='xr-has-index'>time</span>: 21</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-eb62e12e-eff9-4c02-856f-fba9750bb2cb' class='xr-section-summary-in' type='checkbox'  checked><label for='section-eb62e12e-eff9-4c02-856f-fba9750bb2cb' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-6.7e+05 -6.69e+05 ... 8.7e+05</div><input id='attrs-a6beb9a5-7718-4d2e-8505-e2710f2719f5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a6beb9a5-7718-4d2e-8505-e2710f2719f5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-094a164e-35e1-4640-b425-19788f0332b2' class='xr-var-data-in' type='checkbox'><label for='data-094a164e-35e1-4640-b425-19788f0332b2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>x</dd><dt><span>datatype :</span></dt><dd>float64</dd><dt><span>least_significant_digit :</span></dt><dd>None</dd><dt><span>description :</span></dt><dd>x coordinate of the 1-km cell centers, in projected coordinates</dd><dt><span>long_name :</span></dt><dd>polar stereographic x at 1km</dd><dt><span>source :</span></dt><dd>ATBD section 3.2</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd><dt><span>standard_name :</span></dt><dd>projection_x_coordinate</dd></dl></div><div class='xr-var-data'><pre>array([-670000., -669000., -668000., ...,  868000.,  869000.,  870000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-3.35e+06 -3.349e+06 ... -6.1e+05</div><input id='attrs-3f8a5ed8-c45c-4dd1-a727-cfcede710cd9' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3f8a5ed8-c45c-4dd1-a727-cfcede710cd9' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-453fc2d7-c12c-4c30-8229-85acec97af97' class='xr-var-data-in' type='checkbox'><label for='data-453fc2d7-c12c-4c30-8229-85acec97af97' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>y</dd><dt><span>datatype :</span></dt><dd>float64</dd><dt><span>least_significant_digit :</span></dt><dd>None</dd><dt><span>description :</span></dt><dd>y coordinate of the 1-km cell centers, in projected coordinates</dd><dt><span>long_name :</span></dt><dd>polar stereographic y at 1km</dd><dt><span>source :</span></dt><dd>ATBD section 3.2</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd><dt><span>standard_name :</span></dt><dd>projection_y_coordinate</dd></dl></div><div class='xr-var-data'><pre>array([-3350000., -3349000., -3348000., ...,  -612000.,  -611000.,  -610000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2019-01-01T06:00:00 ... 2024-01-...</div><input id='attrs-a586bfd5-4c19-4074-92bc-f25a3239beb2' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a586bfd5-4c19-4074-92bc-f25a3239beb2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-335e160a-80cd-41ec-913f-d2f28cc36553' class='xr-var-data-in' type='checkbox'><label for='data-335e160a-80cd-41ec-913f-d2f28cc36553' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>dimensions :</span></dt><dd>time</dd><dt><span>datatype :</span></dt><dd>float64</dd><dt><span>least_significant_digit :</span></dt><dd>None</dd><dt><span>description :</span></dt><dd>Time for each node, in days since 2018-01-01:T00.00.00 UTC</dd><dt><span>long_name :</span></dt><dd>quarterly h(t) time</dd><dt><span>source :</span></dt><dd>ATBD section 4.2</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2019-01-01T06:00:00.000000000&#x27;, &#x27;2019-04-02T13:30:00.000000000&#x27;,
+       &#x27;2019-07-02T21:00:00.000000000&#x27;, &#x27;2019-10-02T04:30:00.000000000&#x27;,
+       &#x27;2020-01-01T12:00:00.000000000&#x27;, &#x27;2020-04-01T19:30:00.000000000&#x27;,
+       &#x27;2020-07-02T03:00:00.000000000&#x27;, &#x27;2020-10-01T10:30:00.000000000&#x27;,
+       &#x27;2020-12-31T18:00:00.000000000&#x27;, &#x27;2021-04-02T01:30:00.000000000&#x27;,
+       &#x27;2021-07-02T09:00:00.000000000&#x27;, &#x27;2021-10-01T16:30:00.000000000&#x27;,
+       &#x27;2022-01-01T00:00:00.000000000&#x27;, &#x27;2022-04-02T07:30:00.000000000&#x27;,
+       &#x27;2022-07-02T15:00:00.000000000&#x27;, &#x27;2022-10-01T22:30:00.000000000&#x27;,
+       &#x27;2023-01-01T06:00:00.000000000&#x27;, &#x27;2023-04-02T13:30:00.000000000&#x27;,
+       &#x27;2023-07-02T21:00:00.000000000&#x27;, &#x27;2023-10-02T04:30:00.000000000&#x27;,
+       &#x27;2024-01-01T12:00:00.000000000&#x27;], dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a3262ec3-42ca-4364-9848-51d2431955ab' class='xr-section-summary-in' type='checkbox'  checked><label for='section-a3262ec3-42ca-4364-9848-51d2431955ab' class='xr-section-summary' >Data variables: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>Polar_Stereographic</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int8</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-6270a036-e3b6-4ee8-aae2-8923a5c75eff' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6270a036-e3b6-4ee8-aae2-8923a5c75eff' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-664be093-4aa7-4d80-9b17-2aadd587ee72' class='xr-var-data-in' type='checkbox'><label for='data-664be093-4aa7-4d80-9b17-2aadd587ee72' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>Polar_Stereographic</dd><dt><span>grid_mapping_name :</span></dt><dd>polar_stereographic</dd><dt><span>straight_vertical_longitude_from_pole :</span></dt><dd>-45.0</dd><dt><span>latitude_of_projection_origin :</span></dt><dd>90.0</dd><dt><span>standard_parallel :</span></dt><dd>70.0</dd><dt><span>scale_factor_at_projection_origin :</span></dt><dd>1.0</dd><dt><span>false_easting :</span></dt><dd>0.0</dd><dt><span>false_northing :</span></dt><dd>0.0</dd><dt><span>semi_major_axis :</span></dt><dd>6378.137</dd><dt><span>semi_minor_axis :</span></dt><dd>6356.752</dd><dt><span>inverse_flattening :</span></dt><dd>298.257223563</dd><dt><span>spatial_epsg :</span></dt><dd>3413</dd><dt><span>spatial_ref :</span></dt><dd>PROJCS[&quot;WGS 84 / NSIDC Sea Ice Polar Stereographic North&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],UNIT[&quot;degree&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]],PROJECTION[&quot;Polar_Stereographic&quot;],PARAMETER[&quot;latitude_of_origin&quot;,70],PARAMETER[&quot;central_meridian&quot;,-45],PARAMETER[&quot;scale_factor&quot;,1],PARAMETER[&quot;false_easting&quot;,0],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;X&quot;,EAST],AXIS[&quot;Y&quot;,NORTH],AUTHORITY[&quot;EPSG&quot;,&quot;3413&quot;]]</dd><dt><span>crs_wkt :</span></dt><dd>PROJCS[&quot;WGS 84 / NSIDC Sea Ice Polar Stereographic North&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],UNIT[&quot;degree&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]],PROJECTION[&quot;Polar_Stereographic&quot;],PARAMETER[&quot;latitude_of_origin&quot;,70],PARAMETER[&quot;central_meridian&quot;,-45],PARAMETER[&quot;scale_factor&quot;,1],PARAMETER[&quot;false_easting&quot;,0],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;X&quot;,EAST],AXIS[&quot;Y&quot;,NORTH],AUTHORITY[&quot;EPSG&quot;,&quot;3413&quot;]]</dd><dt><span>GeoTransform :</span></dt><dd>[-670000.    1000.       0. -610000.       0.   -1000.]</dd></dl></div><div class='xr-var-data'><pre>[1 values with dtype=int8]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ice_area</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-d148e59d-2098-42d1-beb9-1f5a61d79b99' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d148e59d-2098-42d1-beb9-1f5a61d79b99' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c3624a3d-5419-445a-9067-e37650d85ce5' class='xr-var-data-in' type='checkbox'><label for='data-c3624a3d-5419-445a-9067-e37650d85ce5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>meters^2</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Ice-covered area of each 1x1 km grid cell, accounting for the area distortion in the polar-stereographic projections</dd><dt><span>long_name :</span></dt><dd>ice-covered area at 1 km</dd><dt><span>source :</span></dt><dd>ATBD section 3.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>[88701501 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>delta_h</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-f784b094-5198-4f04-b89a-4dd9e7248a86' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f784b094-5198-4f04-b89a-4dd9e7248a86' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-97a39a76-29f5-4729-a3ca-58472839d225' class='xr-var-data-in' type='checkbox'><label for='data-97a39a76-29f5-4729-a3ca-58472839d225' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Height change relative to the datum (Jan 1, 2020) surface</dd><dt><span>long_name :</span></dt><dd>height change  at 1 km</dd><dt><span>source :</span></dt><dd>ATBD section 3.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>[88701501 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>delta_h_sigma</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-3611e076-c78b-4e2d-9010-4514bda66a48' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3611e076-c78b-4e2d-9010-4514bda66a48' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2e0270f8-2a85-4d6a-b89d-7b0dd8100c86' class='xr-var-data-in' type='checkbox'><label for='data-2e0270f8-2a85-4d6a-b89d-7b0dd8100c86' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Estimated error in height change relative to the datum (Jan 1, 2020) surface</dd><dt><span>long_name :</span></dt><dd>height change uncertainty at 1 km</dd><dt><span>source :</span></dt><dd>ATBD section 3.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>[88701501 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>data_count</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-09f14aaf-61fe-481a-8d0f-a3c0d677cae9' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-09f14aaf-61fe-481a-8d0f-a3c0d677cae9' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f9bafecd-2a06-479c-a398-9cc7eef9432c' class='xr-var-data-in' type='checkbox'><label for='data-f9bafecd-2a06-479c-a398-9cc7eef9432c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>counts</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Weighted number of data contributing to each node in the 1-km height-change grid</dd><dt><span>long_name :</span></dt><dd>data count </dd><dt><span>source :</span></dt><dd>ATBD section 5.2.4.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>[88701501 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>misfit_rms</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-7f4663d6-72f7-431e-ad6f-c6cfc823c439' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7f4663d6-72f7-431e-ad6f-c6cfc823c439' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d9b27fde-c022-4c2a-9726-931a71224fdb' class='xr-var-data-in' type='checkbox'><label for='data-d9b27fde-c022-4c2a-9726-931a71224fdb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Misfit associated with each node in the 1-km height-change grid</dd><dt><span>long_name :</span></dt><dd>rms misfit </dd><dt><span>source :</span></dt><dd>ATBD section 5.2.4.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>[88701501 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>misfit_scaled_rms</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-f860e4a7-4b51-4c8b-acc5-9c4786aa4642' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f860e4a7-4b51-4c8b-acc5-9c4786aa4642' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f642c58d-a21d-43c9-8141-95bf6efb5bcb' class='xr-var-data-in' type='checkbox'><label for='data-f642c58d-a21d-43c9-8141-95bf6efb5bcb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>least_significant_digit :</span></dt><dd>4</dd><dt><span>units :</span></dt><dd>counts</dd><dt><span>dimensions :</span></dt><dd>time,y,x</dd><dt><span>datatype :</span></dt><dd>float32</dd><dt><span>description :</span></dt><dd>Scaled misfit associated with each node in the 1-km height-change grid</dd><dt><span>long_name :</span></dt><dd>scaled rms misfit</dd><dt><span>source :</span></dt><dd>ATBD section 5.2.4.4</dd><dt><span>grid_mapping :</span></dt><dd>Polar_Stereographic</dd></dl></div><div class='xr-var-data'><pre>[88701501 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-96d42415-6cf1-4e3d-8f2b-c6bb0354e46f' class='xr-section-summary-in' type='checkbox'  ><label for='section-96d42415-6cf1-4e3d-8f2b-c6bb0354e46f' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-fadd64c0-7a9d-4fb2-93d4-dfaa67506390' class='xr-index-data-in' type='checkbox'/><label for='index-fadd64c0-7a9d-4fb2-93d4-dfaa67506390' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-670000.0, -669000.0, -668000.0, -667000.0, -666000.0, -665000.0,
+       -664000.0, -663000.0, -662000.0, -661000.0,
+       ...
+        861000.0,  862000.0,  863000.0,  864000.0,  865000.0,  866000.0,
+        867000.0,  868000.0,  869000.0,  870000.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=1541))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-3e879594-aeb2-48e4-8885-6fbd5ae0d662' class='xr-index-data-in' type='checkbox'/><label for='index-3e879594-aeb2-48e4-8885-6fbd5ae0d662' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-3350000.0, -3349000.0, -3348000.0, -3347000.0, -3346000.0, -3345000.0,
+       -3344000.0, -3343000.0, -3342000.0, -3341000.0,
+       ...
+        -619000.0,  -618000.0,  -617000.0,  -616000.0,  -615000.0,  -614000.0,
+        -613000.0,  -612000.0,  -611000.0,  -610000.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=2741))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-38c0c881-5a8e-4c56-aadb-ba8d5ae66ade' class='xr-index-data-in' type='checkbox'/><label for='index-38c0c881-5a8e-4c56-aadb-ba8d5ae66ade' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2019-01-01 06:00:00&#x27;, &#x27;2019-04-02 13:30:00&#x27;,
+               &#x27;2019-07-02 21:00:00&#x27;, &#x27;2019-10-02 04:30:00&#x27;,
+               &#x27;2020-01-01 12:00:00&#x27;, &#x27;2020-04-01 19:30:00&#x27;,
+               &#x27;2020-07-02 03:00:00&#x27;, &#x27;2020-10-01 10:30:00&#x27;,
+               &#x27;2020-12-31 18:00:00&#x27;, &#x27;2021-04-02 01:30:00&#x27;,
+               &#x27;2021-07-02 09:00:00&#x27;, &#x27;2021-10-01 16:30:00&#x27;,
+               &#x27;2022-01-01 00:00:00&#x27;, &#x27;2022-04-02 07:30:00&#x27;,
+               &#x27;2022-07-02 15:00:00&#x27;, &#x27;2022-10-01 22:30:00&#x27;,
+               &#x27;2023-01-01 06:00:00&#x27;, &#x27;2023-04-02 13:30:00&#x27;,
+               &#x27;2023-07-02 21:00:00&#x27;, &#x27;2023-10-02 04:30:00&#x27;,
+               &#x27;2024-01-01 12:00:00&#x27;],
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4be3d361-2b3d-4b95-a74e-76f2c82ea8cf' class='xr-section-summary-in' type='checkbox'  checked><label for='section-4be3d361-2b3d-4b95-a74e-76f2c82ea8cf' class='xr-section-summary' >Attributes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>description :</span></dt><dd>delta_h group includes variables describing height differences between the model surface at any time and the DEM surface at a resolution of 1 km.</dd></dl></div></li></ul></div></div></div></div>
+</div>
+</div>
+<div class="section" id="define-functions">
+<h2>Define functions<a class="headerlink" href="#define-functions" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">linear_trend</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the linear trend (slope) of a time series using linear regression.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    y : array-like</span>
+<span class="sd">        The dependent variable (e.g., data values) for which the trend is to be computed. </span>
+<span class="sd">        This is typically a 1D array or list of observations over time.</span>
+<span class="sd">        </span>
+<span class="sd">    time : array-like</span>
+<span class="sd">        The independent variable (e.g., time points). This should be a 1D array of time values </span>
+<span class="sd">        corresponding to the `y` values. It is expected that `time` and `y` have the same length.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    slope : float</span>
+<span class="sd">        The slope of the linear trend. If there is not enough data or all values are NaN, </span>
+<span class="sd">        the function returns `np.nan`.</span>
+<span class="sd">    </span>
+<span class="sd">    Description:</span>
+<span class="sd">    ------------</span>
+<span class="sd">    This function computes the slope of the linear regression line that fits the given data </span>
+<span class="sd">    points `(time, y)`. It ignores any `NaN` values in `y` and performs the regression only </span>
+<span class="sd">    on valid data points. If there are fewer than two valid data points, the function returns `np.nan`.</span>
+<span class="sd">    </span>
+<span class="sd">    Example:</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; y = [2.0, 3.1, 4.2, 5.4, np.nan, 6.8]</span>
+<span class="sd">    &gt;&gt;&gt; time = [0, 1, 2, 3, 4, 5]</span>
+<span class="sd">    &gt;&gt;&gt; linear_trend(y, time)</span>
+<span class="sd">    1.22  # Slope of the linear trend</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create a mask that is True for finite (non-NaN) values in y, and False for NaN values</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    
+    <span class="c1"># If there are fewer than two valid data points, return NaN because we can&#39;t fit a line</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># Not enough valid data points to compute a trend</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    
+    <span class="c1"># Perform a linear fit (regression) on the valid data points (ignoring NaNs)</span>
+    <span class="c1"># np.polyfit returns the slope and intercept, [0] extracts the slope</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Return the slope of the fitted line</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_timeseries_stat</span><span class="p">(</span><span class="n">timeseries_stat_da</span><span class="p">,</span> <span class="n">cmap_extent_abs_value</span><span class="p">,</span> <span class="n">clb_label</span><span class="p">,</span> <span class="n">scale_bar_len</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots a timeseries statistic using a diverging colormap and displays a colorbar.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    timeseries_stat_da : xarray.DataArray</span>
+<span class="sd">        The data array containing the timeseries statistic to be plotted.</span>
+<span class="sd">        </span>
+<span class="sd">    cmap_extent_abs_value : float</span>
+<span class="sd">        This value is used to control the minimum/maximum value in the colormap to avoid extreme outliers</span>
+<span class="sd">        and have a symmetric colorbar.</span>
+<span class="sd">        </span>
+<span class="sd">    clb_label : str</span>
+<span class="sd">        The label for the colorbar. This should describe what the color scale represents.</span>
+
+<span class="sd">    scale_bar_len: float</span>
+<span class="sd">        Length of the displayed scale bar in km.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    None</span>
+<span class="sd">        Displays a plot of the data with a colorbar.</span>
+<span class="sd">    </span>
+<span class="sd">    Description:</span>
+<span class="sd">    ------------</span>
+<span class="sd">    This function visualizes a 2D timeseries statistic using a diverging colormap </span>
+<span class="sd">    (Red-Blue). It computes the maximum value based on the provided percentile to </span>
+<span class="sd">    handle outliers and centers the colormap around zero for balance between </span>
+<span class="sd">    positive and negative values. It also adds a horizontal colorbar below the </span>
+<span class="sd">    plot, labels it, and hides axis tick marks and labels for a cleaner presentation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create a figure and axis with a specific size for the plot</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+    <span class="c1"># Set the background of the plot area to grey</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>  <span class="c1"># This changes the color inside the plot area</span>
+
+    <span class="c1"># Customize the border around the plot</span>
+    <span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">spine</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>  <span class="c1"># Set border color to black</span>
+        <span class="n">spine</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>        <span class="c1"># Set the width of the border to 2 (thicker)</span>
+
+    <span class="c1"># Get the minimum and maximum values of the x and y dimensions</span>
+    <span class="c1"># These values will be used to set the extent of the plot</span>
+    <span class="n">x_min</span> <span class="o">=</span> <span class="n">timeseries_stat_da</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">x_max</span> <span class="o">=</span> <span class="n">timeseries_stat_da</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">y_min</span> <span class="o">=</span> <span class="n">timeseries_stat_da</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">y_max</span> <span class="o">=</span> <span class="n">timeseries_stat_da</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="c1"># Create a diverging normalization for the color scale</span>
+    <span class="c1"># This centers the color scale at 0, which is useful for visualizing differences</span>
+    <span class="n">divnorm</span> <span class="o">=</span> <span class="n">mpl_colors</span><span class="o">.</span><span class="n">TwoSlopeNorm</span><span class="p">(</span><span class="n">vcenter</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+
+    <span class="c1"># Create the normalization for the color scale, centered at 0</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">mpl_colors</span><span class="o">.</span><span class="n">TwoSlopeNorm</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="n">cmap_extent_abs_value</span><span class="p">,</span> <span class="n">vcenter</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">cmap_extent_abs_value</span><span class="p">)</span>
+
+    <span class="c1"># Plot the data array using imshow</span>
+    <span class="c1"># - extent sets the range of the x and y axes</span>
+    <span class="c1"># - cmap sets the color scheme (RdBu is red to blue for diverging data)</span>
+    <span class="c1"># - norm applies the normalization we defined above</span>
+    <span class="c1"># - origin=&#39;lower&#39; makes sure the plot is oriented correctly</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">timeseries_stat_da</span><span class="p">,</span> 
+                  <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">],</span>
+                  <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span>
+                  <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Set the limits for the x and y axes using the min and max values we got earlier</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">))</span>
+
+    <span class="c1"># Remove the tick marks and labels on both the x and y axes to clean up the plot</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Hide tick marks</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>  <span class="c1"># Remove labels on the x-axis</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>  <span class="c1"># Remove labels on the y-axis</span>
+
+    <span class="c1"># Add a colorbar below the plot to show the color scale for the data</span>
+    <span class="c1"># - divider is used to add the colorbar below the plot (bottom) with a specific size and padding</span>
+    <span class="n">divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">cax</span> <span class="o">=</span> <span class="n">divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;2.5%&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+    
+    <span class="c1"># Add the colorbar to the plot and extend it both ways to indicate out-of-range values</span>
+    <span class="c1"># - extend=&#39;both&#39; adds arrowheads to the colorbar to show that values extend beyond the range</span>
+    <span class="c1"># - orientation=&#39;horizontal&#39; places the colorbar below the plot</span>
+    <span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">clb_label</span><span class="p">)</span>  <span class="c1"># Add a label to the colorbar for clarity</span>
+
+    <span class="c1"># Add a label to the colorbar</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">clb_label</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>  <span class="c1"># Adjust the fontsize of the colorbar label</span>
+    
+    <span class="c1"># Adjust the fontsize of the colorbar tick labels</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>  <span class="c1"># Adjust the fontsize of the colorbar ticks</span>
+
+    <span class="c1"># Add a scale bar (e.g., for 100 km)</span>
+    <span class="n">scalebar</span> <span class="o">=</span> <span class="n">AnchoredSizeBar</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="p">,</span>
+                               <span class="n">scale_bar_len</span><span class="o">*</span><span class="mf">1e3</span><span class="p">,</span>  <span class="c1"># Length of the scale bar in km</span>
+                               <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> km&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scale_bar_len</span><span class="p">),</span>  <span class="c1"># Label for the scale bar</span>
+                               <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span>  <span class="c1"># Location on the plot</span>
+                               <span class="n">pad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                               <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+                               <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                               <span class="n">size_vertical</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                               <span class="n">fontproperties</span><span class="o">=</span><span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">))</span>  <span class="c1"># Font size for the label</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">scalebar</span><span class="p">)</span>  <span class="c1"># Add the scale bar to the axis</span>
+
+    <span class="c1"># Show the plot on the screen</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fractional_year_rounded</span><span class="p">(</span><span class="n">date</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a given date to a fractional year and rounds it to the nearest 0.25 increment.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    date : numpy.datetime64, pandas.Timestamp, or similar</span>
+<span class="sd">        The input date to be converted to a fractional year. It can be provided as a </span>
+<span class="sd">        numpy datetime64 object or any object convertible to a pandas datetime.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    rounded_fractional_year : float</span>
+<span class="sd">        The fractional year, rounded to the nearest quarter (0.25) year. The fractional year</span>
+<span class="sd">        represents the year plus the fraction of the year that has passed based on the day of the year.</span>
+<span class="sd">    </span>
+<span class="sd">    Description:</span>
+<span class="sd">    ------------</span>
+<span class="sd">    This function calculates the fractional part of the year based on how many days have passed </span>
+<span class="sd">    in the year (accounting for leap years if applicable). It then rounds the result to the </span>
+<span class="sd">    nearest 0.25 increment, representing the year in quarters.</span>
+<span class="sd">    </span>
+<span class="sd">    Example:</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; fractional_year_rounded(np.datetime64(&#39;2022-03-15&#39;))</span>
+<span class="sd">    2022.25</span>
+<span class="sd">    &gt;&gt;&gt; fractional_year_rounded(pd.Timestamp(&#39;2022-11-20&#39;))</span>
+<span class="sd">    2022.75</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Convert to pandas datetime to easily extract year and day information</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;datetime64[D]&#39;</span><span class="p">))</span>
+    
+    <span class="c1"># Get the year and day of year</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">day_of_year</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">dayofyear</span>
+    
+    <span class="c1"># Determine if it&#39;s a leap year</span>
+    <span class="n">days_in_year</span> <span class="o">=</span> <span class="mi">366</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span><span class="o">.</span><span class="n">is_leap_year</span> <span class="k">else</span> <span class="mi">365</span>
+    
+    <span class="c1"># Compute the fractional year</span>
+    <span class="n">fractional_year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">+</span> <span class="p">(</span><span class="n">day_of_year</span> <span class="o">/</span> <span class="n">days_in_year</span><span class="p">)</span>
+    
+    <span class="c1"># Round to the nearest .25 increment</span>
+    <span class="n">rounded_fractional_year</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">fractional_year</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span>
+    
+    <span class="k">return</span> <span class="n">rounded_fractional_year</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="greenland-ice-sheet-dh-dt">
+<h2>Greenland Ice Sheet dh/dt<a class="headerlink" href="#greenland-ice-sheet-dh-dt" title="Permalink to this heading">#</a></h2>
+<p>This code will take a few minutes to run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the time values from the DataArray&#39;s time coordinate</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">ATL15_ds</span><span class="p">[</span><span class="s1">&#39;delta_h&#39;</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Convert the time values from datetime64 to a numerical format (e.g., number of days since the first time point)</span>
+<span class="n">time_numeric</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">time_numeric</span> <span class="o">=</span> <span class="p">(</span><span class="n">time_numeric</span> <span class="o">-</span> <span class="n">time_numeric</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mf">365.25</span><span class="p">)</span>  <span class="c1"># Time in years</span>
+
+<span class="c1"># Apply the linear trend function over the time dimension</span>
+<span class="n">dhdt_trend</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
+    <span class="n">linear_trend</span><span class="p">,</span>                    <span class="c1"># The function to apply</span>
+    <span class="n">ATL15_ds</span><span class="p">[</span><span class="s1">&#39;delta_h&#39;</span><span class="p">],</span>             <span class="c1"># The DataArray on which to apply the function</span>
+    <span class="n">input_core_dims</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;time&#39;</span><span class="p">]],</span>      <span class="c1"># The core dimension for the input (time axis of the DataArray)</span>
+    <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time_numeric</span><span class="p">},</span>   <span class="c1"># Pass &#39;time_numeric&#39; as a keyword argument (numeric time values)</span>
+    <span class="n">vectorize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>                  <span class="c1"># Vectorize the function (apply it element-wise)</span>
+    <span class="n">dask</span><span class="o">=</span><span class="s2">&quot;parallelized&quot;</span><span class="p">,</span>             <span class="c1"># If using Dask for larger datasets</span>
+    <span class="n">output_dtypes</span><span class="o">=</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>            <span class="c1"># Output type (trend slope is a float)</span>
+<span class="p">)</span>
+
+<span class="c1"># Now &#39;dhdt_trend&#39; contains the dh/dt linear trend for each pixel</span>
+<span class="c1"># Name dataarray to reflect this</span>
+<span class="n">dhdt_trend</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;annual_dhdt_trend&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the start and end dates for ATL15 dataset</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">ATL15_ds</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">ATL15_ds</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Compute fractional years for both dates</span>
+<span class="n">start_fractional_year</span> <span class="o">=</span> <span class="n">fractional_year_rounded</span><span class="p">(</span><span class="n">start_date</span><span class="p">)</span>
+<span class="n">end_fractional_year</span> <span class="o">=</span> <span class="n">fractional_year_rounded</span><span class="p">(</span><span class="n">end_date</span><span class="p">)</span>
+
+<span class="c1"># Combine the two dates with a hyphen</span>
+<span class="n">date_range</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_fractional_year</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">end_fractional_year</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Use function to plot dhdt_trend</span>
+<span class="n">plot_timeseries_stat</span><span class="p">(</span><span class="n">dhdt_trend</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="s1">&#39;dh/dt [m/yr]</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">date_range</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cee78e85155a73f4601a359e4116e2b4ee399cd2ac1c597d573d417f2f657abc.png" src="../../_images/cee78e85155a73f4601a359e4116e2b4ee399cd2ac1c597d573d417f2f657abc.png" />
+</div>
+</div>
+</div>
+<div class="section" id="antarctica-ice-sheet-atl15-pre-processing">
+<h2>Antarctica Ice Sheet ATL15 pre-processing<a class="headerlink" href="#antarctica-ice-sheet-atl15-pre-processing" title="Permalink to this heading">#</a></h2>
+<p>ATL15 data covering Antarctica requires an additional step of preprocessing because the data are served separately in four quadrants (A1, A2, A3, and A4), which are the cartesian quadrantes in polar stereographic coordinates about the geographic south pole. So in order to make a continental-scale plot of ATL15, we first need to stitch these individual data files together.</p>
+<p>(from ATL15 dataset user guide (<a class="reference external" href="https://doi.org/10.5067/ATLAS/ATL15.004">Smith and others, 2024</a>)):
+<img alt="ICESat-2 ATL15 regions" src="../../_images/Smith_2024_fig1.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find ICESat-2 ATL15 version four data granules in the southern hemisphere</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">earthaccess</span><span class="o">.</span><span class="n">search_data</span><span class="p">(</span>
+    <span class="n">doi</span><span class="o">=</span><span class="s1">&#39;10.5067/ATLAS/ATL15.004&#39;</span><span class="p">,</span>
+    <span class="n">bounding_box</span><span class="o">=</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">),</span>  <span class="c1"># (lower_left_lon, lower_left_lat , upper_right_lon, upper_right_lat))</span>
+    <span class="n">cloud_hosted</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Open data granules as s3 files to stream</span>
+<span class="n">files</span> <span class="o">=</span> <span class="n">earthaccess</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">files</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ffa54930a7db421295c27b6b8491d51c", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "9deb2194876a442abb2eec8f3c853d5d", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "529c80a338044f5b86c17ced954eb33c", "version_major": 2, "version_minor": 0}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A2_0321_01km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A3_0321_01km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A3_0321_20km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A4_0321_40km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A4_0321_20km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A3_0321_40km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A2_0321_40km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A3_0321_10km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A2_0321_20km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A1_0321_40km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A1_0321_10km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A1_0321_01km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A4_0321_10km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A4_0321_01km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A1_0321_20km_004_01.nc&gt;,
+ &lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A2_0321_10km_004_01.nc&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We first index the data files we wish to open</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">11</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A1_0321_01km_004_01.nc&gt;
+&lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A2_0321_01km_004_01.nc&gt;
+&lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A3_0321_01km_004_01.nc&gt;
+&lt;File-like object HTTPFileSystem, https://n5eil01u.ecs.nsidc.org/DP8/ATLAS/ATL15.004/2019.01.01/ATL15_A4_0321_01km_004_01.nc&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open each file</span>
+<span class="n">ATL15_A1</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;delta_h&#39;</span><span class="p">)</span>
+<span class="n">ATL15_A2</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;delta_h&#39;</span><span class="p">)</span>
+<span class="n">ATL15_A3</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;delta_h&#39;</span><span class="p">)</span>
+<span class="n">ATL15_A4</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">],</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;delta_h&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will drop unneeded variables to conserve memory</span>
+
+<span class="c1"># Specify the variables to keep</span>
+<span class="n">variables_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;delta_h&#39;</span><span class="p">]</span>
+
+<span class="c1"># List of xarray datasets</span>
+<span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">ATL15_A1</span><span class="p">,</span> <span class="n">ATL15_A2</span><span class="p">,</span> <span class="n">ATL15_A3</span><span class="p">,</span> <span class="n">ATL15_A4</span><span class="p">]</span>
+
+<span class="c1"># Function to drop variables not in variables_to_keep from a dataset</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">drop_unwanted_variables</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
+    <span class="n">variables_to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span> <span class="k">if</span> <span class="n">var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">variables_to_keep</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span><span class="n">variables_to_drop</span><span class="p">)</span>
+
+<span class="c1"># Apply the function to each dataset</span>
+<span class="n">ATL15_A1</span><span class="p">,</span> <span class="n">ATL15_A2</span><span class="p">,</span> <span class="n">ATL15_A3</span><span class="p">,</span> <span class="n">ATL15_A4</span> <span class="o">=</span> <span class="p">[</span><span class="n">drop_unwanted_variables</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span> <span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use xarray concatenation to stitch two quadrants together </span>
+<span class="c1"># Use xarray index selecting to occlude the duplicated x=0 vector of data</span>
+<span class="n">ATL15_A12</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ATL15_A2</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span> <span class="n">ATL15_A1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use xarray concatenation to stitch two quadrants togethers</span>
+<span class="c1"># Use xarray index selecting to occlude the duplicated x=0 vector of data</span>
+<span class="n">ATL15_A34</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ATL15_A3</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span> <span class="n">ATL15_A4</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use xarray concatenation to stitch two-quadrant concatenated halves togethers</span>
+<span class="c1"># Use xarray index selecting to occlude the duplicated y=0 vector of data</span>
+<span class="n">ATL15_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ATL15_A34</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span> <span class="n">ATL15_A12</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Delete unneeded dataarrays and datasets to reduce memory consumption</span>
+<span class="k">del</span> <span class="n">ATL15_A1</span><span class="p">,</span> <span class="n">ATL15_A12</span><span class="p">,</span> <span class="n">ATL15_A2</span><span class="p">,</span> <span class="n">ATL15_A3</span><span class="p">,</span> <span class="n">ATL15_A34</span><span class="p">,</span> <span class="n">ATL15_A4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="antarctic-ice-sheet-dh-dt">
+<h3>Antarctic Ice Sheet dh/dt<a class="headerlink" href="#antarctic-ice-sheet-dh-dt" title="Permalink to this heading">#</a></h3>
+<p>The following code does continental-scale calculations of dh/dt and takes 20-30 minutes to run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the time values from the DataArray&#39;s time coordinate</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">ATL15_ds</span><span class="p">[</span><span class="s1">&#39;delta_h&#39;</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Convert the time values from datetime64 to a numerical format (e.g., number of days since the first time point)</span>
+<span class="n">time_numeric</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">time_numeric</span> <span class="o">=</span> <span class="p">(</span><span class="n">time_numeric</span> <span class="o">-</span> <span class="n">time_numeric</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mf">365.25</span><span class="p">)</span>  <span class="c1"># Time in years</span>
+
+<span class="c1"># Apply the linear trend function over the time dimension</span>
+<span class="n">dhdt_trend_2</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
+    <span class="n">linear_trend</span><span class="p">,</span>                    <span class="c1"># The function to apply</span>
+    <span class="n">ATL15_ds</span><span class="p">[</span><span class="s1">&#39;delta_h&#39;</span><span class="p">],</span>             <span class="c1"># The DataArray on which to apply the function</span>
+    <span class="n">input_core_dims</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;time&#39;</span><span class="p">]],</span>      <span class="c1"># The core dimension for the input (time axis of the DataArray)</span>
+    <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time_numeric</span><span class="p">},</span>   <span class="c1"># Pass &#39;time_numeric&#39; as a keyword argument (numeric time values)</span>
+    <span class="n">vectorize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>                  <span class="c1"># Vectorize the function (apply it element-wise)</span>
+    <span class="n">dask</span><span class="o">=</span><span class="s2">&quot;parallelized&quot;</span><span class="p">,</span>             <span class="c1"># If using Dask for larger datasets</span>
+    <span class="n">output_dtypes</span><span class="o">=</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>            <span class="c1"># Output type (trend slope is a float)</span>
+<span class="p">)</span>
+
+<span class="c1"># Now &#39;dhdt_trend&#39; contains the dh/dt linear trend for each pixel</span>
+<span class="c1"># Name dataarray to reflect this</span>
+<span class="n">dhdt_trend_2</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;annual_dhdt_trend&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the start and end dates for ATL15 dataset</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">ATL15_ds</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">ATL15_ds</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Compute fractional years for both dates</span>
+<span class="n">start_fractional_year</span> <span class="o">=</span> <span class="n">fractional_year_rounded</span><span class="p">(</span><span class="n">start_date</span><span class="p">)</span>
+<span class="n">end_fractional_year</span> <span class="o">=</span> <span class="n">fractional_year_rounded</span><span class="p">(</span><span class="n">end_date</span><span class="p">)</span>
+
+<span class="c1"># Combine the two dates with a hyphen</span>
+<span class="n">date_range</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_fractional_year</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">end_fractional_year</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">plot_timeseries_stat</span><span class="p">(</span><span class="n">dhdt_trend_2</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="s1">&#39;dh/dt [m/yr]</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">date_range</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/22c559e833d45a7776f133e314c6eaac044fd0ad092210d06177e3f8fab1ee1c.png" src="../../_images/22c559e833d45a7776f133e314c6eaac044fd0ad092210d06177e3f8fab1ee1c.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorials/ICESat2_ATL15_dhdt"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../IS2_cloud_Landsat_integration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ICESat-2 and Landsat cloud access and data integration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../IS2_ATL15_surface_height_anomalies/IS2_ATL15_surface_height_anomalies.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Using ICESat-2 ATL15 (Gridded Arctic Land Ice Height) to investigate ice-surface height anomalies</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-learning-outcomes">Key learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-icesat-2">What is ICESat-2?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-atl14-15">What is ATL14/15?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming-cloud-hosted-data-from-nasa-earthdata-cloud">Streaming cloud-hosted data from NASA Earthdata Cloud</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-functions">Define functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greenland-ice-sheet-dh-dt">Greenland Ice Sheet dh/dt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antarctica-ice-sheet-atl15-pre-processing">Antarctica Ice Sheet ATL15 pre-processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antarctic-ice-sheet-dh-dt">Antarctic Ice Sheet dh/dt</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CryoCloud Team and Community, Colorado School of Mines
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

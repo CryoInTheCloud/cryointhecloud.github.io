@@ -1,0 +1,791 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python Installation and Environments &#8212; CryoCloud</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LZVEY6377Z"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-LZVEY6377Z');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'how_tos/background/python';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="nbdime - version control for Jupyter notebooks" href="../nbdime/nbdime-hub.html" />
+    <link rel="prev" title="Software Carpentry Training" href="swc.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="CryoCloud - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="CryoCloud - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to CryoCloud: Empowering collaborative Earth science in the cloud
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../content/about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/mission.html">Mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/Getting_Started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/hub_best_practices.html">CryoCloud Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/Code_of_Conduct.html">CryoCloud Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/citing_cryocloud.html">Citing CryoCloud</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cloud Training</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../recorded/index.html">Cloud Training</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">How Tos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">How To…</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Background Work</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="github.html">GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jupyterhub.html">JupyterHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="git.html">Git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="earthdata.html">Earthdata Login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="earthengine.html">Google Earth Engine Sign-Up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="swc.html">Software Carpentry Training</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Python Installation and Environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nbdime/nbdime-hub.html">nbdime - version control for Jupyter notebooks</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../data_access/index.html">Data access</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data_access/Cloud_Sentinel2_access.html">Sentinel 2 cloud access</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../data_access/Instructions_for_configuring_AWS_S3_bucket.html">Instructions for setting up an AWS S3 bucket for your project</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../data_access/CryoCloudScratchBucket.html">Using CryoCloud S3 Scratch Bucket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../external/ICESat2_Earthaccess.html">Earthaccess</a></li>
+
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/cryocloud_demo/CryoCloud_demo.html">Demo CryoCloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/IS2_cloud_Landsat_integration.html">ICESat-2 and Landsat cloud access and data integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/ICESat2_ATL15_dhdt/ICESat2_ATL15_dhdt.html">Streaming cloud-hosted ICESat-2 ATL15 (Gridded Antarctic/Arctic Land Ice Height) to calculate dh/dt trends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/IS2_ATL15_surface_height_anomalies/IS2_ATL15_surface_height_anomalies.html">Using ICESat-2 ATL15 (Gridded Arctic Land Ice Height) to investigate ice-surface height anomalies</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/NASA-Earthdata-Cloud-Access/index.html">NASA Earthdata Cloud and data access using earthaccess and icepyx</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/NASA-Earthdata-Cloud-Access/1.Intro-Earthdata-Cloud.html">Introduction to NASA Earthdata Cloud and ICESat-2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/NASA-Earthdata-Cloud-Access/2.earthdata_search.html">Using NASA Earthdata Search to Discover Cloud-Hosted Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/NASA-Earthdata-Cloud-Access/3.earthaccess.html">Part 1: Introduction to the <code class="docutils literal notranslate"><span class="pre">earthaccess</span></code> python library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/NASA-Earthdata-Cloud-Access/4.icepyx.html">Part 2: Using the <code class="docutils literal notranslate"><span class="pre">icepyx</span></code> python library to access ICESat-2 data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/NASA-Earthdata-Cloud-Access/4b.icepyx-ATL06.html">Part 2b: Using the <code class="docutils literal notranslate"><span class="pre">icepyx</span></code> python library to access ICESat-2 data (ATL06)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/SlideRule_applications/SlideRule_applications.html">CryoCloud Tutorials: SlideRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/dask_for_geoscientists.html">Parallelized Cloud Computing with Dask for Geoscientists</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/ARCOdata_writingZarrs.html">Analysis-ready, cloud-optimized data: writing zarr directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/GrIMP/GrIMP_tutorial_AGU23.html">Determining ice sheet change using Greenland Ice Mapping Project (GrIMP) tools</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contributing/index.html">Contributing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/workflow.html">Workflow for contributing to our JupyterBook (or any GitHub project)</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../reference/projects_supported.html">Publications, data products, and libraries supported by CryoCloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/glossary.html">Glossaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/IS2-resources.html">ICESat-2 Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/open_science.html">Open Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/open_source_software.html">Open-source Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/questions.html">How to Get Help</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/CryoInTheCloud/CryoCloudWebsite" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/edit/main/book/how_tos/background/python.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/CryoInTheCloud/CryoCloudWebsite/issues/new?title=Issue%20on%20page%20%2Fhow_tos/background/python.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/how_tos/background/python.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python Installation and Environments</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-software">Python Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-conda">What is Conda?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-miniconda">Installing Miniconda</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux-and-os-x">Linux and OS X</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-anaconda-optional">Installing Anaconda (Optional)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-mamba-optional">Installing Mamba (Optional)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-in-an-environment">Working in an Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-the-environment-accessible-to-the-ipython-kernel">Making the Environment Accessible to the iPython Kernel</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="python-installation-and-environments">
+<h1>Python Installation and Environments<a class="headerlink" href="#python-installation-and-environments" title="Permalink to this heading">#</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>While we will be using a cloud-hosted computing environment during the hackweek
+(<a class="reference internal" href="jupyterhub.html#event-jupyterhub"><span class="std std-ref">Why are we using a shared cloud environment?</span></a>), it is often desirable to run Python code on your laptop.
+We also want to ensure that hackweek tutorials or other scientific code is
+reproducible and can be run on different computers and operating systems.</p>
+<p>This lesson takes you through our recommended procedure for managing Python
+environments and software on your personal computer. We suggest you follow these
+instructions in advance so that we can help you troubleshoot during the hackweek
+and have a fully functioning environment after.</p>
+</div>
+<div class="section" id="python-software">
+<h2>Python Software<a class="headerlink" href="#python-software" title="Permalink to this heading">#</a></h2>
+<p>Python software is distributed as a series of <em>libraries</em> that are called within your code to perform certain tasks. There are many different collections, or <em>distributions</em> of Python software. Generally you install a specific distribution of Python and then add additional libraries as you need them. There are also several different <em>versions</em> of Python. Support for Python 2 ended in 2020, so you should use Python&gt;=3!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you open a terminal on your computer, chances are if you type <code class="docutils literal notranslate"><span class="pre">python</span></code> you will find it is already installed! But it is best-practice to create separate environments or <em>virtual environments</em> to not interfere with existing installations. This also allows you to have different projects in
+different workspaces, each one of them with different Python versions and different packages installed. You can use <a class="reference internal" href="../../reference/glossary.html#term-Conda"><span class="xref std std-term">conda</span></a> for this (see next sections).</p>
+</div>
+</div>
+<div class="section" id="what-is-conda">
+<h2>What is Conda?<a class="headerlink" href="#what-is-conda" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="http://conda.pydata.org/docs/"><strong>Conda</strong></a> is an <strong>open source <code class="docutils literal notranslate"><span class="pre">package</span></code> and <code class="docutils literal notranslate"><span class="pre">environment</span></code> management system</strong> for installing multiple versions of software packages, their dependencies and switching easily between them. Conda works with many programming languages but is very popular in the Python community. It works on Linux, OS X and Windows.</p>
+</div>
+<div class="section" id="installing-miniconda">
+<h2>Installing Miniconda<a class="headerlink" href="#installing-miniconda" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="http://conda.pydata.org/miniconda.html">Miniconda</a> is a command line tool which contains only Python and essential packages. We recommend installing it because it is the easiest way to use conda for Python environment management without taking up too much space.</p>
+<div class="section" id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this heading">#</a></h3>
+<p>Click <a class="reference external" href="http://conda.pydata.org/miniconda.html">here</a> to download the proper installer for your Windows platform (64 bits).
+We recommend to download the Python 3 version of Miniconda.</p>
+<p>When installing, you will be asked if you wish to make the Anaconda Python your default Python for Windows.
+If you do not have any other installation that is a good option. If you want to keep multiple versions of python on your machine (e.g. ESRI-supplied python, or 64 bit versions of Anaconda), then don’t select the option to modify your path or modify your windows registry settings.</p>
+</div>
+<div class="section" id="linux-and-os-x">
+<h3>Linux and OS X<a class="headerlink" href="#linux-and-os-x" title="Permalink to this heading">#</a></h3>
+<p>You may follow manual steps from <a class="reference external" href="http://conda.pydata.org/miniconda.html">here</a> similar to the instructions on Windows (see above). Alternatively, you can execute these commands on a terminal shell (in this case, the bash shell):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For MacOSX</span>
+<span class="nv">url</span><span class="o">=</span>https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+<span class="c1"># For Linux</span>
+<span class="nv">url</span><span class="o">=</span>https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+wget<span class="w"> </span><span class="nv">$url</span><span class="w"> </span>-O<span class="w"> </span>miniconda.sh
+bash<span class="w"> </span>miniconda.sh<span class="w"> </span>-b<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/miniconda
+</pre></div>
+</div>
+<p>Notice that this last command is using <code class="docutils literal notranslate"><span class="pre">bash</span></code>. If bash is not already your default shell, you need to set it to be so (use the <code class="docutils literal notranslate"><span class="pre">chsh</span> <span class="pre">-s</span> <span class="pre">/bin/bash</span></code> command to change your default shell to bash).</p>
+</div>
+<div class="section" id="installing-anaconda-optional">
+<h3>Installing Anaconda (Optional)<a class="headerlink" href="#installing-anaconda-optional" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda</a> is a data science platform that comes with a lot of packages. At its core, Anaconda uses the conda package management system. The list of packages included can be found <a class="reference external" href="https://docs.anaconda.com/anaconda/packages/pkg-docs"><em>here</em></a>.</p>
+<ol class="arabic simple">
+<li><p>To install Anaconda, please click on the link below for your operating system, and follow the instructions on the <a class="reference external" href="https://www.anaconda.com/download/">site</a>.</p></li>
+<li><p>Once Anaconda installation step is finished run <code class="docutils literal notranslate"><span class="pre">python</span></code> in the command line to test if Anaconda is installed correctly. <strong>Note: For windows, please use the Anaconda prompt as the command line. It should be installed with your installation of Anaconda</strong>.
+If Anaconda is installed correctly, you should have this prompt, which emphasizes <strong>Anaconda</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python
+Python<span class="w"> </span><span class="m">3</span>.7.3<span class="p">|</span>Anaconda<span class="w"> </span>custom<span class="w"> </span><span class="o">(</span>x86_64<span class="o">)</span><span class="p">|</span><span class="w"> </span><span class="o">(</span>default,<span class="w"> </span>Mar<span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="m">2019</span>,<span class="w"> </span><span class="m">22</span>:11:17<span class="o">)</span>
+...
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-mamba-optional">
+<h3>Installing Mamba (Optional)<a class="headerlink" href="#installing-mamba-optional" title="Permalink to this heading">#</a></h3>
+<p>Setting up an environment with package dependencies using <code class="docutils literal notranslate"><span class="pre">conda</span></code> may be quite slow…
+A better option is to use <code class="docutils literal notranslate"><span class="pre">mamba</span></code> instead to solve version dependencies, which is much faster and archives the same result than <code class="docutils literal notranslate"><span class="pre">conda</span></code>.
+In order to use mamba, first install <code class="docutils literal notranslate"><span class="pre">mamba</span></code> in your base environment using <code class="docutils literal notranslate"><span class="pre">conda</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>mamba
+</pre></div>
+</div>
+<p>Now, every <code class="docutils literal notranslate"><span class="pre">conda</span></code> command can be replaced by <code class="docutils literal notranslate"><span class="pre">mamba</span></code>.
+For example, you can use <code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code> instead of <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code> (except the <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span></code>! That is the only command for which you need to use <code class="docutils literal notranslate"><span class="pre">conda</span></code>).</p>
+</div>
+</div>
+<div class="section" id="working-in-an-environment">
+<h2>Working in an Environment<a class="headerlink" href="#working-in-an-environment" title="Permalink to this heading">#</a></h2>
+<p>Once miniconda/conda/mamba has been installed, we can use it to create new virtual environments with different Python versions and packages. A good practice is to have different environments for different projects when these have different dependencies.</p>
+<div class="admonition-persistent-environments admonition">
+<p class="admonition-title">Persistent Environments</p>
+<p>By default, conda environments are not persistent in the CryoCloud Hub.
+This means that every time you open a new CryoCloud session, all the installations you made in previous sessions will be gone.
+In order to be able to work in the same computational environment across sessions without re-installing the same packages, we encourage users to create a folder in their home directory to store all their customized environments.
+By doing this, your environments will stay in your account when you comeback to work in the future.
+In order to do this, create a folder called <code class="docutils literal notranslate"><span class="pre">envs</span></code> in your home directory (that is, <code class="docutils literal notranslate"><span class="pre">/home/jovyan</span></code>).
+You can do this directly from the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>envs
+</pre></div>
+</div>
+<p>Then, also in your home directory, create a new textfile called <code class="docutils literal notranslate"><span class="pre">.condarc</span></code> (the name is important! don’t forget the initial dot <code class="docutils literal notranslate"><span class="pre">.</span></code>) with the following content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># .condarc</span>
+
+<span class="n">envs_dirs</span><span class="p">:</span>
+ <span class="o">-</span> <span class="o">~/</span><span class="n">envs</span>
+</pre></div>
+</div>
+<p>This will indicates to conda that all the new environments have to live inside <code class="docutils literal notranslate"><span class="pre">~envs</span></code> (<code class="docutils literal notranslate"><span class="pre">~</span></code> is the unix character for your home directory). In doing so, you ensure that the new environments you build will be permanent to your CryoCloud account.</p>
+</div>
+<p>You can now create a new environment with <code class="docutils literal notranslate"><span class="pre">conda</span></code>.
+If you are just starting to work in a new project or want to test something, you can create an environment from scratch with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>&lt;ENVIRONMENT<span class="w"> </span>NAME&gt;<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9
+</pre></div>
+</div>
+<p>where you have to replace <code class="docutils literal notranslate"><span class="pre">&lt;ENVIRONMENT</span> <span class="pre">NAME&gt;</span></code> with the name you want to put to your new environment.
+Alternatively, you can create an environment directly from a <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+</pre></div>
+</div>
+<p>This second option is particularly practical for reproducibility and collaboration in a team.</p>
+<p>You can check that the creation and installation of the new environment is working by first activating the environment</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>&lt;ENVIRONMENT<span class="w"> </span>NAME&gt;
+</pre></div>
+</div>
+<p>and then check if you have the correct Python version installed</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which<span class="w"> </span>python
+python<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>The best practice for reproducibility and collaboration is to have an updated <code class="docutils literal notranslate"><span class="pre">environmnent.yml</span></code> file in your working space (eg, in the GitHub repository of your project).
+This allows members of the team to keep the environment updated and shared among users.
+You can create a <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file associated to the environment with the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--from-history<span class="w"> </span>&gt;<span class="w"> </span>environment.yml<span class="sb">`</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>This will write the required dependencies to reproduce the environment in the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file.
+Conversely, if you have new packages listed in your <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file (because you edited it or changes were made to it by a colleague and you got these changes over git, for example), you can apply these updates with this command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>update<span class="w"> </span>--file<span class="w"> </span>environment.yml<span class="w"> </span>--prune
+</pre></div>
+</div>
+<p>By doing this, you will keep the conda environment and the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file synchronized.
+Sharing the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file ensures that other users will have the set of instructions to reproduce your virtual environment.
+Notice that the environment and the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> are not the same thing! The latest is just a text file that allows the creation
+of a conda environment by using the instructions in this section.</p>
+</div>
+<div class="section" id="making-the-environment-accessible-to-the-ipython-kernel">
+<h2>Making the Environment Accessible to the iPython Kernel<a class="headerlink" href="#making-the-environment-accessible-to-the-ipython-kernel" title="Permalink to this heading">#</a></h2>
+<p>In order to access the kernel associated to our new environment from a Jupyter Notebook, we need to install <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code>. We first activate the
+new environment,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>&lt;ENVIRONMENT<span class="w"> </span>NAME&gt;
+</pre></div>
+</div>
+<p>and then install <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>ipykernel
+</pre></div>
+</div>
+<p>This steps are not needed if you created the environment directly from a <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file that includes <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> as a dependency.</p>
+<p>Then we create the kernel with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>ipykernel<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>--name<span class="w"> </span>&lt;ENVIRONMENT<span class="w"> </span>NAME&gt;<span class="w"> </span>--display-name<span class="w"> </span><span class="s2">&quot;IPython - &lt;NAME&gt;&quot;</span>
+</pre></div>
+</div>
+<p>to create the associated kernel.
+Replace <code class="docutils literal notranslate"><span class="pre">&lt;NAME&gt;</span></code> with the name you want to call the iPython kernel and <code class="docutils literal notranslate"><span class="pre">&lt;ENVIRONMENT</span> <span class="pre">NAME&gt;</span></code> with the name of the respective environment.</p>
+<p>You are done! Next time you start your JupyterHub session, you will see the new kernel available from your launcher or from the upper right corner of any Jupyter Notebook.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./how_tos/background"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="swc.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Software Carpentry Training</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../nbdime/nbdime-hub.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">nbdime - version control for Jupyter notebooks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-software">Python Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-conda">What is Conda?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-miniconda">Installing Miniconda</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux-and-os-x">Linux and OS X</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-anaconda-optional">Installing Anaconda (Optional)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-mamba-optional">Installing Mamba (Optional)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-in-an-environment">Working in an Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-the-environment-accessible-to-the-ipython-kernel">Making the Environment Accessible to the iPython Kernel</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CryoCloud Team and Community, Colorado School of Mines
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
