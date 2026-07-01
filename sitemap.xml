@@ -71,7 +71,7 @@
     <loc>http://localhost:3000/l1b-waveforms-tutorial</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/access-cloud-python</loc>
+    <loc>http://localhost:3000/earthaccess</loc>
   </url>
   <url>
     <loc>http://localhost:3000/index-5</loc>
@@ -113,7 +113,7 @@
     <loc>http://localhost:3000/earthdata-search</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/earthaccess</loc>
+    <loc>http://localhost:3000/earthaccess-1</loc>
   </url>
   <url>
     <loc>http://localhost:3000/icepyx</loc>
