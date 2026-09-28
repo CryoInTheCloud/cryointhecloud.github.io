@@ -1,0 +1,6 @@
+404 Not Found
+
+https://slideruleearth.io serves no content at this path.
+
+Web client:    https://client.slideruleearth.io/
+Documentation: https://docs.slideruleearth.io/

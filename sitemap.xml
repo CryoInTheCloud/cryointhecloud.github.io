@@ -20,7 +20,7 @@
     <loc>http://localhost:3000/code-of-conduct</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/citing-cryocloud</loc>
+    <loc>http://localhost:3000/citing-stratusgeo</loc>
   </url>
   <url>
     <loc>http://localhost:3000/index-1</loc>
@@ -89,7 +89,7 @@
     <loc>http://localhost:3000/index-6</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/cryocloud-demo</loc>
+    <loc>http://localhost:3000/stratusgeo-demo</loc>
   </url>
   <url>
     <loc>http://localhost:3000/is2-cloud-landsat-integration</loc>
