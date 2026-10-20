@@ -137,6 +137,15 @@
     <loc>http://localhost:3000/index-8</loc>
   </url>
   <url>
+    <loc>http://localhost:3000/swot-lrhr-access</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/swot-hr-coverage</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/swot-hr-vs-icesat2</loc>
+  </url>
+  <url>
     <loc>http://localhost:3000/index-9</loc>
   </url>
   <url>
