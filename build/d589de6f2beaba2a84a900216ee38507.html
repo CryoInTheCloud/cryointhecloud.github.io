@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Maintenance</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        .nasa-logo {
+            width: 160px; /* Adjust the size of the logo here */
+            height: auto;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        /* CSS Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container Card */
+        .maintenance-container {
+            background-color: #ffffff;
+            max-width: 650px;
+            width: 100%;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Animated Icon */
+        .icon {
+            font-size: 120px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        /* Optional Contact Button */
+        .contact-btn {
+            display: inline-block;
+            background-color: #0056b3; /* Classic professional blue */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: #004494;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .maintenance-container {
+                padding: 40px 20px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="maintenance-container">
+        <!-- NASA Logo -->
+        <img src="https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg" alt="NASA Logo" class="nasa-logo">
+        <br>
+        <div class="icon">🛠️</div>
+        <h1>ICESat-2 will be back soon!</h1>
+        <p>
+            Sorry for the inconvenience. We're currently performing maintenance to improve the website. 
+            Everything should be back online next week. Thank you for your patience!
+        </p>
+        
+        <!-- Optional: Provide a way for users to contact you if it's urgent -->
+        <a href="mailto:610webdev@mail.gsfc.nasa.gov" class="contact-btn">Contact Support</a>
+    </div>
+
+</body>
+</html>
