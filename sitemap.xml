@@ -8,25 +8,31 @@
     <loc>http://localhost:3000/about</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/mission</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/getting-started</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/hub-best-practices</loc>
-  </url>
-  <url>
     <loc>http://localhost:3000/code-of-conduct</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/citing-stratusgeo</loc>
   </url>
   <url>
     <loc>http://localhost:3000/index-1</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/hiring</loc>
+    <loc>http://localhost:3000/hub-best-practices</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/jupyterhub</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/navigatinghub</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/terminal-and-git</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/notebooks</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/files-storage-quotas</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/stratusgeo-demo</loc>
   </url>
   <url>
     <loc>http://localhost:3000/index-2</loc>
@@ -35,13 +41,10 @@
     <loc>http://localhost:3000/index-3</loc>
   </url>
   <url>
+    <loc>http://localhost:3000/index-4</loc>
+  </url>
+  <url>
     <loc>http://localhost:3000/github</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/jupyterhub</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/git</loc>
   </url>
   <url>
     <loc>http://localhost:3000/earthdata</loc>
@@ -56,10 +59,13 @@
     <loc>http://localhost:3000/python</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/nbdime-hub</loc>
+    <loc>http://localhost:3000/jup-collaboration</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/index-4</loc>
+    <loc>http://localhost:3000/index-5</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/earthaccess</loc>
   </url>
   <url>
     <loc>http://localhost:3000/cloud-sentinel2-access</loc>
@@ -68,13 +74,10 @@
     <loc>http://localhost:3000/l1b-waveforms-tutorial</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/earthaccess</loc>
+    <loc>http://localhost:3000/index-6</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/index-5</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/cryocloud-scratch-bucket</loc>
+    <loc>http://localhost:3000/stratusgeo-scratch-bucket</loc>
   </url>
   <url>
     <loc>http://localhost:3000/instructions-for-configuring-aws-s3-bucket</loc>
@@ -83,25 +86,19 @@
     <loc>http://localhost:3000/integrating-cloud-storage</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/index-6</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/stratusgeo-demo</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/is2-cloud-landsat-integration</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/icesat2-atl15-dhdt</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/is2-atl15-surface-height-anomalies</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/icesat2-atl10-h5coro-large-scale-time-series</loc>
+    <loc>http://localhost:3000/nbdime-hub</loc>
   </url>
   <url>
     <loc>http://localhost:3000/index-7</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/index-8</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/index-9</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/index-10</loc>
   </url>
   <url>
     <loc>http://localhost:3000/intro-earthdata-cloud</loc>
@@ -119,22 +116,19 @@
     <loc>http://localhost:3000/b-icepyx-atl06</loc>
   </url>
   <url>
+    <loc>http://localhost:3000/is2-cloud-landsat-integration</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/icesat2-atl15-dhdt</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/is2-atl15-surface-height-anomalies</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/icesat2-atl10-h5coro-large-scale-time-series</loc>
+  </url>
+  <url>
     <loc>http://localhost:3000/sliderule-applications</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/dask-for-geoscientists</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/arcodata-writingzarrs</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/grimp-tutorial-agu23</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/its-live-plot-point-timeseries</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/index-8</loc>
   </url>
   <url>
     <loc>http://localhost:3000/swot-lrhr-access</loc>
@@ -146,13 +140,40 @@
     <loc>http://localhost:3000/swot-hr-vs-icesat2</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/index-9</loc>
+    <loc>http://localhost:3000/its-live-plot-point-timeseries</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/grimp-tutorial-agu23</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/l1b-waveforms-tutorial-1</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/arcodata-writingzarrs</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/dask-for-geoscientists</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/index-11</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/index-12</loc>
   </url>
   <url>
     <loc>http://localhost:3000/workflow</loc>
   </url>
   <url>
     <loc>http://localhost:3000/projects-supported</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/hiring</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/projects-supported-1</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/questions</loc>
   </url>
   <url>
     <loc>http://localhost:3000/is2-resources</loc>
@@ -164,6 +185,9 @@
     <loc>http://localhost:3000/open-source-software</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/questions</loc>
+    <loc>http://localhost:3000/hub-best-practices-1</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/citing-stratusgeo</loc>
   </url>
 </urlset>
